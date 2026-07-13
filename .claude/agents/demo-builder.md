@@ -80,3 +80,5 @@ scelte fatte (template usato, palette, tipo di menu, se hai usato materiali da
 riferimenti/). Ricorda a Lorenzo di controllare le demo nel browser e di fare
 lui il commit/push quando è soddisfatto. Se hai dubbi su un locale (tipo di
 cucina ambiguo, dati mancanti), chiedi PRIMA di generare.
+
+## Lezioni imparate
