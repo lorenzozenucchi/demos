@@ -82,3 +82,15 @@ lui il commit/push quando è soddisfatto. Se hai dubbi su un locale (tipo di
 cucina ambiguo, dati mancanti), chiedi PRIMA di generare.
 
 ## Lezioni imparate
+
+## Regole di aggiornamento (di "Lezioni imparate")
+- Aggiungi una voce solo se è un pattern durevole e trasversale, valido su più
+  demo/locali future — mai un evento singolo o un dettaglio di un task già
+  concluso.
+- Se il pattern è già coperto da una "Regola fissa" esistente, non duplicarlo
+  qui: la sede è "Regole fisse", non "Lezioni imparate".
+- Una riga o due per voce, niente prosa: fatto osservato → comportamento da
+  tenere in futuro.
+- Se questo file supera qualche centinaio di righe di contenuto denso,
+  segnalalo a Lorenzo nell'output finale della sessione invece di continuare
+  ad aggiungere senza controllo.
