@@ -7,9 +7,9 @@ Lorenzo Zenucchi crea siti web e gestisce la presenza digitale per queste
 attività.
 
 ## Struttura della cartella
-- `templates/` — i 4 template master (osteria.html, pizzeria.html, elegante.html,
-  loft.html). NON SI TOCCANO MAI: sono gli stampi da cui nasce ogni demo. Possono
-  restare pubblici su GitHub senza problemi.
+- `templates/` — i 5 template master (osteria.html, pizzeria.html, elegante.html,
+  loft.html, candela.html). NON SI TOCCANO MAI: sono gli stampi da cui nasce ogni
+  demo. Possono restare pubblici su GitHub senza problemi.
 - `demos/` — le demo generate, una cartella per locale
   (es. `demos/chalet-cene/index.html`). Queste vanno pubblicate online.
 - `riferimenti/` — materiali reali dei locali (foto, screenshot, link) usati

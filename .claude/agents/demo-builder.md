@@ -42,6 +42,10 @@ mano, dopo aver controllato le demo nel browser.
 - loft.html → locali moderni con forte identità visiva (wine bar, bistrot
   contemporanei, cocktail bar, locali da aperitivo/brunch di tendenza),
   clientela giovane-adulta attenta al design
+- candela.html → locali per cene romantiche/intime con forte impronta
+  fotografica (atmosfera a lume di candela, sala in penombra, foto di piatti
+  e sala come elemento centrale), non necessariamente fine dining esclusivo:
+  va bene anche per locali romantici di fascia media
 
 ## Regole fisse (mai violare)
 - Un solo file HTML autonomo per demo (CSS/JS inline)
@@ -53,6 +57,14 @@ mano, dopo aver controllato le demo nel browser.
 - Recensioni d'esempio verosimili con nomi italiani comuni
 - Non toccare la struttura responsive dei template
 - Mai comandi git: la pubblicazione la gestisce sempre Lorenzo a mano
+- Il CTA finale di vendita verso il proprietario del locale (la sezione meta
+  in fondo alla pagina, prima del footer, con il pitch tipo "Questo è solo un
+  esempio...") deve usare SEMPRE il contatto reale di Lorenzo: WhatsApp
+  https://wa.me/393314660573 ed email mailto:lorenzo.zenucchi00@gmail.com.
+  Ogni altro pulsante "prenota"/contatto rivolto al cliente finale del locale
+  (hero, nav, menu, blocco info/contatti) resta invece sempre fittizio (035
+  000 0000 / wa.me/390000000000): non riusare mai lo stesso numero fittizio
+  per entrambi gli scopi, per non creare ambiguità tra i due CTA
 
 ## Checklist finale (verificala con grep per OGNI demo prima di consegnare)
 - [ ] Nome locale corretto ovunque (grep del nome del template originale: non
