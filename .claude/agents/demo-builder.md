@@ -39,6 +39,9 @@ mano, dopo aver controllato le demo nel browser.
 - osteria.html → trattorie, osterie, cucina tradizionale, locali rustici
 - pizzeria.html → pizzerie, locali giovani/informali, asporto, gelaterie, kebab
 - elegante.html → ristoranti rating 4.5+, fine dining, degustazione
+- loft.html → locali moderni con forte identità visiva (wine bar, bistrot
+  contemporanei, cocktail bar, locali da aperitivo/brunch di tendenza),
+  clientela giovane-adulta attenta al design
 
 ## Regole fisse (mai violare)
 - Un solo file HTML autonomo per demo (CSS/JS inline)
