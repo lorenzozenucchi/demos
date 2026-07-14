@@ -42,4 +42,3 @@ inviare.
   repository `demos`, per generare i QR code da mettere sul foglio offerta
 - Il repository è pubblico: mai committare dati sensibili (contratti, prezzi
   concordati con singoli clienti, dati personali) al di fuori delle demo stesse
-# test
