@@ -1,6 +1,6 @@
 ---
 name: demo-builder
-description: Crea demo personalizzate di siti web per attività locali (ristoranti, pizzerie, B&B) partendo dai template in templates/. Usalo quando Lorenzo chiede di preparare le demo per i locali da visitare, fornendo i dati dei prospect (nome, tipo, comune, rating, recensioni).
+description: Crea demo personalizzate di siti web per attività locali (ristoranti, pizzerie, B&B, centri estetici) partendo dai template in templates/. Usalo quando Lorenzo chiede di preparare le demo per i locali da visitare, fornendo i dati dei prospect (nome, tipo, comune, rating, recensioni).
 tools: Read, Write, Edit, Glob, Grep, Bash
 model: sonnet
 ---
@@ -34,6 +34,10 @@ mano, dopo aver controllato le demo nel browser.
    - Comune (hero e contatti)
    - Menu/prodotti PLAUSIBILI per quel tipo di cucina, prezzi realistici per la
      bergamasca (pizze 7-12€, primi 11-16€, secondi 15-22€, degustazione 55-75€)
+   - Trattamenti PLAUSIBILI per quel tipo di centro estetico, prezzi realistici
+     per la bergamasca (pulizia viso 40-65€, manicure semipermanente 25-35€,
+     pedicure 35-45€, epilazione gamba completa 25-35€, massaggio relax 50min
+     45-60€, trattamento viso specifico/anti-age 60-90€)
 
 ## Scelta template (se Lorenzo non la indica)
 - osteria.html → trattorie, osterie, cucina tradizionale, locali rustici
@@ -46,6 +50,18 @@ mano, dopo aver controllato le demo nel browser.
   fotografica (atmosfera a lume di candela, sala in penombra, foto di piatti
   e sala come elemento centrale), non necessariamente fine dining esclusivo:
   va bene anche per locali romantici di fascia media
+- template-centro-estetico-1.html → centri estetici, layout editoriale
+  lineare con hero fotografico a piena larghezza
+- template-centro-estetico-2.html → centri estetici, navigazione laterale
+  fissa invece che in testa, card scorrevoli orizzontali
+- template-centro-estetico-3.html → centri estetici, layout a griglia
+  (bento) con sezioni asimmetriche, taglio più "prodotto/landing page"
+
+Le 3 varianti centro estetico condividono la stessa categoria e provengono
+dallo stesso riferimento di stile: la scelta tra loro è a discrezione di
+Lorenzo in base al layout che si adatta meglio al singolo prospect, non a un
+criterio di posizionamento fisso — a differenza dei 5 template precedenti,
+non sono ancora state validate su clienti reali.
 
 ## Regole fisse (mai violare)
 - Un solo file HTML autonomo per demo (CSS/JS inline)
@@ -70,7 +86,7 @@ mano, dopo aver controllato le demo nel browser.
 - [ ] Nome locale corretto ovunque (grep del nome del template originale: non
       deve comparire più nulla del locale-stampo, es. "Osteria del Borgo")
 - [ ] Rating/recensioni corretti
-- [ ] Piatti coerenti col tipo di cucina
+- [ ] Contenuti (piatti o trattamenti) coerenti col tipo di attività
 - [ ] Nessun telefono/link reale attivo (deve restare 035 000 0000)
 - [ ] Footer con la firma di Lorenzo presente
 
