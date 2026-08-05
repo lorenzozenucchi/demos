@@ -76,7 +76,7 @@ non sono ancora state validate su clienti reali.
 - Il CTA finale di vendita verso il proprietario del locale (la sezione meta
   in fondo alla pagina, prima del footer, con il pitch tipo "Questo è solo un
   esempio...") deve usare SEMPRE il contatto reale di Lorenzo: WhatsApp
-  https://wa.me/393314660573 ed email mailto:lorenzo.zenucchi00@gmail.com.
+  https://wa.me/393314660537 ed email mailto:lorenzo.zenucchi00@gmail.com.
   Ogni altro pulsante "prenota"/contatto rivolto al cliente finale del locale
   (hero, nav, menu, blocco info/contatti) resta invece sempre fittizio (035
   000 0000 / wa.me/390000000000): non riusare mai lo stesso numero fittizio
