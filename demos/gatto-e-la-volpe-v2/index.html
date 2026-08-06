@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trattoria Il Gatto e la Volpe — Demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Caveat:wght@500;600;700&family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --panna:#f7f0e1;
+    --panna-2:#efe3c9;
+    --carta:#fffaf0;
+    --terracotta:#c1603c;
+    --terracotta-scura:#9c4a2c;
+    --senape:#cf9c34;
+    --oliva:#6b7a49;
+    --oliva-scura:#4f5c37;
+    --inchiostro:#3a2f22;
+    --testo-tenue:#8a7a63;
+    --lavagna:#333f2b;
+    --lavagna-2:#425136;
+    --riga:rgba(58,47,34,0.16);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--carta);
+    color:var(--inchiostro);
+    font-family:'Nunito Sans', sans-serif;
+    font-weight:400;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; transition-duration:0.01ms !important;}
+  }
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+  ::selection{background:var(--terracotta); color:var(--carta);}
+
+  /* ---------- LAYOUT: sidebar + quaderno ---------- */
+  .layout{display:grid; grid-template-columns:300px 1fr; min-height:100vh;}
+  @media(max-width:900px){ .layout{grid-template-columns:1fr;} }
+
+  .sidebar{
+    background:var(--lavagna); color:var(--panna);
+    padding:34px 28px; position:sticky; top:0; height:100vh; overflow-y:auto;
+    display:flex; flex-direction:column;
+  }
+  @media(max-width:900px){ .sidebar{position:static; height:auto;} }
+  .sb-brand{font-family:'Alegreya', serif; font-weight:700; font-size:1.6rem; line-height:1.15;}
+  .sb-brand em{font-style:italic; color:var(--senape); font-weight:600;}
+  .sb-tagline{font-family:'Caveat', cursive; font-size:1.25rem; color:rgba(247,240,225,0.75); margin-top:8px;}
+
+  .sb-nota{
+    background:rgba(247,240,225,0.08); border:1px dashed rgba(247,240,225,0.3);
+    border-radius:10px; padding:16px; margin-top:28px; transform:rotate(-1deg);
+  }
+  .sb-nota .cap{font-family:'Caveat', cursive; font-size:1.15rem; color:var(--senape);}
+  .sb-nota h4{font-family:'Alegreya', serif; font-size:1.15rem; margin-top:4px; line-height:1.2;}
+  .sb-nota .prz{font-family:'Alegreya', serif; font-weight:700; color:var(--panna); margin-top:8px; display:block;}
+
+  .sb-block{margin-top:26px;}
+  .sb-label{font-family:'Caveat', cursive; font-size:1.1rem; color:var(--senape); margin-bottom:6px;}
+  .sb-row{display:flex; justify-content:space-between; font-size:0.85rem; padding:6px 0; border-bottom:1px solid rgba(247,240,225,0.12); color:rgba(247,240,225,0.85);}
+  .sb-row:last-child{border-bottom:none;}
+
+  .sb-actions{display:flex; flex-direction:column; gap:10px; margin-top:28px;}
+  .sb-btn{
+    text-align:center; padding:12px 16px; border-radius:22px; font-size:0.88rem; font-weight:700;
+  }
+  .sb-btn.primary{background:var(--terracotta); color:var(--carta);}
+  .sb-btn.ghost{border:1px solid rgba(247,240,225,0.35); color:var(--panna);}
+
+  .sb-checker{
+    margin-top:auto; padding-top:28px; height:16px;
+    background-image:
+      linear-gradient(45deg, rgba(247,240,225,0.5) 25%, transparent 25%, transparent 75%, rgba(247,240,225,0.5) 75%),
+      linear-gradient(45deg, rgba(247,240,225,0.5) 25%, transparent 25%, transparent 75%, rgba(247,240,225,0.5) 75%);
+    background-size:22px 22px; background-position:0 0, 11px 11px; background-repeat:repeat-x;
+  }
+
+  /* ---------- CONTENUTO ---------- */
+  .content{background:var(--panna);}
+  .wrap{max-width:820px; margin:0 auto; padding:0 28px;}
+
+  .intro-band{
+    padding:64px 0 50px;
+    background:radial-gradient(ellipse 600px 350px at 85% 0%, rgba(207,156,52,0.16), transparent 65%);
+  }
+  .intro-band .eyebrow{font-family:'Caveat', cursive; font-size:1.4rem; color:var(--terracotta-scura);}
+  .intro-band h1{
+    font-family:'Alegreya', serif; font-weight:700; font-size:clamp(2.2rem, 5vw, 3.2rem);
+    line-height:1.1; margin-top:6px;
+  }
+  .intro-band h1 em{font-style:italic; color:var(--terracotta); font-weight:600;}
+  .intro-band p{color:var(--testo-tenue); margin-top:18px; max-width:520px; font-size:1rem;}
+  .intro-band .foto-strip{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:34px;
+  }
+  .intro-band .foto{aspect-ratio:4/3; border-radius:10px;}
+  .f1{background:linear-gradient(155deg, #d9b357, #c1603c 60%, #7a3320);}
+  .f2{background:linear-gradient(155deg, #7d8a56, #4f5c37);}
+  .f3{background:linear-gradient(155deg, #b98650, #6b4423);}
+
+  .quaderno{padding:56px 0;}
+  .quaderno-head{margin-bottom:36px;}
+  .quaderno-head .section-eyebrow{font-family:'Caveat', cursive; font-size:1.3rem; color:var(--terracotta-scura);}
+  .quaderno-head h2{font-family:'Alegreya', serif; font-weight:700; font-size:clamp(1.7rem, 4vw, 2.3rem); margin-top:4px;}
+  .quaderno-head h2 em{font-style:italic; color:var(--terracotta); font-weight:600;}
+  .quaderno-head p{color:var(--testo-tenue); margin-top:10px; max-width:480px;}
+
+  .pagina{
+    position:relative; background:var(--carta); border:1px solid var(--riga); border-radius:4px 14px 14px 4px;
+    padding:26px 26px 26px 44px; margin-bottom:20px; box-shadow:0 4px 14px rgba(58,47,34,0.06);
+  }
+  .pagina::before{
+    content:''; position:absolute; left:14px; top:16px; bottom:16px; width:1px;
+    background-image:radial-gradient(circle, var(--riga) 2px, transparent 2px);
+    background-size:100% 20px;
+  }
+  .pagina .num{
+    font-family:'Alegreya', serif; font-style:italic; font-weight:600; font-size:1.1rem;
+    color:var(--senape); margin-bottom:8px; display:block;
+  }
+  .pagina h3{font-family:'Alegreya', serif; font-weight:700; font-size:1.25rem;}
+  .pagina .piatti{margin-top:14px;}
+  .piatto-riga{display:flex; align-items:baseline; gap:8px; padding:8px 0; border-bottom:1px dashed var(--riga);}
+  .piatto-riga:last-child{border-bottom:none;}
+  .piatto-nome{font-weight:600; font-size:0.96rem;}
+  .piatto-desc{display:block; font-size:0.8rem; color:var(--testo-tenue); font-weight:400; margin-top:2px;}
+  .piatto-fill{flex:1; min-width:10px;}
+  .piatto-prezzo{font-family:'Alegreya', serif; font-weight:700; color:var(--terracotta-scura); white-space:nowrap;}
+
+  .storia-pagina p{color:var(--testo-tenue); margin-bottom:12px; font-size:0.96rem;}
+  .storia-pagina .firma{font-family:'Caveat', cursive; font-size:1.4rem; color:var(--oliva-scura); margin-top:6px;}
+
+  .rec-riga{display:flex; gap:14px; align-items:flex-start; margin-bottom:16px;}
+  .rec-riga:last-child{margin-bottom:0;}
+  .rec-stelle{color:var(--senape); font-size:0.85rem; white-space:nowrap;}
+  .rec-riga p{font-size:0.92rem; color:var(--inchiostro); margin:4px 0;}
+  .rec-riga .nome{font-size:0.82rem; color:var(--testo-tenue); font-weight:700;}
+
+  .foto-fila{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; padding:0 4px;}
+  @media(max-width:560px){ .foto-fila{grid-template-columns:repeat(2,1fr);} }
+  .polaroid{
+    background:var(--carta); padding:8px 8px 20px; border:1px solid var(--riga); border-radius:3px;
+    box-shadow:0 8px 16px rgba(58,47,34,0.1);
+  }
+  .polaroid:nth-child(odd){transform:rotate(-2deg);}
+  .polaroid:nth-child(even){transform:rotate(1.5deg);}
+  .polaroid .foto-int{aspect-ratio:1/1; border-radius:2px;}
+
+  .info-pagina .info-row{display:flex; justify-content:space-between; padding:9px 0; border-bottom:1px dashed var(--riga); font-size:0.95rem;}
+  .info-pagina .info-row span:last-child{color:var(--testo-tenue);}
+
+  .cta-band{padding:70px 0; text-align:center; background:var(--panna-2); border-top:1px solid var(--riga);}
+  .cta-band h2{font-family:'Alegreya', serif; font-weight:700; font-size:clamp(1.6rem, 4vw, 2.2rem); max-width:520px; margin:0 auto 14px;}
+  .cta-band h2 em{font-style:italic; color:var(--terracotta);}
+  .cta-band p{color:var(--testo-tenue); max-width:420px; margin:0 auto 28px;}
+  .cta-actions{display:flex; gap:14px; justify-content:center; flex-wrap:wrap;}
+  .btn{padding:13px 22px; font-size:0.9rem; font-weight:700; border-radius:24px; display:inline-flex; align-items:center; gap:8px; transition:transform 0.2s, background 0.2s;}
+  .btn-primary{background:var(--terracotta); color:var(--carta);}
+  .btn-primary:hover{background:var(--terracotta-scura); transform:translateY(-2px);}
+  .btn-ghost{border:2px solid var(--oliva); color:var(--oliva-scura);}
+  .btn-ghost:hover{background:var(--oliva); color:var(--carta); transform:translateY(-2px);}
+
+  footer{padding:30px 0; text-align:center; background:var(--panna-2);}
+  footer p{font-size:0.78rem; color:var(--testo-tenue);}
+  footer p strong{color:var(--terracotta-scura);}
+
+  a:focus-visible, button:focus-visible{outline:2px solid var(--terracotta); outline-offset:3px;}
+</style>
+</head>
+<body>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div>
+      <div class="sb-brand">Il Gatto <em>e la Volpe</em></div>
+      <div class="sb-tagline">il tavolo è sempre pronto</div>
+    </div>
+
+    <div class="sb-block">
+      <div class="sb-label">Su Google</div>
+      <div class="sb-row"><span>Valutazione</span><span>⭐ 4.4 / 5</span></div>
+      <div class="sb-row"><span>Recensioni</span><span>723</span></div>
+    </div>
+
+    <div class="sb-nota">
+      <div class="cap">Piatto di oggi</div>
+      <h4>Polenta taragna coi formaggi</h4>
+      <span class="prz">13 €</span>
+    </div>
+
+    <div class="sb-block">
+      <div class="sb-label">Orari</div>
+      <div class="sb-row"><span>Mar–Sab</span><span>12–14:30 · 19–22</span></div>
+      <div class="sb-row"><span>Domenica</span><span>12–14:30</span></div>
+      <div class="sb-row"><span>Lunedì</span><span>chiuso</span></div>
+    </div>
+
+    <div class="sb-block">
+      <div class="sb-label">Dove siamo</div>
+      <div class="sb-row"><span>Indirizzo</span><span>Via Ruggero Viti, 4</span></div>
+      <div class="sb-row"><span>Comune</span><span>Clusone (BG)</span></div>
+    </div>
+
+    <div class="sb-actions">
+      <a href="tel:+390350000000" class="sb-btn primary">📞 035 000 0000</a>
+      <a href="https://wa.me/390350000000" class="sb-btn ghost">💬 Scrivi su WhatsApp</a>
+    </div>
+
+    <div class="sb-checker"></div>
+  </aside>
+
+  <div class="content">
+    <section class="intro-band">
+      <div class="wrap">
+        <div class="eyebrow">Un classico della cucina bergamasca</div>
+        <h1>Il Gatto e la Volpe, <em>a Clusone</em>.</h1>
+        <p>Cucina bergamasca semplice e genuina, apprezzata da centinaia di clienti. Pochi fronzoli, tanta sostanza — nel cuore di Clusone.</p>
+        <div class="foto-strip">
+          <div class="foto f1"></div>
+          <div class="foto f2"></div>
+          <div class="foto f3"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="quaderno" id="menu">
+      <div class="wrap">
+        <div class="quaderno-head">
+          <div class="section-eyebrow">Il quaderno delle ricette</div>
+          <h2>La <em>carta</em>, pagina per pagina</h2>
+          <p>Le stesse ricette di sempre, divise come nel vecchio quaderno di cucina.</p>
+        </div>
+
+        <div class="pagina">
+          <span class="num">I — Antipasti</span>
+          <h3>Per iniziare</h3>
+          <div class="piatti">
+            <div class="piatto-riga">
+              <div><span class="piatto-nome">Tagliere di salumi e formaggi</span><span class="piatto-desc">Mostarda e miele della valle</span></div>
+              <div class="piatto-fill"></div><span class="piatto-prezzo">12€</span>
+            </div>
+            <div class="piatto-riga">
+              <div><span class="piatto-nome">Minestra di verza e fagioli</span></div>
+              <div class="piatto-fill"></div><span class="piatto-prezzo">8€</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pagina">
+          <span class="num">II — Primi</span>
+          <h3>Pasta e polenta</h3>
+          <div class="piatti">
+            <div class="piatto-riga">
+              <div><span class="piatto-nome">Casoncelli alla bergamasca</span><span class="piatto-desc">Burro fuso, salvia, pancetta</span></div>
+              <div class="piatto-fill"></div><span class="piatto-prezzo">12€</span>
+            </div>
+            <div class="piatto-riga">
+              <div><span class="piatto-nome">Polenta taragna coi formaggi</span></div>
+              <div class="piatto-fill"></div><span class="piatto-prezzo">13€</span>
+            </div>
+            <div class="piatto-riga">
+              <div><span class="piatto-nome">Tagliatelle al ragù di cinghiale</span></div>
+              <div class="piatto-fill"></div><span class="piatto-prezzo">13€</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pagina">
+          <span class="num">III — Secondi</span>
+          <h3>Dal forno e dal tegame</h3>
+          <div class="piatti">
+            <div class="piatto-riga">
+              <div><span class="piatto-nome">Ossobuco con risotto giallo</span></div>
+              <div class="piatto-fill"></div><span class="piatto-prezzo">17€</span>
+            </div>
+            <div class="piatto-riga">
+              <div><span class="piatto-nome">Brasato al Valcalepio</span><span class="piatto-desc">Con polenta abbrustolita</span></div>
+              <div class="piatto-fill"></div><span class="piatto-prezzo">16€</span>
+            </div>
+            <div class="piatto-riga">
+              <div><span class="piatto-nome">Cotoletta alla milanese</span></div>
+              <div class="piatto-fill"></div><span class="piatto-prezzo">15€</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pagina">
+          <span class="num">IV — Dolci</span>
+          <h3>Per chiudere bene</h3>
+          <div class="piatti">
+            <div class="piatto-riga">
+              <div><span class="piatto-nome">Torta di tagliatelle dolce</span></div>
+              <div class="piatto-fill"></div><span class="piatto-prezzo">6€</span>
+            </div>
+            <div class="piatto-riga">
+              <div><span class="piatto-nome">Panna cotta ai frutti di bosco</span></div>
+              <div class="piatto-fill"></div><span class="piatto-prezzo">6€</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pagina storia-pagina">
+          <span class="num">V — La nostra storia</span>
+          <h3>Un nome che tutti conoscono</h3>
+          <p>Il Gatto e la Volpe è oggi un punto fermo della cucina bergamasca a Clusone: un locale conosciuto e frequentato, dove la cura in cucina e in sala si sente ad ogni portata.</p>
+          <p>Qui va la storia vera del locale — raccontata con le parole di chi la vive ogni giorno.</p>
+          <div class="firma">— Il Gatto e la Volpe</div>
+        </div>
+
+        <div class="pagina">
+          <span class="num">VI — Cosa dicono di noi</span>
+          <div class="rec-riga">
+            <div>
+              <div class="rec-stelle">★★★★★</div>
+              <p>"Piccolo grande classico di Clusone. La polenta taragna è quella vera, come una volta."</p>
+              <div class="nome">Anna F. — Google</div>
+            </div>
+          </div>
+          <div class="rec-riga">
+            <div>
+              <div class="rec-stelle">★★★★★</div>
+              <p>"Prezzi giusti, porzioni abbondanti e ti trattano sempre bene, anche nelle serate più piene."</p>
+              <div class="nome">Davide S. — Google</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="quaderno" id="galleria">
+      <div class="wrap">
+        <div class="quaderno-head">
+          <div class="section-eyebrow">Un giro tra i tavoli</div>
+          <h2>Qualche <em>scatto</em></h2>
+        </div>
+        <div class="foto-fila">
+          <div class="polaroid"><div class="foto-int f2"></div></div>
+          <div class="polaroid"><div class="foto-int f1"></div></div>
+          <div class="polaroid"><div class="foto-int f3"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-band">
+      <div class="wrap">
+        <h2>Questo è solo un <em>esempio</em>.</h2>
+        <p>Il tuo sito, con i tuoi piatti, le tue foto e le tue recensioni vere — online in due settimane.</p>
+        <div class="cta-actions">
+          <a href="mailto:lorenzo.zenucchi00@gmail.com" class="btn btn-primary">Parliamone insieme</a>
+          <a href="https://wa.me/393314660537" class="btn btn-ghost">💬 Scrivimi su WhatsApp</a>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>Bozza dimostrativa creata da <strong>Lorenzo Zenucchi</strong> — Siti Web per attività locali · Val Seriana, BG</p>
+    </footer>
+  </div>
+</div>
+
+</body>
+</html>
