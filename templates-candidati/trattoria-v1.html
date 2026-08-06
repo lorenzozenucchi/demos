@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trattoria da Palmira — Demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Caveat:wght@500;600;700&family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --panna:#f7f0e1;
+    --panna-2:#efe3c9;
+    --carta:#fffaf0;
+    --terracotta:#c1603c;
+    --terracotta-scura:#9c4a2c;
+    --senape:#cf9c34;
+    --oliva:#6b7a49;
+    --oliva-scura:#4f5c37;
+    --inchiostro:#3a2f22;
+    --testo-tenue:#8a7a63;
+    --lavagna:#333f2b;
+    --lavagna-2:#425136;
+    --riga:rgba(58,47,34,0.14);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--panna);
+    color:var(--inchiostro);
+    font-family:'Nunito Sans', sans-serif;
+    font-weight:400;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; transition-duration:0.01ms !important;}
+  }
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+  .wrap{max-width:1080px; margin:0 auto; padding:0 24px;}
+  ::selection{background:var(--terracotta); color:var(--carta);}
+
+  .checker{
+    height:14px;
+    background-image:
+      linear-gradient(45deg, var(--terracotta) 25%, transparent 25%, transparent 75%, var(--terracotta) 75%),
+      linear-gradient(45deg, var(--terracotta) 25%, transparent 25%, transparent 75%, var(--terracotta) 75%);
+    background-size:24px 24px;
+    background-position:0 0, 12px 12px;
+    background-color:var(--panna);
+    opacity:0.55;
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky; top:0; z-index:50;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 24px;
+    background:rgba(247,240,225,0.94);
+    backdrop-filter:blur(3px);
+    border-bottom:1px solid var(--riga);
+  }
+  .brand{
+    font-family:'Alegreya', serif; font-weight:600; font-size:1.4rem;
+    color:var(--inchiostro);
+  }
+  .brand em{font-style:italic; color:var(--terracotta); font-weight:500;}
+  .nav-links{display:flex; gap:28px; font-size:0.9rem; font-weight:600;}
+  .nav-links a{color:var(--testo-tenue); transition:color 0.25s; padding-bottom:2px; border-bottom:2px solid transparent;}
+  .nav-links a:hover, .nav-links a:focus-visible{color:var(--terracotta-scura); border-color:var(--senape); outline:none;}
+  .nav-cta{
+    display:flex; align-items:center; gap:8px;
+    background:var(--terracotta); color:var(--carta); font-weight:700; font-size:0.88rem;
+    padding:10px 18px; border-radius:24px;
+  }
+  @media(max-width:760px){ .nav-links{display:none;} }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:70px 0 60px;
+    background:
+      radial-gradient(ellipse 700px 400px at 15% 0%, rgba(207,156,52,0.18), transparent 60%),
+      radial-gradient(ellipse 600px 400px at 90% 30%, rgba(107,122,73,0.14), transparent 60%),
+      var(--panna);
+  }
+  .hero-grid{display:grid; grid-template-columns:1.1fr 0.9fr; gap:50px; align-items:center;}
+  @media(max-width:860px){ .hero-grid{grid-template-columns:1fr; gap:36px;} }
+  .eyebrow{
+    font-family:'Caveat', cursive; font-weight:600; font-size:1.5rem;
+    color:var(--terracotta-scura); margin-bottom:6px;
+  }
+  h1.title{
+    font-family:'Alegreya', serif; font-weight:700; font-size:clamp(2.6rem, 6vw, 4rem);
+    line-height:1.06; color:var(--inchiostro);
+  }
+  h1.title em{font-style:italic; color:var(--terracotta); font-weight:600;}
+  .tagline{
+    font-size:1.05rem; color:var(--testo-tenue); margin-top:20px; max-width:460px;
+  }
+  .hero-meta{display:flex; flex-wrap:wrap; gap:12px; margin-top:32px;}
+  .pill{
+    display:flex; align-items:center; gap:7px;
+    border:1px solid var(--riga); padding:9px 16px; border-radius:24px;
+    font-size:0.85rem; color:var(--inchiostro); background:var(--carta);
+  }
+  .pill .dot{width:7px; height:7px; border-radius:50%; background:var(--oliva); flex-shrink:0;}
+  .hero-actions{display:flex; gap:14px; margin-top:32px; flex-wrap:wrap;}
+  .btn{
+    padding:14px 24px; font-size:0.92rem; font-weight:700;
+    border-radius:26px; display:inline-flex; align-items:center; gap:9px;
+    transition:transform 0.2s, background 0.2s;
+  }
+  .btn-primary{background:var(--terracotta); color:var(--carta);}
+  .btn-primary:hover{background:var(--terracotta-scura); transform:translateY(-2px);}
+  .btn-ghost{border:2px solid var(--oliva); color:var(--oliva-scura);}
+  .btn-ghost:hover{background:var(--oliva); color:var(--carta); transform:translateY(-2px);}
+
+  /* piatto del giorno card, in hero */
+  .piatto-oggi{
+    background:var(--lavagna); color:var(--panna); border-radius:16px;
+    padding:34px 30px; position:relative; box-shadow:0 18px 40px rgba(51,63,43,0.28);
+    transform:rotate(-1.4deg);
+  }
+  .piatto-oggi::before{
+    content:'📌'; position:absolute; top:-14px; left:28px; font-size:1.6rem;
+    transform:rotate(12deg);
+  }
+  .piatto-oggi .tag{
+    font-family:'Caveat', cursive; font-weight:600; font-size:1.6rem; color:var(--senape);
+  }
+  .piatto-oggi h3{
+    font-family:'Alegreya', serif; font-weight:600; font-size:1.7rem; margin-top:8px; line-height:1.2;
+  }
+  .piatto-oggi p{font-size:0.92rem; color:rgba(247,240,225,0.72); margin-top:10px;}
+  .piatto-oggi .prezzo{
+    display:inline-block; margin-top:16px; font-family:'Alegreya', serif; font-weight:700;
+    font-size:1.3rem; color:var(--panna); border-top:1px dashed rgba(247,240,225,0.35); padding-top:12px;
+  }
+
+  /* ---------- SECTION ---------- */
+  .section{padding:90px 0;}
+  .section-head{margin-bottom:48px; max-width:600px;}
+  .section-eyebrow{
+    font-family:'Caveat', cursive; font-weight:600; font-size:1.4rem;
+    color:var(--terracotta-scura); margin-bottom:6px;
+  }
+  .section-title{
+    font-family:'Alegreya', serif; font-weight:700; font-size:clamp(1.9rem, 4vw, 2.6rem);
+    line-height:1.12;
+  }
+  .section-title em{font-style:italic; color:var(--terracotta); font-weight:600;}
+  .section-sub{color:var(--testo-tenue); margin-top:14px; font-size:1rem; max-width:520px;}
+
+  /* ---------- MENU ---------- */
+  .menu{background:var(--panna-2); border-top:1px solid var(--riga); border-bottom:1px solid var(--riga);}
+  .menu-grid{display:grid; grid-template-columns:1fr 1fr; gap:26px;}
+  @media(max-width:800px){ .menu-grid{grid-template-columns:1fr;} }
+  .menu-cat{
+    background:var(--carta); border-radius:12px; padding:26px 26px 8px; border-left:6px solid var(--terracotta);
+  }
+  .menu-cat.senape{border-left-color:var(--senape);}
+  .menu-cat.oliva{border-left-color:var(--oliva);}
+  .menu-cat h3{
+    font-family:'Alegreya', serif; font-weight:700; font-size:1.3rem;
+    color:var(--inchiostro); margin-bottom:18px;
+  }
+  .menu-item{display:flex; align-items:baseline; gap:8px; margin-bottom:16px; padding-bottom:16px; border-bottom:1px dashed var(--riga);}
+  .menu-item:last-child{border-bottom:none;}
+  .menu-item-col{display:flex; flex-direction:column;}
+  .menu-item-name{font-size:1rem; font-weight:600; color:var(--inchiostro);}
+  .menu-item-desc{display:block; font-size:0.82rem; color:var(--testo-tenue); margin-top:3px; font-weight:400;}
+  .leader{flex:1; min-width:14px;}
+  .menu-item-price{font-family:'Alegreya', serif; font-weight:700; font-size:1rem; color:var(--terracotta-scura); white-space:nowrap;}
+  .menu-note{text-align:center; color:var(--testo-tenue); font-size:0.85rem; margin-top:30px; font-style:italic;}
+
+  /* ---------- STORIA ---------- */
+  .storia-grid{display:grid; grid-template-columns:0.9fr 1.1fr; gap:60px; align-items:center;}
+  @media(max-width:800px){ .storia-grid{grid-template-columns:1fr; gap:36px;} }
+  .foto-ph{
+    aspect-ratio:4/5; border-radius:14px; position:relative; overflow:hidden;
+    background:linear-gradient(155deg, #d9b98a, #c1603c 55%, #9c4a2c);
+    display:flex; align-items:flex-end; padding:18px;
+  }
+  .foto-ph span{font-size:0.75rem; color:rgba(255,250,240,0.75); font-weight:600; text-transform:uppercase; letter-spacing:0.04em;}
+  .storia h3{font-family:'Alegreya', serif; font-weight:700; font-size:1.8rem; margin-bottom:16px; line-height:1.2;}
+  .storia h3 em{font-style:italic; color:var(--terracotta);}
+  .storia p{color:var(--testo-tenue); margin-bottom:14px; font-size:0.98rem;}
+  .firma{font-family:'Caveat', cursive; font-weight:600; font-size:1.6rem; color:var(--oliva-scura); margin-top:10px;}
+
+  /* ---------- RECENSIONI ---------- */
+  .recensioni{background:var(--panna-2); border-top:1px solid var(--riga); border-bottom:1px solid var(--riga);}
+  .rec-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px;}
+  @media(max-width:800px){ .rec-grid{grid-template-columns:1fr;} }
+  .rec-card{background:var(--carta); border-radius:12px; padding:24px; border:1px solid var(--riga);}
+  .rec-stars{color:var(--senape); font-size:0.95rem; margin-bottom:10px;}
+  .rec-card p{font-size:0.92rem; color:var(--inchiostro); margin-bottom:14px;}
+  .rec-nome{font-weight:700; font-size:0.88rem; color:var(--terracotta-scura);}
+
+  /* ---------- GALLERY ---------- */
+  .gallery-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:12px;}
+  @media(max-width:760px){ .gallery-grid{grid-template-columns:repeat(2,1fr);} }
+  .ph{
+    aspect-ratio:1/1; border-radius:10px; position:relative; overflow:hidden;
+    display:flex; align-items:flex-end; padding:12px;
+    font-size:0.7rem; color:rgba(255,250,240,0.7); font-weight:600; text-transform:uppercase; letter-spacing:0.04em;
+  }
+  .ph::after{content:'foto cliente';}
+  .ph1{background:linear-gradient(155deg, #d9b357, #c1603c 60%, #7a3320);}
+  .ph2{background:linear-gradient(155deg, #7d8a56, #4f5c37);}
+  .ph3{background:linear-gradient(155deg, #cf9c34, #9c4a2c);}
+  .ph4{background:linear-gradient(155deg, #b98650, #6b4423);}
+
+  /* ---------- INFO ---------- */
+  .info-grid{display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start;}
+  @media(max-width:800px){ .info-grid{grid-template-columns:1fr; gap:40px;} }
+  .info-block + .info-block{margin-top:30px;}
+  .info-label{
+    font-family:'Caveat', cursive; font-weight:600; font-size:1.3rem;
+    color:var(--terracotta-scura); margin-bottom:8px;
+  }
+  .hours-row{display:flex; justify-content:space-between; padding:9px 0; border-bottom:1px dashed var(--riga); font-size:0.95rem;}
+  .hours-row span:last-child{color:var(--testo-tenue);}
+  .map-box{
+    height:100%; min-height:260px; border-radius:14px; border:1px solid var(--riga);
+    background:var(--panna-2);
+    display:flex; align-items:center; justify-content:center; position:relative;
+  }
+  .pin{width:16px; height:16px; border-radius:50% 50% 50% 0; background:var(--terracotta); transform:rotate(-45deg); box-shadow:0 0 0 7px rgba(193,96,60,0.16);}
+  .map-label{position:absolute; bottom:16px; left:16px; font-size:0.75rem; color:var(--testo-tenue);}
+
+  /* ---------- CTA ---------- */
+  .cta-band{
+    padding:90px 0; text-align:center;
+    background:var(--lavagna); color:var(--panna);
+  }
+  .cta-band h2{
+    font-family:'Alegreya', serif; font-weight:700; font-size:clamp(1.7rem, 4vw, 2.4rem);
+    max-width:580px; margin:0 auto 16px;
+  }
+  .cta-band h2 em{font-style:italic; color:var(--senape); font-weight:600;}
+  .cta-band p{color:rgba(247,240,225,0.72); max-width:440px; margin:0 auto 32px;}
+  .cta-actions{display:flex; gap:14px; justify-content:center; flex-wrap:wrap;}
+  .cta-band .btn-ghost{border-color:rgba(247,240,225,0.4); color:var(--panna);}
+  .cta-band .btn-ghost:hover{background:rgba(247,240,225,0.12); color:var(--panna);}
+
+  /* ---------- FOOTER ---------- */
+  footer{padding:38px 0; text-align:center;}
+  footer p{font-size:0.8rem; color:var(--testo-tenue);}
+  footer p strong{color:var(--terracotta-scura);}
+
+  a:focus-visible, button:focus-visible{outline:2px solid var(--terracotta); outline-offset:3px;}
+</style>
+</head>
+<body>
+
+<div class="checker"></div>
+
+<nav>
+  <div class="brand">Trattoria <em>da Palmira</em></div>
+  <div class="nav-links">
+    <a href="#menu">Menu</a>
+    <a href="#storia">La famiglia</a>
+    <a href="#galleria">Galleria</a>
+    <a href="#info">Dove siamo</a>
+  </div>
+  <a href="tel:+390350000000" class="nav-cta">📞 Chiama ora</a>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">Da tre generazioni in cucina</div>
+      <h1 class="title">Si mangia <em>come</em><br>a casa della nonna.</h1>
+      <p class="tagline">Ricette bergamasche, tovaglie a quadretti e piatti pensati per stare insieme — nel cuore di Vertova dal 1968.</p>
+      <div class="hero-meta">
+        <div class="pill"><span class="dot"></span> Aperto ora — chiude alle 22:00</div>
+        <div class="pill">⭐ 4.7 su Google · 341 recensioni</div>
+        <div class="pill">📍 Vertova (BG)</div>
+      </div>
+      <div class="hero-actions">
+        <a href="#menu" class="btn btn-primary">Vedi il menu</a>
+        <a href="https://wa.me/390350000000" class="btn btn-ghost">💬 Prenota su WhatsApp</a>
+      </div>
+    </div>
+    <div class="piatto-oggi">
+      <div class="tag">Il piatto del giorno</div>
+      <h3>Casoncelli alla bergamasca</h3>
+      <p>Fatti a mano ogni mattina, burro fuso, salvia e pancetta croccante.</p>
+      <div class="prezzo">10 €</div>
+    </div>
+  </div>
+</header>
+
+<section class="section menu" id="menu">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow">La carta</div>
+      <h2 class="section-title">Quello che <em>portiamo</em> in tavola</h2>
+      <p class="section-sub">Piatti semplici e veri, gli stessi da sempre — con qualche stagionale in più.</p>
+    </div>
+    <div class="menu-grid">
+      <div class="menu-cat">
+        <h3>Antipasti</h3>
+        <div class="menu-item">
+          <div class="menu-item-col">
+            <span class="menu-item-name">Tagliere di salumi e formaggi nostrani</span>
+            <span class="menu-item-desc">Con mostarda e miele di castagno</span>
+          </div>
+          <div class="leader"></div>
+          <span class="menu-item-price">10€</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-col"><span class="menu-item-name">Bruschette della casa</span></div>
+          <div class="leader"></div>
+          <span class="menu-item-price">6€</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-col">
+            <span class="menu-item-name">Sformatino di verdure di stagione</span>
+          </div>
+          <div class="leader"></div>
+          <span class="menu-item-price">8€</span>
+        </div>
+      </div>
+      <div class="menu-cat senape">
+        <h3>Primi</h3>
+        <div class="menu-item">
+          <div class="menu-item-col">
+            <span class="menu-item-name">Casoncelli alla bergamasca</span>
+            <span class="menu-item-desc">Burro fuso, salvia e pancetta croccante</span>
+          </div>
+          <div class="leader"></div>
+          <span class="menu-item-price">10€</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-col"><span class="menu-item-name">Strangolapreti al burro e grana</span></div>
+          <div class="leader"></div>
+          <span class="menu-item-price">9€</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-col"><span class="menu-item-name">Risotto alla milanese</span></div>
+          <div class="leader"></div>
+          <span class="menu-item-price">9€</span>
+        </div>
+      </div>
+      <div class="menu-cat oliva">
+        <h3>Secondi</h3>
+        <div class="menu-item">
+          <div class="menu-item-col">
+            <span class="menu-item-name">Polenta e brasato</span>
+            <span class="menu-item-desc">Cottura lenta nel Valcalepio rosso</span>
+          </div>
+          <div class="leader"></div>
+          <span class="menu-item-price">14€</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-col"><span class="menu-item-name">Coniglio alla cacciatora</span></div>
+          <div class="leader"></div>
+          <span class="menu-item-price">13€</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-col">
+            <span class="menu-item-name">Spiedo bergamasco</span>
+            <span class="menu-item-desc">Solo su prenotazione, minimo 2 persone</span>
+          </div>
+          <div class="leader"></div>
+          <span class="menu-item-price">15€</span>
+        </div>
+      </div>
+      <div class="menu-cat">
+        <h3>Dolci</h3>
+        <div class="menu-item">
+          <div class="menu-item-col"><span class="menu-item-name">Torta della nonna</span></div>
+          <div class="leader"></div>
+          <span class="menu-item-price">5€</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-col"><span class="menu-item-name">Crostata di mele</span></div>
+          <div class="leader"></div>
+          <span class="menu-item-price">5€</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-col"><span class="menu-item-name">Panna cotta</span></div>
+          <div class="leader"></div>
+          <span class="menu-item-price">5€</span>
+        </div>
+      </div>
+    </div>
+    <p class="menu-note">Il piatto del giorno cambia ogni mattina — sul sito vero è sempre aggiornato.</p>
+  </div>
+</section>
+
+<section class="section" id="storia">
+  <div class="wrap storia-grid">
+    <div class="foto-ph"><span>Foto della famiglia / della sala</span></div>
+    <div class="storia">
+      <h3>Una cucina che si <em>tramanda</em></h3>
+      <p>Palmira ha aperto la trattoria nel 1968, con un solo obiettivo: far mangiare bene chi entrava, come fosse a casa. Oggi in cucina ci sono i nipoti, ma le ricette sono rimaste le stesse.</p>
+      <p>Qui va la vera storia del locale — chi c'è in sala, chi in cucina, cosa rende speciale quel posto. Poche righe scritte con calma valgono più di una lista di piatti.</p>
+      <div class="firma">— Famiglia Rota, dal 1968</div>
+    </div>
+  </div>
+</section>
+
+<section class="section recensioni">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow">Chi è già venuto</div>
+      <h2 class="section-title">Parola di <em>cliente</em></h2>
+    </div>
+    <div class="rec-grid">
+      <div class="rec-card">
+        <div class="rec-stars">★★★★★</div>
+        <p>"I casoncelli più buoni della valle, punto. Si mangia come dai nonni, prezzi onesti e porzioni vere."</p>
+        <div class="rec-nome">Marco B.</div>
+      </div>
+      <div class="rec-card">
+        <div class="rec-stars">★★★★★</div>
+        <p>"Ci portiamo sempre gli ospiti da fuori: atmosfera calda, personale gentile e il brasato è da provare."</p>
+        <div class="rec-nome">Silvia P.</div>
+      </div>
+      <div class="rec-card">
+        <div class="rec-stars">★★★★☆</div>
+        <p>"Il piatto del giorno cambia sempre, così torniamo volentieri. Consigliato prenotare il weekend."</p>
+        <div class="rec-nome">Giovanni T.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="galleria">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow">Un assaggio</div>
+      <h2 class="section-title">La trattoria vista <em>da dentro</em></h2>
+      <p class="section-sub">Qui vanno le foto vere del locale e dei piatti — bastano 8-10 scattate col telefono.</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="ph ph1"></div>
+      <div class="ph ph2"></div>
+      <div class="ph ph3"></div>
+      <div class="ph ph4"></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="info">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow">Dove e quando</div>
+      <h2 class="section-title">Vi <em>aspettiamo</em></h2>
+    </div>
+    <div class="info-grid">
+      <div>
+        <div class="info-block">
+          <div class="info-label">Orari</div>
+          <div class="hours-row"><span>Mar — Sab</span><span>12:00–14:30 · 19:00–22:00</span></div>
+          <div class="hours-row"><span>Domenica</span><span>12:00–14:30</span></div>
+          <div class="hours-row"><span>Lunedì</span><span>chiuso</span></div>
+        </div>
+        <div class="info-block">
+          <div class="info-label">Contatti</div>
+          <div class="hours-row"><span>Telefono</span><span>035 000 0000</span></div>
+          <div class="hours-row"><span>WhatsApp</span><span>350 000 0000</span></div>
+          <div class="hours-row" style="border-bottom:none;"><span>Indirizzo</span><span>Via Roma, 12 — Vertova</span></div>
+        </div>
+      </div>
+      <div class="map-box">
+        <div class="pin"></div>
+        <span class="map-label">→ qui la mappa Google integrata</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap">
+    <h2>Questo è solo un <em>esempio</em>.</h2>
+    <p>Il tuo sito, con i tuoi piatti, le tue foto e le tue recensioni vere — online in due settimane.</p>
+    <div class="cta-actions">
+      <a href="mailto:lorenzo.zenucchi00@gmail.com" class="btn btn-primary">Parliamone insieme</a>
+      <a href="https://wa.me/393314660537" class="btn btn-ghost">💬 Scrivimi su WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Bozza dimostrativa creata da <strong>Lorenzo Zenucchi</strong> — Siti Web per attività locali · Val Seriana, BG</p>
+</footer>
+
+</body>
+</html>
