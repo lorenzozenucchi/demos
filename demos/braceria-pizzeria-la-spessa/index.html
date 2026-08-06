@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Braceria Pizzeria La Spessa — Pizza e Grigliata a Clusone · Demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --carta:#f6f1e6;
+    --carta-scura:#efe7d6;
+    --inchiostro:#20261f;
+    --pomodoro:#c73a26;
+    --pomodoro-scuro:#a52e1d;
+    --basilico:#3c624a;
+    --farina:#fffdf7;
+    --linea:rgba(32,38,31,0.16);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--carta);
+    color:var(--inchiostro);
+    font-family:'Libre Caslon Text', serif;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; transition-duration:0.01ms !important;}
+    .marquee-track{animation:none !important;}
+  }
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 24px;}
+  ::selection{background:var(--pomodoro);color:var(--farina);}
+
+  /* ---------- TOP BAR ---------- */
+  .topbar{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:16px 24px;border-bottom:2px solid var(--inchiostro);
+    background:var(--carta);position:sticky;top:0;z-index:60;
+  }
+  .logo{font-family:'Anton',sans-serif;font-size:1.5rem;letter-spacing:0.02em;text-transform:uppercase;}
+  .logo span{color:var(--pomodoro);}
+  .topbar-right{display:flex;align-items:center;gap:26px;}
+  .topbar-links{display:flex;gap:26px;font-family:'Space Grotesk',sans-serif;font-size:0.82rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;}
+  .topbar-links a{position:relative;padding-bottom:2px;}
+  .topbar-links a::after{content:'';position:absolute;left:0;bottom:0;width:0;height:2px;background:var(--pomodoro);transition:width .25s;}
+  .topbar-links a:hover::after,.topbar-links a:focus-visible::after{width:100%;}
+  .btn-call{
+    font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:0.82rem;
+    letter-spacing:0.06em;text-transform:uppercase;
+    background:var(--inchiostro);color:var(--farina);
+    padding:12px 20px;border-radius:100px;
+    transition:background .25s, transform .25s;
+    display:inline-flex;align-items:center;gap:8px;
+  }
+  .btn-call:hover{background:var(--pomodoro);transform:translateY(-1px);}
+  @media(max-width:760px){.topbar-links{display:none;}}
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative;padding:70px 0 0;overflow:hidden;}
+  .hero-kicker{
+    font-family:'Space Grotesk',sans-serif;font-size:0.8rem;font-weight:600;
+    letter-spacing:0.22em;text-transform:uppercase;color:var(--basilico);
+    display:flex;align-items:center;gap:14px;margin-bottom:28px;
+    opacity:0;animation:rise .7s ease forwards .1s;
+  }
+  .hero-kicker::before{content:'';width:44px;height:2px;background:var(--basilico);}
+  .hero h1{
+    font-family:'Anton',sans-serif;text-transform:uppercase;
+    font-size:clamp(3.6rem,12vw,9.5rem);
+    line-height:0.92;letter-spacing:0.01em;
+    opacity:0;animation:rise .8s ease forwards .22s;
+  }
+  .hero h1 .rosso{color:var(--pomodoro);}
+  .hero h1 .contorno{
+    color:transparent;
+    -webkit-text-stroke:2px var(--inchiostro);
+  }
+  .hero-sub{
+    max-width:520px;font-size:1.12rem;font-style:italic;color:#4a5245;
+    margin-top:30px;opacity:0;animation:rise .8s ease forwards .38s;
+  }
+  .hero-cta-row{display:flex;gap:16px;margin-top:38px;flex-wrap:wrap;opacity:0;animation:rise .8s ease forwards .5s;}
+  .btn-big{
+    font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:0.95rem;
+    letter-spacing:0.04em;padding:17px 30px;border-radius:100px;
+    display:inline-flex;align-items:center;gap:10px;
+    transition:transform .22s, background .22s, color .22s;
+  }
+  .btn-rosso{background:var(--pomodoro);color:var(--farina);}
+  .btn-rosso:hover{background:var(--pomodoro-scuro);transform:translateY(-2px);}
+  .btn-bordo{border:2px solid var(--inchiostro);}
+  .btn-bordo:hover{background:var(--inchiostro);color:var(--farina);transform:translateY(-2px);}
+
+  .hero-strip{
+    margin-top:64px;display:grid;grid-template-columns:repeat(3,1fr);
+    border-top:2px solid var(--inchiostro);
+  }
+  .strip-cell{
+    padding:22px 20px;border-right:2px solid var(--inchiostro);
+    font-family:'Space Grotesk',sans-serif;
+  }
+  .strip-cell:last-child{border-right:none;}
+  .strip-num{font-family:'Anton',sans-serif;font-size:2rem;line-height:1;color:var(--pomodoro);}
+  .strip-label{font-size:0.78rem;letter-spacing:0.08em;text-transform:uppercase;color:#4a5245;margin-top:6px;}
+  @media(max-width:700px){
+    .hero-strip{grid-template-columns:1fr;}
+    .strip-cell{border-right:none;border-bottom:2px solid var(--inchiostro);}
+    .strip-cell:last-child{border-bottom:none;}
+  }
+  @keyframes rise{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+
+  /* ---------- MARQUEE (signature) ---------- */
+  .marquee{
+    background:var(--inchiostro);color:var(--carta);
+    overflow:hidden;padding:14px 0;border-top:2px solid var(--inchiostro);border-bottom:2px solid var(--inchiostro);
+  }
+  .marquee-track{
+    display:flex;gap:0;white-space:nowrap;width:max-content;
+    animation:scorri 28s linear infinite;
+    font-family:'Anton',sans-serif;text-transform:uppercase;font-size:1.05rem;letter-spacing:0.08em;
+  }
+  .marquee-track span{padding:0 18px;}
+  .marquee-track .p{color:var(--pomodoro);} /* separatore pomodorino */
+  @keyframes scorri{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+  /* ---------- SEZIONI ---------- */
+  section{padding:100px 0;}
+  .sez-testa{display:flex;align-items:baseline;justify-content:space-between;gap:24px;margin-bottom:54px;flex-wrap:wrap;}
+  .sez-titolo{
+    font-family:'Anton',sans-serif;text-transform:uppercase;
+    font-size:clamp(2.2rem,5vw,3.6rem);line-height:1;
+  }
+  .sez-titolo em{font-style:normal;color:var(--pomodoro);}
+  .sez-nota{font-style:italic;color:#4a5245;max-width:340px;font-size:0.98rem;}
+
+  /* ---------- MENU CON TAB ---------- */
+  .menu-sez{background:var(--carta-scura);border-top:2px solid var(--inchiostro);border-bottom:2px solid var(--inchiostro);}
+  .tabs{display:flex;gap:10px;margin-bottom:44px;flex-wrap:wrap;}
+  .tab{
+    font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:0.88rem;
+    letter-spacing:0.06em;text-transform:uppercase;
+    padding:12px 24px;border:2px solid var(--inchiostro);border-radius:100px;
+    background:transparent;color:var(--inchiostro);cursor:pointer;
+    transition:background .2s,color .2s;
+  }
+  .tab:hover{background:rgba(32,38,31,0.08);}
+  .tab.attivo{background:var(--inchiostro);color:var(--carta);}
+  .pannello{display:none;}
+  .pannello.attivo{display:grid;grid-template-columns:1fr 1fr;gap:14px 56px;animation:rise .4s ease;}
+  @media(max-width:760px){.pannello.attivo{grid-template-columns:1fr;}}
+  .voce{
+    display:flex;align-items:baseline;gap:10px;padding:16px 0;
+    border-bottom:1px solid var(--linea);
+  }
+  .voce-nome{font-weight:700;font-size:1.05rem;}
+  .voce-desc{display:block;font-style:italic;font-size:0.88rem;color:#5a6154;font-weight:400;margin-top:2px;}
+  .voce-fill{flex:1;border-bottom:2px dotted rgba(32,38,31,0.35);transform:translateY(-5px);min-width:16px;}
+  .voce-prezzo{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:1rem;color:var(--pomodoro);}
+  .voce-col{display:flex;flex-direction:column;}
+  .badge{
+    display:inline-block;font-family:'Space Grotesk',sans-serif;font-size:0.62rem;
+    font-weight:600;letter-spacing:0.1em;text-transform:uppercase;
+    background:var(--basilico);color:var(--farina);
+    border-radius:100px;padding:3px 10px;margin-left:8px;vertical-align:2px;
+  }
+
+  /* ---------- RECENSIONI ---------- */
+  .rec-griglia{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+  @media(max-width:860px){.rec-griglia{grid-template-columns:1fr;}}
+  .rec-carta{
+    background:var(--farina);border:2px solid var(--inchiostro);
+    border-radius:6px;padding:28px 26px;
+    box-shadow:5px 5px 0 var(--inchiostro);
+    transition:transform .2s, box-shadow .2s;
+  }
+  .rec-carta:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--inchiostro);}
+  .stelle{color:var(--pomodoro);font-size:1rem;letter-spacing:2px;margin-bottom:14px;font-family:'Space Grotesk',sans-serif;}
+  .rec-testo{font-style:italic;font-size:0.98rem;}
+  .rec-autore{margin-top:18px;font-family:'Space Grotesk',sans-serif;font-size:0.8rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#4a5245;}
+  .rec-fonte{font-size:0.72rem;color:#8a9184;font-family:'Space Grotesk',sans-serif;margin-top:2px;}
+
+  /* ---------- INFO ---------- */
+  .info-sez{background:var(--inchiostro);color:var(--carta);}
+  .info-sez .sez-titolo em{color:var(--pomodoro);}
+  .info-sez .sez-nota{color:#b9bfae;}
+  .info-griglia{display:grid;grid-template-columns:1.1fr 0.9fr;gap:60px;}
+  @media(max-width:820px){.info-griglia{grid-template-columns:1fr;gap:44px;}}
+  .orari-riga{
+    display:flex;justify-content:space-between;padding:13px 0;
+    border-bottom:1px solid rgba(246,241,230,0.18);font-size:0.98rem;
+  }
+  .orari-riga span:last-child{font-family:'Space Grotesk',sans-serif;font-size:0.86rem;color:#b9bfae;}
+  .oggi{color:var(--carta);}
+  .oggi span:last-child{color:#e8c66a;font-weight:600;}
+  .info-etichetta{
+    font-family:'Space Grotesk',sans-serif;font-size:0.72rem;font-weight:600;
+    letter-spacing:0.16em;text-transform:uppercase;color:var(--pomodoro);
+    margin:36px 0 12px;
+  }
+  .info-etichetta:first-child{margin-top:0;}
+  .mappa{
+    border:2px solid var(--carta);border-radius:6px;min-height:320px;position:relative;
+    background:
+      radial-gradient(circle at 55% 45%, rgba(199,58,38,0.25), transparent 55%),
+      repeating-linear-gradient(0deg, rgba(246,241,230,0.05) 0 1px, transparent 1px 44px),
+      repeating-linear-gradient(90deg, rgba(246,241,230,0.05) 0 1px, transparent 1px 44px),
+      #1a1f19;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .spillo{width:16px;height:16px;background:var(--pomodoro);border-radius:50% 50% 50% 0;transform:rotate(-45deg);box-shadow:0 0 0 8px rgba(199,58,38,0.22);}
+  .mappa-nota{position:absolute;bottom:16px;left:16px;font-family:'Space Grotesk',sans-serif;font-size:0.72rem;color:#8a9184;}
+
+  /* ---------- CTA FINALE ---------- */
+  .finale{text-align:center;padding:110px 0;}
+  .finale h2{
+    font-family:'Anton',sans-serif;text-transform:uppercase;
+    font-size:clamp(2.4rem,6vw,4.4rem);line-height:1;
+  }
+  .finale h2 em{font-style:normal;color:var(--pomodoro);}
+  .finale p{font-style:italic;color:#4a5245;max-width:440px;margin:22px auto 40px;}
+
+  footer{
+    border-top:2px solid var(--inchiostro);padding:34px 24px;text-align:center;
+    font-family:'Space Grotesk',sans-serif;font-size:0.78rem;color:#4a5245;
+  }
+  footer strong{color:var(--pomodoro);}
+
+  a:focus-visible,button:focus-visible{outline:3px solid var(--pomodoro);outline-offset:3px;}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="logo">La<span>Spessa</span></div>
+  <div class="topbar-right">
+    <nav class="topbar-links">
+      <a href="#menu">La carta</a>
+      <a href="#recensioni">Dicono di noi</a>
+      <a href="#info">Dove siamo</a>
+    </nav>
+    <a class="btn-call" href="tel:+390350000000">📞 035 000 0000</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-kicker">Braceria & Pizzeria · Clusone, Val Seriana</div>
+    <h1>
+      Pizza <span class="contorno">croccante</span>.<br>
+      Carne alla <span class="rosso">brace</span>.<br>
+      Casa vera.
+    </h1>
+    <p class="hero-sub">Impasto a lunga lievitazione, forno a legna e griglia a vista in sala: la braceria-pizzeria di Clusone dove pizza e carne si fanno come una volta, senza fretta.</p>
+    <div class="hero-cta-row">
+      <a href="#menu" class="btn-big btn-rosso">Guarda la carta ↓</a>
+      <a href="https://wa.me/390000000000" class="btn-big btn-bordo">Prenota un tavolo</a>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="hero-strip">
+      <div class="strip-cell"><div class="strip-num">4.5★</div><div class="strip-label">su Google · 1.786 recensioni</div></div>
+      <div class="strip-cell"><div class="strip-num">48h</div><div class="strip-label">di lievitazione naturale</div></div>
+      <div class="strip-cell"><div class="strip-num">100%</div><div class="strip-label">cottura a legna, forno e brace</div></div>
+    </div>
+  </div>
+</header>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Forno a legna</span><span class="p">●</span>
+    <span>Griglia a vista</span><span class="p">●</span>
+    <span>Impasto a lunga lievitazione</span><span class="p">●</span>
+    <span>Carni alla brace</span><span class="p">●</span>
+    <span>Asporto veloce</span><span class="p">●</span>
+    <span>Forno a legna</span><span class="p">●</span>
+    <span>Griglia a vista</span><span class="p">●</span>
+    <span>Impasto a lunga lievitazione</span><span class="p">●</span>
+    <span>Carni alla brace</span><span class="p">●</span>
+    <span>Asporto veloce</span><span class="p">●</span>
+  </div>
+</div>
+
+<section class="menu-sez" id="menu">
+  <div class="wrap">
+    <div class="sez-testa">
+      <h2 class="sez-titolo">La <em>carta</em></h2>
+      <p class="sez-nota">Sempre aggiornata, sempre nel telefono dei tuoi clienti. Cambi un prezzo? Online in giornata.</p>
+    </div>
+
+    <div class="tabs" role="tablist">
+      <button class="tab attivo" data-pannello="pizze" role="tab">Le pizze</button>
+      <button class="tab" data-pannello="brace" role="tab">Dalla brace</button>
+      <button class="tab" data-pannello="dolci" role="tab">Dolci & birre</button>
+    </div>
+
+    <div class="pannello attivo" id="pizze">
+      <div class="voce"><div class="voce-col"><span class="voce-nome">Margherita</span><span class="voce-desc">Pomodoro San Marzano, fiordilatte, basilico fresco</span></div><div class="voce-fill"></div><span class="voce-prezzo">7</span></div>
+      <div class="voce"><div class="voce-col"><span class="voce-nome">La Spessa <span class="badge">Casa</span></span><span class="voce-desc">Speck, taleggio di malga, radicchio, miele di castagno</span></div><div class="voce-fill"></div><span class="voce-prezzo">11</span></div>
+      <div class="voce"><div class="voce-col"><span class="voce-nome">Diavola</span><span class="voce-desc">Salame piccante, 'nduja, cipolla rossa</span></div><div class="voce-fill"></div><span class="voce-prezzo">9,50</span></div>
+      <div class="voce"><div class="voce-col"><span class="voce-nome">Boscaiola</span><span class="voce-desc">Funghi porcini, salsiccia nostrana, provola affumicata</span></div><div class="voce-fill"></div><span class="voce-prezzo">10,50</span></div>
+      <div class="voce"><div class="voce-col"><span class="voce-nome">Ortolana di stagione</span><span class="voce-desc">Verdure grigliate, pesto di rucola</span></div><div class="voce-fill"></div><span class="voce-prezzo">9</span></div>
+      <div class="voce"><div class="voce-col"><span class="voce-nome">Quattro formaggi di malga</span></div><div class="voce-fill"></div><span class="voce-prezzo">10</span></div>
+    </div>
+
+    <div class="pannello" id="brace">
+      <div class="voce"><div class="voce-col"><span class="voce-nome">Costine di maiale alla brace</span><span class="voce-desc">Marinatura della casa, patate fritte</span></div><div class="voce-fill"></div><span class="voce-prezzo">15</span></div>
+      <div class="voce"><div class="voce-col"><span class="voce-nome">Tagliata di manzo</span><span class="voce-desc">Rucola, grana, riduzione al balsamico</span></div><div class="voce-fill"></div><span class="voce-prezzo">18</span></div>
+      <div class="voce"><div class="voce-col"><span class="voce-nome">Salsiccia e polenta</span></div><div class="voce-fill"></div><span class="voce-prezzo">13</span></div>
+      <div class="voce"><div class="voce-col"><span class="voce-nome">Grigliata mista La Spessa</span><span class="voce-desc">Costine, salsiccia, pancetta, spiedino misto</span></div><div class="voce-fill"></div><span class="voce-prezzo">19</span></div>
+      <div class="voce"><div class="voce-col"><span class="voce-nome">Costolette di agnello alla brace</span></div><div class="voce-fill"></div><span class="voce-prezzo">19</span></div>
+    </div>
+
+    <div class="pannello" id="dolci">
+      <div class="voce"><div class="voce-col"><span class="voce-nome">Tiramisù della casa</span></div><div class="voce-fill"></div><span class="voce-prezzo">6</span></div>
+      <div class="voce"><div class="voce-col"><span class="voce-nome">Panna cotta ai frutti di bosco</span></div><div class="voce-fill"></div><span class="voce-prezzo">5</span></div>
+      <div class="voce"><div class="voce-col"><span class="voce-nome">Birra artigianale alla spina</span><span class="voce-desc">Rotazione di birrifici bergamaschi — chiedi in sala</span></div><div class="voce-fill"></div><span class="voce-prezzo">6</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="recensioni">
+  <div class="wrap">
+    <div class="sez-testa">
+      <h2 class="sez-titolo">Dicono <em>di noi</em></h2>
+      <p class="sez-nota">Le recensioni vere del cliente, prese dalla sua scheda Google — la prova sociale che converte.</p>
+    </div>
+    <div class="rec-griglia">
+      <div class="rec-carta">
+        <div class="stelle">★★★★★</div>
+        <p class="rec-testo">"Griglia pazzesca, le costine si sciolgono in bocca. La pizza non è da meno, impasto leggero e croccante."</p>
+        <div class="rec-autore">Davide C.</div>
+        <div class="rec-fonte">Recensione Google</div>
+      </div>
+      <div class="rec-carta">
+        <div class="stelle">★★★★★</div>
+        <p class="rec-testo">"Locale storico di Clusone, sempre pieno e non a caso. La Spessa è diventata la pizza che ordino sempre."</p>
+        <div class="rec-autore">Chiara P.</div>
+        <div class="rec-fonte">Recensione Google</div>
+      </div>
+      <div class="rec-carta">
+        <div class="stelle">★★★★☆</div>
+        <p class="rec-testo">"Ottimo rapporto qualità prezzo, porzioni abbondanti. Consigliato prenotare, soprattutto nel weekend."</p>
+        <div class="rec-autore">Simone G.</div>
+        <div class="rec-fonte">Recensione Google</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="info-sez" id="info">
+  <div class="wrap">
+    <div class="sez-testa">
+      <h2 class="sez-titolo">Dove <em>siamo</em></h2>
+    </div>
+    <div class="info-griglia">
+      <div>
+        <div class="info-etichetta">Orari</div>
+        <div class="orari-riga"><span>Lunedì</span><span>Chiuso</span></div>
+        <div class="orari-riga"><span>Mar — Ven</span><span>18:30 – 23:00</span></div>
+        <div class="orari-riga oggi"><span>Sab — Dom</span><span>12:00–14:30 · 18:30–23:30</span></div>
+        <div class="info-etichetta">Contatti</div>
+        <div class="orari-riga"><span>Telefono</span><span>035 000 0000</span></div>
+        <div class="orari-riga"><span>WhatsApp</span><span>350 000 0000</span></div>
+        <div class="orari-riga"><span>Indirizzo</span><span>Via S. Lucio, 70 — Clusone (BG)</span></div>
+      </div>
+      <div class="mappa">
+        <div class="spillo"></div>
+        <div class="mappa-nota">→ qui la mappa Google integrata e navigabile</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="finale">
+  <div class="wrap">
+    <h2>Questo sito non <em>esiste</em>.<br>Il tuo potrebbe.</h2>
+    <p>Bozza dimostrativa: con le tue foto, il tuo menu e le tue recensioni vere sei online in due settimane.</p>
+    <div class="hero-cta-row" style="justify-content:center;">
+      <a href="https://wa.me/393314660537" class="btn-big btn-rosso">Parliamone — scrivimi su WhatsApp</a>
+      <a href="mailto:lorenzo.zenucchi00@gmail.com" class="btn-big btn-bordo">Scrivimi una email</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Bozza dimostrativa creata da <strong>Lorenzo Zenucchi</strong> — Siti Web per attività locali · Val Seriana, BG</p>
+</footer>
+
+<script>
+  const tabs = document.querySelectorAll('.tab');
+  const pannelli = document.querySelectorAll('.pannello');
+  tabs.forEach(t => t.addEventListener('click', () => {
+    tabs.forEach(x => x.classList.remove('attivo'));
+    pannelli.forEach(p => p.classList.remove('attivo'));
+    t.classList.add('attivo');
+    document.getElementById(t.dataset.pannello).classList.add('attivo');
+  }));
+</script>
+
+</body>
+</html>
