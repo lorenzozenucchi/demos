@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Michi & Eli Hair Color Experience — Parrucchiere a Cene · Demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1c1a17;
+    --accent:#a8825f;
+    --accent-2:#8a6a48;
+    --verde:#9c8f76;
+    --carta:#f4efe7;
+    --tenue:#8a8178;
+    --filo:#e0d8cc;
+    --sidebar-w:264px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--carta);
+    color:var(--ink);
+    font-family:'Outfit',sans-serif;
+    font-weight:400;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important;transition-duration:0.01ms !important;}
+  }
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:960px;margin:0 auto;padding:0 24px;}
+  ::selection{background:var(--accent);color:var(--carta);}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+
+  h1,h2,h3,.titolo{font-family:'Bebas Neue',sans-serif;letter-spacing:0.02em;font-weight:400;}
+
+  /* ---------- SIDEBAR ---------- */
+  .sidebar{
+    position:fixed;top:0;left:0;bottom:0;width:var(--sidebar-w);
+    background:var(--ink);color:var(--carta);
+    display:flex;flex-direction:column;justify-content:space-between;
+    padding:34px 28px;z-index:60;overflow-y:auto;
+  }
+  .logo{font-family:'Bebas Neue',sans-serif;font-size:1.9rem;letter-spacing:0.1em;}
+  .logo span{display:block;font-family:'Outfit',sans-serif;font-weight:400;font-size:0.68rem;letter-spacing:0.24em;text-transform:uppercase;color:var(--accent);margin-top:6px;}
+  .side-nav{display:flex;flex-direction:column;gap:2px;margin-top:50px;}
+  .side-nav a{
+    font-size:0.92rem;color:rgba(244,239,231,0.68);padding:11px 0;border-bottom:1px solid rgba(244,239,231,0.12);
+    transition:color .3s,padding-left .3s;text-transform:uppercase;letter-spacing:0.02em;font-size:0.82rem;
+  }
+  .side-nav a:hover,.side-nav a:focus-visible{color:var(--accent);padding-left:6px;}
+  .sidebar-bottom{margin-top:40px;}
+  .side-label{font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;}
+  .side-orari div{font-size:0.85rem;color:rgba(244,239,231,0.68);margin-bottom:3px;}
+  .btn-side{
+    display:block;text-align:center;margin-top:20px;background:var(--accent);color:var(--ink);
+    padding:13px;border-radius:100px;font-size:0.84rem;font-weight:600;text-transform:uppercase;letter-spacing:0.03em;transition:background .3s;
+  }
+  .btn-side:hover{background:var(--accent-2);color:var(--carta);}
+
+  .main-content{margin-left:var(--sidebar-w);}
+
+  @media(max-width:900px){
+    .sidebar{position:static;width:100%;flex-direction:row;flex-wrap:wrap;gap:18px;padding:22px 24px;align-items:center;}
+    .sidebar-bottom{margin-top:0;display:flex;align-items:center;gap:14px;margin-left:auto;}
+    .side-nav{flex-direction:row;flex-wrap:wrap;margin-top:0;gap:2px 16px;}
+    .side-nav a{border-bottom:none;padding:4px 0;}
+    .side-orari{display:none;}
+    .btn-side{margin-top:0;padding:11px 18px;white-space:nowrap;}
+    .main-content{margin-left:0;}
+  }
+  @media(max-width:560px){
+    .sidebar{flex-direction:column;align-items:flex-start;}
+    .sidebar-bottom{margin-left:0;width:100%;}
+    .btn-side{width:100%;}
+  }
+
+  /* ---------- HERO (composizione asimmetrica) ---------- */
+  .hero{padding:90px 40px 0;}
+  .hero-eyebrow{font-size:0.8rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--accent-2);margin-bottom:20px;font-weight:600;}
+  .hero h1{font-size:clamp(2.6rem,7vw,5.4rem);line-height:0.98;text-transform:uppercase;max-width:820px;}
+  .hero h1 .accent{color:var(--accent-2);}
+  .hero p{color:var(--tenue);margin-top:24px;max-width:440px;font-size:1rem;}
+  .hero-rating{display:flex;align-items:center;gap:10px;margin-top:18px;font-size:0.92rem;color:var(--ink);}
+  .hero-rating .hero-stelle{color:var(--accent-2);letter-spacing:0.12em;font-size:1rem;}
+  .hero-azioni{display:flex;gap:14px;margin-top:32px;flex-wrap:wrap;}
+  .btn{padding:14px 28px;font-size:0.84rem;font-weight:600;border-radius:100px;transition:all .3s;display:inline-block;text-transform:uppercase;letter-spacing:0.03em;font-family:'Outfit',sans-serif;}
+  .btn-pieno{background:var(--accent-2);color:var(--carta);}
+  .btn-pieno:hover{background:var(--ink);}
+  .btn-filo{border:1px solid var(--accent-2);color:var(--ink);}
+  .btn-filo:hover{border-color:var(--ink);background:var(--ink);color:var(--carta);}
+
+  .mosaico{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:14px;margin-top:50px;}
+  .m-blocco{border-radius:4px;aspect-ratio:4/5;position:relative;overflow:hidden;}
+  .m1{background:linear-gradient(155deg,var(--accent-2),var(--ink) 70%);}
+  .m2{background:linear-gradient(155deg,var(--verde),var(--accent) 70%);aspect-ratio:4/3;align-self:end;}
+  .m3{background:linear-gradient(155deg,var(--ink),var(--accent-2) 70%);}
+  .m-blocco span{position:absolute;left:16px;bottom:14px;color:var(--carta);font-family:'Bebas Neue',sans-serif;font-size:1.05rem;text-transform:uppercase;letter-spacing:0.06em;}
+  @media(max-width:900px){.hero{padding:120px 24px 0;}.mosaico{grid-template-columns:1fr 1fr;}.m1{grid-column:1/3;aspect-ratio:16/9;}}
+  @media(max-width:560px){.mosaico{grid-template-columns:1fr;}.m1{grid-column:auto;}}
+
+  /* ---------- PROMO STRISCIA ---------- */
+  .promo-striscia{
+    margin:50px 0 0;border-left:3px solid var(--accent);background:#ece4d6;
+    padding:22px 28px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;
+  }
+  .promo-striscia .promo-eyebrow{font-size:0.72rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--accent-2);font-weight:600;margin-bottom:6px;}
+  .promo-striscia h3{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;text-transform:uppercase;}
+  .promo-striscia .btn-filo{padding:11px 22px;font-size:0.78rem;}
+
+  /* ---------- SEZIONI GENERICHE ---------- */
+  section{padding:90px 40px;}
+  @media(max-width:900px){section{padding:64px 24px;}}
+  .sez-intro{max-width:520px;margin-bottom:46px;}
+  .sez-eyebrow{font-size:0.76rem;letter-spacing:0.26em;text-transform:uppercase;color:var(--accent-2);margin-bottom:16px;font-weight:600;}
+  .sez-titolo{font-size:clamp(2rem,4.4vw,2.9rem);line-height:1.04;text-transform:uppercase;}
+  .sez-titolo .accent{color:var(--accent-2);}
+  .sez-testo{color:var(--tenue);margin-top:14px;font-size:0.96rem;}
+
+  /* ---------- SERVIZI (filmstrip scorrevole) ---------- */
+  .filmstrip{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:14px;}
+  .film-card{
+    scroll-snap-align:start;flex:0 0 min(300px,82vw);background:var(--carta);border:1px solid var(--filo);border-radius:4px;padding:26px 24px;
+  }
+  .film-num{font-size:0.76rem;color:var(--tenue);letter-spacing:0.1em;margin-bottom:10px;}
+  .film-titolo{font-family:'Bebas Neue',sans-serif;font-size:1.9rem;text-transform:uppercase;color:var(--accent-2);margin-bottom:6px;}
+  .film-desc{font-size:0.86rem;color:var(--tenue);margin-bottom:18px;}
+  .voce{display:flex;align-items:baseline;gap:8px;padding:9px 0;border-bottom:1px dashed var(--filo);font-size:0.9rem;}
+  .voce:last-child{border-bottom:none;}
+  .voce .dots{flex:1;border-bottom:1px dotted var(--filo);margin-bottom:5px;}
+  .voce .prezzo{color:var(--accent-2);font-weight:600;flex-shrink:0;}
+
+  /* ---------- LISTINO — LAVAGNA (sezione scura) ---------- */
+  .lavagna{background:var(--ink);color:var(--carta);position:relative;overflow:hidden;}
+  .lavagna::before{
+    content:'';position:absolute;inset:0;pointer-events:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity:0.05;mix-blend-mode:overlay;
+  }
+  .lavagna .wrap{position:relative;z-index:1;}
+  .lavagna .sez-eyebrow{color:var(--accent);}
+  .lavagna .sez-titolo .accent{color:var(--accent);}
+  .lavagna .sez-testo{color:rgba(244,239,231,0.66);}
+  .listino-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:44px;}
+  .listino-col h3{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;text-transform:uppercase;margin-bottom:16px;color:var(--accent);letter-spacing:0.06em;}
+  .lavagna .voce{border-bottom-color:rgba(244,239,231,0.16);color:rgba(244,239,231,0.88);}
+  .lavagna .voce .dots{border-bottom-color:rgba(244,239,231,0.22);}
+  .lavagna .voce .prezzo{color:var(--accent);}
+  @media(max-width:860px){.listino-grid{grid-template-columns:1fr;gap:34px;}}
+
+  /* ---------- PACCHETTI (asimmetrico) ---------- */
+  .pacchetti-asym{display:grid;grid-template-columns:1.2fr 1fr;gap:26px;align-items:stretch;}
+  .pacchetto{background:#ece4d6;border:1px solid var(--filo);border-radius:4px;padding:32px 28px;display:flex;flex-direction:column;position:relative;}
+  .pacchetto-grande{padding:44px 36px;justify-content:center;}
+  .pacchetto-colonna{display:flex;flex-direction:column;gap:26px;}
+  .pacchetto.evidenza{background:var(--ink);color:var(--carta);border-color:var(--ink);}
+  .badge{
+    position:absolute;top:-13px;left:28px;background:var(--accent);color:var(--ink);
+    font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;font-weight:600;padding:6px 16px;border-radius:100px;
+  }
+  .pacchetto h3{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;text-transform:uppercase;margin-bottom:6px;}
+  .pacchetto-grande h3{font-size:2.1rem;}
+  .pacchetto .prezzo-grande{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;margin:10px 0;color:var(--accent-2);}
+  .pacchetto-grande .prezzo-grande{font-size:2.8rem;color:var(--accent);}
+  .pacchetto .prezzo-grande small{font-size:0.82rem;font-family:'Outfit',sans-serif;font-weight:300;color:var(--tenue);}
+  .pacchetto ul{list-style:none;margin:10px 0 22px;flex:1;}
+  .pacchetto li{font-size:0.88rem;padding:6px 0;opacity:0.92;}
+  .pacchetto li::before{content:'— ';color:var(--accent-2);}
+  .pacchetto.evidenza li::before{color:var(--accent);}
+  .btn-pacchetto{text-align:center;padding:12px;border-radius:100px;border:1px solid var(--accent-2);color:var(--accent-2);font-size:0.8rem;font-weight:600;text-transform:uppercase;letter-spacing:0.03em;transition:all .3s;}
+  .btn-pacchetto:hover{background:var(--accent-2);color:var(--carta);}
+  .pacchetto.evidenza .btn-pacchetto{border-color:var(--carta);color:var(--carta);}
+  .pacchetto.evidenza .btn-pacchetto:hover{background:var(--carta);color:var(--ink);}
+  @media(max-width:820px){.pacchetti-asym{grid-template-columns:1fr;}}
+
+  /* ---------- RECENSIONI (griglia) ---------- */
+  .rec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .rec-card{background:#ece4d6;border-radius:4px;padding:28px 24px;}
+  .stelle{color:var(--accent-2);letter-spacing:0.1em;margin-bottom:12px;}
+  .rec-testo{font-size:0.92rem;color:var(--ink);margin-bottom:16px;}
+  .rec-autore{font-weight:600;font-size:0.86rem;}
+  .rec-fonte{font-size:0.76rem;color:var(--tenue);margin-top:2px;}
+  @media(max-width:860px){.rec-grid{grid-template-columns:1fr;}}
+
+  /* ---------- DOVE ---------- */
+  .dove-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;}
+  .info-label{font-size:0.76rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent-2);margin-bottom:14px;font-weight:600;}
+  .info-block{margin-bottom:28px;}
+  .riga{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--filo);font-size:0.92rem;}
+  .map-box{
+    aspect-ratio:4/3;border-radius:4px;background:#ece4d6;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;
+    color:var(--tenue);font-size:0.86rem;
+  }
+  .pin{width:16px;height:16px;border-radius:50% 50% 50% 0;background:var(--accent-2);transform:rotate(-45deg);}
+  @media(max-width:820px){.dove-grid{grid-template-columns:1fr;}}
+
+  /* ---------- CTA FINALE ---------- */
+  .cta-band{background:var(--ink);color:var(--carta);position:relative;overflow:hidden;}
+  .cta-band::before{
+    content:'';position:absolute;inset:0;pointer-events:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity:0.05;mix-blend-mode:overlay;
+  }
+  .cta-band .wrap{position:relative;z-index:1;}
+  .cta-band h2{font-size:clamp(1.9rem,4vw,2.6rem);text-transform:uppercase;}
+  .cta-band h2 .accent{color:var(--accent);}
+  .cta-band p{max-width:460px;margin:16px 0 30px;color:rgba(244,239,231,0.68);font-size:0.96rem;}
+  .cta-azioni{display:flex;gap:16px;flex-wrap:wrap;}
+  .btn-ghost-chiaro{border:1px solid rgba(244,239,231,0.4);color:var(--carta);}
+  .btn-ghost-chiaro:hover{border-color:var(--accent);color:var(--accent);}
+  .btn-chiaro{background:var(--carta);color:var(--ink);}
+  .btn-chiaro:hover{background:var(--accent);}
+
+  footer{text-align:center;padding:30px 24px;font-size:0.8rem;color:var(--tenue);}
+</style>
+</head>
+<body>
+
+<div class="sidebar">
+  <div class="sidebar-top">
+    <div class="logo">Michi &amp; Eli<span>Hair Color Experience</span></div>
+    <nav class="side-nav">
+      <a href="#servizi">Servizi</a>
+      <a href="#listino">Listino</a>
+      <a href="#pacchetti">Pacchetti</a>
+      <a href="#recensioni">Recensioni</a>
+      <a href="#dove">Dove siamo</a>
+    </nav>
+  </div>
+  <div class="sidebar-bottom">
+    <div class="side-orari">
+      <div class="side-label">Orari</div>
+      <div>Mar — Ven 9:00–19:00</div>
+      <div>Sabato 8:30–17:00</div>
+    </div>
+    <a href="tel:+390350000000" class="btn-side">035 000 0000</a>
+  </div>
+</div>
+
+<main class="main-content">
+
+  <section class="hero">
+    <div class="hero-eyebrow">Hair Color Experience · Cene (BG)</div>
+    <h1>Il colore che <span class="accent">ti somiglia</span></h1>
+    <p>Da Michi & Eli ogni percorso colore parte da una consulenza vera: capiamo la forma del viso, il tipo di capello e quello che vuoi davvero, poi lavoriamo di conseguenza.</p>
+    <div class="hero-rating"><span class="hero-stelle">★★★★★</span> 5 su Google · 8 recensioni</div>
+    <div class="hero-azioni">
+      <a href="tel:+390350000000" class="btn btn-pieno">Chiama e prenota</a>
+      <a href="#servizi" class="btn btn-filo">Vedi i servizi</a>
+    </div>
+    <div class="mosaico">
+      <div class="m-blocco m1"><span>Taglio</span></div>
+      <div class="m-blocco m2"><span>Colore</span></div>
+      <div class="m-blocco m3"><span>Trattamento</span></div>
+    </div>
+    <div class="promo-striscia">
+      <div>
+        <div class="promo-eyebrow">Promo del mese</div>
+        <h3>Balayage + piega a 99 € (invece di 125 €)</h3>
+      </div>
+      <a href="tel:+390350000000" class="btn btn-filo">Prenota la promo</a>
+    </div>
+  </section>
+
+  <section id="servizi">
+    <div class="sez-intro">
+      <div class="sez-eyebrow">Servizi offerti</div>
+      <h2 class="sez-titolo">Taglio, colore <span class="accent">e trattamento</span></h2>
+      <p class="sez-testo">Il colore è la nostra specialità. Scorri per vedere le voci di ogni categoria.</p>
+    </div>
+    <div class="filmstrip">
+      <div class="film-card">
+        <div class="film-num">01 — Taglio</div>
+        <div class="film-titolo">Taglio</div>
+        <p class="film-desc">Su misura per la forma del viso, phon sempre incluso.</p>
+        <div class="voce"><span>Taglio donna + phon</span><span class="dots"></span><span class="prezzo">40 €</span></div>
+        <div class="voce"><span>Taglio uomo</span><span class="dots"></span><span class="prezzo">22 €</span></div>
+        <div class="voce"><span>Taglio bimbo</span><span class="dots"></span><span class="prezzo">15 €</span></div>
+        <div class="voce"><span>Spuntatine</span><span class="dots"></span><span class="prezzo">13 €</span></div>
+      </div>
+      <div class="film-card">
+        <div class="film-num">02 — Colore</div>
+        <div class="film-titolo">Colore</div>
+        <p class="film-desc">Formulazioni personalizzate e tecniche di schiaritura avanzate, il nostro cuore.</p>
+        <div class="voce"><span>Colore monocromatico</span><span class="dots"></span><span class="prezzo">58 €</span></div>
+        <div class="voce"><span>Balayage / shatush</span><span class="dots"></span><span class="prezzo">da 95 €</span></div>
+        <div class="voce"><span>Baby light / colpi di sole</span><span class="dots"></span><span class="prezzo">78 €</span></div>
+        <div class="voce"><span>Ritocco radice</span><span class="dots"></span><span class="prezzo">48 €</span></div>
+      </div>
+      <div class="film-card">
+        <div class="film-num">03 — Trattamento</div>
+        <div class="film-titolo">Trattamento</div>
+        <p class="film-desc">Percorsi ristrutturanti per capelli colorati, dalla piega ai trattamenti mirati.</p>
+        <div class="voce"><span>Piega classica</span><span class="dots"></span><span class="prezzo">24 €</span></div>
+        <div class="voce"><span>Piega con ferro</span><span class="dots"></span><span class="prezzo">30 €</span></div>
+        <div class="voce"><span>Raccolto per eventi</span><span class="dots"></span><span class="prezzo">42 €</span></div>
+        <div class="voce"><span>Ricostruzione post-colore</span><span class="dots"></span><span class="prezzo">38 €</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="listino" class="lavagna">
+    <div class="wrap">
+      <div class="sez-intro">
+        <div class="sez-eyebrow">Listino prezzi</div>
+        <h2 class="sez-titolo">Prezzi <span class="accent">chiari</span>, sempre</h2>
+      </div>
+      <div class="listino-grid">
+        <div class="listino-col">
+          <h3>Taglio</h3>
+          <div class="voce"><span>Taglio donna + phon</span><span class="dots"></span><span class="prezzo">40 €</span></div>
+          <div class="voce"><span>Taglio uomo</span><span class="dots"></span><span class="prezzo">22 €</span></div>
+          <div class="voce"><span>Taglio bimbo</span><span class="dots"></span><span class="prezzo">15 €</span></div>
+          <div class="voce"><span>Spuntatine</span><span class="dots"></span><span class="prezzo">13 €</span></div>
+          <div class="voce"><span>Barba</span><span class="dots"></span><span class="prezzo">12 €</span></div>
+        </div>
+        <div class="listino-col">
+          <h3>Colore</h3>
+          <div class="voce"><span>Colore monocromatico</span><span class="dots"></span><span class="prezzo">58 €</span></div>
+          <div class="voce"><span>Balayage / shatush</span><span class="dots"></span><span class="prezzo">da 95 €</span></div>
+          <div class="voce"><span>Baby light / colpi di sole</span><span class="dots"></span><span class="prezzo">78 €</span></div>
+          <div class="voce"><span>Ritocco radice</span><span class="dots"></span><span class="prezzo">48 €</span></div>
+          <div class="voce"><span>Decolorazione totale</span><span class="dots"></span><span class="prezzo">da 110 €</span></div>
+        </div>
+        <div class="listino-col">
+          <h3>Trattamento</h3>
+          <div class="voce"><span>Piega classica</span><span class="dots"></span><span class="prezzo">24 €</span></div>
+          <div class="voce"><span>Piega con ferro</span><span class="dots"></span><span class="prezzo">30 €</span></div>
+          <div class="voce"><span>Raccolto per eventi</span><span class="dots"></span><span class="prezzo">42 €</span></div>
+          <div class="voce"><span>Ricostruzione post-colore</span><span class="dots"></span><span class="prezzo">38 €</span></div>
+          <div class="voce"><span>Extension a ciocche</span><span class="dots"></span><span class="prezzo">da 190 €</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pacchetti">
+    <div class="sez-intro">
+      <div class="sez-eyebrow">Pacchetti</div>
+      <h2 class="sez-titolo">Scegli il tuo <span class="accent">percorso</span></h2>
+      <p class="sez-testo">Per chi vuole prendersi cura dei capelli con costanza, non solo per l'occasione.</p>
+    </div>
+    <div class="pacchetti-asym">
+      <div class="pacchetto pacchetto-grande evidenza">
+        <div class="badge">Più richiesto</div>
+        <h3>Rituale Hair Color</h3>
+        <div class="prezzo-grande">119 € <small>invece di 136 €</small></div>
+        <ul>
+          <li>Taglio + phon</li>
+          <li>Colore monocromatico</li>
+          <li>Ricostruzione post-colore</li>
+        </ul>
+        <a href="tel:+390350000000" class="btn-pacchetto">Prenota</a>
+      </div>
+      <div class="pacchetto-colonna">
+        <div class="pacchetto">
+          <h3>Primo Taglio</h3>
+          <div class="prezzo-grande">34 € <small>invece di 40 €</small></div>
+          <ul>
+            <li>Taglio donna + phon</li>
+            <li>Consulenza colore inclusa</li>
+          </ul>
+          <a href="tel:+390350000000" class="btn-pacchetto">Prenota</a>
+        </div>
+        <div class="pacchetto">
+          <h3>Abbonamento 3 Colori</h3>
+          <div class="prezzo-grande">150 € <small>invece di 174 €</small></div>
+          <ul>
+            <li>3 sedute di colore monocromatico, validi 8 mesi</li>
+            <li>Nessuna scadenza per appuntamento</li>
+          </ul>
+          <a href="tel:+390350000000" class="btn-pacchetto">Prenota</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="recensioni" style="background:var(--carta);">
+    <div class="sez-intro">
+      <div class="sez-eyebrow">Recensioni</div>
+      <h2 class="sez-titolo">Cosa dicono <span class="accent">di noi</span></h2>
+    </div>
+    <div class="rec-grid">
+      <div class="rec-card">
+        <div class="stelle">★★★★★</div>
+        <p class="rec-testo">"Michi ha capito subito il colore che volevo, senza rovinarmi il capello. Balayage naturalissimo, sembra crescermi così."</p>
+        <div class="rec-autore">Giulia T.</div>
+        <div class="rec-fonte">Recensione Google</div>
+      </div>
+      <div class="rec-card">
+        <div class="stelle">★★★★★</div>
+        <p class="rec-testo">"Finalmente un salone specializzato in colore che ascolta prima di mettere le mani sui capelli. Ambiente curato, professionalità vera."</p>
+        <div class="rec-autore">Sara M.</div>
+        <div class="rec-fonte">Recensione Google</div>
+      </div>
+      <div class="rec-card">
+        <div class="stelle">★★★★★</div>
+        <p class="rec-testo">"Eli è precisissima con le sfumature, il ritocco radice è perfetto ogni volta e la piega tiene benissimo anche dopo giorni."</p>
+        <div class="rec-autore">Elena R.</div>
+        <div class="rec-fonte">Recensione Google</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="dove" id="dove" style="background:#ece4d6;">
+    <div class="dove-grid">
+      <div>
+        <div class="info-block">
+          <div class="info-label">Orari</div>
+          <div class="riga"><span>Lunedì</span><span>Chiuso</span></div>
+          <div class="riga"><span>Martedì — Venerdì</span><span>9:00 – 19:00</span></div>
+          <div class="riga"><span>Sabato</span><span>8:30 – 17:00</span></div>
+          <div class="riga"><span>Domenica</span><span>Chiuso</span></div>
+        </div>
+        <div class="info-block">
+          <div class="info-label">Contatti</div>
+          <div class="riga"><span>Telefono</span><span><a href="tel:+390350000000">035 000 0000</a></span></div>
+          <div class="riga"><span>WhatsApp</span><span>350 000 0000</span></div>
+          <div class="riga"><span>Indirizzo</span><span>Via Giacomo Matteotti, 41 — Cene (BG)</span></div>
+        </div>
+      </div>
+      <div class="map-box">
+        <div class="pin"></div>
+        <span>→ qui la mappa Google integrata</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band">
+    <div class="wrap">
+      <h2>Questo è solo un <span class="accent">esempio</span></h2>
+      <p>Il tuo salone, con i tuoi servizi, le tue foto e le tue recensioni vere — online in poche settimane.</p>
+      <div class="cta-azioni">
+        <a href="mailto:lorenzo.zenucchi00@gmail.com" class="btn btn-chiaro">Parliamone insieme</a>
+        <a href="https://wa.me/393314660537" class="btn btn-ghost-chiaro">Scrivimi su WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Bozza dimostrativa creata da <strong>Lorenzo Zenucchi</strong> — Siti Web per attività locali · Val Seriana, BG</p>
+  </footer>
+
+</main>
+
+</body>
+</html>
