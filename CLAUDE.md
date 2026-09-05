@@ -66,7 +66,15 @@ riviste da Lorenzo in browser prima di essere promosse a mano in templates/.
 ## Note tecniche
 - Ogni demo è un singolo file HTML autonomo (CSS/JS inline), nessuna dipendenza
   esterna oltre ai font Google
-- Le demo in `demos/` vengono pubblicate online tramite GitHub Pages dal
-  repository `demos`, per generare i QR code da mettere sul foglio offerta
+- Le demo in `demos/` vengono pubblicate online su Netlify, sito
+  `stalwart-sopapillas-b54243` (id `ee1cac7a-4542-49ef-a3a6-f84c9cbc018c`),
+  dominio custom `demo.lorenzoweb.it` — ogni demo è una sottocartella
+  (es. `demo.lorenzoweb.it/centro-estetico-yab-v3/`), per generare i QR code
+  da mettere sul foglio offerta. Un deploy pubblica l'intera cartella
+  `demos/` in un colpo solo (non la singola demo nuova):
+  `npx netlify deploy --prod --dir=demos --site=ee1cac7a-4542-49ef-a3a6-f84c9cbc018c`.
+  Nel CRM console-operativa il campo `link_demo` usa il formato
+  `https://stalwart-sopapillas-b54243.netlify.app/<slug>/` (sottodominio
+  grezzo, non il dominio custom, per coerenza con i link già scritti).
 - Il repository è pubblico: mai committare dati sensibili (contratti, prezzi
   concordati con singoli clienti, dati personali) al di fuori delle demo stesse
