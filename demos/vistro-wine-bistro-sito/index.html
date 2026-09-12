@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vìstrò Wine &amp; Bistrò — Enoteca con cucina a Vertova (BG)</title>
+<meta name="description" content="Vìstrò Wine & Bistrò, Vertova (BG): enoteca con cucina per business lunch, aperitivo e cena. Tartare, tagliate e serate a tema attorno al vino. Prenota al 328 218 7409.">
+<link rel="icon" href="foto/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Urbanist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Hallmark · struttura custom dal brief cliente (non dal catalogo temi) · tono: elegante, conviviale, contemporaneo, registro sobrio e rallentato · identità: colori/font vincolati da clienti/vistro-wine-bistro/brief.md · pre-emit critique: P5 H4 E4 S5 R5 V5 */
+/* ============================== TOKEN — identità dal brief ============================== */
+:root{
+  --bordeaux-vinoso:#7A2A35;
+  --bordeaux-scuro:#5A1F27;
+  --nero-caldo:#1D1A17;
+  --legno-miele:#BA8E54;
+  --tortora-bruno:#6B5645;
+  --antracite:#2B2724;
+  --lino-avorio:#EDE4D3;
+  --bianco:#FFFFFF; /* "bianco pieno" — superficie chiara ammessa dal brief per il logo, oltre al lino avorio */
+
+  --font-display:'Marcellus', Georgia, serif;
+  --font-testo:'Urbanist', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --raggio:14px;
+  --raggio-piccolo:8px;
+  --ombra:0 18px 44px rgba(20,17,14,.22);
+  --ombra-soft:0 10px 26px rgba(20,17,14,.12);
+  --focus-ring:3px solid var(--legno-miele);
+
+  --container:1180px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;overflow-x:clip;}
+body{
+  font-family:var(--font-testo);
+  color:var(--nero-caldo);
+  background:var(--lino-avorio);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:clip;
+}
+img{display:block;max-width:100%;height:auto;}
+a{color:inherit;text-decoration:none;}
+ul{list-style:none;}
+h1,h2,h3{font-family:var(--font-display);font-weight:400;line-height:1.15;font-style:normal;overflow-wrap:anywhere;min-width:0;}
+.container{width:100%;max-width:var(--container);margin:0 auto;padding:0 6%;}
+
+a:focus-visible,
+button:focus-visible{outline:var(--focus-ring);outline-offset:3px;}
+
+.eyebrow{
+  font-family:var(--font-testo);
+  font-weight:600;
+  font-size:.76rem;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+}
+.sezione-titolo{
+  font-size:clamp(1.7rem,4vw,2.5rem);
+  text-transform:uppercase;
+  letter-spacing:.06em;
+  margin-bottom:18px;
+}
+.sezione-intro{max-width:640px;font-size:1.02rem;opacity:.92;}
+.sezione-head{margin-bottom:44px;}
+
+section{padding:88px 0;}
+@media (max-width:640px){ section{padding:64px 0;} }
+
+/* ── bottoni ─────────────────────────────────────────────────────────── */
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--font-testo);font-weight:600;font-size:.92rem;
+  letter-spacing:.03em;white-space:nowrap;
+  padding:16px 28px;border-radius:100px;border:1px solid transparent;
+  cursor:pointer;-webkit-tap-highlight-color:transparent;
+}
+.btn--primario{background:var(--bordeaux-vinoso);color:var(--lino-avorio);}
+.btn--primario:hover{background:var(--bordeaux-scuro);}
+.btn--fantasma{background:transparent;border-color:currentColor;color:inherit;}
+.btn--fantasma:hover{background:rgba(255,255,255,.08);}
+.btn--su-chiaro{background:var(--nero-caldo);color:var(--lino-avorio);}
+.btn--su-chiaro:hover{background:var(--antracite);}
+.btn:active{transform:scale(.98);}
+
+/* ============================== HEADER ============================== */
+.intestazione{
+  position:sticky;top:0;z-index:50;
+  background:var(--lino-avorio);
+  box-shadow:0 1px 0 rgba(29,26,23,.08);
+}
+.barra-nav{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:14px 6%;}
+.marchio{display:flex;align-items:center;}
+.marchio img{height:46px;width:auto;}
+.nav-desktop{display:none;}
+.nav-desktop ul{display:flex;align-items:center;gap:30px;}
+.nav-desktop a{
+  font-size:.82rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;
+  color:var(--nero-caldo);padding:6px 0;border-bottom:1px solid transparent;
+  transition:border-color 160ms ease-out,color 160ms ease-out;
+}
+.nav-desktop a:hover{color:var(--bordeaux-vinoso);border-color:var(--bordeaux-vinoso);}
+.nav-azioni{display:flex;align-items:center;gap:14px;}
+.link-ig{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:38px;height:38px;border-radius:50%;border:1px solid var(--nero-caldo);
+  color:var(--nero-caldo);transition:background 160ms ease-out,color 160ms ease-out;
+}
+.link-ig:hover{background:var(--nero-caldo);color:var(--lino-avorio);}
+.tel-header{display:none;}
+.nav-toggle{
+  display:flex;flex-direction:column;justify-content:center;gap:4px;
+  width:40px;height:40px;background:none;border:1px solid var(--nero-caldo);border-radius:var(--raggio-piccolo);
+}
+.nav-toggle span{display:block;width:18px;height:2px;background:var(--nero-caldo);margin:0 auto;transition:transform 200ms ease-out,opacity 200ms ease-out;}
+.nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0;}
+.nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+.nav-mobile{
+  display:none;flex-direction:column;
+  background:var(--lino-avorio);border-top:1px solid rgba(29,26,23,.1);
+  padding:8px 6% 22px;
+}
+.nav-mobile.is-open{display:flex;}
+.nav-mobile a{
+  padding:12px 0;font-size:1rem;font-weight:500;
+  border-bottom:1px solid rgba(29,26,23,.08);
+}
+.nav-mobile .btn{margin-top:14px;justify-content:center;}
+
+@media (min-width:900px){
+  .nav-desktop{display:block;}
+  .nav-toggle{display:none;}
+  .nav-mobile{display:none !important;}
+  .tel-header{display:inline-flex;}
+}
+
+/* ============================== HERO ============================== */
+.hero{
+  background:
+    radial-gradient(ellipse at 15% 15%, rgba(122,42,53,.35), transparent 55%),
+    var(--nero-caldo);
+  color:var(--lino-avorio);
+  padding:72px 0 100px;
+}
+.hero .container{display:grid;gap:48px;align-items:center;}
+.hero-testo .eyebrow{color:var(--legno-miele);}
+.hero-testo h1{
+  font-size:clamp(2.4rem,6vw,3.6rem);
+  margin:18px 0 22px;
+  color:var(--lino-avorio);
+}
+.hero-testo p{font-size:1.08rem;max-width:46ch;opacity:.92;margin-bottom:32px;}
+.hero-cta{display:flex;flex-wrap:wrap;align-items:center;gap:16px;}
+.hero-img{
+  width:100%;max-width:420px;margin:0 auto;
+  border-radius:var(--raggio);overflow:hidden;box-shadow:var(--ombra);
+}
+.hero-img figcaption{
+  font-size:.78rem;opacity:.75;margin-top:12px;text-align:center;
+  font-style:normal;
+}
+
+@media (min-width:900px){
+  .hero{padding:0;min-height:88vh;display:flex;align-items:center;}
+  .hero .container{grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:60px;}
+  .hero-img{max-width:100%;}
+}
+
+/* ============================== CHI SIAMO ============================== */
+.chi-siamo{background:var(--lino-avorio);}
+.chi-siamo .container{display:grid;gap:44px;align-items:center;}
+.chi-siamo .eyebrow{color:var(--bordeaux-vinoso);}
+.chi-siamo h2{color:var(--nero-caldo);}
+.chi-siamo p{margin-top:20px;font-size:1.04rem;max-width:56ch;}
+.chi-siamo-img{border-radius:var(--raggio);overflow:hidden;box-shadow:var(--ombra-soft);max-width:380px;margin:0 auto;}
+
+@media (min-width:900px){
+  .chi-siamo .container{grid-template-columns:minmax(0,1fr) minmax(0,.8fr);}
+  .chi-siamo-img{max-width:100%;order:2;}
+  .chi-siamo-testo{order:1;}
+}
+
+/* ============================== LE TRE ANIME ============================== */
+.tre-anime{background:var(--tortora-bruno);color:var(--lino-avorio);}
+/* NOTA CONTRASTO (audit Hallmark): legno-miele su tortora-bruno misura ~2.3:1,
+   sotto soglia AA anche per testo grande — qui e nelle regole seguenti si usa
+   lino-avorio, differenziato via tipografia (maiuscolo, spaziatura) non colore */
+.tre-anime .eyebrow{color:var(--lino-avorio);}
+.tre-anime h2{color:var(--lino-avorio);}
+.tre-anime .sezione-intro{color:var(--lino-avorio);}
+.griglia-anime{display:grid;gap:26px;align-items:start;}
+.card-anima{
+  background:rgba(237,228,211,.06);
+  border:1px solid rgba(237,228,211,.16);
+  border-radius:var(--raggio);
+  padding:30px 26px;
+}
+.card-anima img{border-radius:var(--raggio-piccolo);margin-bottom:20px;aspect-ratio:4/5;object-fit:cover;width:100%;}
+.card-anima .num{font-family:var(--font-display);color:var(--lino-avorio);opacity:.7;font-size:1.6rem;display:block;margin-bottom:8px;}
+.card-anima h3{font-size:1.25rem;color:var(--lino-avorio);margin-bottom:10px;}
+.card-anima .orario{font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;color:var(--lino-avorio);display:block;margin-bottom:10px;}
+.card-anima p{font-size:.96rem;opacity:.92;}
+
+@media (min-width:760px){ .griglia-anime{grid-template-columns:repeat(3,minmax(0,1fr));} }
+
+/* ============================== APERITIVO SPECIALE ============================== */
+.aperitivo{background:var(--legno-miele);color:var(--nero-caldo);}
+.aperitivo .container{display:grid;gap:40px;align-items:center;}
+.aperitivo-img{border-radius:var(--raggio);overflow:hidden;box-shadow:var(--ombra-soft);max-width:360px;margin:0 auto;}
+.aperitivo .eyebrow{color:var(--nero-caldo);}
+.aperitivo h2{margin:16px 0 18px;color:var(--nero-caldo);}
+.aperitivo p{font-size:1.05rem;max-width:48ch;margin-bottom:14px;}
+.aperitivo .quando{font-weight:700;}
+.aperitivo .btn{margin-top:16px;}
+
+@media (min-width:900px){
+  .aperitivo .container{grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);}
+  .aperitivo-img{order:1;max-width:100%;}
+  .aperitivo-testo{order:2;}
+}
+
+/* ============================== LA PROPOSTA (piatti) ============================== */
+.proposta{background:var(--lino-avorio);}
+.proposta .eyebrow{color:var(--bordeaux-vinoso);}
+.griglia-piatti{display:grid;gap:26px;margin-bottom:36px;}
+.card-piatto{background:var(--bianco);border-radius:var(--raggio);overflow:hidden;box-shadow:var(--ombra-soft);}
+.card-piatto img{aspect-ratio:3/4;object-fit:cover;width:100%;}
+.card-piatto-testo{padding:20px 22px 24px;}
+.card-piatto h3{font-size:1.2rem;margin-bottom:8px;}
+.card-piatto p{font-size:.94rem;opacity:.85;}
+.proposta-nota{
+  border-top:1px solid rgba(29,26,23,.12);
+  padding-top:26px;font-size:1rem;max-width:60ch;opacity:.9;
+}
+
+@media (min-width:760px){ .griglia-piatti{grid-template-columns:repeat(3,minmax(0,1fr));} }
+
+/* ============================== FORMAT SERATE ============================== */
+.serate{background:var(--nero-caldo);color:var(--lino-avorio);}
+.serate .container{display:grid;gap:44px;align-items:start;}
+.serate .eyebrow{color:var(--legno-miele);}
+.serate h2{color:var(--lino-avorio);}
+.serate-img{border-radius:var(--raggio);overflow:hidden;box-shadow:var(--ombra);max-width:360px;margin:0 auto;}
+.lista-format{margin-top:8px;}
+.lista-format li{
+  display:flex;align-items:flex-start;gap:16px;padding:16px 0;
+  border-bottom:1px solid rgba(237,228,211,.14);
+}
+.lista-format li:first-child{padding-top:0;}
+.lista-format .segno{font-family:var(--font-display);color:var(--legno-miele);font-size:1.15rem;flex-shrink:0;width:1.4em;}
+.lista-format h3{font-size:1.05rem;color:var(--lino-avorio);margin-bottom:4px;font-weight:600;font-family:var(--font-testo);text-transform:uppercase;letter-spacing:.04em;}
+.lista-format p{font-size:.92rem;opacity:.85;}
+.serate-nota{margin-top:26px;font-size:.94rem;opacity:.85;display:flex;flex-wrap:wrap;align-items:center;gap:12px;}
+.serate-nota a{color:var(--legno-miele);font-weight:600;border-bottom:1px solid var(--legno-miele);}
+
+@media (min-width:900px){
+  .serate .container{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);}
+  .serate-img{max-width:100%;}
+}
+
+/* ============================== GALLERIA ============================== */
+.galleria{background:var(--lino-avorio);}
+.galleria .eyebrow{color:var(--bordeaux-vinoso);}
+.griglia-foto{
+  display:grid;gap:14px;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+}
+.griglia-foto img{aspect-ratio:3/4;object-fit:cover;width:100%;border-radius:var(--raggio-piccolo);}
+
+@media (min-width:640px){ .griglia-foto{grid-template-columns:repeat(3,minmax(0,1fr));} }
+@media (min-width:960px){ .griglia-foto{grid-template-columns:repeat(4,minmax(0,1fr));} }
+
+/* ============================== INSTAGRAM BAND ============================== */
+.banda-ig{background:var(--bordeaux-vinoso);color:var(--lino-avorio);}
+.banda-ig .container{padding-top:56px;padding-bottom:56px;}
+.card-ig{
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px;
+}
+.card-ig h2{font-size:clamp(1.4rem,3.4vw,2rem);color:var(--lino-avorio);}
+.card-ig p{opacity:.9;margin-top:8px;max-width:48ch;}
+.card-ig .btn{flex-shrink:0;}
+
+/* ============================== RECENSIONI ============================== */
+.recensioni{background:var(--tortora-bruno);color:var(--lino-avorio);}
+.recensioni .container{text-align:center;}
+.recensioni-box{max-width:560px;margin:0 auto;}
+/* NOTA CONTRASTO (audit Hallmark): stessa correzione legno-miele→lino-avorio, sezione su tortora-bruno */
+.stelle{color:var(--lino-avorio);font-size:1.5rem;letter-spacing:.1em;margin:14px 0;}
+.recensioni-dato{font-family:var(--font-display);font-size:2rem;display:block;margin-bottom:6px;}
+.recensioni p{opacity:.9;margin-bottom:22px;}
+
+/* ============================== ORARI E CONTATTI ============================== */
+.contatti{background:var(--lino-avorio);}
+.contatti .eyebrow{color:var(--bordeaux-vinoso);}
+.griglia-contatti{display:grid;gap:26px;margin-top:20px;}
+.blocco-contatto{
+  background:var(--bianco);border-radius:var(--raggio);padding:28px 26px;box-shadow:var(--ombra-soft);
+}
+.blocco-contatto h3{font-size:1.05rem;text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px;color:var(--bordeaux-vinoso);}
+.tabella-orari{width:100%;font-size:.96rem;}
+.tabella-orari tr{border-bottom:1px solid rgba(29,26,23,.08);}
+.tabella-orari tr:last-child{border-bottom:none;}
+.tabella-orari td{padding:8px 0;}
+.tabella-orari td:first-child{font-weight:600;}
+.tabella-orari td:last-child{text-align:right;opacity:.85;}
+.riga-contatto{display:flex;align-items:center;gap:12px;padding:10px 0;font-size:.98rem;}
+.riga-contatto:not(:last-child){border-bottom:1px solid rgba(29,26,23,.08);}
+.blocco-mappa{display:flex;flex-direction:column;justify-content:space-between;}
+.mappa-cta{margin-top:20px;width:fit-content;pointer-events:none;}
+
+@media (min-width:820px){ .griglia-contatti{grid-template-columns:1fr 1fr;} }
+
+/* ============================== CTA FINALE — verso Lorenzo (deroga prospect) ============================== */
+.cta-finale{background:var(--nero-caldo);color:var(--lino-avorio);}
+.cta-finale-card{max-width:640px;}
+.cta-finale .eyebrow{color:var(--legno-miele);}
+.cta-finale h2{color:var(--lino-avorio);margin:16px 0 18px;text-transform:none;letter-spacing:normal;}
+.cta-finale p{font-size:1.04rem;opacity:.92;margin-bottom:28px;max-width:56ch;}
+.cta-finale-firma{margin-top:18px;font-size:.85rem;opacity:.65;max-width:none;}
+
+/* ============================== FOOTER ============================== */
+footer{background:var(--antracite);color:var(--lino-avorio);padding:52px 0 28px;}
+.footer-grid{display:grid;gap:28px;padding-bottom:28px;border-bottom:1px solid rgba(237,228,211,.14);}
+.footer-wordmark{font-family:var(--font-display);font-size:1.3rem;letter-spacing:.05em;margin-bottom:10px;}
+footer p{font-size:.88rem;opacity:.78;line-height:1.7;}
+footer a{text-decoration:underline;text-underline-offset:3px;}
+.footer-nav{display:flex;flex-wrap:wrap;gap:10px 22px;}
+.footer-nav a{font-size:.86rem;opacity:.85;text-decoration:none;}
+.footer-nav a:hover{opacity:1;text-decoration:underline;}
+.footer-credito{
+  padding-top:22px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
+  font-size:.8rem;opacity:.7;
+}
+
+@media (min-width:760px){ .footer-grid{grid-template-columns:1.2fr .8fr;} }
+
+/* ============================== motion-locali — ricette (COME si muove) ============================== */
+
+/* kinetic-headline — categoria text-kinetic — UNICO effetto vistoso della pagina */
+[data-kinetic]{display:inline-block;}
+[data-kinetic] .k-unit{
+  display:inline-block;opacity:0;
+  transition:opacity 520ms cubic-bezier(0.16,1,0.3,1),
+             transform 520ms cubic-bezier(0.16,1,0.3,1),
+             filter 520ms ease-out;
+  transition-delay:var(--k-delay,0ms);
+  will-change:opacity,transform,filter;
+}
+[data-kinetic].is-in .k-unit{opacity:1;transform:none;filter:none;}
+[data-kinetic] .k-space{display:inline-block;width:.28em;}
+.k-anim-rise .k-unit{transform:translateY(.5em);}
+
+/* fade-in-up — categoria entrance */
+[data-fade]{
+  opacity:0;transform:translateY(28px);
+  transition:opacity 620ms cubic-bezier(0.16,1,0.3,1),
+             transform 620ms cubic-bezier(0.16,1,0.3,1);
+  transition-delay:var(--fade-delay,0ms);
+  will-change:opacity,transform;
+}
+[data-fade].is-in{opacity:1;transform:none;}
+
+/* scroll-reveal — categoria scroll-reveal */
+[data-reveal]{
+  opacity:0;transform:translateY(32px);
+  transition:opacity 680ms cubic-bezier(0.16,1,0.3,1),
+             transform 680ms cubic-bezier(0.16,1,0.3,1);
+  transition-delay:var(--reveal-delay,0ms);
+  will-change:opacity,transform;
+}
+[data-reveal].is-in{opacity:1;transform:none;}
+
+/* card-lift-hover — categoria hover-press — solo su card cliccabili */
+.lift-card{
+  transition:transform 200ms cubic-bezier(0.16,1,0.3,1),box-shadow 200ms cubic-bezier(0.16,1,0.3,1);
+  will-change:transform;
+}
+.lift-card:hover{transform:translateY(-6px);box-shadow:0 16px 32px rgba(20,18,14,.16);}
+.lift-card:active{transform:translateY(-2px);}
+
+/* magnetic-button — categoria hover-press — max 2 bottoni/pagina */
+.magnetic{transition:transform 180ms cubic-bezier(0.34,1.56,0.64,1);will-change:transform;}
+.magnetic:active{transform:scale(.97);}
+
+/* ripple-press — categoria feedback-delight */
+.ripple{position:relative;overflow:hidden;-webkit-tap-highlight-color:transparent;}
+.ripple > .ripple-wave{
+  position:absolute;border-radius:50%;transform:scale(0);opacity:.3;
+  background:currentColor;pointer-events:none;
+  animation:ripple-bloom 600ms ease-out forwards;
+}
+@keyframes ripple-bloom{ to{transform:scale(1);opacity:0;} }
+
+/* count-up — categoria emphasis — solo su "66 recensioni", numero reale dal brief */
+[data-count]{font-variant-numeric:tabular-nums;font-feature-settings:"tnum";}
+
+/* ============================== accessibilità — motion ridotto (blocco unico) ============================== */
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto;}
+  [data-kinetic] .k-unit{opacity:1 !important;transform:none !important;filter:none !important;transition:none;animation:none !important;}
+  [data-fade]{opacity:1;transform:none;transition:none;}
+  [data-reveal]{opacity:1;transform:none;transition:none;}
+  .lift-card,.lift-card:hover,.lift-card:active{transform:none;transition:box-shadow 120ms ease;}
+  .magnetic{transition:none;}
+  .ripple > .ripple-wave{display:none;}
+  .nav-toggle span{transition:none;}
+}
+</style>
+</head>
+<body>
+
+<header class="intestazione">
+  <div class="barra-nav">
+    <a class="marchio" href="#top" aria-label="Vìstrò Wine &amp; Bistrò — torna in cima">
+      <img src="foto/logo-trasparente.png" width="544" height="544" alt="Vìstrò Wine &amp; Bistrò">
+    </a>
+
+    <nav class="nav-desktop" aria-label="Principale">
+      <ul>
+        <li><a href="#chi-siamo">Chi siamo</a></li>
+        <li><a href="#proposta">La proposta</a></li>
+        <li><a href="#serate">Serate</a></li>
+        <li><a href="#galleria">Galleria</a></li>
+        <li><a href="#recensioni">Recensioni</a></li>
+        <li><a href="#contatti">Contatti</a></li>
+      </ul>
+    </nav>
+
+    <div class="nav-azioni">
+      <a class="link-ig" href="https://www.instagram.com/vistrowine/" target="_blank" rel="noopener" aria-label="Vìstrò su Instagram">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.4" cy="6.6" r="1"/></svg>
+      </a>
+      <a class="btn btn--primario tel-header ripple" href="tel:+393282187409">328 218 7409</a>
+      <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-mobile" aria-label="Apri il menu">
+        <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+      </button>
+    </div>
+  </div>
+
+  <nav class="nav-mobile" id="nav-mobile" aria-label="Menu mobile">
+    <a href="#chi-siamo">Chi siamo</a>
+    <a href="#proposta">La proposta</a>
+    <a href="#serate">Serate</a>
+    <a href="#galleria">Galleria</a>
+    <a href="#recensioni">Recensioni</a>
+    <a href="#contatti">Contatti</a>
+    <a href="https://www.instagram.com/vistrowine/" target="_blank" rel="noopener">Instagram — @vistrowine</a>
+    <a class="btn btn--primario ripple" href="tel:+393282187409">Chiama — 328 218 7409</a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- ============================== HERO ============================== -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-testo">
+        <p class="eyebrow">Vertova (BG) · Enoteca con cucina</p>
+        <h1 data-kinetic data-kinetic-anim="rise">Vìstrò Wine &amp; Bistrò</h1>
+        <p data-fade>Bistrò dedicato al vino, luogo di momenti conviviali. Business lunch, aperitivi, cene ed eventi.</p>
+        <div class="hero-cta" data-fade data-fade-delay="140">
+          <a class="btn btn--primario magnetic ripple" data-magnet-strength="0.25" href="tel:+393282187409">Prenota — 328 218 7409</a>
+          <a class="btn btn--fantasma ripple" href="https://www.instagram.com/vistrowine/" target="_blank" rel="noopener">Segui su Instagram</a>
+        </div>
+      </div>
+      <figure class="hero-img" data-fade data-fade-delay="220">
+        <img src="foto/scaffali-bottiglie.jpg" width="557" height="845" alt="Parete di scaffalature nere piena di bottiglie di vino, con lampada a cupola, nella sala di Vìstrò" loading="eager" fetchpriority="high">
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============================== CHI SIAMO ============================== -->
+  <section class="chi-siamo" id="chi-siamo">
+    <div class="container">
+      <div class="chi-siamo-testo" data-reveal>
+        <p class="eyebrow">Chi siamo</p>
+        <h2 class="sezione-titolo">La casa del vino, a Vertova</h2>
+        <p>A Vìstrò tutto ruota attorno al vino: una parete di bottiglie che accoglie chi entra, una mescita che non si ferma mai del tutto, e una cucina che cura ogni piatto nei dettagli — dalla tartare composta al tavolo alla tagliata servita con patate.</p>
+        <p>Lo stesso locale vive tre momenti diversi: il pranzo di lavoro a metà settimana, l'aperitivo di fine giornata, e le cene che si allungano nelle serate a tema. Un posto dove si sta comodi, non un ristorante solenne.</p>
+      </div>
+      <figure class="chi-siamo-img" data-reveal data-reveal-delay="120">
+        <img src="foto/mescita-calice.jpg" width="563" height="735" alt="Vino rosso versato in un calice a Vìstrò" loading="lazy">
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============================== LE TRE ANIME ============================== -->
+  <section class="tre-anime">
+    <div class="container">
+      <div class="sezione-head" data-reveal>
+        <p class="eyebrow">Come si vive Vìstrò</p>
+        <h2 class="sezione-titolo">Tre momenti, un solo locale</h2>
+        <p class="sezione-intro">Dal pranzo veloce alla cena che si allunga: gli orari cambiano, l'attenzione al piatto e al calice resta la stessa.</p>
+      </div>
+      <div class="griglia-anime">
+        <div class="card-anima" data-reveal data-reveal-delay="0">
+          <span class="num">01</span>
+          <span class="orario">Mer · Gio · Ven — 12:00-14:00</span>
+          <h3>Business lunch</h3>
+          <p>Un pranzo curato ma senza perdere tempo, per chi lavora in zona e vuole sedersi bene anche a metà giornata.</p>
+        </div>
+        <div class="card-anima" data-reveal data-reveal-delay="90">
+          <span class="num">02</span>
+          <span class="orario">Nel tardo pomeriggio</span>
+          <h3>Aperitivo</h3>
+          <p>Un calice dalla nostra selezione, prima che la sala si riempia per cena. Da mercoledì a venerdì c'è anche uno speciale fisso — lo trovi qui sotto.</p>
+        </div>
+        <div class="card-anima" data-reveal data-reveal-delay="180">
+          <span class="num">03</span>
+          <span class="orario">Mer-Ven e Sab — dalle 18:00</span>
+          <h3>Cena e serate</h3>
+          <img src="foto/sala-tavolata.jpg" width="549" height="679" alt="Tavolata lunga apparecchiata con runner di lino e sedie nere nella sala di Vìstrò" loading="lazy">
+          <p>Cene, degustazioni e format conviviali che tornano nel tempo — la tavolata lunga è pensata proprio per queste sere.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== APERITIVO SPECIALE ============================== -->
+  <section class="aperitivo">
+    <div class="container">
+      <figure class="aperitivo-img" data-reveal>
+        <img src="foto/tavolo-vino-rosso.jpg" width="771" height="991" alt="Bottiglia di Rizzi Langhe Nebbiolo e calici di vino rosso su tavolo di legno con pane, a Vìstrò" loading="lazy">
+      </figure>
+      <div class="aperitivo-testo" data-reveal data-reveal-delay="120">
+        <p class="eyebrow">Proposta fissa</p>
+        <h2 class="sezione-titolo">Lo speciale aperitivo</h2>
+        <p class="quando">Da mercoledì a venerdì, 18:00–19:30.</p>
+        <p>Scegli una bottiglia dalla nostra selezione: la pinsa gourmet a scelta è in omaggio. Un modo semplice per iniziare la serata seduti, senza fretta.</p>
+        <a class="btn btn--su-chiaro ripple" href="tel:+393282187409">Prenota il tavolo</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== LA PROPOSTA (piatti) ============================== -->
+  <section class="proposta" id="proposta">
+    <div class="container">
+      <div class="sezione-head" data-reveal>
+        <p class="eyebrow">In cucina</p>
+        <h2 class="sezione-titolo">La proposta</h2>
+        <p class="sezione-intro">Niente listino fisso qui: la carta cambia, ma lo stile — crudi curati, impiattamento al tavolo, materia prima in vista — resta lo stesso.</p>
+      </div>
+      <div class="griglia-piatti">
+        <article class="card-piatto" data-reveal data-reveal-delay="0">
+          <img src="foto/tartare-manzo.jpg" width="775" height="967" alt="Tartare di manzo composta a tavola con quenelle di senape" loading="lazy">
+          <div class="card-piatto-testo">
+            <h3>Tartare di manzo</h3>
+            <p>Composta al tavolo, con una quenelle di senape a completare il piatto.</p>
+          </div>
+        </article>
+        <article class="card-piatto" data-reveal data-reveal-delay="90">
+          <img src="foto/tartare-salmone.jpg" width="560" height="845" alt="Tartare di salmone con pistacchi e fiore di prosciutto" loading="lazy">
+          <div class="card-piatto-testo">
+            <h3>Tartare di salmone</h3>
+            <p>Pistacchi e fiore di prosciutto, per una versione più delicata dello stesso gesto.</p>
+          </div>
+        </article>
+        <article class="card-piatto" data-reveal data-reveal-delay="180">
+          <img src="foto/tagliata-patate.jpg" width="764" height="976" alt="Tagliata di manzo con patate servita con un calice di vino bianco" loading="lazy">
+          <div class="card-piatto-testo">
+            <h3>Tagliata con patate</h3>
+            <p>Servita in tavola, accompagnata da un calice — bianco o rosso, secondo il piatto.</p>
+          </div>
+        </article>
+      </div>
+      <p class="proposta-nota">In carta anche pinsa gourmet, taglieri e pane. Quello che si trova cambia con la stagione e con quello che si trova: al tavolo, o al telefono, ti raccontiamo cosa c'è oggi.</p>
+    </div>
+  </section>
+
+  <!-- ============================== FORMAT SERATE RICORRENTI ============================== -->
+  <section class="serate" id="serate">
+    <div class="container">
+      <figure class="serate-img" data-reveal>
+        <img src="foto/parete-cassette-legno.jpg" width="564" height="851" alt="Parete con cassette di legno da vino e tavoli alti nella sala di Vìstrò" loading="lazy">
+      </figure>
+      <div>
+        <p class="eyebrow" data-reveal>Le serate</p>
+        <h2 class="sezione-titolo" data-reveal data-reveal-delay="60">Format che tornano nel tempo</h2>
+        <p class="sezione-intro" data-reveal data-reveal-delay="90">Non un calendario fisso: format che a Vìstrò si ripetono, ogni tanto, nelle serate di cena.</p>
+        <ul class="lista-format" data-reveal data-reveal-delay="140">
+          <li>
+            <span class="segno">—</span>
+            <div>
+              <h3>Ciascuno porti una bottiglia</h3>
+              <p>Serata conviviale a tema — Montefalco, bollicine, e altri temi a rotazione.</p>
+            </div>
+          </li>
+          <li>
+            <span class="segno">—</span>
+            <div>
+              <h3>Serate musicali</h3>
+              <p>Musica dal vivo tra un calice e l'altro.</p>
+            </div>
+          </li>
+          <li>
+            <span class="segno">—</span>
+            <div>
+              <h3>Degustazioni</h3>
+              <p>Percorsi guidati tra le etichette della cantina.</p>
+            </div>
+          </li>
+          <li>
+            <span class="segno">—</span>
+            <div>
+              <h3>Vini del mondo</h3>
+              <p>Serate dedicate a etichette fuori dai confini italiani.</p>
+            </div>
+          </li>
+          <li>
+            <span class="segno">—</span>
+            <div>
+              <h3>Menu a tema</h3>
+              <p>Serate dedicate a un piatto solo — paella valenciana, capù e polenta, öf e scamusci, orecchia di elefante.</p>
+            </div>
+          </li>
+        </ul>
+        <p class="serate-nota">Le prossime date si trovano su Instagram, dove pubblichiamo gli appuntamenti man mano che arrivano. <a href="https://www.instagram.com/vistrowine/" target="_blank" rel="noopener">@vistrowine →</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== GALLERIA ============================== -->
+  <section class="galleria" id="galleria">
+    <div class="container">
+      <div class="sezione-head" data-reveal>
+        <p class="eyebrow">Galleria</p>
+        <h2 class="sezione-titolo">Un giro nella sala</h2>
+      </div>
+      <div class="griglia-foto" data-reveal>
+        <img src="foto/scaffali-bottiglie.jpg" width="557" height="845" alt="Scaffalature piene di bottiglie di vino" loading="lazy">
+        <img src="foto/tavolo-vino-rosso.jpg" width="771" height="991" alt="Bottiglia e calici di vino rosso su tavolo di legno" loading="lazy">
+        <img src="foto/mescita-calice.jpg" width="563" height="735" alt="Vino versato in un calice" loading="lazy">
+        <img src="foto/sala-tavolata.jpg" width="549" height="679" alt="Tavolata lunga apparecchiata" loading="lazy">
+        <img src="foto/parete-cassette-legno.jpg" width="564" height="851" alt="Cassette di legno da vino appese a parete" loading="lazy">
+        <img src="foto/tartare-manzo.jpg" width="775" height="967" alt="Tartare di manzo impiattata" loading="lazy">
+        <img src="foto/tartare-salmone.jpg" width="560" height="845" alt="Tartare di salmone con pistacchi" loading="lazy">
+        <img src="foto/tagliata-patate.jpg" width="764" height="976" alt="Tagliata di manzo con patate" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== INSTAGRAM ============================== -->
+  <section class="banda-ig">
+    <div class="container">
+      <div class="card-ig" data-reveal>
+        <div>
+          <h2>Il canale più aggiornato è Instagram</h2>
+          <p>Serate, menu a tema e appuntamenti: pubblichiamo tutto lì, prima che qui.</p>
+        </div>
+        <a class="btn btn--fantasma ripple" href="https://www.instagram.com/vistrowine/" target="_blank" rel="noopener">@vistrowine →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== RECENSIONI ============================== -->
+  <section class="recensioni" id="recensioni">
+    <div class="container">
+      <div class="recensioni-box" data-reveal>
+        <p class="eyebrow">Recensioni</p>
+        <span class="recensioni-dato">4,8 / 5</span>
+        <div class="stelle" aria-hidden="true">★★★★★</div>
+        <p>La media di <span data-count="66" data-count-duration="800">0</span> recensioni su Google.</p>
+        <a class="btn btn--fantasma ripple" href="https://maps.google.com/?cid=3208980507040611335" target="_blank" rel="noopener">Leggi le recensioni su Google →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== ORARI E CONTATTI ============================== -->
+  <section class="contatti" id="contatti">
+    <div class="container">
+      <div class="sezione-head" data-reveal>
+        <p class="eyebrow">Orari e contatti</p>
+        <h2 class="sezione-titolo">Dove e quando trovarci</h2>
+      </div>
+      <div class="griglia-contatti">
+        <div class="blocco-contatto" data-reveal>
+          <h3>Orari</h3>
+          <table class="tabella-orari">
+            <tr><td>Lunedì</td><td>Chiuso</td></tr>
+            <tr><td>Martedì</td><td>Chiuso</td></tr>
+            <tr><td>Mercoledì</td><td>12:00–14:00 · 18:00–23:00</td></tr>
+            <tr><td>Giovedì</td><td>12:00–14:00 · 18:00–23:00</td></tr>
+            <tr><td>Venerdì</td><td>12:00–14:00 · 18:00–23:00</td></tr>
+            <tr><td>Sabato</td><td>18:00–23:00</td></tr>
+            <tr><td>Domenica</td><td>Chiuso</td></tr>
+          </table>
+        </div>
+        <a class="blocco-contatto blocco-mappa lift-card" data-reveal data-reveal-delay="100" href="https://maps.google.com/?cid=3208980507040611335" target="_blank" rel="noopener">
+          <div>
+            <h3>Dove siamo</h3>
+            <div class="riga-contatto">Via IV Novembre, 29 — 24029 Vertova (BG)</div>
+            <div class="riga-contatto">Gradita prenotazione al 328 218 7409</div>
+            <div class="riga-contatto">@vistrowine su Instagram</div>
+          </div>
+          <span class="btn btn--primario mappa-cta">Apri la mappa →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== CTA FINALE — verso Lorenzo (deroga prospect avanzato) ============================== -->
+  <section class="cta-finale" id="cta-lorenzo">
+    <div class="container">
+      <div class="cta-finale-card" data-reveal>
+        <p class="eyebrow">Per la titolare</p>
+        <h2>Il tuo sito è pronto.</h2>
+        <p>L'ho costruito dalle foto vere del locale — il muro di bottiglie, i piatti impiattati al tavolo, la tavolata apparecchiata — non da un modello preso a caso. Se vuoi vederlo insieme, cambiare qualcosa o hai domande, scrivimi pure.</p>
+        <a class="btn btn--primario magnetic ripple" data-magnet-strength="0.2" href="https://wa.me/393314660537" target="_blank" rel="noopener">Scrivimi su WhatsApp →</a>
+        <p class="cta-finale-firma">Lorenzo Zenucchi — siti web per attività della Val Seriana</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <p class="footer-wordmark">Vìstrò Wine &amp; Bistrò</p>
+        <p>Via IV Novembre, 29 — 24029 Vertova (BG) — Tel. 328 218 7409<br>Enoteca con cucina — business lunch, aperitivi, cene ed eventi.</p>
+      </div>
+      <nav class="footer-nav" aria-label="Footer">
+        <a href="#chi-siamo">Chi siamo</a>
+        <a href="#proposta">La proposta</a>
+        <a href="#serate">Serate</a>
+        <a href="#galleria">Galleria</a>
+        <a href="#contatti">Contatti</a>
+        <a href="https://www.instagram.com/vistrowine/" target="_blank" rel="noopener">Instagram</a>
+      </nav>
+    </div>
+    <div class="footer-credito">
+      <span>© 2026 Vìstrò Wine &amp; Bistrò</span>
+      <a href="https://wa.me/393314660537" target="_blank" rel="noopener">Sito realizzato da Lorenzo Zenucchi</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ============================== nav mobile (funzionale, non decorativo) ============================== */
+(function(){
+  'use strict';
+  var toggle = document.getElementById('nav-toggle');
+  var menu = document.getElementById('nav-mobile');
+  if (!toggle || !menu) return;
+  function close(){ toggle.setAttribute('aria-expanded','false'); menu.classList.remove('is-open'); }
+  function open(){ toggle.setAttribute('aria-expanded','true'); menu.classList.add('is-open'); }
+  toggle.addEventListener('click', function(){
+    var isOpen = toggle.getAttribute('aria-expanded') === 'true';
+    isOpen ? close() : open();
+  });
+  menu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', close); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') close(); });
+})();
+
+/* ============================== motion-locali: kinetic-headline ============================== */
+(function () {
+  'use strict';
+  function split(el) {
+    var mode = el.getAttribute('data-kinetic') || 'words';
+    var text = el.textContent;
+    el.textContent = '';
+    var step = (mode === 'letters') ? 40 : 70;
+    var units = (mode === 'letters') ? text.split('') : text.split(/(\s+)/);
+    var i = 0;
+    units.forEach(function (u) {
+      if (u === '') return;
+      if (/^\s+$/.test(u)) {
+        var sp = document.createElement('span');
+        sp.className = 'k-space';
+        el.appendChild(sp);
+        return;
+      }
+      var s = document.createElement('span');
+      s.className = 'k-unit';
+      s.textContent = u;
+      s.style.setProperty('--k-delay', (i * step) + 'ms');
+      i++;
+      el.appendChild(s);
+    });
+  }
+  function init() {
+    var els = document.querySelectorAll('[data-kinetic]');
+    if (!els.length) return;
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    els.forEach(function (el) {
+      el.classList.add('k-anim-' + (el.getAttribute('data-kinetic-anim') || 'rise'));
+      split(el);
+    });
+    if (reduce) { els.forEach(function (el) { el.classList.add('is-in'); }); return; }
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () { els.forEach(function (el) { el.classList.add('is-in'); }); });
+    });
+  }
+  if (document.readyState !== 'loading') init();
+  else document.addEventListener('DOMContentLoaded', init);
+})();
+
+/* ============================== motion-locali: fade-in-up ============================== */
+(function () {
+  'use strict';
+  function init() {
+    var els = document.querySelectorAll('[data-fade]');
+    if (!els.length) return;
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) { els.forEach(function (el) { el.classList.add('is-in'); }); return; }
+    els.forEach(function (el, i) {
+      var d = el.getAttribute('data-fade-delay');
+      el.style.setProperty('--fade-delay', (d != null ? parseInt(d, 10) : i * 70) + 'ms');
+    });
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () { els.forEach(function (el) { el.classList.add('is-in'); }); });
+    });
+  }
+  if (document.readyState !== 'loading') init();
+  else document.addEventListener('DOMContentLoaded', init);
+})();
+
+/* ============================== motion-locali: scroll-reveal ============================== */
+(function () {
+  'use strict';
+  function revealAll() { document.querySelectorAll('[data-reveal]').forEach(function (el) { el.classList.add('is-in'); }); }
+  function init() {
+    var els = document.querySelectorAll('[data-reveal]');
+    if (!els.length) return;
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce || !('IntersectionObserver' in window)) { revealAll(); return; }
+    els.forEach(function (el) {
+      var d = el.getAttribute('data-reveal-delay');
+      if (d) el.style.setProperty('--reveal-delay', parseInt(d, 10) + 'ms');
+    });
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) { entry.target.classList.add('is-in'); io.unobserve(entry.target); }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -10% 0px' });
+    els.forEach(function (el) { io.observe(el); });
+  }
+  if (document.readyState !== 'loading') init();
+  else document.addEventListener('DOMContentLoaded', init);
+})();
+
+/* ============================== motion-locali: magnetic-button ============================== */
+(function (global) {
+  'use strict';
+  function reduced() { return global.matchMedia && global.matchMedia('(prefers-reduced-motion: reduce)').matches; }
+  function isTouch() { return global.matchMedia && global.matchMedia('(hover: none)').matches; }
+  function attach(btn) {
+    if (btn.__magnetBound) return;
+    btn.__magnetBound = true;
+    var strength = parseFloat(btn.getAttribute('data-magnet-strength')) || 0.3;
+    btn.addEventListener('pointermove', function (e) {
+      var r = btn.getBoundingClientRect();
+      var dx = e.clientX - (r.left + r.width / 2);
+      var dy = e.clientY - (r.top + r.height / 2);
+      btn.style.transform = 'translate(' + dx * strength + 'px,' + dy * strength + 'px)';
+    });
+    btn.addEventListener('pointerleave', function () { btn.style.transform = ''; });
+  }
+  function init() {
+    if (reduced() || isTouch()) return;
+    var els = document.querySelectorAll('.magnetic');
+    for (var i = 0; i < els.length; i++) attach(els[i]);
+  }
+  global.attachMagnetic = attach;
+  if (document.readyState !== 'loading') init();
+  else document.addEventListener('DOMContentLoaded', init);
+})(window);
+
+/* ============================== motion-locali: ripple-press ============================== */
+(function (global) {
+  'use strict';
+  function reduced() { return global.matchMedia && global.matchMedia('(prefers-reduced-motion: reduce)').matches; }
+  function spawn(el, e) {
+    var r = el.getBoundingClientRect();
+    var size = Math.max(r.width, r.height) * 2;
+    var x = (e.clientX != null ? e.clientX : r.left + r.width / 2) - r.left;
+    var y = (e.clientY != null ? e.clientY : r.top + r.height / 2) - r.top;
+    var wave = document.createElement('span');
+    wave.className = 'ripple-wave';
+    wave.style.width = wave.style.height = size + 'px';
+    wave.style.left = (x - size / 2) + 'px';
+    wave.style.top = (y - size / 2) + 'px';
+    el.appendChild(wave);
+    wave.addEventListener('animationend', function () { wave.remove(); });
+  }
+  function attach(el) {
+    if (el.__rippleBound) return;
+    el.__rippleBound = true;
+    el.addEventListener('pointerdown', function (e) { if (!reduced()) spawn(el, e); });
+  }
+  function init() {
+    var els = document.querySelectorAll('.ripple');
+    for (var i = 0; i < els.length; i++) attach(els[i]);
+  }
+  global.attachRipple = attach;
+  if (document.readyState !== 'loading') init();
+  else document.addEventListener('DOMContentLoaded', init);
+})(window);
+
+/* ============================== motion-locali: count-up (numero reale — 66 recensioni) ============================== */
+(function () {
+  'use strict';
+  function format(n, prefix, suffix) { return (prefix || '') + Math.round(n).toLocaleString('it-IT') + (suffix || ''); }
+  function run(el) {
+    var target = parseFloat(el.getAttribute('data-count')) || 0;
+    var prefix = el.getAttribute('data-count-prefix') || '';
+    var suffix = el.getAttribute('data-count-suffix') || '';
+    var dur = parseInt(el.getAttribute('data-count-duration'), 10) || 900;
+    var start = null;
+    function step(ts) {
+      if (start === null) start = ts;
+      var p = Math.min((ts - start) / dur, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = format(target * eased, prefix, suffix);
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  function init() {
+    var els = document.querySelectorAll('[data-count]');
+    if (!els.length) return;
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce || !('IntersectionObserver' in window)) {
+      els.forEach(function (el) { el.textContent = format(parseFloat(el.getAttribute('data-count')) || 0, el.getAttribute('data-count-prefix') || '', el.getAttribute('data-count-suffix') || ''); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) { if (entry.isIntersecting) { run(entry.target); io.unobserve(entry.target); } });
+    }, { threshold: 0.5 });
+    els.forEach(function (el) { io.observe(el); });
+  }
+  if (document.readyState !== 'loading') init();
+  else document.addEventListener('DOMContentLoaded', init);
+})();
+</script>
+</body>
+</html>

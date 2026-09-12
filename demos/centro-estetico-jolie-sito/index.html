@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Centro Estetico Jolie — Estetica &amp; Benessere a Gazzaniga (BG)</title>
+<meta name="description" content="Centro Estetico Jolie a Gazzaniga (BG), davanti alla stazione. Trattamenti viso e corpo, skin-analysis con tecnologia RHEA my SKINETIC, dermocosmesi professionale. 4,8 su 76 recensioni Google.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Italiana&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+/* Hallmark · struttura costruita da zero dal brief cliente (non dal catalogo temi) · tono: caldo, luminoso, editoriale-contemporaneo · identità: colori/font vincolati da clienti/centro-estetico-jolie/brief.md */
+:root{
+  --avorio:#F8F4EF;
+  --rosa-cipria:#C2A79D;
+  --beige-nude:#E0B78F;
+  --viola:#6C4F96;
+  --viola-scuro:#54397A;
+  --bruno:#3B322C;
+  --bruno-tenue:rgba(59,50,44,.74);
+  --bordo-tenue:rgba(59,50,44,.14);
+  --avorio-velato:rgba(248,244,239,.92);
+  --ombra-morbida:rgba(59,50,44,.18);
+  --font-titoli:'Italiana', serif;
+  --font-testo:'Manrope', sans-serif;
+  --dur-fast:180ms;
+  --dur-base:280ms;
+  --ease-premium:cubic-bezier(0.4,0,0.2,1);
+  --space-xs:8px;
+  --space-sm:16px;
+  --space-md:24px;
+  --space-lg:40px;
+  --space-xl:64px;
+  --space-2xl:96px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{overflow-x:clip;scroll-behavior:smooth;}
+body{
+  overflow-x:clip;
+  font-family:var(--font-testo);
+  background:var(--avorio);
+  color:var(--bruno);
+  line-height:1.7;
+  font-weight:400;
+}
+img{display:block;max-width:100%;height:auto;}
+a{color:inherit;}
+h1,h2,h3{font-family:var(--font-titoli);font-weight:400;font-style:normal;line-height:1.12;color:var(--bruno);overflow-wrap:anywhere;min-width:0;}
+.contenitore{width:min(1120px, 90%);margin:0 auto;}
+.skip-link{
+  position:absolute;left:-999px;top:auto;
+  background:var(--viola);color:var(--avorio);
+  padding:12px 20px;border-radius:0 0 8px 0;font-weight:600;z-index:200;
+  text-decoration:none;
+}
+.skip-link:focus{left:0;top:0;}
+:focus-visible{outline:2px solid var(--viola);outline-offset:3px;}
+.cta-lorenzo :focus-visible{outline-color:var(--avorio);}
+
+.eyebrow{
+  font-family:var(--font-testo);
+  font-size:.78rem;
+  font-weight:600;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--bruno-tenue);
+}
+
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:15px 30px;border-radius:999px;
+  font-family:var(--font-testo);font-weight:600;font-size:.95rem;
+  text-decoration:none;white-space:nowrap;cursor:pointer;
+  transition:transform var(--dur-fast) var(--ease-premium), background var(--dur-fast) var(--ease-premium), color var(--dur-fast) var(--ease-premium), border-color var(--dur-fast) var(--ease-premium), box-shadow var(--dur-fast) var(--ease-premium);
+}
+.btn-primario{background:var(--viola);color:var(--avorio);border:1.5px solid var(--viola);}
+.btn-primario:hover{background:var(--viola-scuro);border-color:var(--viola-scuro);}
+.btn-primario:active{transform:scale(.97);}
+.btn-contorno{background:transparent;color:var(--bruno);border:1.5px solid var(--bruno);}
+.btn-contorno:hover{background:var(--bruno);color:var(--avorio);}
+.btn-contorno:active{transform:scale(.97);}
+.btn-avorio{background:var(--avorio);color:var(--viola);border:1.5px solid var(--avorio);}
+.btn-avorio:hover{background:transparent;color:var(--avorio);border-color:var(--avorio);}
+.btn-avorio:active{transform:scale(.97);}
+.btn.magnetic{will-change:transform;}
+.link-testuale{color:var(--viola);text-decoration:underline;text-underline-offset:3px;font-weight:600;transition:color var(--dur-fast) var(--ease-premium);}
+.link-testuale:hover{color:var(--viola-scuro);}
+.link-testuale:active{color:var(--viola-scuro);}
+.testo-breve{display:none;}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+
+@media (max-width:480px){
+  .testo-lungo{display:none;}
+  .testo-breve{display:inline;}
+}
+
+/* HEADER */
+header.header{
+  position:sticky;top:0;z-index:50;
+  background:var(--avorio-velato);
+  backdrop-filter:blur(6px);
+  border-bottom:1px solid var(--bordo-tenue);
+}
+.header-inner{
+  display:flex;align-items:center;justify-content:space-between;gap:var(--space-md);
+  padding:16px 0;
+}
+.wordmark{
+  display:flex;flex-direction:column;text-decoration:none;color:var(--bruno);
+}
+.wordmark-nome{font-family:var(--font-titoli);font-size:1.6rem;letter-spacing:.02em;}
+.wordmark-sub{font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--bruno-tenue);margin-top:2px;font-weight:600;}
+.nav-links{display:none;list-style:none;gap:var(--space-lg);align-items:center;}
+.nav-links a{font-size:.92rem;font-weight:600;text-decoration:none;color:var(--bruno);transition:color var(--dur-fast) var(--ease-premium);}
+.nav-links a:hover{color:var(--viola);}
+.nav-links a:active{color:var(--viola-scuro);}
+.header-azioni{display:flex;align-items:center;gap:var(--space-lg);}
+
+/* HERO */
+.hero{padding:clamp(48px,8vw,96px) 0 clamp(44px,6vw,80px);}
+.hero-grid{display:grid;grid-template-columns:1fr;gap:44px;align-items:center;}
+.hero-testo{max-width:640px;}
+.hero h1{
+  font-size:clamp(2.2rem, 4vw + 1.2rem, 3.6rem);
+  margin:var(--space-sm) 0 var(--space-md);
+  overflow-wrap:anywhere;
+  min-width:0;
+}
+.hero-sub{
+  font-size:1.08rem;
+  color:var(--bruno-tenue);
+  max-width:52ch;
+  margin-bottom:var(--space-md);
+}
+.badge-rating{
+  display:inline-flex;align-items:center;gap:clamp(10px,3vw,16px);
+  padding:clamp(10px,3vw,14px) clamp(14px,4vw,22px);border:1.5px solid var(--beige-nude);border-radius:16px;
+  background:var(--avorio);margin-bottom:var(--space-lg);max-width:100%;
+}
+.badge-rating .numero{font-family:var(--font-titoli);font-size:clamp(1.6rem,5vw,2.1rem);color:var(--bruno);line-height:1;white-space:nowrap;}
+.badge-rating .stelle{color:var(--viola);letter-spacing:2px;font-size:1rem;}
+.badge-rating .dettaglio{display:flex;flex-direction:column;gap:2px;min-width:0;}
+.badge-rating .dettaglio strong{font-size:.85rem;font-weight:700;white-space:nowrap;}
+.badge-rating .dettaglio a{font-size:.82rem;text-decoration:underline;text-underline-offset:3px;color:var(--bruno-tenue);transition:color var(--dur-fast) var(--ease-premium);white-space:nowrap;}
+.badge-rating .dettaglio a:hover{color:var(--viola);}
+.badge-rating .dettaglio a:active{color:var(--viola-scuro);}
+.hero-cta{display:flex;flex-wrap:wrap;gap:var(--space-md);align-items:center;}
+.hero-immagine{border-radius:22px;overflow:hidden;box-shadow:0 30px 60px var(--ombra-morbida);}
+.hero-immagine img{width:100%;display:block;}
+
+/* CHI SIAMO */
+.chi-siamo{background:var(--rosa-cipria);color:var(--bruno);padding:var(--space-2xl) 0;}
+.chi-siamo-inner{max-width:680px;}
+.chi-siamo h2{margin-bottom:var(--space-md);}
+.chi-siamo p{font-size:1.05rem;margin-bottom:var(--space-md);}
+.chi-siamo p:last-child{margin-bottom:0;}
+
+/* SERVIZI */
+.servizi{background:var(--avorio);padding:var(--space-2xl) 0;}
+.servizi h2{margin-bottom:var(--space-sm);}
+.servizi-intro{max-width:56ch;color:var(--bruno-tenue);font-size:1.02rem;margin-bottom:var(--space-xl);}
+.servizi-grid{display:grid;grid-template-columns:1fr;gap:var(--space-xl);}
+.trattamento-riga{
+  padding:22px 0;border-bottom:1px solid var(--bordo-tenue);
+  display:flex;flex-direction:column;gap:6px;
+}
+.servizi-lista .trattamento-riga:first-child{padding-top:0;}
+.trattamento-titolo{font-family:var(--font-titoli);font-size:1.35rem;color:var(--viola);}
+.trattamento-desc{font-size:.98rem;color:var(--bruno);line-height:1.65;max-width:52ch;}
+.servizi-visivi{display:flex;flex-direction:column;gap:var(--space-md);}
+.foto-tech{border-radius:16px;overflow:hidden;box-shadow:0 18px 38px var(--ombra-morbida);background:var(--rosa-cipria);}
+.foto-tech img{width:100%;display:block;}
+.foto-tech figcaption{
+  padding:10px 14px;font-family:var(--font-titoli);font-size:.82rem;
+  letter-spacing:.04em;color:var(--avorio);background:var(--viola);text-align:center;
+}
+.coppia-prodotti{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--space-md);}
+
+/* GALLERIA */
+.galleria{background:var(--rosa-cipria);color:var(--bruno);padding:var(--space-2xl) 0;}
+.galleria h2{margin-bottom:var(--space-xl);}
+.galleria-mosaico{display:grid;grid-template-columns:1fr;gap:var(--space-md);}
+.galleria-tile{border-radius:16px;overflow:hidden;box-shadow:0 16px 34px var(--ombra-morbida);background:var(--avorio);}
+.galleria-tile img{width:100%;display:block;aspect-ratio:3/4;object-fit:cover;}
+.galleria-tile figcaption{
+  padding:12px 16px;font-family:var(--font-titoli);font-size:.88rem;
+  letter-spacing:.03em;color:var(--bruno);text-align:center;background:var(--avorio);
+}
+
+/* RECENSIONI */
+.recensioni{background:var(--avorio);padding:var(--space-2xl) 0;text-align:center;}
+.recensioni-inner{max-width:600px;margin:0 auto;}
+.recensioni-numero{font-family:var(--font-titoli);font-size:clamp(4rem,10vw,6.5rem);line-height:1;}
+.recensioni-stelle{color:var(--viola);font-size:1.5rem;letter-spacing:5px;margin:6px 0 6px;}
+.recensioni-sub{font-weight:700;font-size:1.05rem;margin-bottom:var(--space-md);}
+.recensioni-nota{color:var(--bruno-tenue);max-width:50ch;margin:0 auto var(--space-lg);}
+
+/* CONTATTI */
+.contatti{background:var(--rosa-cipria);color:var(--bruno);padding:var(--space-2xl) 0;}
+.contatti h2{margin-bottom:var(--space-lg);}
+.orari-titolo{font-family:var(--font-titoli);font-weight:400;font-size:1.3rem;margin-bottom:var(--space-md);}
+.contatti-grid{display:grid;grid-template-columns:1fr;gap:var(--space-xl);}
+.lista-contatti{list-style:none;}
+.lista-contatti li{
+  display:flex;flex-direction:column;gap:2px;
+  padding:var(--space-md) 0;
+  border-bottom:1px solid var(--bordo-tenue);
+}
+.lista-contatti li:first-child{padding-top:0;}
+.lista-contatti span{
+  font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;
+  color:var(--bruno);
+}
+.lista-contatti a{
+  font-size:1.1rem;font-weight:600;text-decoration:none;color:var(--bruno);
+  transition:color var(--dur-fast) var(--ease-premium);
+}
+.lista-contatti a:hover{color:var(--viola);text-decoration:underline;}
+.lista-contatti a:active{color:var(--viola-scuro);}
+.nota-stazione{margin-top:var(--space-md);font-size:.95rem;color:var(--bruno);max-width:44ch;}
+table.orari{width:100%;border-collapse:collapse;}
+table.orari th,table.orari td{
+  text-align:left;font-weight:400;font-size:.98rem;
+  padding:11px 0;border-bottom:1px solid var(--bordo-tenue);
+  font-variant-numeric:tabular-nums;
+}
+table.orari th{font-weight:600;width:50%;}
+table.orari tr:first-child th, table.orari tr:first-child td{padding-top:0;}
+
+/* CTA LORENZO */
+.cta-lorenzo{background:var(--viola);color:var(--avorio);padding:var(--space-2xl) 0;text-align:center;}
+.cta-inner{max-width:620px;margin:0 auto;}
+.cta-lorenzo h2{color:var(--avorio);margin-bottom:var(--space-md);}
+.cta-lorenzo p{color:var(--avorio-velato);margin-bottom:var(--space-lg);}
+
+footer{
+  background:var(--avorio);
+  border-top:1px solid var(--bordo-tenue);
+  padding:var(--space-lg) 0;
+  text-align:center;
+}
+footer p{font-size:.85rem;color:var(--bruno-tenue);}
+footer a{color:var(--viola);text-decoration:none;font-weight:600;}
+footer a:hover{text-decoration:underline;}
+footer a:active{color:var(--viola-scuro);}
+
+@media (min-width:860px){
+  .header-inner{padding:20px 0;}
+  .nav-links{display:flex;}
+  .hero-grid{grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:64px;}
+  .servizi-grid{grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);align-items:start;}
+  .contatti-grid{grid-template-columns:1fr 1fr;}
+}
+@media (min-width:720px){
+  .galleria-mosaico{grid-template-columns:minmax(0,2fr) minmax(0,1fr);grid-template-rows:auto auto;}
+  .galleria-tile--grande{grid-row:1 / 3;}
+  .galleria-tile--grande img{aspect-ratio:3/4;}
+}
+
+/* ── motion-locali: kinetic-headline (UNICO effetto vistoso di pagina) ── */
+[data-kinetic]{display:inline-block;}
+[data-kinetic] .k-unit{
+  display:inline-block;opacity:0;
+  transition:opacity 560ms var(--ease-premium), transform 560ms var(--ease-premium), filter 560ms ease-out;
+  transition-delay:var(--k-delay,0ms);
+  will-change:opacity, transform, filter;
+}
+[data-kinetic].is-in .k-unit{opacity:1;transform:none;filter:none;}
+[data-kinetic] .k-space{display:inline-block;width:.28em;}
+.k-anim-rise .k-unit{transform:translateY(.5em);}
+
+/* ── motion-locali: fade-in-up ── */
+[data-fade]{
+  opacity:0;transform:translateY(16px);
+  transition:opacity 520ms var(--ease-premium), transform 520ms var(--ease-premium);
+  transition-delay:var(--fade-delay,0ms);
+  will-change:opacity, transform;
+}
+[data-fade].is-in{opacity:1;transform:none;}
+
+/* ── motion-locali: scroll-reveal ── */
+[data-reveal]{
+  opacity:0;transform:translateY(18px);
+  transition:opacity 520ms var(--ease-premium), transform 520ms var(--ease-premium);
+  transition-delay:var(--reveal-delay,0ms);
+  will-change:opacity, transform;
+}
+[data-reveal].is-in{opacity:1;transform:none;}
+
+/* ── motion-locali: ripple-press ── */
+.ripple{position:relative;overflow:hidden;-webkit-tap-highlight-color:transparent;}
+.ripple > .ripple-wave{
+  position:absolute;border-radius:50%;transform:scale(0);opacity:.3;
+  background:currentColor;pointer-events:none;
+  animation:ripple-bloom 600ms ease-out forwards;
+}
+@keyframes ripple-bloom{to{transform:scale(1);opacity:0;}}
+
+/* ── prefers-reduced-motion: blocco unico, tutte le ricette ── */
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto;}
+  [data-kinetic] .k-unit{opacity:1 !important;transform:none !important;filter:none !important;transition:none;animation:none !important;}
+  [data-fade]{opacity:1;transform:none;transition:none;}
+  [data-reveal]{opacity:1;transform:none;transition:none;}
+  .btn.magnetic{transition:none;}
+  .ripple > .ripple-wave{display:none;}
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#contenuto">Vai al contenuto</a>
+
+<header class="header">
+  <div class="contenitore header-inner">
+    <a href="#top" class="wordmark" id="top">
+      <span class="wordmark-nome">Jolie</span>
+      <span class="wordmark-sub">Estetica &amp; Benessere</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#servizi">Trattamenti</a></li>
+      <li><a href="#galleria">Galleria</a></li>
+      <li><a href="#contatti">Contatti</a></li>
+    </ul>
+    <div class="header-azioni">
+      <a class="btn btn-primario ripple" href="tel:+39035738178">
+        <span class="testo-lungo">Prenota — 035 738178</span>
+        <span class="testo-breve">Prenota</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main id="contenuto">
+  <section class="hero">
+    <div class="contenitore hero-grid">
+      <div class="hero-testo">
+        <p class="eyebrow" data-fade>Gazzaniga · Piazzale Stazione</p>
+        <h1 data-kinetic>Cura della pelle, con metodo e misura.</h1>
+        <p class="hero-sub" data-fade data-fade-delay="140">Trattamenti viso e corpo, un percorso di skin-analysis con tecnologia RHEA e una linea di dermocosmesi professionale — a due passi dalla stazione di Gazzaniga.</p>
+        <div class="badge-rating">
+          <span class="numero" aria-hidden="true">4,8</span>
+          <span class="dettaglio">
+            <span class="stelle" aria-hidden="true">★★★★★</span>
+            <strong>4,8 su 5</strong>
+            <a href="https://maps.google.com/?cid=7846464158577254483" target="_blank" rel="noopener">76 recensioni Google →</a>
+          </span>
+        </div>
+        <div class="hero-cta" data-fade data-fade-delay="280">
+          <a class="btn btn-primario magnetic ripple" href="tel:+39035738178" data-magnet-strength="0.25">Prenota un trattamento</a>
+        </div>
+      </div>
+      <figure class="hero-immagine">
+        <img src="foto/logo.jpg" alt="Jolie, Estetica &amp; Benessere — logo del centro" width="792" height="919" fetchpriority="high">
+      </figure>
+    </div>
+  </section>
+
+  <section class="chi-siamo" id="chi-siamo">
+    <div class="contenitore chi-siamo-inner">
+      <h2 data-reveal>Il centro</h2>
+      <p data-reveal data-reveal-delay="80">Bancone bianco laccato, pareti rosa cipria, prodotti in vista sulle mensole di vetro: è quello che si vede entrando in Jolie, in Piazzale Stazione a Gazzaniga.</p>
+      <p data-reveal data-reveal-delay="160">Il lavoro unisce trattamenti manuali, viso e corpo, e un percorso diagnostico con la tecnologia RHEA my SKINETIC — la stessa cura, con strumenti diversi. Il resto lo dice chi c’è già stato: 4,8 su 76 recensioni Google.</p>
+    </div>
+  </section>
+
+  <section class="servizi" id="servizi">
+    <div class="contenitore">
+      <h2 data-reveal>Trattamenti e tecnologia</h2>
+      <p class="servizi-intro" data-reveal data-reveal-delay="80">Quattro modi di prendersi cura della pelle, tra lavoro manuale e strumenti dedicati.</p>
+      <div class="servizi-grid">
+        <div class="servizi-lista">
+          <div class="trattamento-riga" data-reveal>
+            <span class="trattamento-titolo">Corpo</span>
+            <p class="trattamento-desc">Trattamenti corpo eseguiti in cabina, con applicazione manuale di prodotto mirato.</p>
+          </div>
+          <div class="trattamento-riga" data-reveal data-reveal-delay="70">
+            <span class="trattamento-titolo">Viso</span>
+            <p class="trattamento-desc">Trattamenti viso manuali, con strumenti dedicati per la pulizia e la cura della pelle.</p>
+          </div>
+          <div class="trattamento-riga" data-reveal data-reveal-delay="140">
+            <span class="trattamento-titolo">Skin-analysis</span>
+            <p class="trattamento-desc">Percorso di skin-analysis e trattamento apparecchiativo con la tecnologia RHEA my SKINETIC.</p>
+          </div>
+          <div class="trattamento-riga" data-reveal data-reveal-delay="210">
+            <span class="trattamento-titolo">Dermocosmesi</span>
+            <p class="trattamento-desc">Linea di dermocosmesi professionale RHEA, in vendita in centro — inclusa la protezione solare BBSHIELD SPF 50 e SPF 15.</p>
+          </div>
+        </div>
+        <div class="servizi-visivi">
+          <figure class="foto-tech" data-reveal data-reveal-delay="100">
+            <img src="foto/macchinario-skinetic.jpg" alt="Macchinario RHEA my SKINETIC per skin-analysis" width="731" height="969" loading="lazy" decoding="async">
+            <figcaption>my SKINETIC — skin-analysis RHEA</figcaption>
+          </figure>
+          <div class="coppia-prodotti" data-reveal data-reveal-delay="180">
+            <figure class="foto-tech">
+              <img src="foto/prodotti-rhea.jpg" alt="Linea di prodotti bifasici RHEA" width="770" height="972" loading="lazy" decoding="async">
+              <figcaption>Linea RHEA</figcaption>
+            </figure>
+            <figure class="foto-tech">
+              <img src="foto/prodotti-bbshield.jpg" alt="Protezione solare RHEA BBSHIELD SPF 50 e SPF 15" width="734" height="945" loading="lazy" decoding="async">
+              <figcaption>BBSHIELD SPF</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="galleria" id="galleria">
+    <div class="contenitore">
+      <h2 data-reveal>Uno sguardo dentro</h2>
+      <div class="galleria-mosaico">
+        <figure class="galleria-tile galleria-tile--grande" data-reveal>
+          <img src="foto/reception.jpg" alt="Reception di Jolie, con bancone bianco laccato e pareti rosa cipria" width="765" height="1020" loading="lazy" decoding="async">
+          <figcaption>La reception</figcaption>
+        </figure>
+        <figure class="galleria-tile" data-reveal data-reveal-delay="80">
+          <img src="foto/cabina-trattamento-corpo.jpg" alt="Trattamento corpo in cabina, con luce viola" width="737" height="983" loading="lazy" decoding="async">
+          <figcaption>Cabina trattamenti corpo</figcaption>
+        </figure>
+        <figure class="galleria-tile" data-reveal data-reveal-delay="160">
+          <img src="foto/trattamento-viso.jpg" alt="Trattamento viso manuale con strumento dedicato" width="841" height="968" loading="lazy" decoding="async">
+          <figcaption>Trattamento viso</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="recensioni" id="recensioni">
+    <div class="contenitore recensioni-inner">
+      <p class="eyebrow" data-reveal>Il giudizio di chi è già stato</p>
+      <p class="recensioni-numero" data-reveal data-reveal-delay="60">4,8</p>
+      <p class="recensioni-stelle" aria-hidden="true" data-reveal data-reveal-delay="120">★★★★★</p>
+      <p class="recensioni-sub" data-reveal data-reveal-delay="120">su 76 recensioni Google</p>
+      <p class="recensioni-nota" data-reveal data-reveal-delay="180">Nessuna recensione scelta da noi: il punteggio arriva dal profilo Google del centro, dove si possono leggere tutte.</p>
+      <a class="link-testuale" href="https://maps.google.com/?cid=7846464158577254483" target="_blank" rel="noopener" data-reveal data-reveal-delay="240">Leggi le recensioni su Google →</a>
+    </div>
+  </section>
+
+  <section class="contatti" id="contatti">
+    <div class="contenitore contatti-grid">
+      <div data-reveal>
+        <h2>Dove siamo e quando</h2>
+        <ul class="lista-contatti">
+          <li>
+            <span>Indirizzo</span>
+            <a href="https://maps.google.com/?cid=7846464158577254483" target="_blank" rel="noopener">Piazzale Stazione, 9 — Gazzaniga (BG)</a>
+          </li>
+          <li>
+            <span>Telefono</span>
+            <a href="tel:+39035738178">035 738178</a>
+          </li>
+        </ul>
+        <p class="nota-stazione">Il centro si affaccia su Piazzale Stazione: comodo se si arriva in treno, con parcheggio proprio davanti.</p>
+      </div>
+      <div data-reveal data-reveal-delay="120">
+        <h3 class="orari-titolo">Orari</h3>
+        <table class="orari">
+          <caption class="sr-only">Orari di apertura Centro Estetico Jolie</caption>
+          <tbody>
+          <tr><th scope="row">Lunedì</th><td>07:00–17:00</td></tr>
+          <tr><th scope="row">Martedì</th><td>09:00–20:00</td></tr>
+          <tr><th scope="row">Mercoledì</th><td>09:00–22:00</td></tr>
+          <tr><th scope="row">Giovedì</th><td>14:00–22:00</td></tr>
+          <tr><th scope="row">Venerdì</th><td>09:00–20:00</td></tr>
+          <tr><th scope="row">Sabato</th><td>08:00–16:00</td></tr>
+          <tr><th scope="row">Domenica</th><td>Chiuso</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</main>
+
+<section class="cta-lorenzo">
+  <div class="contenitore cta-inner" data-reveal>
+    <h2>Il sito è pronto</h2>
+    <p>Manca solo il vostro listino e la conferma degli orari per andare online. Scrivimi e sistemiamo tutto insieme.</p>
+    <a class="btn btn-avorio magnetic ripple" href="https://wa.me/393314660537" target="_blank" rel="noopener" data-magnet-strength="0.25">Scrivimi su WhatsApp</a>
+  </div>
+</section>
+
+<footer>
+  <div class="contenitore footer-inner">
+    <p>Sito realizzato da <a href="https://wa.me/393314660537" target="_blank" rel="noopener">Lorenzo Zenucchi</a></p>
+  </div>
+</footer>
+
+<script>
+/* motion-locali: kinetic-headline */
+(function () {
+  'use strict';
+  function split(el) {
+    var mode = el.getAttribute('data-kinetic') || 'words';
+    var text = el.textContent;
+    el.textContent = '';
+    var step = (mode === 'letters') ? 40 : 70;
+    var units = (mode === 'letters') ? text.split('') : text.split(/(\s+)/);
+    var i = 0;
+    units.forEach(function (u) {
+      if (u === '') return;
+      if (/^\s+$/.test(u)) {
+        var sp = document.createElement('span');
+        sp.className = 'k-space';
+        el.appendChild(sp);
+        return;
+      }
+      var s = document.createElement('span');
+      s.className = 'k-unit';
+      s.textContent = u;
+      s.style.setProperty('--k-delay', (i * step) + 'ms');
+      i++;
+      el.appendChild(s);
+    });
+  }
+  function init() {
+    var els = document.querySelectorAll('[data-kinetic]');
+    if (!els.length) return;
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    els.forEach(function (el) {
+      el.classList.add('k-anim-' + (el.getAttribute('data-kinetic-anim') || 'rise'));
+      split(el);
+    });
+    if (reduce) {
+      els.forEach(function (el) { el.classList.add('is-in'); });
+      return;
+    }
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        els.forEach(function (el) { el.classList.add('is-in'); });
+      });
+    });
+  }
+  if (document.readyState !== 'loading') init();
+  else document.addEventListener('DOMContentLoaded', init);
+})();
+
+/* motion-locali: fade-in-up */
+(function () {
+  'use strict';
+  function init() {
+    var els = document.querySelectorAll('[data-fade]');
+    if (!els.length) return;
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) {
+      els.forEach(function (el) { el.classList.add('is-in'); });
+      return;
+    }
+    els.forEach(function (el, i) {
+      var d = el.getAttribute('data-fade-delay');
+      el.style.setProperty('--fade-delay', (d != null ? parseInt(d, 10) : i * 70) + 'ms');
+    });
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        els.forEach(function (el) { el.classList.add('is-in'); });
+      });
+    });
+  }
+  if (document.readyState !== 'loading') init();
+  else document.addEventListener('DOMContentLoaded', init);
+})();
+
+/* motion-locali: scroll-reveal */
+(function () {
+  'use strict';
+  function revealAll() {
+    document.querySelectorAll('[data-reveal]').forEach(function (el) {
+      el.classList.add('is-in');
+    });
+  }
+  function init() {
+    var els = document.querySelectorAll('[data-reveal]');
+    if (!els.length) return;
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce || !('IntersectionObserver' in window)) {
+      revealAll();
+      return;
+    }
+    els.forEach(function (el) {
+      var d = el.getAttribute('data-reveal-delay');
+      if (d) el.style.setProperty('--reveal-delay', parseInt(d, 10) + 'ms');
+    });
+    var io = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-in');
+            io.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15, rootMargin: '0px 0px -10% 0px' }
+    );
+    els.forEach(function (el) { io.observe(el); });
+  }
+  if (document.readyState !== 'loading') init();
+  else document.addEventListener('DOMContentLoaded', init);
+})();
+
+/* motion-locali: magnetic-button */
+(function (global) {
+  'use strict';
+  function reduced() { return global.matchMedia && global.matchMedia('(prefers-reduced-motion: reduce)').matches; }
+  function isTouch() { return global.matchMedia && global.matchMedia('(hover: none)').matches; }
+  function attach(btn) {
+    if (btn.__magnetBound) return;
+    btn.__magnetBound = true;
+    var strength = parseFloat(btn.getAttribute('data-magnet-strength')) || 0.3;
+    btn.addEventListener('pointermove', function (e) {
+      var r = btn.getBoundingClientRect();
+      var dx = e.clientX - (r.left + r.width / 2);
+      var dy = e.clientY - (r.top + r.height / 2);
+      btn.style.transform = 'translate(' + dx * strength + 'px,' + dy * strength + 'px)';
+    });
+    btn.addEventListener('pointerleave', function () { btn.style.transform = ''; });
+  }
+  function init() {
+    if (reduced() || isTouch()) return;
+    var els = document.querySelectorAll('.magnetic');
+    for (var i = 0; i < els.length; i++) attach(els[i]);
+  }
+  if (document.readyState !== 'loading') init();
+  else document.addEventListener('DOMContentLoaded', init);
+})(window);
+
+/* motion-locali: ripple-press */
+(function (global) {
+  'use strict';
+  function reduced() { return global.matchMedia && global.matchMedia('(prefers-reduced-motion: reduce)').matches; }
+  function spawn(el, e) {
+    var r = el.getBoundingClientRect();
+    var size = Math.max(r.width, r.height) * 2;
+    var x = (e.clientX != null ? e.clientX : r.left + r.width / 2) - r.left;
+    var y = (e.clientY != null ? e.clientY : r.top + r.height / 2) - r.top;
+    var wave = document.createElement('span');
+    wave.className = 'ripple-wave';
+    wave.style.width = wave.style.height = size + 'px';
+    wave.style.left = (x - size / 2) + 'px';
+    wave.style.top = (y - size / 2) + 'px';
+    el.appendChild(wave);
+    wave.addEventListener('animationend', function () { wave.remove(); });
+  }
+  function attach(el) {
+    if (el.__rippleBound) return;
+    el.__rippleBound = true;
+    el.addEventListener('pointerdown', function (e) { if (!reduced()) spawn(el, e); });
+  }
+  function init() {
+    var els = document.querySelectorAll('.ripple');
+    for (var i = 0; i < els.length; i++) attach(els[i]);
+  }
+  if (document.readyState !== 'loading') init();
+  else document.addEventListener('DOMContentLoaded', init);
+})(window);
+</script>
+</body>
+</html>

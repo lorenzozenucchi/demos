@@ -2,3 +2,14 @@
 riferimenti/
 handoff.txt
 riferimenti-template/
+
+# Foto reali del cliente Diamoci Un Taglio: stanno solo sul disco e su Netlify
+# (cartella senza suffisso -sito, quindi fuori dal pattern qui sotto)
+demos/diamoci-un-taglio/foto/
+
+# Stesso criterio per i siti veri copiati da ~/produzione: le foto reali dei
+# clienti stanno solo sul disco e su Netlify, mai nel repo pubblico.
+# Un solo pattern per tutti i siti presenti e futuri, invece di una riga a mano
+# per ogni cliente. Gli index.html restano versionati: sono solo le foto a
+# dover restare fuori.
+demos/*-sito/foto/

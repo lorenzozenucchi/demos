@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Ilaria Hairstyle – Parrucchiere &amp; Estetista a Gazzaniga (BG) | Taglio, Colore, Estetica</title>
+<meta name="description" content="Salone a Gazzaniga (BG) con due reparti distinti: parrucchieria (taglio, colore, piega, uomo/barbiere) ed estetista (viso, corpo, manicure, make-up). 5,0 su 21 recensioni Google. Via Vittorio Veneto 4.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600;700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": ["HairSalon", "BeautySalon"],
+  "name": "Ilaria Hairstyle",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Via Vittorio Veneto, 4",
+    "addressLocality": "Gazzaniga",
+    "addressRegion": "BG",
+    "postalCode": "24025",
+    "addressCountry": "IT"
+  },
+  "telephone": "+393474509111",
+  "openingHoursSpecification": [
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday","Wednesday","Thursday","Friday","Saturday"], "opens": "09:00", "closes": "18:00" }
+  ],
+  "sameAs": ["https://www.facebook.com/profile.php?id=100083039483272"],
+  "aggregateRating": { "@type": "AggregateRating", "ratingValue": "5.0", "reviewCount": "21" }
+}
+</script>
+
+<style>
+/* ========================================================================
+   TOKEN — identità visiva dal brief (clienti/ilaria-hairstyle/brief.md).
+   Palette dedotta dai colori fisici reali del salone. Non toccare senza
+   motivo nel brief. Revisione: hero fotografico + centrato, riduzione
+   duplicati foto, rottura formato unico, un solo effetto vistoso.
+   ======================================================================== */
+:root{
+  --cioccolato:#4A2E1F;   /* fondo dominante — la parete-firma del salone: header/hero/footer */
+  --pietra:#48474A;       /* pietra antracite fredda — cornici, divisori, testo secondario su chiaro */
+  --terracotta:#A96A42;   /* accento caldo minore — solo decorativo (bordi, icone, badge grandi) */
+  --crema:#E8DECB;        /* fondo chiaro alternato */
+  --miele:#CDA372;        /* legno miele — calore materico, usato come LUCE puntuale (badge, glow), non come fondo pieno */
+  --nero:#1C1A18;         /* testo principale, contrasto scuro netto */
+  /* Non uno dei 6 colori del brief: tinta di supporto quasi bianca, stessa
+     famiglia calda della crema, usata solo come superficie di rilievo per
+     le card (mai come colore d'identità). */
+  --carta:#FAF6EE;
+
+  --cioccolato-rgb:74,46,31;
+  --pietra-rgb:72,71,74;
+  --nero-rgb:28,26,24;
+  --crema-rgb:232,222,203;
+  --terracotta-rgb:169,106,66;
+  --miele-rgb:205,163,114;
+
+  --font-titoli:'Fraunces', serif;
+  --font-testo:'Work Sans', sans-serif;
+
+  /* motion — decisi con motion-design (personalità Premium: deliberato,
+     nessun overshoot), sovraordinati a MOTION-SPEC.md dove divergono.
+     Budget di sobrietà: un solo effetto vistoso (kinetic-headline
+     sull'h1 dell'hero) — vedi blocco RICETTE più sotto. */
+  --ease:cubic-bezier(.4,0,.2,1);
+  --t-rapida:160ms;
+  --t-standard:420ms;
+  --t-drammatica:650ms;
+
+  --raggio:16px;
+  --ombra:0 14px 34px rgba(var(--nero-rgb),.16);
+}
+
+/* NOTA CONTRASTO (verificata sui valori sRGB, formula WCAG — non a occhio):
+   cioccolato/crema (base) 9.25:1 · nero su crema 13.4:1 · pietra su crema
+   7.14:1 — tutti ampiamente sopra AA. miele su cioccolato 5.35:1 (ok per
+   eyebrow/label su fondo scuro). terracotta su crema 3.36:1 e su cioccolato
+   2.85:1: sotto soglia per testo piccolo in entrambi i casi — usato SOLO
+   come decorazione (bordi, icone, badge di grande formato in grassetto),
+   mai come colore di testo corrente piccolo.
+   Overlay foto hero: cioccolato a opacità .85 sopra la foto reale. Caso
+   peggiore calcolato (pixel della foto bianco puro sotto il testo, il più
+   sfavorevole possibile per un interno caldo in pietra/mattoni): colore
+   risultante ≈ rgb(101,77,65), contrasto con crema 5.83:1 — sopra la
+   soglia AA (4.5:1) anche nel caso limite. Nel caso reale (foto con toni
+   caldi terracotta/legno, non bianco) il contrasto sale a ~7.9:1. */
+
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;overflow-x:clip;}
+@media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} }
+
+body{
+  font-family:var(--font-testo);
+  color:var(--nero);
+  background:var(--crema);
+  line-height:1.6;
+  font-size:16px;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:clip;
+}
+
+img{max-width:100%;height:auto;display:block;}
+a{color:inherit;text-decoration:none;}
+h1,h2,h3{font-family:var(--font-titoli);font-weight:600;line-height:1.15;color:var(--cioccolato);overflow-wrap:anywhere;min-width:0;}
+h1{font-style:normal;font-weight:700;} h2{font-style:normal;} h3{font-style:normal;}
+p{max-width:62ch;}
+ul{list-style:none;}
+button{font-family:inherit;}
+
+.container{width:100%;max-width:1180px;margin:0 auto;padding:0 20px;}
+/* padding variato di proposito tra sezioni: non tutte uguali */
+section{padding:76px 0;}
+#chi-siamo{padding:64px 0;}
+#parrucchieria{padding:88px 0;}
+#estetica{padding:88px 0;}
+#galleria{padding:72px 0;}
+.sezione-titolo{font-size:clamp(1.7rem, 1.2rem + 1.8vw, 2.5rem);margin-bottom:14px;}
+.sezione-intro{color:var(--pietra);max-width:56ch;margin-bottom:38px;font-size:1.05rem;}
+
+.skip-link{
+  position:absolute;left:-9999px;top:0;background:var(--cioccolato);color:var(--crema);
+  padding:10px 18px;border-radius:0 0 8px 0;z-index:200;font-weight:600;
+}
+.skip-link:focus{left:0;}
+
+/* ---- utility di proporzione immagine — un piccolo set di rapporti
+   deliberati, riusati tra le sezioni, invece dell'unico 4:5 di prima ---- */
+.ar-nativa{aspect-ratio:1360/907;}   /* ≈3:2, il rapporto reale delle 11 foto d'ambiente */
+.ar-ritratto{aspect-ratio:4/5;}
+.ar-quadra{aspect-ratio:1/1;}
+.ar-larga{aspect-ratio:3/2;}
+.ar-classica{aspect-ratio:4/3;}
+
+/* ---- bottoni --------------------------------------------------------- */
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--font-testo);font-weight:700;font-size:.98rem;
+  padding:14px 26px;border-radius:999px;border:2px solid transparent;
+  cursor:pointer;white-space:nowrap;
+  transition:transform var(--t-rapida) var(--ease),
+             box-shadow var(--t-rapida) var(--ease),
+             background-color var(--t-rapida) var(--ease),
+             color var(--t-rapida) var(--ease);
+  -webkit-tap-highlight-color:transparent;
+}
+.btn-primary{background:var(--cioccolato);color:var(--crema);}
+.btn-primary:hover{background:var(--nero);box-shadow:var(--ombra);}
+.btn-primary:focus-visible{outline:3px solid var(--cioccolato);outline-offset:3px;}
+.btn-primary:active{transform:scale(.97);}
+
+.btn-secondary{background:transparent;border-color:var(--cioccolato);color:var(--cioccolato);}
+.btn-secondary:hover{background:var(--cioccolato);color:var(--crema);}
+.btn-secondary:focus-visible{outline:3px solid var(--cioccolato);outline-offset:3px;}
+.btn-secondary:active{transform:scale(.97);}
+
+/* bottone su fondo scuro (cioccolato/overlay foto): fondo crema, testo
+   cioccolato — poi miele in hover (luce puntuale sul bottone, non uno
+   sfondo di sezione), resta ≥5:1 con testo cioccolato sopra */
+.btn-su-scuro{background:var(--crema);color:var(--cioccolato);}
+.btn-su-scuro:hover{background:var(--miele);}
+.btn-su-scuro:focus-visible{outline:3px solid var(--crema);outline-offset:3px;}
+.btn-su-scuro:active{transform:scale(.97);}
+
+.link-testo{
+  display:inline-flex;align-items:center;gap:6px;font-weight:700;color:var(--cioccolato);
+  border-bottom:2px solid var(--terracotta);padding-bottom:2px;
+  transition:color var(--t-rapida) var(--ease), border-color var(--t-rapida) var(--ease);
+}
+.link-testo:hover{color:var(--nero);border-color:var(--pietra);}
+.link-testo:focus-visible{outline:3px solid var(--cioccolato);outline-offset:4px;}
+a:visited{color:inherit;}
+
+/* ========================================================================
+   HEADER
+   ======================================================================== */
+.site-header{
+  position:sticky;top:0;z-index:100;
+  background:rgba(var(--crema-rgb),.92);backdrop-filter:blur(6px);
+  border-bottom:1px solid rgba(var(--cioccolato-rgb),.14);
+}
+.header-inner{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:14px 0;
+}
+.header-sinistra{display:flex;align-items:center;gap:clamp(6px, 3vw, 40px);min-width:0;}
+/* wordmark compatto in barra: l'identità piena vive nell'hero, qui basta
+   restare l'elemento testuale più forte della riga (salto netto sui link).
+   Fluido: a 320/375px il nome intero deve stare su una riga sola accanto
+   all'hamburger e al bottone azione, senza causare scroll orizzontale. */
+.header-wordmark{
+  font-family:var(--font-titoli);font-weight:700;color:var(--cioccolato);
+  font-size:clamp(.85rem, .6rem + 1.4vw, 1.18rem);letter-spacing:-.01em;white-space:nowrap;
+}
+.site-nav{display:flex;align-items:center;gap:22px;}
+.site-nav a{
+  font-weight:500;font-size:.85rem;color:var(--pietra);position:relative;padding:4px 0;
+}
+.site-nav a::after{
+  content:"";position:absolute;left:0;right:100%;bottom:0;height:2px;background:var(--terracotta);
+  transition:right var(--t-rapida) var(--ease);
+}
+.site-nav a:hover::after,.site-nav a:focus-visible::after{right:0;}
+.site-nav a:hover{color:var(--cioccolato);}
+.site-nav a:focus-visible{outline:3px solid var(--cioccolato);outline-offset:4px;border-radius:3px;}
+
+.header-cta{display:flex;align-items:center;gap:14px;}
+/* tab bordata (motivo "cornice" in pietra/terracotta), non una pillola
+   piena SaaS: coerente con l'accento architettonico del brief.
+   Etichetta d'azione fissa a tutte le larghezze — mai il numero come
+   testo del pulsante (il numero resta nell'aria-label per chi usa uno
+   screen reader, e per esteso nella sezione Orari e contatti). */
+.header-call{
+  display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:.88rem;color:var(--cioccolato);
+  padding:9px 16px;border-radius:8px;border:1.5px solid var(--terracotta);background:transparent;white-space:nowrap;
+  transition:background var(--t-rapida) var(--ease), color var(--t-rapida) var(--ease);
+}
+.header-call:hover{background:var(--cioccolato);color:var(--crema);border-color:var(--cioccolato);}
+.header-call:focus-visible{outline:3px solid var(--cioccolato);outline-offset:3px;}
+@media (max-width:479px){
+  .header-call{padding:9px 14px;font-size:.82rem;gap:6px;}
+  .container{padding:0 14px;}
+}
+
+.nav-toggle{
+  display:none;flex-direction:column;justify-content:center;gap:5px;
+  width:40px;height:36px;background:none;border:none;cursor:pointer;padding:6px;
+}
+.nav-toggle span{display:block;width:100%;height:2px;background:var(--cioccolato);border-radius:2px;transition:transform var(--t-rapida) var(--ease), opacity var(--t-rapida) var(--ease);}
+.nav-toggle:focus-visible{outline:3px solid var(--cioccolato);outline-offset:2px;}
+.nav-toggle.is-open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.nav-toggle.is-open span:nth-child(2){opacity:0;}
+.nav-toggle.is-open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+/* ========================================================================
+   HERO — foto vera del locale (l'arco in pietra) a piena sezione, con un
+   velo cioccolato sopra (vedi NOTA CONTRASTO) e il contenuto centrato
+   sull'asse della pagina: sopratitolo col nome, titolo, sottotitolo,
+   badge recensioni, due pulsanti. Il titolo è corto apposta, per arrivare
+   a taglia display — la frase lunga di prima è scesa a sottotitolo.
+   ======================================================================== */
+.hero{
+  position:relative;overflow:hidden;color:var(--crema);
+  min-height:clamp(560px, 92vh, 880px);
+  display:flex;align-items:center;justify-content:center;
+  padding:112px 0 56px;
+}
+.hero-foto{position:absolute;inset:0;z-index:0;}
+.hero-foto img{width:100%;height:100%;object-fit:cover;}
+/* velo scuro uniforme: garantisce la leggibilità del testo sopra la foto
+   reale (vedi NOTA CONTRASTO in testa al file per i valori calcolati) */
+.hero-velo{position:absolute;inset:0;z-index:1;background:rgba(var(--cioccolato-rgb),.85);pointer-events:none;}
+
+.hero-identita{position:relative;z-index:2;max-width:52ch;margin:0 auto;text-align:center;}
+.hero-sopratitolo{
+  font-family:var(--font-titoli);font-weight:700;
+  /* il tetto (11.5vw) è quello oltre cui "Ilaria Hairstyle" non starebbe
+     più su una riga sola: verificato a 320 e 375px */
+  font-size:min(clamp(1.55rem, .95rem + 2.7vw, 3rem), 11.5vw);
+  line-height:1.05;letter-spacing:-.01em;color:var(--crema);
+  margin-bottom:8px;
+}
+.sopratitolo-nome{display:block;white-space:nowrap;}
+.hero-sopratitolo .accento{color:var(--miele);}
+.sopratitolo-qualifica{
+  display:block;margin-top:10px;
+  font-family:var(--font-testo);font-weight:600;
+  font-size:clamp(.82rem, .72rem + .4vw, 1.05rem);
+  line-height:1;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--miele);
+}
+.hero h1{
+  color:var(--crema);margin:26px auto 20px;max-width:16ch;
+  /* taglia display: clamp con tetto a 4.5rem (72px, verificato ≥56px sui
+     desktop grandi), resa possibile accorciando l'h1 — la frase lunga di
+     prima è scesa a sottotitolo qui sotto */
+  font-size:clamp(2.25rem, 1.2rem + 4.8vw, 4.5rem);
+}
+.hero-sub{font-size:1.08rem;color:rgba(var(--crema-rgb),.9);margin:0 auto 28px;max-width:46ch;}
+
+.rating-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(var(--crema-rgb),.1);border:1px solid rgba(var(--crema-rgb),.35);
+  padding:8px 16px;border-radius:999px;margin-bottom:28px;position:relative;
+  transition:transform var(--t-rapida) var(--ease), border-color var(--t-rapida) var(--ease);
+}
+.rating-badge:hover{transform:translateY(-2px);border-color:var(--miele);}
+.rating-badge:focus-visible{outline:3px solid var(--crema);outline-offset:3px;}
+.rating-stars{color:var(--miele);letter-spacing:2px;font-size:.95rem;}
+.rating-value{font-size:.85rem;color:var(--crema);}
+.rating-value strong{font-family:var(--font-titoli);font-size:1.05rem;}
+
+.hero-cta{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;}
+
+@media (min-width:640px){ .hero{padding:128px 0 72px;} }
+
+/* ========================================================================
+   REPARTI DIVIDER — fascia scura piena (in più rispetto a header/hero/
+   recensioni), con la foto del team a piena larghezza: rapporto nativo
+   1360:907 riprodotto esatto nel contenitore, quindi zero ritaglio — le
+   tre persone restano intere, spalle e braccia comprese.
+   ======================================================================== */
+.reparti-divider{background:var(--cioccolato);color:var(--crema);padding:64px 0;}
+.reparti-intro{text-align:center;max-width:52ch;margin:0 auto 32px;}
+.reparti-eyebrow{
+  display:block;font-family:var(--font-testo);font-weight:700;font-size:.8rem;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--miele);margin-bottom:10px;
+}
+.reparti-divider .sezione-titolo{color:var(--crema);margin-bottom:0;}
+.reparti-foto{position:relative;border-radius:var(--raggio);overflow:hidden;box-shadow:var(--ombra);}
+.reparti-foto img{width:100%;height:100%;object-fit:cover;}
+.reparti-foto-caption{
+  position:absolute;left:16px;bottom:16px;
+  background:rgba(var(--nero-rgb),.55);backdrop-filter:blur(4px);
+  color:var(--crema);font-weight:700;font-size:.82rem;
+  padding:8px 16px;border-radius:999px;
+}
+
+/* ========================================================================
+   CHI SIAMO — una sola foto (non due): quella del team è già mostrata,
+   intera, nella fascia sopra.
+   ======================================================================== */
+.chi-siamo-grid{display:grid;gap:36px;grid-template-columns:1fr;align-items:center;}
+.chi-siamo-testo{display:grid;gap:16px;max-width:60ch;}
+.chi-siamo-foto{border-radius:14px;overflow:hidden;box-shadow:0 2px 10px rgba(var(--nero-rgb),.08);}
+.chi-siamo-foto img{width:100%;height:100%;object-fit:cover;}
+
+@media (min-width:900px){
+  .chi-siamo-grid{grid-template-columns:minmax(0,1.15fr) minmax(0,.8fr);gap:56px;}
+}
+
+/* ========================================================================
+   REPARTI — Parrucchieria ed Estetica: due sezioni distinte, non un unico
+   calderone di servizi (vedi brief §6).
+   ======================================================================== */
+#parrucchieria{background:var(--crema);}
+#estetica{background:var(--carta);border-top:1px solid rgba(var(--cioccolato-rgb),.08);border-bottom:1px solid rgba(var(--cioccolato-rgb),.08);}
+
+.servizi-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:26px;}
+@media (min-width:640px){ .servizi-grid{grid-template-columns:repeat(2,minmax(0,1fr));} }
+@media (min-width:1040px){ .servizi-grid.grid-3{grid-template-columns:repeat(3,minmax(0,1fr));} }
+
+.servizio-card{
+  background:var(--carta);border-radius:var(--raggio);overflow:hidden;
+  box-shadow:0 2px 10px rgba(var(--nero-rgb),.06);
+  display:flex;flex-direction:column;
+}
+#estetica .servizio-card{background:var(--crema);}
+.servizio-foto{overflow:hidden;}
+.servizio-foto img{width:100%;height:100%;object-fit:cover;}
+/* card "coppia": due lavori veri affiancati, mai singolarmente più grandi
+   della loro risoluzione nativa (502x540 / 505x590) */
+.servizio-foto.coppia{display:grid;grid-template-columns:1fr 1fr;gap:2px;aspect-ratio:4/5;}
+.servizio-foto.coppia img{height:100%;}
+/* coppia delle due cabine estetiche: formato quadrato, distinto dalla
+   coppia sopra — rompe apposta il formato unico della pagina */
+.servizio-foto.coppia-quadra{display:grid;grid-template-columns:1fr 1fr;gap:2px;aspect-ratio:2/1;}
+.servizio-foto.coppia-quadra img{height:100%;}
+.servizio-corpo{padding:22px;display:flex;flex-direction:column;gap:8px;flex:1;}
+.servizio-eyebrow{font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--pietra);}
+.servizio-card h3{font-size:1.16rem;}
+.servizio-card p{font-size:.94rem;color:var(--pietra);}
+
+/* card senza foto (meglio senza immagine che ripetuta): stesso ritmo
+   visivo delle altre, distinta con un bordo sottile a tutto perimetro
+   (audit Hallmark: mai una fascia colorata spessa su un solo lato) */
+.servizio-card--testo{border:1px solid rgba(var(--cioccolato-rgb),.16);box-shadow:none;}
+.servizio-card--testo .servizio-corpo{justify-content:center;padding:28px 24px;}
+
+/* ========================================================================
+   GALLERIA — striscia a scorrimento orizzontale, tre foto che non
+   compaiono altrove nella pagina, con proporzioni diverse fra loro
+   ======================================================================== */
+.galleria-pista{
+  display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;
+  padding:4px 4px 18px;-webkit-overflow-scrolling:touch;
+  scrollbar-width:thin;scrollbar-color:var(--terracotta) transparent;
+}
+.galleria-pista::-webkit-scrollbar{height:8px;}
+.galleria-pista::-webkit-scrollbar-thumb{background:var(--terracotta);border-radius:999px;}
+.galleria-pista figure{
+  flex:0 0 auto;width:min(78vw,300px);scroll-snap-align:start;
+  position:relative;border-radius:14px;overflow:hidden;background:var(--carta);
+}
+.galleria-pista img{width:100%;height:100%;object-fit:cover;}
+.galleria-pista figcaption{
+  position:absolute;left:0;right:0;bottom:0;
+  background:linear-gradient(to top, rgba(var(--nero-rgb),.78), rgba(var(--nero-rgb),0));
+  color:var(--crema);font-size:.82rem;font-weight:600;
+  padding:26px 12px 10px;
+}
+
+/* ========================================================================
+   ORARI E CONTATTI — qui il numero resta per esteso: è informazione, non
+   un pulsante.
+   ======================================================================== */
+.orari-grid{display:grid;gap:36px;grid-template-columns:1fr;}
+@media (min-width:820px){ .orari-grid{grid-template-columns:1fr 1fr;} }
+
+.orari-lista{display:flex;flex-direction:column;border-radius:var(--raggio);overflow:hidden;background:var(--carta);box-shadow:0 2px 10px rgba(var(--nero-rgb),.05);}
+.orari-riga{
+  display:flex;justify-content:space-between;gap:16px;padding:14px 20px;
+  border-bottom:1px solid rgba(var(--cioccolato-rgb),.1);font-size:.98rem;
+}
+.orari-riga:last-child{border-bottom:none;}
+.orari-riga .giorno{font-weight:700;}
+.orari-riga .orario{font-variant-numeric:tabular-nums;}
+.orari-riga.chiuso .orario{color:var(--pietra);opacity:.8;}
+
+.stato-apertura{
+  display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:.92rem;
+  margin-top:16px;color:var(--pietra);
+}
+.stato-apertura .pallino{width:9px;height:9px;border-radius:50%;background:var(--pietra);}
+.stato-apertura.aperto{color:var(--cioccolato);}
+.stato-apertura.aperto .pallino{background:var(--terracotta);}
+
+.contatti-card{
+  background:var(--carta);border-radius:var(--raggio);padding:28px;
+  box-shadow:0 2px 10px rgba(var(--nero-rgb),.05);
+}
+/* cornice a bordo sinistro invece di un'icona (niente emoji generiche
+   miste a glifi: motivo "cornice" coerente con l'accento architettonico) */
+.contatti-riga{
+  display:flex;flex-direction:column;gap:2px;margin-bottom:18px;
+  border-left:3px solid var(--terracotta);padding-left:16px;
+}
+.contatti-riga:last-child{margin-bottom:0;}
+.contatti-testo strong{display:block;font-family:var(--font-titoli);font-size:1.02rem;margin-bottom:2px;}
+.contatti-testo a{font-weight:700;color:var(--cioccolato);}
+.contatti-testo a:hover{color:var(--nero);}
+.contatti-testo a:focus-visible{outline:3px solid var(--cioccolato);outline-offset:3px;}
+
+/* ========================================================================
+   RECENSIONI (fascia scura, come pausa visiva — coerente col cioccolato
+   dominante di header/hero/footer)
+   ======================================================================== */
+.recensioni{background:var(--cioccolato);color:var(--crema);padding:64px 0;}
+.recensioni .sezione-titolo{color:var(--crema);}
+.recensioni-box{max-width:64ch;}
+.recensioni-box p{color:rgba(var(--crema-rgb),.86);margin-bottom:26px;font-size:1.05rem;}
+.recensioni-dato{font-family:var(--font-titoli);font-weight:700;color:var(--miele);}
+
+/* ========================================================================
+   CTA FINALE — verso Lorenzo (deroga prospect avanzato). Il miele qui è
+   una luce (glow radiale dietro la card), non più uno sfondo di sezione
+   pieno: la sezione torna al fondo chiaro crema di base.
+   ======================================================================== */
+.cta-finale{background:var(--crema);position:relative;overflow:hidden;}
+.cta-finale::before{
+  content:"";position:absolute;inset:-25% -10%;pointer-events:none;
+  background:radial-gradient(ellipse at 50% 35%, rgba(var(--miele-rgb),.4), transparent 62%);
+}
+.cta-finale-card{
+  position:relative;z-index:1;
+  max-width:640px;margin:0 auto;background:var(--carta);color:var(--nero);
+  border-radius:var(--raggio);box-shadow:var(--ombra);padding:clamp(28px,5vw,48px);
+}
+.cta-finale-card .sezione-titolo{color:var(--cioccolato);max-width:26ch;}
+.cta-finale-card p{color:var(--nero);margin-bottom:28px;font-size:1.06rem;}
+.cta-finale-firma{margin-top:20px;font-size:.9rem;color:var(--pietra);font-weight:600;}
+
+/* ========================================================================
+   FOOTER
+   ======================================================================== */
+.site-footer{background:var(--cioccolato);color:rgba(var(--crema-rgb),.82);padding:48px 0 32px;}
+.footer-grid{display:grid;gap:24px;grid-template-columns:minmax(0,1fr);margin-bottom:28px;}
+@media (min-width:720px){ .footer-grid{grid-template-columns:minmax(0,2fr) minmax(0,1fr);} }
+.footer-wordmark{font-family:var(--font-titoli);font-weight:700;color:var(--crema);font-size:1.1rem;margin-bottom:8px;}
+.footer-grid p{color:rgba(var(--crema-rgb),.7);font-size:.92rem;max-width:48ch;}
+.footer-social a{color:var(--crema);font-weight:700;}
+.footer-social a:hover{color:var(--miele);}
+.footer-credito{
+  border-top:1px solid rgba(var(--crema-rgb),.15);padding-top:22px;
+  display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:.85rem;
+}
+.footer-credito a{font-weight:700;color:var(--crema);white-space:nowrap;}
+.footer-credito a:hover{color:var(--miele);}
+.footer-credito a:focus-visible{outline:3px solid var(--miele);outline-offset:3px;}
+
+/* ========================================================================
+   RICETTE motion-locali — budget rispettato: UN solo effetto vistoso
+   (kinetic-headline sull'h1 dell'hero). magnetic-button, ripple-press e
+   gradual-blur della revisione precedente sono stati tolti: troppi piccoli
+   effetti diluivano l'unico momento che deve contare, l'ingresso
+   dell'hero. Timing/easing da motion-design (personalità Premium),
+   sovraordinati a MOTION-SPEC.md dove divergono.
+   ======================================================================== */
+
+/* kinetic-headline — SOLO sull'h1 hero, unico effetto vistoso della pagina */
+[data-kinetic]{display:inline-block;}
+[data-kinetic] .k-unit{
+  display:inline-block;opacity:0;
+  transition:opacity var(--t-drammatica) var(--ease),
+             transform var(--t-drammatica) var(--ease);
+  transition-delay:var(--k-delay,0ms);
+  will-change:opacity,transform;
+}
+[data-kinetic].is-in .k-unit{opacity:1;transform:none;}
+[data-kinetic] .k-space{display:inline-block;width:.28em;}
+.k-anim-rise .k-unit{transform:translateY(.5em);}
+
+/* fade-in-up — eyebrow/sottotitolo/badge/CTA dell'hero (max 3, entro 300ms) */
+[data-fade]{
+  opacity:0;transform:translateY(20px);
+  transition:opacity var(--t-standard) var(--ease),
+             transform var(--t-standard) var(--ease);
+  transition-delay:var(--fade-delay,0ms);
+  will-change:opacity,transform;
+}
+[data-fade].is-in{opacity:1;transform:none;}
+
+/* scroll-reveal — sezioni/card che entrano scrollando (direzione unica:
+   sempre rise dal basso, coerente in tutta la pagina) */
+[data-reveal]{
+  opacity:0;transform:translateY(20px);
+  transition:opacity var(--t-standard) var(--ease),
+             transform var(--t-standard) var(--ease);
+  transition-delay:var(--reveal-delay,0ms);
+  will-change:opacity,transform;
+}
+[data-reveal].is-in{opacity:1;transform:none;}
+
+/* count-up (numero reale: 21 recensioni) */
+[data-count]{font-variant-numeric:tabular-nums;}
+
+/* ---- UNICO blocco prefers-reduced-motion, unifica tutte le ricette ---- */
+@media (prefers-reduced-motion: reduce){
+  [data-kinetic] .k-unit,[data-fade],[data-reveal]{
+    opacity:1 !important;transform:none !important;transition:none !important;
+  }
+  .galleria-pista{scroll-behavior:auto;}
+}
+
+/* ---- responsive nav mobile ---------------------------------------------
+   Il menu completo compare solo da 900px in su: sotto quella soglia le
+   cinque voci non ci starebbero accanto al pulsante d'azione. Resta
+   l'hamburger, che tiene in equilibrio il lato sinistro. */
+@media (max-width:899px){
+  .nav-toggle{display:flex;}
+  .site-nav{
+    display:none;position:absolute;top:100%;left:0;right:0;
+    background:var(--crema);flex-direction:column;align-items:flex-start;gap:0;
+    border-bottom:1px solid rgba(var(--cioccolato-rgb),.15);box-shadow:var(--ombra);
+  }
+  .site-nav.is-open{display:flex;}
+  .site-nav a{width:100%;padding:14px 20px;font-size:.95rem;}
+  .site-nav a::after{display:none;}
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Vai al contenuto principale</a>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <div class="header-sinistra">
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="siteNav" aria-label="Apri il menu">
+        <span></span><span></span><span></span>
+      </button>
+      <a class="header-wordmark" href="#top">Ilaria Hairstyle</a>
+      <nav class="site-nav" id="siteNav">
+        <a href="#chi-siamo">Il salone</a>
+        <a href="#parrucchieria">Parrucchieria</a>
+        <a href="#estetica">Estetica</a>
+        <a href="#galleria">Galleria</a>
+        <a href="#orari">Orari e contatti</a>
+      </nav>
+    </div>
+    <div class="header-cta">
+      <a class="header-call" href="tel:+393474509111" aria-label="Chiama il salone, 347 450 9111">Prenota ora</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <span id="top"></span>
+
+  <!-- ============================== HERO — foto reale + testo centrato ============================== -->
+  <section class="hero">
+    <div class="hero-foto">
+      <img src="foto/sala-principale-arco.jpg" width="1360" height="907" alt="Sala principale del salone, con volta a mattoni e arco in pietra della struttura storica originale" loading="eager" fetchpriority="high">
+    </div>
+    <div class="hero-velo" aria-hidden="true"></div>
+
+    <div class="container hero-identita">
+      <p class="hero-sopratitolo" data-fade data-fade-delay="0">
+        <span class="sopratitolo-nome">Ilaria <span class="accento">Hairstyle</span></span>
+        <span class="sopratitolo-qualifica">Parrucchiere &amp; Estetista</span>
+      </p>
+
+      <h1 data-kinetic data-kinetic-anim="rise">Sotto le volte antiche.</h1>
+
+      <p class="hero-sub" data-fade data-fade-delay="150">
+        Capelli e pelle hanno la loro cura, a Gazzaniga, in un salone con due reparti distinti e attrezzati allo stesso livello: parrucchieria — taglio, colore, piega, anche uomo — ed estetica, con cabine dedicate a viso, corpo e manicure.
+      </p>
+
+      <a class="rating-badge" href="https://maps.google.com/?cid=15005434613445898085" target="_blank" rel="noopener" data-fade data-fade-delay="220" aria-label="5,0 su 21 recensioni Google. Apri la scheda Google del salone">
+        <span class="rating-stars" aria-hidden="true">★★★★★</span>
+        <span class="rating-value"><strong>5,0</strong> su <span data-count="21">0</span> recensioni Google</span>
+      </a>
+
+      <div class="hero-cta" data-fade data-fade-delay="290">
+        <a class="btn btn-primary" href="tel:+393474509111" aria-label="Chiama il salone, 347 450 9111">Chiama ora <span aria-hidden="true">→</span></a>
+        <a class="btn btn-su-scuro" href="#parrucchieria">Scopri i due reparti</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== REPARTI DIVIDER — foto del team a piena larghezza, non ritagliata ============================== -->
+  <section class="reparti-divider">
+    <div class="container">
+      <div class="reparti-intro" data-reveal>
+        <span class="reparti-eyebrow">Il team</span>
+        <h2 class="sezione-titolo">Due reparti distinti, attrezzati allo stesso livello.</h2>
+      </div>
+      <figure class="reparti-foto ar-nativa" data-reveal data-reveal-delay="80">
+        <img src="foto/team.jpg" width="1360" height="907" alt="Il team del salone Ilaria Hairstyle" loading="lazy">
+        <figcaption class="reparti-foto-caption">Il team di Ilaria Hairstyle</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============================== CHI SIAMO ============================== -->
+  <section id="chi-siamo">
+    <div class="container chi-siamo-grid">
+      <div class="chi-siamo-testo">
+        <h2 class="sezione-titolo" data-reveal>Il salone</h2>
+        <p data-reveal data-reveal-delay="0">Ilaria Hairstyle è a Gazzaniga, dentro un edificio storico vero: le volte a mattoni e gli archi in pietra grezza attraversano sia la sala principale sia le due cabine estetiche, e restano a vista invece di essere nascosti dietro un rivestimento.</p>
+        <p data-reveal data-reveal-delay="80">Dentro quella struttura antica, un allestimento contemporaneo curato nel dettaglio: specchi ovali retroilluminati a LED, mensole in vetro con le linee di prodotti professionali, poltrone in pelle scura. Il risultato non è un salone che fa “anche” estetica di contorno: sono due reparti distinti, entrambi attrezzati allo stesso livello — una postazione uomo/barbiere dedicata, due cabine estetiche separate, una cabina manicure con lavabo proprio.</p>
+      </div>
+      <figure class="chi-siamo-foto ar-ritratto" data-reveal data-reveal-delay="100">
+        <img src="foto/reception-attesa.jpg" width="1360" height="907" alt="Reception del salone, con parete dipinta color cioccolato e profilo LED" loading="lazy">
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============================== PARRUCCHIERIA ============================== -->
+  <section id="parrucchieria">
+    <div class="container">
+      <h2 class="sezione-titolo" data-reveal>Parrucchieria</h2>
+      <p class="sezione-intro" data-reveal data-reveal-delay="120">Taglio, colore e piega per donna e uomo, con una postazione barbiere pensata apposta per il reparto uomo — non un servizio aggiunto di passaggio.</p>
+
+      <div class="servizi-grid grid-3">
+        <article class="servizio-card" data-reveal data-reveal-delay="0">
+          <div class="servizio-foto coppia">
+            <img src="foto/lavoro-taglio-ramato.jpg" width="505" height="590" alt="Taglio scalato ramato, lavoro realizzato in salone" loading="lazy">
+            <img src="foto/lavoro-piega-ondulata.jpg" width="502" height="540" alt="Piega mossa biondo-caramello, lavoro realizzato in salone" loading="lazy">
+          </div>
+          <div class="servizio-corpo">
+            <span class="servizio-eyebrow">Taglio &amp; Colore</span>
+            <h3>Taglio, Colore &amp; Piega</h3>
+            <p>Due lavori veri usciti da queste poltrone: un taglio scalato ramato e una piega mossa biondo-caramello.</p>
+          </div>
+        </article>
+
+        <article class="servizio-card" data-reveal data-reveal-delay="90">
+          <div class="servizio-foto ar-larga"><img src="foto/postazione-barbiere.jpg" width="1360" height="907" alt="Postazione barbiere dedicata, con prodotti da barba in vista" loading="lazy"></div>
+          <div class="servizio-corpo">
+            <span class="servizio-eyebrow">Reparto uomo</span>
+            <h3>Uomo &amp; Barbiere</h3>
+            <p>Una postazione dedicata al reparto uomo, con prodotti da barba specifici a portata di mano.</p>
+          </div>
+        </article>
+
+        <article class="servizio-card servizio-card--testo" data-reveal data-reveal-delay="180">
+          <div class="servizio-corpo">
+            <span class="servizio-eyebrow">Lavaggio</span>
+            <h3>Lavaggio &amp; Piega</h3>
+            <p>La zona lavaggio, sotto la stessa volta a mattoni della sala principale, con le linee di prodotti in vista sulle mensole.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== ESTETICA ============================== -->
+  <section id="estetica">
+    <div class="container">
+      <h2 class="sezione-titolo" data-reveal>Estetica</h2>
+      <p class="sezione-intro" data-reveal data-reveal-delay="120">Due cabine estetiche separate, una cabina manicure dedicata e un angolo make-up: un reparto attrezzato quanto quello di parrucchieria, non un servizio di contorno.</p>
+
+      <div class="servizi-grid grid-3">
+        <article class="servizio-card" data-reveal data-reveal-delay="0">
+          <div class="servizio-foto coppia-quadra">
+            <img src="foto/cabina-estetica-lettino.jpg" width="1360" height="907" alt="Cabina estetica con lettino, sotto un arco in pietra" loading="lazy">
+            <img src="foto/cabina-estetica-doccia.jpg" width="1360" height="907" alt="Seconda cabina estetica, con doccia in marmo" loading="lazy">
+          </div>
+          <div class="servizio-corpo">
+            <span class="servizio-eyebrow">Viso &amp; corpo</span>
+            <h3>Due Cabine Estetiche</h3>
+            <p>Due cabine separate, entrambe sotto l'arco in pietra della struttura storica: una con lettino, una con doccia in marmo.</p>
+          </div>
+        </article>
+
+        <article class="servizio-card" data-reveal data-reveal-delay="90">
+          <div class="servizio-foto ar-ritratto"><img src="foto/cabina-manicure.jpg" width="1360" height="907" alt="Cabina manicure dedicata, con lavabo proprio" loading="lazy"></div>
+          <div class="servizio-corpo">
+            <span class="servizio-eyebrow">Mani</span>
+            <h3>Manicure</h3>
+            <p>Una cabina manicure con lavabo proprio, separata dal resto del salone.</p>
+          </div>
+        </article>
+
+        <article class="servizio-card" data-reveal data-reveal-delay="180">
+          <div class="servizio-foto ar-classica"><img src="foto/postazione-specchio-ovale.jpg" width="1360" height="907" alt="Postazione con specchio ovale retroilluminato e espositore make-up Nee Milano" loading="lazy"></div>
+          <div class="servizio-corpo">
+            <span class="servizio-eyebrow">Trucco</span>
+            <h3>Make-up</h3>
+            <p>Un servizio di trucco vero e proprio, con la linea Nee Milano in vista sull'espositore.</p>
+          </div>
+        </article>
+      </div>
+
+      <p class="sezione-intro" style="margin-top:44px;margin-bottom:0;" data-reveal>
+        In salone trovi anche più linee di prodotti professionali in vendita, tra cui EVRL e Purles.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================== GALLERIA — 3 foto che non compaiono altrove ============================== -->
+  <section id="galleria">
+    <div class="container">
+      <h2 class="sezione-titolo" data-reveal>Uno sguardo dentro</h2>
+      <p class="sezione-intro" data-reveal data-reveal-delay="80">Altri scorci del salone: la zona lavaggio e i prodotti professionali in vendita.</p>
+    </div>
+    <div class="container">
+      <div class="galleria-pista" id="galleriaPista" tabindex="0" role="region" aria-label="Galleria fotografica, scorrimento orizzontale">
+        <figure class="ar-ritratto"><img src="foto/zona-lavaggio.jpg" width="1360" height="907" alt="Zona lavaggio, con volta a mattoni a vista e mensole con prodotti professionali" loading="lazy"><figcaption>Zona lavaggio</figcaption></figure>
+        <figure class="ar-quadra"><img src="foto/parete-prodotti-reception.jpg" width="1360" height="907" alt="Parete prodotti in reception, con bancone in legno miele" loading="lazy"><figcaption>Prodotti in reception</figcaption></figure>
+        <figure class="ar-larga"><img src="foto/prodotti-evrl.jpg" width="1360" height="907" alt="Prodotti professionali della linea EVRL" loading="lazy"><figcaption>Linea EVRL</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== ORARI E CONTATTI — il numero resta qui, per esteso ============================== -->
+  <section id="orari">
+    <div class="container">
+      <h2 class="sezione-titolo" data-reveal>Orari e contatti</h2>
+
+      <div class="orari-grid">
+        <div data-reveal data-reveal-delay="0">
+          <div class="orari-lista">
+            <div class="orari-riga chiuso"><span class="giorno">Lunedì</span><span class="orario">Chiuso</span></div>
+            <div class="orari-riga"><span class="giorno">Martedì – Sabato</span><span class="orario">09:00 – 18:00</span></div>
+            <div class="orari-riga chiuso"><span class="giorno">Domenica</span><span class="orario">Chiuso</span></div>
+          </div>
+          <p class="stato-apertura" id="statoApertura"><span class="pallino"></span><span id="statoAperturaTesto">Orari salone</span></p>
+        </div>
+
+        <div data-reveal data-reveal-delay="90">
+          <div class="contatti-card">
+            <div class="contatti-riga">
+              <div class="contatti-testo">
+                <strong>Dove siamo</strong>
+                Via Vittorio Veneto, 4 — 24025 Gazzaniga (BG)<br>
+                <a class="link-testo" href="https://maps.google.com/?cid=15005434613445898085" target="_blank" rel="noopener">Apri in Google Maps →</a>
+              </div>
+            </div>
+            <div class="contatti-riga">
+              <div class="contatti-testo">
+                <strong>Telefono</strong>
+                <a href="tel:+393474509111">347 450 9111</a>
+              </div>
+            </div>
+            <div class="contatti-riga">
+              <div class="contatti-testo">
+                <strong>Facebook</strong>
+                <a href="https://www.facebook.com/profile.php?id=100083039483272" target="_blank" rel="noopener">Pagina del salone →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== RECENSIONI ============================== -->
+  <section class="recensioni" id="recensioni">
+    <div class="container recensioni-box" data-reveal>
+      <h2 class="sezione-titolo">Quello che dicono di noi, lo dice Google.</h2>
+      <p>Il giudizio che conta è quello di chi è stato in salone: <span class="recensioni-dato">5,0 su 21 recensioni Google</span> — nessuna sotto il massimo.</p>
+      <a class="btn btn-su-scuro" href="https://maps.google.com/?cid=15005434613445898085" target="_blank" rel="noopener">Leggi le recensioni su Google →</a>
+    </div>
+  </section>
+
+  <!-- ============================== CTA FINALE — verso Lorenzo (deroga) ============================== -->
+  <section class="cta-finale" id="cta-lorenzo">
+    <div class="container">
+      <div class="cta-finale-card" data-reveal>
+        <h2 class="sezione-titolo">Ilaria, il tuo sito è pronto.</h2>
+        <p>L'ho costruito guardando le foto vere del tuo salone, non un modello preso a caso: l'arco in pietra della sala principale, le due cabine estetiche, la postazione barbiere sono i tuoi, non quelli di un altro salone. Ne parliamo quando vuoi — ma se vuoi vederlo prima o hai domande, scrivimi.</p>
+        <a class="btn btn-primary" href="https://wa.me/393314660537" target="_blank" rel="noopener">Scrivimi su WhatsApp →</a>
+        <p class="cta-finale-firma">Lorenzo Zenucchi — siti web per attività della Val Seriana</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <p class="footer-wordmark">Ilaria Hairstyle</p>
+        <p>Ilaria Hairstyle — Parrucchiere &amp; Estetista — Via Vittorio Veneto, 4, 24025 Gazzaniga (BG) — Tel. 347 450 9111</p>
+      </div>
+      <div class="footer-social">
+        <p><a href="https://www.facebook.com/profile.php?id=100083039483272" target="_blank" rel="noopener">Facebook →</a></p>
+      </div>
+    </div>
+    <div class="footer-credito">
+      <span>© 2026 Ilaria Hairstyle</span>
+      <a href="https://wa.me/393314660537" target="_blank" rel="noopener">Sito realizzato da Lorenzo Zenucchi</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+
+  function reduced(){
+    return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  }
+
+  /* ---- nav mobile ---- */
+  var toggle = document.getElementById('navToggle');
+  var nav = document.getElementById('siteNav');
+  if (toggle && nav) {
+    toggle.addEventListener('click', function(){
+      var open = nav.classList.toggle('is-open');
+      toggle.classList.toggle('is-open', open);
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    nav.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){
+        nav.classList.remove('is-open');
+        toggle.classList.remove('is-open');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+
+  /* ---- kinetic-headline (solo h1 hero, unico effetto vistoso della pagina) ---- */
+  (function(){
+    var els = document.querySelectorAll('[data-kinetic]');
+    if (!els.length) return;
+    els.forEach(function(el){
+      el.classList.add('k-anim-' + (el.getAttribute('data-kinetic-anim') || 'rise'));
+      var mode = el.getAttribute('data-kinetic') || 'words';
+      var text = el.textContent;
+      el.textContent = '';
+      var step = (mode === 'letters') ? 40 : 60;
+      var units = (mode === 'letters') ? text.split('') : text.split(/(\s+)/);
+      var i = 0;
+      units.forEach(function(u){
+        if (u === '') return;
+        if (/^\s+$/.test(u)) {
+          var sp = document.createElement('span');
+          sp.className = 'k-space';
+          el.appendChild(sp);
+          return;
+        }
+        var s = document.createElement('span');
+        s.className = 'k-unit';
+        s.textContent = u;
+        s.style.setProperty('--k-delay', (i * step) + 'ms');
+        i++;
+        el.appendChild(s);
+      });
+    });
+    if (reduced()) { els.forEach(function(el){ el.classList.add('is-in'); }); return; }
+    requestAnimationFrame(function(){ requestAnimationFrame(function(){
+      els.forEach(function(el){ el.classList.add('is-in'); });
+    }); });
+  })();
+
+  /* ---- fade-in-up (hero: sopratitolo, sottotitolo, badge, cta) ---- */
+  (function(){
+    var els = document.querySelectorAll('[data-fade]');
+    if (!els.length) return;
+    if (reduced()) { els.forEach(function(el){ el.classList.add('is-in'); }); return; }
+    els.forEach(function(el){
+      var d = el.getAttribute('data-fade-delay');
+      if (d != null) el.style.setProperty('--fade-delay', parseInt(d,10) + 'ms');
+    });
+    requestAnimationFrame(function(){ requestAnimationFrame(function(){
+      els.forEach(function(el){ el.classList.add('is-in'); });
+    }); });
+  })();
+
+  /* ---- scroll-reveal (sezioni sotto la piega) ---- */
+  (function(){
+    var els = document.querySelectorAll('[data-reveal]');
+    if (!els.length) return;
+    function revealAll(){ els.forEach(function(el){ el.classList.add('is-in'); }); }
+    if (reduced() || !('IntersectionObserver' in window)) { revealAll(); return; }
+    els.forEach(function(el){
+      var d = el.getAttribute('data-reveal-delay');
+      if (d) el.style.setProperty('--reveal-delay', parseInt(d,10) + 'ms');
+    });
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting) { entry.target.classList.add('is-in'); io.unobserve(entry.target); }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -10% 0px' });
+    els.forEach(function(el){ io.observe(el); });
+  })();
+
+  /* ---- count-up (numero reale: 21 recensioni Google) ---- */
+  (function(){
+    var el = document.querySelector('[data-count]');
+    if (!el) return;
+    var target = parseInt(el.getAttribute('data-count'), 10) || 0;
+    var dur = 900;
+    if (reduced() || !('IntersectionObserver' in window)) { el.textContent = target; return; }
+    function run(){
+      var start = null;
+      function step(ts){
+        if (start === null) start = ts;
+        var p = Math.min((ts - start) / dur, 1);
+        var eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.round(target * eased);
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting) { run(); io.unobserve(entry.target); }
+      });
+    }, { threshold: 0.6 });
+    io.observe(el);
+  })();
+
+  /* ---- aperto ora / chiuso (orario reale del salone, nessun dato inventato) ---- */
+  (function(){
+    var el = document.getElementById('statoApertura');
+    var testo = document.getElementById('statoAperturaTesto');
+    if (!el || !testo) return;
+    var schedule = { 0:null, 1:null, 2:[9,18], 3:[9,18], 4:[9,18], 5:[9,18], 6:[9,18] };
+    var now = new Date();
+    var day = now.getDay();
+    var h = now.getHours() + now.getMinutes()/60;
+    var oggi = schedule[day];
+    var aperto = !!(oggi && h >= oggi[0] && h < oggi[1]);
+    el.classList.toggle('aperto', aperto);
+    testo.textContent = aperto ? 'Aperto ora' : 'Chiuso ora';
+  })();
+
+})();
+</script>
+</body>
+</html>

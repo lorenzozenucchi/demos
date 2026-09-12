@@ -3,452 +3,872 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Diamoci Un Taglio — Parrucchiere a Vertova · Demo</title>
+<meta name="robots" content="noindex, nofollow">
+<title>Diamoci Un Taglio – Parrucchiere a Vertova (BG) | Colore, Piega, Cerimonia</title>
+<meta name="description" content="Salone di parrucchiere a Vertova (BG): balayage e colore su misura, piega a specchio con trattamenti SteamPod, acconciature da cerimonia. 5,0 su 44 recensioni Google. Via S. Rocco 12.">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HairSalon",
+  "name": "Diamoci Un Taglio",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Via S. Rocco, 12",
+    "addressLocality": "Vertova",
+    "addressRegion": "BG",
+    "postalCode": "24029",
+    "addressCountry": "IT"
+  },
+  "telephone": "+39035711387",
+  "openingHoursSpecification": [
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday","Wednesday","Thursday","Friday"], "opens": "08:00", "closes": "19:00" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "07:00", "closes": "18:00" }
+  ],
+  "aggregateRating": { "@type": "AggregateRating", "ratingValue": "5.0", "reviewCount": "44" }
+}
+</script>
+
 <style>
-  :root{
-    --ink:#0f2b2c;
-    --accent:#4fb8ae;
-    --accent-2:#1f6f68;
-    --verde:#b08a52;
-    --carta:#f3f1ea;
-    --tenue:#66807d;
-    --filo:#d7e0dc;
-    --sidebar-w:264px;
+/* ========================================================================
+   TOKEN — identità visiva dal brief. Non toccare senza motivo nel brief.
+   ======================================================================== */
+:root{
+  --avorio:#FAF5EC;
+  --antracite:#3D3A36;
+  --miele:#C68A3D;
+  --rosa-cipria:#E3B8AC;
+  --beige:#E8DCC6;
+  --cioccolato:#5C4130;
+
+  /* stessi 6 colori, come triplette RGB: servono solo per comporre alpha
+     (rgba(var(--x-rgb),N)) senza mai scrivere un colore a mano fuori
+     da questo blocco — disciplina "locked tokens" */
+  --avorio-rgb:250,245,236;
+  --antracite-rgb:61,58,54;
+  --miele-rgb:198,138,61;
+  --cioccolato-rgb:92,65,48;
+
+  --font-titoli:'Quicksand', sans-serif;
+  --font-testo:'Karla', sans-serif;
+
+  /* motion — decisi con motion-design, sovraordinati a MOTION-SPEC.md */
+  --ease:cubic-bezier(.4,0,.2,1);
+  --t-rapida:180ms;
+  --t-standard:450ms;
+  --t-drammatica:700ms;
+
+  --raggio:18px;
+  --ombra: 0 10px 30px rgba(var(--antracite-rgb),.10);
+}
+
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;overflow-x:clip;}
+@media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} }
+
+body{
+  font-family:var(--font-testo);
+  color:var(--antracite);
+  background:var(--avorio);
+  line-height:1.6;
+  font-size:16px;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:clip;
+}
+
+img{max-width:100%;height:auto;display:block;}
+a{color:inherit;text-decoration:none;}
+h1,h2,h3{font-family:var(--font-titoli);font-weight:700;line-height:1.15;color:var(--antracite);overflow-wrap:anywhere;min-width:0;}
+h1{font-style:normal;} h2{font-style:normal;} h3{font-style:normal;}
+p{max-width:62ch;}
+ul{list-style:none;}
+button{font-family:inherit;}
+
+.container{width:100%;max-width:1180px;margin:0 auto;padding:0 20px;}
+/* padding variato di proposito tra sezioni: non tutte uguali (audit Hallmark) */
+section{padding:72px 0;}
+.sezione-alt#chi-siamo{padding:60px 0;}
+#servizi{padding:84px 0;}
+.sezione-alt#galleria{padding:80px 0;}
+.sezione-titolo{font-size:clamp(1.7rem, 1.2rem + 1.8vw, 2.5rem);margin-bottom:14px;}
+.sezione-intro{color:var(--cioccolato);max-width:52ch;margin-bottom:40px;font-size:1.05rem;}
+
+.skip-link{
+  position:absolute;left:-9999px;top:0;background:var(--antracite);color:var(--avorio);
+  padding:10px 18px;border-radius:0 0 8px 0;z-index:200;font-weight:600;
+}
+.skip-link:focus{left:0;}
+
+/* ---- bottoni --------------------------------------------------------- */
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--font-testo);font-weight:700;font-size:.98rem;
+  padding:14px 26px;border-radius:999px;border:2px solid transparent;
+  cursor:pointer;white-space:nowrap;
+  transition:transform var(--t-rapida) var(--ease),
+             box-shadow var(--t-rapida) var(--ease),
+             background-color var(--t-rapida) var(--ease),
+             color var(--t-rapida) var(--ease);
+  -webkit-tap-highlight-color:transparent;
+}
+/* NOTA CONTRASTO (audit Hallmark, 10/09/2026): il miele (#C68A3D) del brief
+   è troppo chiaro/scuro a metà per reggere testo leggibile in AA contro
+   qualsiasi altro colore della palette (max 3.82:1 contro antracite, sotto
+   la soglia 4.5:1 per testo normale). Resta protagonista come sfondo di
+   sezione, bordo, accento decorativo — mai più dietro testo piccolo/bottoni.
+   Il primario passa a cioccolato (8.58:1 con avorio, palette invariata). */
+.btn-primary{background:var(--cioccolato);color:var(--avorio);}
+.btn-primary:hover{background:var(--antracite);box-shadow:var(--ombra);}
+.btn-primary:focus-visible{outline:3px solid var(--antracite);outline-offset:3px;}
+.btn-primary:active{transform:scale(.97);}
+
+.btn-secondary{background:transparent;border-color:var(--antracite);color:var(--antracite);}
+.btn-secondary:hover{background:var(--antracite);color:var(--avorio);}
+.btn-secondary:focus-visible{outline:3px solid var(--antracite);outline-offset:3px;}
+.btn-secondary:active{transform:scale(.97);}
+
+.btn-su-scuro{background:var(--avorio);color:var(--antracite);}
+.btn-su-scuro:hover{background:var(--beige);}
+.btn-su-scuro:focus-visible{outline:3px solid var(--avorio);outline-offset:3px;}
+.btn-su-scuro:active{transform:scale(.97);}
+
+.link-testo{
+  display:inline-flex;align-items:center;gap:6px;font-weight:700;color:var(--cioccolato);
+  border-bottom:2px solid var(--rosa-cipria);padding-bottom:2px;
+  transition:color var(--t-rapida) var(--ease), border-color var(--t-rapida) var(--ease);
+}
+.link-testo:hover{color:var(--antracite);border-color:var(--miele);}
+.link-testo:focus-visible{outline:3px solid var(--antracite);outline-offset:4px;}
+a:visited{color:inherit;}
+
+/* ========================================================================
+   HEADER
+   ======================================================================== */
+.site-header{
+  position:sticky;top:0;z-index:100;
+  background:rgba(var(--avorio-rgb),.92);backdrop-filter:blur(6px);
+  border-bottom:1px solid rgba(var(--cioccolato-rgb),.12);
+}
+/* il nome non sta più qui: vive nella prima schermata. La barra tiene due
+   soli gruppi — navigazione a sinistra (menu sopra i 900px, hamburger
+   sotto) e telefono a destra — così resta in equilibrio a ogni larghezza */
+.header-inner{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:16px 0;
+}
+.header-sinistra{display:flex;align-items:center;gap:clamp(22px, 3vw, 40px);min-width:0;}
+.site-nav{display:flex;align-items:center;gap:22px;}
+.site-nav a{
+  font-weight:500;font-size:.875rem;color:var(--antracite);position:relative;padding:4px 0;
+}
+.site-nav a::after{
+  content:"";position:absolute;left:0;right:100%;bottom:0;height:2px;background:var(--miele);
+  transition:right var(--t-rapida) var(--ease);
+}
+.site-nav a:hover::after,.site-nav a:focus-visible::after{right:0;}
+.site-nav a:focus-visible{outline:3px solid var(--antracite);outline-offset:4px;border-radius:3px;}
+
+.header-cta{display:flex;align-items:center;gap:14px;}
+.header-call{
+  display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:.9rem;color:var(--antracite);
+  padding:10px 18px;border-radius:999px;background:var(--beige);
+  transition:background var(--t-rapida) var(--ease);
+}
+.header-call:hover{background:var(--rosa-cipria);}
+.header-call:focus-visible{outline:3px solid var(--antracite);outline-offset:3px;}
+
+.nav-toggle{
+  display:none;flex-direction:column;justify-content:center;gap:5px;
+  width:40px;height:36px;background:none;border:none;cursor:pointer;padding:6px;
+}
+.nav-toggle span{display:block;width:100%;height:2px;background:var(--antracite);border-radius:2px;transition:transform var(--t-rapida) var(--ease), opacity var(--t-rapida) var(--ease);}
+.nav-toggle:focus-visible{outline:3px solid var(--antracite);outline-offset:2px;}
+.nav-toggle.is-open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.nav-toggle.is-open span:nth-child(2){opacity:0;}
+.nav-toggle.is-open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+/* ========================================================================
+   HERO
+   ======================================================================== */
+.hero{padding:56px 0 72px;}
+.hero-grid{
+  display:grid;grid-template-columns:1fr;gap:40px;align-items:center;
+}
+.rating-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--avorio);border:1px solid rgba(var(--miele-rgb),.35);
+  padding:7px 14px;border-radius:999px;box-shadow:var(--ombra);
+  font-weight:700;margin-bottom:26px;position:relative;overflow:hidden;
+  transition:transform var(--t-rapida) var(--ease), border-color var(--t-rapida) var(--ease);
+}
+.rating-badge:hover{transform:translateY(-2px);border-color:var(--miele);}
+.rating-badge:focus-visible{outline:3px solid var(--antracite);outline-offset:3px;}
+.rating-stars{color:var(--miele);letter-spacing:2px;font-size:.95rem;}
+.rating-value{font-size:.82rem;color:var(--antracite);}
+.rating-value strong{font-family:var(--font-titoli);font-size:1.05rem;}
+
+/* il nome del salone è l'insegna della prima schermata: è il primo elemento
+   che si legge per contrasto, non solo per posizione. Resta un <p>. */
+.hero-sopratitolo{
+  font-family:var(--font-titoli);font-weight:700;
+  /* il secondo termine è il tetto oltre cui il nome non starebbe più su una
+     riga sola: la scala fluida non lo supera mai, a nessuna larghezza */
+  font-size:min(clamp(1.8rem, 1.05rem + 3vw, 3.6rem), 11vw);
+  line-height:1.03;letter-spacing:-.01em;color:var(--antracite);
+  margin-bottom:14px;
+}
+/* il nome è l'insegna: sta su una riga sola sempre, il luogo va sotto */
+.sopratitolo-nome{display:block;white-space:nowrap;}
+.hero-sopratitolo .accento{color:var(--cioccolato);}
+.sopratitolo-luogo{
+  display:block;margin-top:10px;
+  font-family:var(--font-testo);font-weight:600;
+  font-size:clamp(.8rem, .7rem + .35vw, 1rem);
+  line-height:1;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--cioccolato);
+}
+.hero h1{font-size:clamp(1.35rem, 1.05rem + 1.45vw, 2.2rem);margin-bottom:20px;max-width:22ch;}
+.hero-sub{font-size:1.12rem;color:var(--cioccolato);margin-bottom:30px;max-width:48ch;}
+.hero-cta{display:flex;flex-wrap:wrap;gap:16px;}
+
+.hero-photo{
+  position:relative;border-radius:var(--raggio);overflow:hidden;box-shadow:var(--ombra);
+  aspect-ratio:1200/1436;
+}
+.hero-photo img{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  animation:heroZoom 20s ease-in-out infinite alternate;
+}
+@keyframes heroZoom{from{transform:scale(1);}to{transform:scale(1.045);}}
+.hero-caption{
+  position:absolute;left:16px;bottom:16px;
+  background:rgba(var(--avorio-rgb),.92);backdrop-filter:blur(4px);
+  color:var(--antracite);font-weight:700;font-size:.85rem;
+  padding:8px 16px;border-radius:999px;
+}
+
+@media (min-width:860px){
+  .hero-grid{grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:56px;}
+  .hero-photo{aspect-ratio:auto;height:560px;}
+}
+
+/* ========================================================================
+   CHI SIAMO
+   ======================================================================== */
+.sezione-alt{background:var(--beige);}
+.chi-siamo-grid{display:grid;gap:18px;max-width:66ch;}
+.sezione-alt p{color:var(--antracite);}
+
+/* ========================================================================
+   SERVIZI
+   ======================================================================== */
+.servizi-grid{
+  display:grid;grid-template-columns:minmax(0,1fr);gap:26px;
+}
+@media (min-width:640px){ .servizi-grid{grid-template-columns:repeat(2,minmax(0,1fr));} }
+@media (min-width:1040px){ .servizi-grid{grid-template-columns:repeat(4,minmax(0,1fr));} }
+
+.servizio-card{
+  background:var(--avorio);border-radius:var(--raggio);overflow:hidden;
+  box-shadow:0 2px 10px rgba(var(--antracite-rgb),.06);
+  display:flex;flex-direction:column;
+}
+.servizio-foto{aspect-ratio:3/4;overflow:hidden;}
+.servizio-foto img{width:100%;height:100%;object-fit:cover;}
+.servizio-corpo{padding:22px;display:flex;flex-direction:column;gap:8px;flex:1;}
+/* eyebrow in cioccolato, non miele: su fondo avorio il miele scende a
+   2.72:1, sotto la soglia AA anche per testo grande (audit Hallmark) */
+.servizio-eyebrow{font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--cioccolato);}
+.servizio-card h3{font-size:1.18rem;}
+.servizio-card p{font-size:.94rem;color:var(--cioccolato);}
+
+.servizi-nota{
+  margin-top:36px;text-align:center;color:var(--cioccolato);font-size:.98rem;
+}
+
+/* ========================================================================
+   GALLERIA
+   ======================================================================== */
+.galleria-grid{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;
+}
+@media (min-width:640px){ .galleria-grid{grid-template-columns:repeat(3,minmax(0,1fr));} }
+@media (min-width:1040px){ .galleria-grid{grid-template-columns:repeat(4,minmax(0,1fr));} }
+
+.galleria-grid figure{
+  position:relative;border-radius:14px;overflow:hidden;aspect-ratio:3/4;
+  background:var(--beige);
+}
+.galleria-grid img{width:100%;height:100%;object-fit:cover;}
+.galleria-grid figcaption{
+  position:absolute;left:0;right:0;bottom:0;
+  background:linear-gradient(to top, rgba(var(--antracite-rgb),.78), rgba(var(--antracite-rgb),0));
+  color:var(--avorio);font-size:.82rem;font-weight:600;
+  padding:26px 12px 10px;
+}
+
+/* ========================================================================
+   ORARI E CONTATTI
+   ======================================================================== */
+.orari-grid{display:grid;gap:40px;grid-template-columns:1fr;}
+@media (min-width:820px){ .orari-grid{grid-template-columns:1fr 1fr;} }
+
+.orari-lista{display:flex;flex-direction:column;border-radius:var(--raggio);overflow:hidden;background:var(--avorio);box-shadow:0 2px 10px rgba(var(--antracite-rgb),.05);}
+.orari-riga{
+  display:flex;justify-content:space-between;gap:16px;padding:14px 20px;
+  border-bottom:1px solid rgba(var(--cioccolato-rgb),.1);font-size:.98rem;
+}
+.orari-riga:last-child{border-bottom:none;}
+.orari-riga .giorno{font-weight:700;}
+.orari-riga .orario{font-variant-numeric:tabular-nums;}
+.orari-riga.chiuso .orario{color:var(--cioccolato);opacity:.75;}
+
+.stato-apertura{
+  display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:.92rem;
+  margin-top:16px;
+}
+.stato-apertura .pallino{width:9px;height:9px;border-radius:50%;background:var(--cioccolato);}
+.stato-apertura.aperto .pallino{background:var(--miele);}
+
+.nota-sabato{
+  margin-top:18px;font-size:.92rem;color:var(--cioccolato);background:var(--beige);
+  padding:14px 18px;border-radius:12px;
+}
+
+.contatti-card{
+  background:var(--avorio);border-radius:var(--raggio);padding:28px;
+  box-shadow:0 2px 10px rgba(var(--antracite-rgb),.05);
+}
+.contatti-riga{display:flex;gap:14px;align-items:flex-start;margin-bottom:18px;}
+.contatti-riga:last-child{margin-bottom:0;}
+.contatti-icona{
+  flex:0 0 auto;width:38px;height:38px;border-radius:50%;background:var(--beige);
+  display:flex;align-items:center;justify-content:center;font-size:1.05rem;
+}
+.contatti-testo strong{display:block;font-family:var(--font-titoli);font-size:1.02rem;margin-bottom:2px;}
+.contatti-testo a{font-weight:700;color:var(--cioccolato);}
+.contatti-testo a:hover{color:var(--antracite);}
+.contatti-testo a:focus-visible{outline:3px solid var(--antracite);outline-offset:3px;}
+
+/* ========================================================================
+   RECENSIONI (sezione scura per pausa visiva)
+   ======================================================================== */
+.recensioni{background:var(--antracite);color:var(--avorio);padding:64px 0;}
+.recensioni .sezione-titolo{color:var(--avorio);}
+.recensioni-box{max-width:64ch;}
+.recensioni-box p{color:rgba(var(--avorio-rgb),.85);margin-bottom:26px;font-size:1.05rem;}
+.recensioni-dato{font-family:var(--font-titoli);font-weight:700;color:var(--rosa-cipria);}
+
+/* ========================================================================
+   CTA FINALE — verso Lorenzo (deroga prospect avanzato)
+   ======================================================================== */
+/* Il miele resta la fascia di sfondo (protagonista dell'accento), ma il
+   testo si legge dentro una card avorio: su miele diretto nessun colore
+   della palette raggiunge 4.5:1 per testo normale (audit Hallmark). */
+.cta-finale{background:var(--miele);}
+.cta-finale-card{
+  max-width:640px;margin:0 auto;background:var(--avorio);color:var(--antracite);
+  border-radius:var(--raggio);box-shadow:var(--ombra);padding:clamp(28px,5vw,48px);
+}
+.cta-finale-card .sezione-titolo{color:var(--antracite);max-width:26ch;}
+.cta-finale-card p{color:var(--antracite);margin-bottom:28px;font-size:1.06rem;}
+.cta-finale-firma{margin-top:20px;font-size:.9rem;color:var(--cioccolato);font-weight:600;}
+
+/* ========================================================================
+   FOOTER
+   ======================================================================== */
+.site-footer{background:var(--antracite);color:rgba(var(--avorio-rgb),.82);padding:48px 0 32px;}
+.footer-grid{display:grid;gap:24px;grid-template-columns:minmax(0,1fr);margin-bottom:28px;}
+@media (min-width:720px){ .footer-grid{grid-template-columns:minmax(0,2fr) minmax(0,1fr);} }
+.footer-wordmark{font-family:var(--font-titoli);font-weight:700;color:var(--avorio);font-size:1.1rem;margin-bottom:8px;}
+.footer-grid p{color:rgba(var(--avorio-rgb),.7);font-size:.92rem;max-width:48ch;}
+.footer-credito{
+  border-top:1px solid rgba(var(--avorio-rgb),.15);padding-top:22px;
+  display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:.85rem;
+}
+.footer-credito a{font-weight:700;color:var(--avorio);}
+.footer-credito a:hover{color:var(--rosa-cipria);}
+.footer-credito a:focus-visible{outline:3px solid var(--rosa-cipria);outline-offset:3px;}
+
+/* ========================================================================
+   RICETTE motion-locali — timing/easing calibrati da motion-design
+   (sovraordinati a MOTION-SPEC.md dove divergono)
+   ======================================================================== */
+
+/* kinetic-headline — SOLO sull'h1 hero. Consuma il budget dell'unico
+   effetto vistoso della pagina: nessun altro (shine-border/glare-hover/
+   spotlight-card) è usato altrove. */
+[data-kinetic]{display:inline-block;}
+[data-kinetic] .k-unit{
+  display:inline-block;opacity:0;
+  transition:opacity var(--t-drammatica) var(--ease),
+             transform var(--t-drammatica) var(--ease);
+  transition-delay:var(--k-delay,0ms);
+  will-change:opacity,transform;
+}
+[data-kinetic].is-in .k-unit{opacity:1;transform:none;}
+[data-kinetic] .k-space{display:inline-block;width:.28em;}
+.k-anim-rise .k-unit{transform:translateY(.5em);}
+
+/* fade-in-up — eyebrow/badge, sottotitolo, CTA hero (max 3, entro 300ms) */
+[data-fade]{
+  opacity:0;transform:translateY(20px);
+  transition:opacity var(--t-standard) var(--ease),
+             transform var(--t-standard) var(--ease);
+  transition-delay:var(--fade-delay,0ms);
+  will-change:opacity,transform;
+}
+[data-fade].is-in{opacity:1;transform:none;}
+
+/* scroll-reveal — sezioni/card che entrano scrollando */
+[data-reveal]{
+  opacity:0;transform:translateY(20px);
+  transition:opacity var(--t-standard) var(--ease),
+             transform var(--t-standard) var(--ease);
+  transition-delay:var(--reveal-delay,0ms);
+  will-change:opacity,transform;
+}
+[data-reveal].is-in{opacity:1;transform:none;}
+
+/* card-lift-hover — card servizi */
+.lift-card{
+  transition:transform var(--t-rapida) var(--ease), box-shadow var(--t-rapida) var(--ease);
+  will-change:transform;
+}
+.lift-card:hover{transform:translateY(-6px);box-shadow:0 16px 32px rgba(var(--antracite-rgb),.18);}
+.lift-card:active{transform:translateY(-2px);}
+
+/* magnetic — solo sui 2 CTA primari (chiama salone / whatsapp Lorenzo) */
+.magnetic{transition:transform var(--t-rapida) var(--ease);}
+
+/* ripple-press — feedback al tap sui bottoni primari */
+.ripple{position:relative;overflow:hidden;-webkit-tap-highlight-color:transparent;}
+.ripple > .ripple-wave{
+  position:absolute;border-radius:50%;transform:scale(0);opacity:.35;
+  background:currentColor;pointer-events:none;
+  animation:ripple-bloom 600ms ease-out forwards;
+}
+@keyframes ripple-bloom{to{transform:scale(1);opacity:0;}}
+
+/* count-up (adattato: rating a una cifra decimale, non intero) */
+[data-rating-count]{font-variant-numeric:tabular-nums;}
+
+/* ---- UNICO blocco prefers-reduced-motion, unifica tutte le ricette ---- */
+@media (prefers-reduced-motion: reduce){
+  [data-kinetic] .k-unit,[data-fade],[data-reveal]{
+    opacity:1 !important;transform:none !important;transition:none !important;
   }
-  *{box-sizing:border-box;margin:0;padding:0;}
-  html{scroll-behavior:smooth;}
-  body{
-    background:var(--carta);
-    color:var(--ink);
-    font-family:'Outfit',sans-serif;
-    font-weight:400;
-    line-height:1.7;
-    -webkit-font-smoothing:antialiased;
+  .hero-photo img{animation:none;}
+  .lift-card,.lift-card:hover,.lift-card:active{transform:none;transition:box-shadow 120ms ease;}
+  .magnetic{transition:none;}
+  .ripple > .ripple-wave{display:none;}
+}
+
+/* ---- responsive nav mobile ---------------------------------------------
+   Il menu completo compare solo da 900px in su: sotto quella soglia le
+   quattro voci non ci stanno accanto al pulsante del telefono e andrebbero
+   a capo. Resta l'hamburger, che tiene in equilibrio il lato sinistro. */
+@media (max-width:899px){
+  .nav-toggle{display:flex;}
+  .site-nav{
+    display:none;position:absolute;top:100%;left:0;right:0;
+    background:var(--avorio);flex-direction:column;align-items:flex-start;gap:0;
+    border-bottom:1px solid rgba(var(--cioccolato-rgb),.15);box-shadow:var(--ombra);
   }
-  @media (prefers-reduced-motion: reduce){
-    *{animation-duration:0.01ms !important;transition-duration:0.01ms !important;}
-  }
-  a{color:inherit;text-decoration:none;}
-  img{max-width:100%;display:block;}
-  .wrap{max-width:960px;margin:0 auto;padding:0 24px;}
-  ::selection{background:var(--accent);color:var(--ink);}
-  @keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
-
-  h1,h2,h3,.titolo{font-family:'Bebas Neue',sans-serif;letter-spacing:0.02em;font-weight:400;}
-
-  /* ---------- SIDEBAR ---------- */
-  .sidebar{
-    position:fixed;top:0;left:0;bottom:0;width:var(--sidebar-w);
-    background:var(--ink);color:var(--carta);
-    display:flex;flex-direction:column;justify-content:space-between;
-    padding:34px 28px;z-index:60;overflow-y:auto;
-  }
-  .logo{font-family:'Bebas Neue',sans-serif;font-size:1.9rem;letter-spacing:0.06em;line-height:1;}
-  .logo span{display:block;font-family:'Outfit',sans-serif;font-weight:400;font-size:0.68rem;letter-spacing:0.24em;text-transform:uppercase;color:var(--accent);margin-top:8px;}
-  .side-nav{display:flex;flex-direction:column;gap:2px;margin-top:50px;}
-  .side-nav a{
-    font-size:0.92rem;color:rgba(243,241,234,0.68);padding:11px 0;border-bottom:1px solid rgba(243,241,234,0.12);
-    transition:color .3s,padding-left .3s;text-transform:uppercase;letter-spacing:0.02em;font-size:0.82rem;
-  }
-  .side-nav a:hover,.side-nav a:focus-visible{color:var(--accent);padding-left:6px;}
-  .sidebar-bottom{margin-top:40px;}
-  .side-label{font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;}
-  .side-orari div{font-size:0.85rem;color:rgba(243,241,234,0.68);margin-bottom:3px;}
-  .btn-side{
-    display:block;text-align:center;margin-top:20px;background:var(--accent);color:var(--ink);
-    padding:13px;border-radius:100px;font-size:0.84rem;font-weight:600;text-transform:uppercase;letter-spacing:0.03em;transition:background .3s;
-  }
-  .btn-side:hover{background:var(--accent-2);color:var(--carta);}
-
-  .main-content{margin-left:var(--sidebar-w);}
-
-  @media(max-width:900px){
-    .sidebar{position:static;width:100%;flex-direction:row;flex-wrap:wrap;gap:18px;padding:22px 24px;align-items:center;}
-    .sidebar-bottom{margin-top:0;display:flex;align-items:center;gap:14px;margin-left:auto;}
-    .side-nav{flex-direction:row;flex-wrap:wrap;margin-top:0;gap:2px 16px;}
-    .side-nav a{border-bottom:none;padding:4px 0;}
-    .side-orari{display:none;}
-    .btn-side{margin-top:0;padding:11px 18px;white-space:nowrap;}
-    .main-content{margin-left:0;}
-  }
-  @media(max-width:560px){
-    .sidebar{flex-direction:column;align-items:flex-start;}
-    .sidebar-bottom{margin-left:0;width:100%;}
-    .btn-side{width:100%;}
-  }
-
-  /* ---------- HERO (composizione asimmetrica) ---------- */
-  .hero{padding:90px 40px 0;}
-  .hero-eyebrow{font-size:0.8rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--accent-2);margin-bottom:20px;font-weight:600;}
-  .hero h1{font-size:clamp(2.6rem,7vw,5.4rem);line-height:0.98;text-transform:uppercase;max-width:820px;}
-  .hero h1 .accent{color:var(--accent-2);}
-  .hero p{color:var(--tenue);margin-top:24px;max-width:440px;font-size:1rem;}
-  .hero-rating{display:flex;align-items:center;gap:10px;margin-top:18px;font-size:0.92rem;color:var(--ink);font-weight:500;}
-  .hero-rating .hero-stelle{color:var(--accent-2);letter-spacing:0.12em;font-size:1rem;}
-  .hero-azioni{display:flex;gap:14px;margin-top:32px;flex-wrap:wrap;}
-  .btn{padding:14px 28px;font-size:0.84rem;font-weight:600;border-radius:100px;transition:all .3s;display:inline-block;text-transform:uppercase;letter-spacing:0.03em;font-family:'Outfit',sans-serif;}
-  .btn-pieno{background:var(--accent-2);color:var(--carta);}
-  .btn-pieno:hover{background:var(--ink);}
-  .btn-filo{border:1px solid var(--accent-2);color:var(--ink);}
-  .btn-filo:hover{border-color:var(--ink);background:var(--ink);color:var(--carta);}
-
-  .mosaico{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:14px;margin-top:50px;}
-  .m-blocco{border-radius:4px;aspect-ratio:4/5;position:relative;overflow:hidden;}
-  .m1{background:linear-gradient(155deg,var(--accent-2),var(--ink) 70%);}
-  .m2{background:linear-gradient(155deg,var(--verde),var(--accent) 70%);aspect-ratio:4/3;align-self:end;}
-  .m3{background:linear-gradient(155deg,var(--ink),var(--accent-2) 70%);}
-  .m-blocco span{position:absolute;left:16px;bottom:14px;color:var(--carta);font-family:'Bebas Neue',sans-serif;font-size:1.05rem;text-transform:uppercase;letter-spacing:0.06em;}
-  @media(max-width:900px){.hero{padding:120px 24px 0;}.mosaico{grid-template-columns:1fr 1fr;}.m1{grid-column:1/3;aspect-ratio:16/9;}}
-  @media(max-width:560px){.mosaico{grid-template-columns:1fr;}.m1{grid-column:auto;}}
-
-  /* ---------- PROMO STRISCIA ---------- */
-  .promo-striscia{
-    margin:50px 0 0;border-left:3px solid var(--accent);background:#e2ece9;
-    padding:22px 28px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;
-  }
-  .promo-striscia .promo-eyebrow{font-size:0.72rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--accent-2);font-weight:600;margin-bottom:6px;}
-  .promo-striscia h3{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;text-transform:uppercase;}
-  .promo-striscia .btn-filo{padding:11px 22px;font-size:0.78rem;}
-
-  /* ---------- SEZIONI GENERICHE ---------- */
-  section{padding:90px 40px;}
-  @media(max-width:900px){section{padding:64px 24px;}}
-  .sez-intro{max-width:520px;margin-bottom:46px;}
-  .sez-eyebrow{font-size:0.76rem;letter-spacing:0.26em;text-transform:uppercase;color:var(--accent-2);margin-bottom:16px;font-weight:600;}
-  .sez-titolo{font-size:clamp(2rem,4.4vw,2.9rem);line-height:1.04;text-transform:uppercase;}
-  .sez-titolo .accent{color:var(--accent-2);}
-  .sez-testo{color:var(--tenue);margin-top:14px;font-size:0.96rem;}
-
-  /* ---------- SERVIZI (filmstrip scorrevole) ---------- */
-  .filmstrip{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:14px;}
-  .film-card{
-    scroll-snap-align:start;flex:0 0 min(300px,82vw);background:var(--carta);border:1px solid var(--filo);border-radius:4px;padding:26px 24px;
-  }
-  .film-num{font-size:0.76rem;color:var(--tenue);letter-spacing:0.1em;margin-bottom:10px;}
-  .film-titolo{font-family:'Bebas Neue',sans-serif;font-size:1.9rem;text-transform:uppercase;color:var(--accent-2);margin-bottom:6px;}
-  .film-desc{font-size:0.86rem;color:var(--tenue);margin-bottom:18px;}
-  .voce{display:flex;align-items:baseline;gap:8px;padding:9px 0;border-bottom:1px dashed var(--filo);font-size:0.9rem;}
-  .voce:last-child{border-bottom:none;}
-  .voce .dots{flex:1;border-bottom:1px dotted var(--filo);margin-bottom:5px;}
-  .voce .prezzo{color:var(--accent-2);font-weight:600;flex-shrink:0;}
-
-  /* ---------- LISTINO — LAVAGNA (sezione scura) ---------- */
-  .lavagna{background:var(--ink);color:var(--carta);position:relative;overflow:hidden;}
-  .lavagna::before{
-    content:'';position:absolute;inset:0;pointer-events:none;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    opacity:0.05;mix-blend-mode:overlay;
-  }
-  .lavagna .wrap{position:relative;z-index:1;}
-  .lavagna .sez-eyebrow{color:var(--accent);}
-  .lavagna .sez-titolo .accent{color:var(--accent);}
-  .lavagna .sez-testo{color:rgba(243,241,234,0.66);}
-  .listino-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:44px;}
-  .listino-col h3{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;text-transform:uppercase;margin-bottom:16px;color:var(--accent);letter-spacing:0.06em;}
-  .lavagna .voce{border-bottom-color:rgba(243,241,234,0.16);color:rgba(243,241,234,0.88);}
-  .lavagna .voce .dots{border-bottom-color:rgba(243,241,234,0.22);}
-  .lavagna .voce .prezzo{color:var(--accent);}
-  @media(max-width:860px){.listino-grid{grid-template-columns:1fr;gap:34px;}}
-
-  /* ---------- PACCHETTI (asimmetrico) ---------- */
-  .pacchetti-asym{display:grid;grid-template-columns:1.2fr 1fr;gap:26px;align-items:stretch;}
-  .pacchetto{background:#e2ece9;border:1px solid var(--filo);border-radius:4px;padding:32px 28px;display:flex;flex-direction:column;position:relative;}
-  .pacchetto-grande{padding:44px 36px;justify-content:center;}
-  .pacchetto-colonna{display:flex;flex-direction:column;gap:26px;}
-  .pacchetto.evidenza{background:var(--ink);color:var(--carta);border-color:var(--ink);}
-  .badge{
-    position:absolute;top:-13px;left:28px;background:var(--accent);color:var(--ink);
-    font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;font-weight:600;padding:6px 16px;border-radius:100px;
-  }
-  .pacchetto h3{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;text-transform:uppercase;margin-bottom:6px;}
-  .pacchetto-grande h3{font-size:2.1rem;}
-  .pacchetto .prezzo-grande{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;margin:10px 0;color:var(--accent-2);}
-  .pacchetto-grande .prezzo-grande{font-size:2.8rem;color:var(--accent);}
-  .pacchetto .prezzo-grande small{font-size:0.82rem;font-family:'Outfit',sans-serif;font-weight:300;color:var(--tenue);}
-  .pacchetto ul{list-style:none;margin:10px 0 22px;flex:1;}
-  .pacchetto li{font-size:0.88rem;padding:6px 0;opacity:0.92;}
-  .pacchetto li::before{content:'— ';color:var(--accent-2);}
-  .pacchetto.evidenza li::before{color:var(--accent);}
-  .btn-pacchetto{text-align:center;padding:12px;border-radius:100px;border:1px solid var(--accent-2);color:var(--accent-2);font-size:0.8rem;font-weight:600;text-transform:uppercase;letter-spacing:0.03em;transition:all .3s;}
-  .btn-pacchetto:hover{background:var(--accent-2);color:var(--carta);}
-  .pacchetto.evidenza .btn-pacchetto{border-color:var(--carta);color:var(--carta);}
-  .pacchetto.evidenza .btn-pacchetto:hover{background:var(--carta);color:var(--ink);}
-  @media(max-width:820px){.pacchetti-asym{grid-template-columns:1fr;}}
-
-  /* ---------- RECENSIONI (griglia) ---------- */
-  .rec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
-  .rec-card{background:#e2ece9;border-radius:4px;padding:28px 24px;}
-  .stelle{color:var(--accent-2);letter-spacing:0.1em;margin-bottom:12px;}
-  .rec-testo{font-size:0.92rem;color:var(--ink);margin-bottom:16px;}
-  .rec-autore{font-weight:600;font-size:0.86rem;}
-  .rec-fonte{font-size:0.76rem;color:var(--tenue);margin-top:2px;}
-  @media(max-width:860px){.rec-grid{grid-template-columns:1fr;}}
-
-  /* ---------- DOVE ---------- */
-  .dove-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;}
-  .info-label{font-size:0.76rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent-2);margin-bottom:14px;font-weight:600;}
-  .info-block{margin-bottom:28px;}
-  .riga{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--filo);font-size:0.92rem;}
-  .map-box{
-    aspect-ratio:4/3;border-radius:4px;background:#e2ece9;
-    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;
-    color:var(--tenue);font-size:0.86rem;
-  }
-  .pin{width:16px;height:16px;border-radius:50% 50% 50% 0;background:var(--accent-2);transform:rotate(-45deg);}
-  @media(max-width:820px){.dove-grid{grid-template-columns:1fr;}}
-
-  /* ---------- CTA FINALE ---------- */
-  .cta-band{background:var(--ink);color:var(--carta);position:relative;overflow:hidden;}
-  .cta-band::before{
-    content:'';position:absolute;inset:0;pointer-events:none;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    opacity:0.05;mix-blend-mode:overlay;
-  }
-  .cta-band .wrap{position:relative;z-index:1;}
-  .cta-band h2{font-size:clamp(1.9rem,4vw,2.6rem);text-transform:uppercase;}
-  .cta-band h2 .accent{color:var(--accent);}
-  .cta-band p{max-width:460px;margin:16px 0 30px;color:rgba(243,241,234,0.68);font-size:0.96rem;}
-  .cta-azioni{display:flex;gap:16px;flex-wrap:wrap;}
-  .btn-ghost-chiaro{border:1px solid rgba(243,241,234,0.4);color:var(--carta);}
-  .btn-ghost-chiaro:hover{border-color:var(--accent);color:var(--accent);}
-  .btn-chiaro{background:var(--carta);color:var(--ink);}
-  .btn-chiaro:hover{background:var(--accent);}
-
-  footer{text-align:center;padding:30px 24px;font-size:0.8rem;color:var(--tenue);}
+  .site-nav.is-open{display:flex;}
+  .site-nav a{width:100%;padding:14px 20px;font-size:.95rem;}
+  .site-nav a::after{display:none;}
+}
 </style>
 </head>
 <body>
+<a class="skip-link" href="#main">Vai al contenuto principale</a>
 
-<div class="sidebar">
-  <div class="sidebar-top">
-    <div class="logo">Diamoci<br>Un Taglio<span>Parrucchieri</span></div>
-    <nav class="side-nav">
-      <a href="#servizi">Servizi</a>
-      <a href="#listino">Listino</a>
-      <a href="#pacchetti">Pacchetti</a>
-      <a href="#recensioni">Recensioni</a>
-      <a href="#dove">Dove siamo</a>
-    </nav>
-  </div>
-  <div class="sidebar-bottom">
-    <div class="side-orari">
-      <div class="side-label">Orari</div>
-      <div>Mar — Ven 9:00–19:00</div>
-      <div>Sabato 8:30–17:00</div>
+<header class="site-header">
+  <div class="container header-inner">
+    <div class="header-sinistra">
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="siteNav" aria-label="Apri il menu">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="site-nav" id="siteNav">
+        <a href="#servizi">Servizi</a>
+        <a href="#galleria">Lavori</a>
+        <a href="#orari">Orari e dove siamo</a>
+        <a href="#recensioni">Recensioni</a>
+      </nav>
     </div>
-    <a href="tel:+390350000000" class="btn-side">035 000 0000</a>
+    <div class="header-cta">
+      <a class="header-call ripple" href="tel:+39035711387" aria-label="Chiama il salone, 035 711387">
+        <span aria-hidden="true">☎</span><span class="header-call-testo">035 711387</span>
+      </a>
+    </div>
   </div>
-</div>
+</header>
 
-<main class="main-content">
+<main id="main">
 
+  <!-- ============================== HERO ============================== -->
   <section class="hero">
-    <div class="hero-eyebrow">Parrucchiere · Vertova (BG)</div>
-    <h1>Il taglio che <span class="accent">ti somiglia</span></h1>
-    <p>Consulenza vera prima di ogni forbice: capiamo la forma del viso, il tipo di capello e quello che vuoi davvero, poi lavoriamo di conseguenza.</p>
-    <div class="hero-rating"><span class="hero-stelle">★★★★★</span> 5,0 su Google · 44 recensioni</div>
-    <div class="hero-azioni">
-      <a href="tel:+390350000000" class="btn btn-pieno">Chiama e prenota</a>
-      <a href="#servizi" class="btn btn-filo">Vedi i servizi</a>
-    </div>
-    <div class="mosaico">
-      <div class="m-blocco m1"><span>Taglio</span></div>
-      <div class="m-blocco m2"><span>Colore</span></div>
-      <div class="m-blocco m3"><span>Piega</span></div>
-    </div>
-    <div class="promo-striscia">
-      <div>
-        <div class="promo-eyebrow">Promo di agosto</div>
-        <h3>Balayage + piega a 89 € (invece di 105 €)</h3>
+    <div class="container hero-grid">
+      <div class="hero-testo">
+        <div class="hero-identita" data-fade data-fade-delay="0">
+          <p class="hero-sopratitolo"><span class="sopratitolo-nome">Diamoci Un <span class="accento">Taglio</span></span><span class="sopratitolo-luogo">Vertova</span></p>
+          <a class="rating-badge" href="https://maps.google.com/?cid=16744777349415098059" target="_blank" rel="noopener" aria-label="5,0 su 44 recensioni Google. Apri la scheda Google del salone">
+            <span class="rating-stars" aria-hidden="true">★★★★★</span>
+            <span class="rating-value"><strong data-rating-count>0,0</strong> su 44 recensioni Google</span>
+          </a>
+        </div>
+
+        <h1 data-kinetic data-kinetic-anim="rise">Il tuo colore, la tua piega, a due passi da casa.</h1>
+
+        <p class="hero-sub" data-fade data-fade-delay="150">
+          A Vertova, un salone che si concentra su poche cose e le fa bene: balayage e colore su misura, piega a specchio, acconciature per i tuoi giorni speciali.
+        </p>
+
+        <div class="hero-cta" data-fade data-fade-delay="300">
+          <a class="btn btn-primary magnetic ripple" data-magnet-strength="0.2" href="tel:+39035711387">Chiama ora <span aria-hidden="true">→</span></a>
+          <a class="btn btn-secondary" href="#orari">Dove siamo</a>
+        </div>
       </div>
-      <a href="tel:+390350000000" class="btn btn-filo">Prenota la promo</a>
+
+      <div class="hero-photo">
+        <img src="foto/lavoro-1-web.jpg" width="1200" height="1436" alt="Balayage miele-biondo con onde morbide, lavoro realizzato da Diamoci Un Taglio" loading="eager">
+        <span class="hero-caption">Balayage su base miele</span>
+      </div>
     </div>
   </section>
 
+  <!-- ============================== CHI SIAMO ============================== -->
+  <section class="sezione-alt" id="chi-siamo">
+    <div class="container" data-reveal>
+      <h2 class="sezione-titolo">Il salone</h2>
+      <div class="chi-siamo-grid">
+        <p>Diamoci Un Taglio è il salone di Alessandra Maffeis, a Vertova. Ci siamo specializzati in quello che ci riesce meglio: colore e balayage su misura, piega a specchio con trattamenti SteamPod, e acconciature per matrimoni, cerimonie e occasioni speciali.</p>
+        <p>Un salone di paese: luminoso, ordinato, senza fronzoli — pensato per chi vuole un risultato curato, vicino a casa.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== SERVIZI ============================== -->
   <section id="servizi">
-    <div class="sez-intro">
-      <div class="sez-eyebrow">Servizi offerti</div>
-      <h2 class="sez-titolo">Taglio, colore <span class="accent">e piega</span></h2>
-      <p class="sez-testo">Scorri per vedere le voci di ogni categoria.</p>
+    <div class="container">
+      <h2 class="sezione-titolo" data-reveal>I nostri servizi</h2>
+      <p class="sezione-intro" data-reveal>Le specialità che vedi nei lavori qui sotto: non listino, ma quello che sappiamo fare davvero.</p>
+
+      <div class="servizi-grid">
+        <article class="servizio-card lift-card" data-reveal data-reveal-delay="0">
+          <div class="servizio-foto"><img src="foto/lavoro-7-web.jpg" width="765" height="1020" alt="Balayage riccio su base castano-miele" loading="lazy"></div>
+          <div class="servizio-corpo">
+            <span class="servizio-eyebrow">Colore</span>
+            <h3>Colore &amp; Balayage</h3>
+            <p>Balayage, ombré e colore su misura: sfumature calde, bionde e ramate, pensate sul tuo taglio e sulla luce naturale dei capelli.</p>
+            <!-- prezzo: aggiungere qui -->
+          </div>
+        </article>
+
+        <article class="servizio-card lift-card" data-reveal data-reveal-delay="90">
+          <div class="servizio-foto"><img src="foto/lavoro-2-web.jpg" width="828" height="892" alt="Punte rosa pastello su base ramata" loading="lazy"></div>
+          <div class="servizio-corpo">
+            <span class="servizio-eyebrow">Colore fashion</span>
+            <h3>Colore Fashion</h3>
+            <p>Punte pastello e colore creativo su base naturale: un tocco in più, senza stravolgere tutta la chioma.</p>
+            <!-- prezzo: aggiungere qui -->
+          </div>
+        </article>
+
+        <article class="servizio-card lift-card" data-reveal data-reveal-delay="180">
+          <div class="servizio-foto"><img src="foto/lavoro-5-web.jpg" width="765" height="1020" alt="Piega a specchio castano cioccolato, trattamento SteamPod" loading="lazy"></div>
+          <div class="servizio-corpo">
+            <span class="servizio-eyebrow">Piega</span>
+            <h3>Piega &amp; Liscio a Specchio</h3>
+            <p>Piega e lisciatura con trattamenti SteamPod, per una lucentezza che dura e capelli protetti dal calore.</p>
+            <!-- prezzo: aggiungere qui -->
+          </div>
+        </article>
+
+        <article class="servizio-card lift-card" data-reveal data-reveal-delay="270">
+          <div class="servizio-foto"><img src="foto/lavoro-4-web.jpg" width="604" height="832" alt="Raccolto da cerimonia con fermaglio gioiello" loading="lazy"></div>
+          <div class="servizio-corpo">
+            <span class="servizio-eyebrow">Occasioni speciali</span>
+            <h3>Acconciature Cerimonia</h3>
+            <p>Raccolti e acconciature per matrimoni, cerimonie e occasioni speciali, curati fino all’ultima ciocca.</p>
+            <!-- prezzo: aggiungere qui -->
+          </div>
+        </article>
+      </div>
+
     </div>
-    <div class="filmstrip">
-      <div class="film-card">
-        <div class="film-num">01 — Taglio</div>
-        <div class="film-titolo">Taglio</div>
-        <p class="film-desc">Su misura per la forma del viso, phon sempre incluso.</p>
-        <div class="voce"><span>Taglio donna + phon</span><span class="dots"></span><span class="prezzo">38 €</span></div>
-        <div class="voce"><span>Taglio uomo</span><span class="dots"></span><span class="prezzo">20 €</span></div>
-        <div class="voce"><span>Taglio bimbo</span><span class="dots"></span><span class="prezzo">15 €</span></div>
-        <div class="voce"><span>Spuntatine</span><span class="dots"></span><span class="prezzo">12 €</span></div>
-      </div>
-      <div class="film-card">
-        <div class="film-num">02 — Colore</div>
-        <div class="film-titolo">Colore</div>
-        <p class="film-desc">Formulazioni professionali, schiaritura studiata sul capello.</p>
-        <div class="voce"><span>Colore monocromatico</span><span class="dots"></span><span class="prezzo">55 €</span></div>
-        <div class="voce"><span>Balayage / shatush</span><span class="dots"></span><span class="prezzo">da 85 €</span></div>
-        <div class="voce"><span>Colpi di sole</span><span class="dots"></span><span class="prezzo">70 €</span></div>
-        <div class="voce"><span>Ritocco radice</span><span class="dots"></span><span class="prezzo">45 €</span></div>
-      </div>
-      <div class="film-card">
-        <div class="film-num">03 — Piega</div>
-        <div class="film-titolo">Piega</div>
-        <p class="film-desc">Dalla piega quotidiana a quella per un evento importante.</p>
-        <div class="voce"><span>Piega classica</span><span class="dots"></span><span class="prezzo">22 €</span></div>
-        <div class="voce"><span>Piega con ferro</span><span class="dots"></span><span class="prezzo">28 €</span></div>
-        <div class="voce"><span>Raccolto per eventi</span><span class="dots"></span><span class="prezzo">40 €</span></div>
-        <div class="voce"><span>Cheratina ristrutturante</span><span class="dots"></span><span class="prezzo">65 €</span></div>
+  </section>
+
+  <!-- ============================== GALLERIA ============================== -->
+  <section class="sezione-alt" id="galleria">
+    <div class="container">
+      <h2 class="sezione-titolo" data-reveal>I nostri lavori</h2>
+      <p class="sezione-intro" data-reveal>Non abbiamo una foto del salone: i veri protagonisti sono i capelli.</p>
+
+      <div class="galleria-grid">
+        <figure data-reveal data-reveal-delay="0"><img src="foto/lavoro-1-web.jpg" width="1200" height="1436" alt="Balayage miele-biondo con onde morbide" loading="lazy"><figcaption>Balayage miele</figcaption></figure>
+        <figure data-reveal data-reveal-delay="40"><img src="foto/lavoro-6-web.jpg" width="765" height="1020" alt="Balayage biondo su capelli lunghi" loading="lazy"><figcaption>Balayage biondo</figcaption></figure>
+        <figure data-reveal data-reveal-delay="80"><img src="foto/lavoro-2-web.jpg" width="828" height="892" alt="Punte rosa pastello su base ramata" loading="lazy"><figcaption>Colore fashion, punte rosa</figcaption></figure>
+        <figure data-reveal data-reveal-delay="0"><img src="foto/lavoro-5-web.jpg" width="765" height="1020" alt="Piega a specchio con trattamento SteamPod" loading="lazy"><figcaption>Piega a specchio · SteamPod</figcaption></figure>
+        <figure data-reveal data-reveal-delay="40"><img src="foto/lavoro-3-web.jpg" width="900" height="1122" alt="Piega liscia su capelli castani" loading="lazy"><figcaption>Piega liscia</figcaption></figure>
+        <figure data-reveal data-reveal-delay="80"><img src="foto/lavoro-7-web.jpg" width="765" height="1020" alt="Balayage riccio castano-miele" loading="lazy"><figcaption>Balayage riccio</figcaption></figure>
+        <figure data-reveal data-reveal-delay="0"><img src="foto/lavoro-4-web.jpg" width="604" height="832" alt="Raccolto da cerimonia con fermaglio gioiello" loading="lazy"><figcaption>Raccolto da cerimonia</figcaption></figure>
       </div>
     </div>
   </section>
 
-  <section id="listino" class="lavagna">
-    <div class="wrap">
-      <div class="sez-intro">
-        <div class="sez-eyebrow">Listino prezzi</div>
-        <h2 class="sez-titolo">Prezzi <span class="accent">chiari</span>, sempre</h2>
-      </div>
-      <div class="listino-grid">
-        <div class="listino-col">
-          <h3>Taglio</h3>
-          <div class="voce"><span>Taglio donna + phon</span><span class="dots"></span><span class="prezzo">38 €</span></div>
-          <div class="voce"><span>Taglio uomo</span><span class="dots"></span><span class="prezzo">20 €</span></div>
-          <div class="voce"><span>Taglio bimbo</span><span class="dots"></span><span class="prezzo">15 €</span></div>
-          <div class="voce"><span>Spuntatine</span><span class="dots"></span><span class="prezzo">12 €</span></div>
-          <div class="voce"><span>Barba</span><span class="dots"></span><span class="prezzo">10 €</span></div>
-        </div>
-        <div class="listino-col">
-          <h3>Colore</h3>
-          <div class="voce"><span>Colore monocromatico</span><span class="dots"></span><span class="prezzo">55 €</span></div>
-          <div class="voce"><span>Balayage / shatush</span><span class="dots"></span><span class="prezzo">da 85 €</span></div>
-          <div class="voce"><span>Colpi di sole</span><span class="dots"></span><span class="prezzo">70 €</span></div>
-          <div class="voce"><span>Ritocco radice</span><span class="dots"></span><span class="prezzo">45 €</span></div>
-          <div class="voce"><span>Decolorazione totale</span><span class="dots"></span><span class="prezzo">da 95 €</span></div>
-        </div>
-        <div class="listino-col">
-          <h3>Piega</h3>
-          <div class="voce"><span>Piega classica</span><span class="dots"></span><span class="prezzo">22 €</span></div>
-          <div class="voce"><span>Piega con ferro</span><span class="dots"></span><span class="prezzo">28 €</span></div>
-          <div class="voce"><span>Raccolto per eventi</span><span class="dots"></span><span class="prezzo">40 €</span></div>
-          <div class="voce"><span>Cheratina ristrutturante</span><span class="dots"></span><span class="prezzo">65 €</span></div>
-          <div class="voce"><span>Extension a ciocche</span><span class="dots"></span><span class="prezzo">da 180 €</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- ============================== ORARI E CONTATTI ============================== -->
+  <section id="orari">
+    <div class="container">
+      <h2 class="sezione-titolo" data-reveal>Orari e contatti</h2>
 
-  <section id="pacchetti">
-    <div class="sez-intro">
-      <div class="sez-eyebrow">Pacchetti</div>
-      <h2 class="sez-titolo">Scegli il tuo <span class="accent">percorso</span></h2>
-      <p class="sez-testo">Per chi vuole prendersi cura dei capelli con costanza, non solo per l'occasione.</p>
-    </div>
-    <div class="pacchetti-asym">
-      <div class="pacchetto pacchetto-grande evidenza">
-        <div class="badge">Più richiesto</div>
-        <h3>Percorso Signature</h3>
-        <div class="prezzo-grande">120 € <small>invece di 143 €</small></div>
-        <ul>
-          <li>Taglio + phon</li>
-          <li>Colore monocromatico</li>
-          <li>Cheratina ristrutturante</li>
-        </ul>
-        <a href="tel:+390350000000" class="btn-pacchetto">Prenota</a>
-      </div>
-      <div class="pacchetto-colonna">
-        <div class="pacchetto">
-          <h3>Primo Taglio</h3>
-          <div class="prezzo-grande">32 € <small>invece di 38 €</small></div>
-          <ul>
-            <li>Taglio donna + phon</li>
-            <li>Consulenza colore inclusa</li>
-          </ul>
-          <a href="tel:+390350000000" class="btn-pacchetto">Prenota</a>
+      <div class="orari-grid">
+        <div data-reveal data-reveal-delay="0">
+          <div class="orari-lista">
+            <div class="orari-riga chiuso"><span class="giorno">Lunedì</span><span class="orario">Chiuso</span></div>
+            <div class="orari-riga"><span class="giorno">Martedì – Venerdì</span><span class="orario">08:00 – 19:00</span></div>
+            <div class="orari-riga"><span class="giorno">Sabato</span><span class="orario">07:00 – 18:00</span></div>
+            <div class="orari-riga chiuso"><span class="giorno">Domenica</span><span class="orario">Chiuso</span></div>
+          </div>
+          <p class="stato-apertura" id="statoApertura"><span class="pallino"></span><span id="statoAperturaTesto">Orari salone</span></p>
+          <p class="nota-sabato">Il sabato apriamo alle 7: un’ora prima degli altri giorni, per chi durante la settimana non trova un momento libero.</p>
         </div>
-        <div class="pacchetto">
-          <h3>Abbonamento 5 Tagli</h3>
-          <div class="prezzo-grande">160 € <small>invece di 190 €</small></div>
-          <ul>
-            <li>5 tagli donna, validi 6 mesi</li>
-            <li>Nessuna scadenza per appuntamento</li>
-          </ul>
-          <a href="tel:+390350000000" class="btn-pacchetto">Prenota</a>
+
+        <div data-reveal data-reveal-delay="90">
+          <div class="contatti-card">
+            <div class="contatti-riga">
+              <span class="contatti-icona" aria-hidden="true">📍</span>
+              <div class="contatti-testo">
+                <strong>Dove siamo</strong>
+                Via S. Rocco, 12 — 24029 Vertova (BG)<br>
+                <a class="link-testo" href="https://maps.google.com/?cid=16744777349415098059" target="_blank" rel="noopener">Apri in Google Maps →</a>
+              </div>
+            </div>
+            <div class="contatti-riga">
+              <span class="contatti-icona" aria-hidden="true">☎</span>
+              <div class="contatti-testo">
+                <strong>Telefono</strong>
+                <a href="tel:+39035711387">035 711387</a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="recensioni" style="background:var(--carta);">
-    <div class="sez-intro">
-      <div class="sez-eyebrow">Recensioni</div>
-      <h2 class="sez-titolo">Cosa dicono <span class="accent">di noi</span></h2>
-      <p class="sez-testo">5,0 su Google · 44 recensioni verificate</p>
-    </div>
-    <div class="rec-grid">
-      <div class="rec-card">
-        <div class="stelle">★★★★★</div>
-        <p class="rec-testo">"Vado da Diamoci Un Taglio da anni: professionalità e gentilezza sempre al top. Il colore è sempre naturale, mai un'incertezza."</p>
-        <div class="rec-autore">Francesca M.</div>
-        <div class="rec-fonte">Recensione Google</div>
-      </div>
-      <div class="rec-card">
-        <div class="stelle">★★★★★</div>
-        <p class="rec-testo">"Salone accogliente a Vertova, personale super disponibile. Ho portato anche mio figlio per il primo taglio e sono stati bravissimi."</p>
-        <div class="rec-autore">Andrea P.</div>
-        <div class="rec-fonte">Recensione Google</div>
-      </div>
-      <div class="rec-card">
-        <div class="stelle">★★★★★</div>
-        <p class="rec-testo">"Consigliatissimo. Ascoltano davvero quello che vuoi prima di tagliare, e i prezzi sono onesti per la zona."</p>
-        <div class="rec-autore">Chiara B.</div>
-        <div class="rec-fonte">Recensione Google</div>
-      </div>
+  <!-- ============================== RECENSIONI ============================== -->
+  <section class="recensioni" id="recensioni">
+    <div class="container recensioni-box" data-reveal>
+      <h2 class="sezione-titolo">Quello che dicono di noi, lo dice Google.</h2>
+      <p>Il giudizio che conta è quello di chi è stato in salone: <span class="recensioni-dato">5,0 su 44 recensioni Google</span>.</p>
+      <a class="btn btn-su-scuro ripple" href="https://maps.google.com/?cid=16744777349415098059" target="_blank" rel="noopener">Leggi tutte le recensioni su Google →</a>
     </div>
   </section>
 
-  <section class="dove" id="dove" style="background:#e2ece9;">
-    <div class="dove-grid">
-      <div>
-        <div class="info-block">
-          <div class="info-label">Orari</div>
-          <div class="riga"><span>Lunedì</span><span>Chiuso</span></div>
-          <div class="riga"><span>Martedì — Venerdì</span><span>9:00 – 19:00</span></div>
-          <div class="riga"><span>Sabato</span><span>8:30 – 17:00</span></div>
-          <div class="riga"><span>Domenica</span><span>Chiuso</span></div>
-        </div>
-        <div class="info-block">
-          <div class="info-label">Contatti</div>
-          <div class="riga"><span>Telefono</span><span><a href="tel:+390350000000">035 000 0000</a></span></div>
-          <div class="riga"><span>WhatsApp</span><span>350 000 0000</span></div>
-          <div class="riga"><span>Indirizzo</span><span>Via S. Rocco, 12 — Vertova (BG)</span></div>
-        </div>
-      </div>
-      <div class="map-box">
-        <div class="pin"></div>
-        <span>→ qui la mappa Google integrata</span>
+  <!-- ============================== CTA FINALE — verso Lorenzo (deroga) ============================== -->
+  <section class="cta-finale" id="cta-lorenzo">
+    <div class="container">
+      <div class="cta-finale-card" data-reveal>
+        <h2 class="sezione-titolo">Alessandra, il tuo sito è pronto.</h2>
+        <p>L’ho costruito guardando i tuoi lavori, non un modello preso a caso: il colore, la piega a specchio, le acconciature da cerimonia sono i tuoi, non quelli di un altro salone. Ne parliamo quando vuoi — ma se vuoi vederlo prima o hai domande, scrivimi.</p>
+        <a class="btn btn-primary magnetic ripple" data-magnet-strength="0.2" href="https://wa.me/393314660537" target="_blank" rel="noopener">Scrivimi su WhatsApp →</a>
+        <p class="cta-finale-firma">Lorenzo Zenucchi — siti web per attività della Val Seriana</p>
       </div>
     </div>
   </section>
-
-  <section class="cta-band">
-    <div class="wrap">
-      <h2>Questo è solo un <span class="accent">esempio</span></h2>
-      <p>Il tuo salone, con i tuoi servizi, le tue foto e le tue recensioni vere — online in poche settimane.</p>
-      <div class="cta-azioni">
-        <a href="mailto:lorenzo.zenucchi00@gmail.com" class="btn btn-chiaro">Parliamone insieme</a>
-        <a href="https://wa.me/393314660537" class="btn btn-ghost-chiaro">Scrivimi su WhatsApp</a>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <p>Bozza dimostrativa creata da <strong>Lorenzo Zenucchi</strong> — Siti Web per attività locali · Val Seriana, BG</p>
-  </footer>
 
 </main>
 
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <p class="footer-wordmark">Diamoci Un Taglio</p>
+        <p>Diamoci Un Taglio Di Maffeis Alessandra — Via S. Rocco, 12, 24029 Vertova (BG) — Tel. 035 711387</p>
+      </div>
+    </div>
+    <div class="footer-credito">
+      <span>© 2026 Diamoci Un Taglio</span>
+      <a href="https://wa.me/393314660537" target="_blank" rel="noopener">Sito realizzato da Lorenzo Zenucchi</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+
+  function reduced(){
+    return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  }
+
+  /* ---- nav mobile ---- */
+  var toggle = document.getElementById('navToggle');
+  var nav = document.getElementById('siteNav');
+  if (toggle && nav) {
+    toggle.addEventListener('click', function(){
+      var open = nav.classList.toggle('is-open');
+      toggle.classList.toggle('is-open', open);
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    nav.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){
+        nav.classList.remove('is-open');
+        toggle.classList.remove('is-open');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+
+  /* ---- kinetic-headline (adattato: solo h1 hero, budget vistoso) ---- */
+  (function(){
+    var els = document.querySelectorAll('[data-kinetic]');
+    if (!els.length) return;
+    els.forEach(function(el){
+      el.classList.add('k-anim-' + (el.getAttribute('data-kinetic-anim') || 'rise'));
+      var mode = el.getAttribute('data-kinetic') || 'words';
+      var text = el.textContent;
+      el.textContent = '';
+      var step = (mode === 'letters') ? 40 : 70;
+      var units = (mode === 'letters') ? text.split('') : text.split(/(\s+)/);
+      var i = 0;
+      units.forEach(function(u){
+        if (u === '') return;
+        if (/^\s+$/.test(u)) {
+          var sp = document.createElement('span');
+          sp.className = 'k-space';
+          el.appendChild(sp);
+          return;
+        }
+        var s = document.createElement('span');
+        s.className = 'k-unit';
+        s.textContent = u;
+        s.style.setProperty('--k-delay', (i * step) + 'ms');
+        i++;
+        el.appendChild(s);
+      });
+    });
+    if (reduced()) { els.forEach(function(el){ el.classList.add('is-in'); }); return; }
+    requestAnimationFrame(function(){ requestAnimationFrame(function(){
+      els.forEach(function(el){ el.classList.add('is-in'); });
+    }); });
+  })();
+
+  /* ---- fade-in-up (hero: badge, sottotitolo, cta) ---- */
+  (function(){
+    var els = document.querySelectorAll('[data-fade]');
+    if (!els.length) return;
+    if (reduced()) { els.forEach(function(el){ el.classList.add('is-in'); }); return; }
+    els.forEach(function(el){
+      var d = el.getAttribute('data-fade-delay');
+      if (d != null) el.style.setProperty('--fade-delay', parseInt(d,10) + 'ms');
+    });
+    requestAnimationFrame(function(){ requestAnimationFrame(function(){
+      els.forEach(function(el){ el.classList.add('is-in'); });
+    }); });
+  })();
+
+  /* ---- scroll-reveal (sezioni sotto la piega) ---- */
+  (function(){
+    var els = document.querySelectorAll('[data-reveal]');
+    if (!els.length) return;
+    function revealAll(){ els.forEach(function(el){ el.classList.add('is-in'); }); }
+    if (reduced() || !('IntersectionObserver' in window)) { revealAll(); return; }
+    els.forEach(function(el){
+      var d = el.getAttribute('data-reveal-delay');
+      if (d) el.style.setProperty('--reveal-delay', parseInt(d,10) + 'ms');
+    });
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting) { entry.target.classList.add('is-in'); io.unobserve(entry.target); }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -10% 0px' });
+    els.forEach(function(el){ io.observe(el); });
+  })();
+
+  /* ---- rating count-up (adattato: 1 cifra decimale, dato reale 5,0) ---- */
+  (function(){
+    var el = document.querySelector('[data-rating-count]');
+    if (!el) return;
+    var target = 5.0, dur = 1000;
+    if (reduced() || !('IntersectionObserver' in window)) { el.textContent = '5,0'; return; }
+    function run(){
+      var start = null;
+      function step(ts){
+        if (start === null) start = ts;
+        var p = Math.min((ts - start) / dur, 1);
+        var eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = (target * eased).toFixed(1).replace('.', ',');
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting) { run(); io.unobserve(entry.target); }
+      });
+    }, { threshold: 0.6 });
+    io.observe(el);
+  })();
+
+  /* ---- magnetic-button (solo 2 CTA primari, disabilitato su touch) ---- */
+  (function(){
+    function isTouch(){ return window.matchMedia && window.matchMedia('(hover: none)').matches; }
+    if (reduced() || isTouch()) return;
+    document.querySelectorAll('.magnetic').forEach(function(btn){
+      var strength = parseFloat(btn.getAttribute('data-magnet-strength')) || 0.3;
+      btn.addEventListener('pointermove', function(e){
+        var r = btn.getBoundingClientRect();
+        var dx = e.clientX - (r.left + r.width/2);
+        var dy = e.clientY - (r.top + r.height/2);
+        btn.style.transform = 'translate(' + dx*strength + 'px,' + dy*strength + 'px)';
+      });
+      btn.addEventListener('pointerleave', function(){ btn.style.transform = ''; });
+    });
+  })();
+
+  /* ---- ripple-press (feedback al tap sui bottoni primari) ---- */
+  (function(){
+    function spawn(el, e){
+      var r = el.getBoundingClientRect();
+      var size = Math.max(r.width, r.height) * 2;
+      var x = (e.clientX != null ? e.clientX : r.left + r.width/2) - r.left;
+      var y = (e.clientY != null ? e.clientY : r.top + r.height/2) - r.top;
+      var wave = document.createElement('span');
+      wave.className = 'ripple-wave';
+      wave.style.width = wave.style.height = size + 'px';
+      wave.style.left = (x - size/2) + 'px';
+      wave.style.top = (y - size/2) + 'px';
+      el.appendChild(wave);
+      wave.addEventListener('animationend', function(){ wave.remove(); });
+    }
+    document.querySelectorAll('.ripple').forEach(function(el){
+      el.addEventListener('pointerdown', function(e){ if (!reduced()) spawn(el, e); });
+    });
+  })();
+
+  /* ---- aperto ora / chiuso (orario reale del salone, nessun dato inventato) ---- */
+  (function(){
+    var el = document.getElementById('statoApertura');
+    var testo = document.getElementById('statoAperturaTesto');
+    if (!el || !testo) return;
+    var schedule = { 0:null, 1:null, 2:[8,19], 3:[8,19], 4:[8,19], 5:[8,19], 6:[7,18] };
+    var now = new Date();
+    var day = now.getDay();
+    var h = now.getHours() + now.getMinutes()/60;
+    var oggi = schedule[day];
+    var aperto = !!(oggi && h >= oggi[0] && h < oggi[1]);
+    el.classList.toggle('aperto', aperto);
+    testo.textContent = aperto ? 'Aperto ora' : 'Chiuso ora';
+  })();
+
+})();
+</script>
 </body>
 </html>
