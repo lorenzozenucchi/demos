@@ -273,13 +273,25 @@ a:visited{color:inherit;}
   color:var(--miele);
 }
 .hero h1{
-  color:var(--crema);margin:26px auto 20px;max-width:16ch;
-  /* taglia display: clamp con tetto a 4.5rem (72px, verificato ≥56px sui
-     desktop grandi), resa possibile accorciando l'h1 — la frase lunga di
-     prima è scesa a sottotitolo qui sotto */
-  font-size:clamp(2.25rem, 1.2rem + 4.8vw, 4.5rem);
+  color:var(--crema);margin:26px auto 20px;
+  /* 30ch: generoso rispetto ai ~28 caratteri del titolo attuale (breve,
+     5 parole) — non deve essere lui a spezzare la riga, il vero limite di
+     larghezza resta il contenitore .hero-identita (52ch) */
+  max-width:30ch;
+  /* tetto ridotto da 4.5rem a 2.25rem (36px): il nome "Ilaria Hairstyle"
+     nel sopratitolo sopra deve restare l'elemento testuale più forte della
+     prima schermata, l'h1 gli è subordinato con un salto netto — ~25-29%
+     più piccolo del nome a ogni breakpoint verificato a mano sui clamp
+     (320/375/768/1440px, vedi resoconto di modifica) */
+  font-size:clamp(1.1rem, .7rem + 2vw, 2.25rem);
 }
-.hero-sub{font-size:1.08rem;color:rgba(var(--crema-rgb),.9);margin:0 auto 28px;max-width:46ch;}
+.hero-sub{
+  /* alleggerito (corpo, da 1.08rem) perché ora deve restare sotto un h1
+     più piccolo di prima: il testo è stato anche accorciato, la frase
+     "due reparti distinti e attrezzati allo stesso livello" è salita
+     nell'h1 e qui sarebbe stata ridondante */
+  font-size:.85rem;color:rgba(var(--crema-rgb),.9);margin:0 auto 28px;max-width:46ch;
+}
 
 .rating-badge{
   display:inline-flex;align-items:center;gap:8px;
@@ -592,10 +604,10 @@ a:visited{color:inherit;}
         <span class="sopratitolo-qualifica">Parrucchiere &amp; Estetista</span>
       </p>
 
-      <h1 data-kinetic data-kinetic-anim="rise">Sotto le volte antiche.</h1>
+      <h1 data-kinetic data-kinetic-anim="rise">Due mestieri, un solo tetto.</h1>
 
       <p class="hero-sub" data-fade data-fade-delay="150">
-        Capelli e pelle hanno la loro cura, a Gazzaniga, in un salone con due reparti distinti e attrezzati allo stesso livello: parrucchieria — taglio, colore, piega, anche uomo — ed estetica, con cabine dedicate a viso, corpo e manicure.
+        A Gazzaniga, parrucchieria — taglio, colore, piega, anche uomo — ed estetica, con cabine dedicate a viso, corpo e manicure.
       </p>
 
       <a class="rating-badge" href="https://maps.google.com/?cid=15005434613445898085" target="_blank" rel="noopener" data-fade data-fade-delay="220" aria-label="5,0 su 21 recensioni Google. Apri la scheda Google del salone">
