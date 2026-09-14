@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bar La Movida — Albino (BG) · Demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Caveat:wght@500;600;700&family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --crema:#faf2e3;
+    --crema-2:#f1e3cb;
+    --carta:#fffaf2;
+    --terracotta:#c05a33;
+    --terracotta-scura:#973f22;
+    --ambra:#d99a2b;
+    --rame:#a9713c;
+    --rame-scuro:#7f5127;
+    --inchiostro:#3a2b1e;
+    --testo-tenue:#8b7660;
+    --caffe:#3a2a1d;
+    --caffe-2:#4a3526;
+    --riga:rgba(58,43,30,0.14);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--crema);
+    color:var(--inchiostro);
+    font-family:'Nunito Sans', sans-serif;
+    font-weight:400;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; transition-duration:0.01ms !important;}
+  }
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+  .wrap{max-width:1080px; margin:0 auto; padding:0 24px;}
+  ::selection{background:var(--terracotta); color:var(--carta);}
+
+  .checker{
+    height:14px;
+    background-image:
+      linear-gradient(45deg, var(--terracotta) 25%, transparent 25%, transparent 75%, var(--terracotta) 75%),
+      linear-gradient(45deg, var(--terracotta) 25%, transparent 25%, transparent 75%, var(--terracotta) 75%);
+    background-size:24px 24px;
+    background-position:0 0, 12px 12px;
+    background-color:var(--crema);
+    opacity:0.55;
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky; top:0; z-index:50;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 24px;
+    background:rgba(250,242,227,0.94);
+    backdrop-filter:blur(3px);
+    border-bottom:1px solid var(--riga);
+  }
+  .brand{
+    font-family:'Alegreya', serif; font-weight:600; font-size:1.4rem;
+    color:var(--inchiostro);
+  }
+  .brand em{font-style:italic; color:var(--terracotta); font-weight:500;}
+  .nav-links{display:flex; gap:28px; font-size:0.9rem; font-weight:600;}
+  .nav-links a{color:var(--testo-tenue); transition:color 0.25s; padding-bottom:2px; border-bottom:2px solid transparent;}
+  .nav-links a:hover, .nav-links a:focus-visible{color:var(--terracotta-scura); border-color:var(--ambra); outline:none;}
+  .nav-cta{
+    display:flex; align-items:center; gap:8px;
+    background:var(--terracotta); color:var(--carta); font-weight:700; font-size:0.88rem;
+    padding:10px 18px; border-radius:24px;
+  }
+  @media(max-width:760px){ .nav-links{display:none;} }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:70px 0 60px;
+    background:
+      radial-gradient(ellipse 700px 400px at 15% 0%, rgba(217,154,43,0.20), transparent 60%),
+      radial-gradient(ellipse 600px 400px at 90% 30%, rgba(169,113,60,0.16), transparent 60%),
+      var(--crema);
+  }
+  .hero-grid{display:grid; grid-template-columns:1.1fr 0.9fr; gap:50px; align-items:center;}
+  @media(max-width:860px){ .hero-grid{grid-template-columns:1fr; gap:36px;} }
+  .eyebrow{
+    font-family:'Caveat', cursive; font-weight:600; font-size:1.5rem;
+    color:var(--terracotta-scura); margin-bottom:6px;
+  }
+  h1.title{
+    font-family:'Alegreya', serif; font-weight:700; font-size:clamp(2.6rem, 6vw, 4rem);
+    line-height:1.06; color:var(--inchiostro);
+  }
+  h1.title em{font-style:italic; color:var(--terracotta); font-weight:600;}
+  .tagline{
+    font-size:1.05rem; color:var(--testo-tenue); margin-top:20px; max-width:460px;
+  }
+  .hero-meta{display:flex; flex-wrap:wrap; gap:12px; margin-top:32px;}
+  .pill{
+    display:flex; align-items:center; gap:7px;
+    border:1px solid var(--riga); padding:9px 16px; border-radius:24px;
+    font-size:0.85rem; color:var(--inchiostro); background:var(--carta);
+  }
+  .pill .dot{width:7px; height:7px; border-radius:50%; background:var(--rame); flex-shrink:0;}
+  .hero-actions{display:flex; gap:14px; margin-top:32px; flex-wrap:wrap;}
+  .btn{
+    padding:14px 24px; font-size:0.92rem; font-weight:700;
+    border-radius:26px; display:inline-flex; align-items:center; gap:9px;
+    transition:transform 0.2s, background 0.2s;
+  }
+  .btn-primary{background:var(--terracotta); color:var(--carta);}
+  .btn-primary:hover{background:var(--terracotta-scura); transform:translateY(-2px);}
+  .btn-ghost{border:2px solid var(--rame); color:var(--rame-scuro);}
+  .btn-ghost:hover{background:var(--rame); color:var(--carta); transform:translateY(-2px);}
+
+  /* proposta del momento, in hero */
+  .ora-adesso{
+    background:var(--caffe); color:var(--crema); border-radius:16px;
+    padding:34px 30px; position:relative; box-shadow:0 18px 40px rgba(58,42,29,0.28);
+    transform:rotate(-1.4deg);
+  }
+  .ora-adesso::before{
+    content:'📌'; position:absolute; top:-14px; left:28px; font-size:1.6rem;
+    transform:rotate(12deg);
+  }
+  .ora-adesso .tag{
+    font-family:'Caveat', cursive; font-weight:600; font-size:1.6rem; color:var(--ambra);
+  }
+  .ora-adesso h3{
+    font-family:'Alegreya', serif; font-weight:600; font-size:1.7rem; margin-top:8px; line-height:1.2;
+  }
+  .ora-adesso p{font-size:0.92rem; color:rgba(250,242,227,0.72); margin-top:10px;}
+  .ora-adesso .prezzo{
+    display:inline-block; margin-top:16px; font-family:'Alegreya', serif; font-weight:700;
+    font-size:1.3rem; color:var(--crema); border-top:1px dashed rgba(250,242,227,0.35); padding-top:12px;
+  }
+
+  /* ---------- SECTION ---------- */
+  .section{padding:90px 0;}
+  .section-head{margin-bottom:48px; max-width:600px;}
+  .section-eyebrow{
+    font-family:'Caveat', cursive; font-weight:600; font-size:1.4rem;
+    color:var(--terracotta-scura); margin-bottom:6px;
+  }
+  .section-title{
+    font-family:'Alegreya', serif; font-weight:700; font-size:clamp(1.9rem, 4vw, 2.6rem);
+    line-height:1.12;
+  }
+  .section-title em{font-style:italic; color:var(--terracotta); font-weight:600;}
+  .section-sub{color:var(--testo-tenue); margin-top:14px; font-size:1rem; max-width:520px;}
+
+  /* ---------- LA GIORNATA ---------- */
+  .momenti-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:20px;}
+  @media(max-width:900px){ .momenti-grid{grid-template-columns:repeat(2,1fr);} }
+  @media(max-width:540px){ .momenti-grid{grid-template-columns:1fr;} }
+  .momento{
+    background:var(--carta); border:1px solid var(--riga); border-top:4px solid var(--ambra);
+    border-radius:12px; padding:24px 22px;
+  }
+  .momento:nth-child(2){border-top-color:var(--terracotta);}
+  .momento:nth-child(3){border-top-color:var(--rame);}
+  .momento:nth-child(4){border-top-color:var(--caffe);}
+  .momento .ora{font-family:'Caveat', cursive; font-weight:700; font-size:1.6rem; color:var(--terracotta-scura); line-height:1.1;}
+  .momento h3{font-family:'Alegreya', serif; font-weight:700; font-size:1.2rem; margin:6px 0 10px;}
+  .momento p{font-size:0.88rem; color:var(--testo-tenue);}
+
+  /* ---------- MENU ---------- */
+  .menu{background:var(--crema-2); border-top:1px solid var(--riga); border-bottom:1px solid var(--riga);}
+  .menu-grid{display:grid; grid-template-columns:1fr 1fr; gap:26px;}
+  @media(max-width:800px){ .menu-grid{grid-template-columns:1fr;} }
+  .menu-cat{
+    background:var(--carta); border-radius:12px; padding:26px 26px 8px; border-left:6px solid var(--terracotta);
+  }
+  .menu-cat.ambra{border-left-color:var(--ambra);}
+  .menu-cat.rame{border-left-color:var(--rame);}
+  .menu-cat.caffe{border-left-color:var(--caffe);}
+  .menu-cat h3{
+    font-family:'Alegreya', serif; font-weight:700; font-size:1.3rem;
+    color:var(--inchiostro); margin-bottom:4px;
+  }
+  .menu-cat .fascia{
+    display:block; font-size:0.8rem; font-weight:700; letter-spacing:0.05em; text-transform:uppercase;
+    color:var(--testo-tenue); margin-bottom:18px;
+  }
+  .menu-item{display:flex; align-items:baseline; gap:8px; margin-bottom:16px; padding-bottom:16px; border-bottom:1px dashed var(--riga);}
+  .menu-item:last-child{border-bottom:none;}
+  .menu-item-col{display:flex; flex-direction:column;}
+  .menu-item-name{font-size:1rem; font-weight:600; color:var(--inchiostro);}
+  .menu-item-desc{display:block; font-size:0.82rem; color:var(--testo-tenue); margin-top:3px; font-weight:400;}
+  .leader{flex:1; min-width:14px;}
+  .menu-item-price{font-family:'Alegreya', serif; font-weight:700; font-size:1rem; color:var(--terracotta-scura); white-space:nowrap;}
+  .menu-note{text-align:center; color:var(--testo-tenue); font-size:0.85rem; margin-top:30px; font-style:italic;}
+
+  /* ---------- STORIA ---------- */
+  .storia-grid{display:grid; grid-template-columns:0.9fr 1.1fr; gap:60px; align-items:center;}
+  @media(max-width:800px){ .storia-grid{grid-template-columns:1fr; gap:36px;} }
+  .foto-ph{
+    aspect-ratio:4/5; border-radius:14px; position:relative; overflow:hidden;
+    background:linear-gradient(155deg, #e0b87e, #c05a33 55%, #973f22);
+    display:flex; align-items:flex-end; padding:18px;
+  }
+  .foto-ph span{font-size:0.75rem; color:rgba(255,250,242,0.78); font-weight:600; text-transform:uppercase; letter-spacing:0.04em;}
+  .storia h3{font-family:'Alegreya', serif; font-weight:700; font-size:1.8rem; margin-bottom:16px; line-height:1.2;}
+  .storia h3 em{font-style:italic; color:var(--terracotta);}
+  .storia p{color:var(--testo-tenue); margin-bottom:14px; font-size:0.98rem;}
+  .firma{font-family:'Caveat', cursive; font-weight:600; font-size:1.6rem; color:var(--rame-scuro); margin-top:10px;}
+
+  /* ---------- RECENSIONI ---------- */
+  .recensioni{background:var(--crema-2); border-top:1px solid var(--riga); border-bottom:1px solid var(--riga);}
+  .rec-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px;}
+  @media(max-width:800px){ .rec-grid{grid-template-columns:1fr;} }
+  .rec-card{background:var(--carta); border-radius:12px; padding:24px; border:1px solid var(--riga);}
+  .rec-stars{color:var(--ambra); font-size:0.95rem; margin-bottom:10px;}
+  .rec-card p{font-size:0.92rem; color:var(--inchiostro); margin-bottom:14px;}
+  .rec-nome{font-weight:700; font-size:0.88rem; color:var(--terracotta-scura);}
+
+  /* ---------- GALLERY ---------- */
+  .gallery-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:12px;}
+  @media(max-width:760px){ .gallery-grid{grid-template-columns:repeat(2,1fr);} }
+  .ph{
+    aspect-ratio:1/1; border-radius:10px; position:relative; overflow:hidden;
+    display:flex; align-items:flex-end; padding:12px;
+    font-size:0.7rem; color:rgba(255,250,242,0.72); font-weight:600; text-transform:uppercase; letter-spacing:0.04em;
+  }
+  .ph::after{content:'foto cliente';}
+  .ph1{background:linear-gradient(155deg, #e3b96b, #c05a33 60%, #8a3a1d);}
+  .ph2{background:linear-gradient(155deg, #c69a6a, #7f5127);}
+  .ph3{background:linear-gradient(155deg, #d99a2b, #973f22);}
+  .ph4{background:linear-gradient(155deg, #bb8a55, #6a4526);}
+
+  /* ---------- INFO ---------- */
+  .info-grid{display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start;}
+  @media(max-width:800px){ .info-grid{grid-template-columns:1fr; gap:40px;} }
+  .info-block + .info-block{margin-top:30px;}
+  .info-label{
+    font-family:'Caveat', cursive; font-weight:600; font-size:1.3rem;
+    color:var(--terracotta-scura); margin-bottom:8px;
+  }
+  .hours-row{display:flex; justify-content:space-between; gap:14px; padding:9px 0; border-bottom:1px dashed var(--riga); font-size:0.95rem;}
+  .hours-row span:last-child{color:var(--testo-tenue); text-align:right;}
+  .map-box{
+    height:100%; min-height:260px; border-radius:14px; border:1px solid var(--riga);
+    background:var(--crema-2);
+    display:flex; align-items:center; justify-content:center; position:relative;
+  }
+  .pin{width:16px; height:16px; border-radius:50% 50% 50% 0; background:var(--terracotta); transform:rotate(-45deg); box-shadow:0 0 0 7px rgba(192,90,51,0.16);}
+  .map-label{position:absolute; bottom:16px; left:16px; font-size:0.75rem; color:var(--testo-tenue);}
+
+  /* ---------- CTA ---------- */
+  .cta-band{
+    padding:90px 0; text-align:center;
+    background:linear-gradient(160deg, var(--caffe-2), var(--caffe) 60%);
+    color:var(--crema);
+  }
+  .cta-band h2{
+    font-family:'Alegreya', serif; font-weight:700; font-size:clamp(1.7rem, 4vw, 2.4rem);
+    max-width:580px; margin:0 auto 16px;
+  }
+  .cta-band h2 em{font-style:italic; color:var(--ambra); font-weight:600;}
+  .cta-band p{color:rgba(250,242,227,0.72); max-width:440px; margin:0 auto 32px;}
+  .cta-actions{display:flex; gap:14px; justify-content:center; flex-wrap:wrap;}
+  .cta-band .btn-ghost{border-color:rgba(250,242,227,0.4); color:var(--crema);}
+  .cta-band .btn-ghost:hover{background:rgba(250,242,227,0.12); color:var(--crema);}
+
+  /* ---------- FOOTER ---------- */
+  footer{padding:38px 0; text-align:center;}
+  footer p{font-size:0.8rem; color:var(--testo-tenue);}
+  footer p strong{color:var(--terracotta-scura);}
+
+  a:focus-visible, button:focus-visible{outline:2px solid var(--terracotta); outline-offset:3px;}
+</style>
+</head>
+<body>
+
+<div class="checker"></div>
+
+<nav>
+  <div class="brand">Bar <em>La Movida</em></div>
+  <div class="nav-links">
+    <a href="#giornata">La giornata</a>
+    <a href="#menu">Menu</a>
+    <a href="#storia">Il bar</a>
+    <a href="#galleria">Galleria</a>
+    <a href="#info">Dove siamo</a>
+  </div>
+  <a href="tel:+390350000000" class="nav-cta">📞 Chiama il bar</a>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">Dalle 7 del mattino fino a tardi</div>
+      <h1 class="title">Si comincia col <em>caffè</em>,<br>si finisce col brindisi.</h1>
+      <p class="tagline">Bar La Movida, in Via Duca D'Aosta ad Albino: colazione al banco, pausa pranzo veloce, aperitivo con i soliti e serate che finiscono tardi. Dal lunedì al sabato.</p>
+      <div class="hero-meta">
+        <div class="pill"><span class="dot"></span> Aperto dalle 7:00, lun — sab</div>
+        <div class="pill">⭐ 4,6 su Google · 83 recensioni</div>
+        <div class="pill">📍 Albino (BG)</div>
+      </div>
+      <div class="hero-actions">
+        <a href="#menu" class="btn btn-primary">Guarda il menu</a>
+        <a href="https://wa.me/390000000000" class="btn btn-ghost">💬 Prenota l'aperitivo</a>
+      </div>
+    </div>
+    <div class="ora-adesso">
+      <div class="tag">Dalle 18 in poi</div>
+      <h3>L'aperitivo della casa</h3>
+      <p>Un drink a scelta — spritz, calice o birra — con il piatto di stuzzichini che prepariamo al momento.</p>
+      <div class="prezzo">6 €</div>
+    </div>
+  </div>
+</header>
+
+<section class="section" id="giornata">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow">Come si passa la giornata</div>
+      <h2 class="section-title">Un bar solo, <em>quattro</em> momenti</h2>
+      <p class="section-sub">Chi entra alle sette del mattino e chi entra alle undici di sera cerca due cose diverse. Qui le trovano tutti e due.</p>
+    </div>
+    <div class="momenti-grid">
+      <div class="momento">
+        <div class="ora">07:00</div>
+        <h3>Colazione al banco</h3>
+        <p>Caffè, cappuccino e brioche appena arrivate dal forno. Il giornale è sul bancone e in due minuti si riparte.</p>
+      </div>
+      <div class="momento">
+        <div class="ora">12:00</div>
+        <h3>Pausa pranzo veloce</h3>
+        <p>Toast, piadine e insalatone fatte al momento, più il primo del giorno per chi ha mezz'ora e non di più.</p>
+      </div>
+      <div class="momento">
+        <div class="ora">18:00</div>
+        <h3>Aperitivo</h3>
+        <p>Spritz, calici e taglieri da dividere. È l'ora in cui il bar si riempie e ci si ferma più del previsto.</p>
+      </div>
+      <div class="momento">
+        <div class="ora">21:00</div>
+        <h3>Serata</h3>
+        <p>Cocktail, birre alla spina e musica bassa. Il venerdì e il sabato si va avanti fino alle due.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section menu" id="menu">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow">Il menu</div>
+      <h2 class="section-title">Ogni ora ha la <em>sua</em> proposta</h2>
+      <p class="section-sub">Dal caffè delle sette all'ultimo giro della sera: quattro fasce, quattro carte diverse.</p>
+    </div>
+    <div class="menu-grid">
+      <div class="menu-cat">
+        <h3>Colazione</h3>
+        <span class="fascia">07:00 — 11:00</span>
+        <div class="menu-item">
+          <div class="menu-item-col">
+            <span class="menu-item-name">Caffè espresso</span>
+            <span class="menu-item-desc">Miscela tostata dalla torrefazione qui in valle</span>
+          </div>
+          <div class="leader"></div>
+          <span class="menu-item-price">1,20 €</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-col">
+            <span class="menu-item-name">Cappuccino</span>
+            <span class="menu-item-desc">Anche con latte d'avena o di soia</span>
+          </div>
+          <div class="leader"></div>
+          <span class="menu-item-price">1,60 €</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-col">
+            <span class="menu-item-name">Brioche del forno</span>
+            <span class="menu-item-desc">Vuota, crema, marmellata o pistacchio</span>
+          </div>
+          <div class="leader"></div>
+          <span class="menu-item-price">1,30 €</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-col">
+            <span class="menu-item-name">Spremuta d'arancia</span>
+            <span class="menu-item-desc">Spremuta al momento, niente di preparato</span>
+          </div>
+          <div class="leader"></div>
+          <span class="menu-item-price">3 €</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-col"><span class="menu-item-name">Cioccolata calda con panna</span></div>
+          <div class="leader"></div>
+          <span class="menu-item-price">2,50 €</span>
+        </div>
+      </div>
+      <div class="menu-cat ambra">
+        <h3>Pranzo veloce</h3>
+        <span class="fascia">12:00 — 14:30</span>
+        <div class="menu-item">
+          <div class="menu-item-col"><span class="menu-item-name">Toast prosciutto e formaggio</span></div>
+          <div class="leader"></div>
+          <span class="menu-item-price">3,50 €</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-col">
+            <span class="menu-item-name">Toast farcito della casa</span>
+            <span class="menu-item-desc">Crudo, brie, pomodoro e insalata</span>
+          </div>
+          <div class="leader"></div>
+          <span class="menu-item-price">4,50 €</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-col">
+            <span class="menu-item-name">Piadina a scelta</span>
+            <span class="menu-item-desc">Salumi, verdure grigliate o vegetariana</span>
+          </div>
+          <div class="leader"></div>
+          <span class="menu-item-price">6,50 €</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-col">
+            <span class="menu-item-name">Insalatona del giorno</span>
+            <span class="menu-item-desc">Porzione vera, non un contorno</span>
+          </div>
+          <div class="leader"></div>
+          <span class="menu-item-price">8,50 €</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-col">
+            <span class="menu-item-name">Primo del giorno</span>
+            <span class="menu-item-desc">Cambia ogni mattina, è scritto sulla lavagna</span>
+          </div>
+          <div class="leader"></div>
+          <span class="menu-item-price">9 €</span>
+        </div>
+      </div>
+      <div class="menu-cat rame">
+        <h3>Aperitivo</h3>
+        <span class="fascia">18:00 — 21:00</span>
+        <div class="menu-item">
+          <div class="menu-item-col">
+            <span class="menu-item-name">Spritz</span>
+            <span class="menu-item-desc">Aperol, Campari o bitter analcolico</span>
+          </div>
+          <div class="leader"></div>
+          <span class="menu-item-price">5 €</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-col">
+            <span class="menu-item-name">Calice di vino</span>
+            <span class="menu-item-desc">Bianco fermo, rosso di valle o bollicine</span>
+          </div>
+          <div class="leader"></div>
+          <span class="menu-item-price">4,50 €</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-col"><span class="menu-item-name">Birra media alla spina</span></div>
+          <div class="leader"></div>
+          <span class="menu-item-price">5 €</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-col">
+            <span class="menu-item-name">Aperitivo con stuzzichini</span>
+            <span class="menu-item-desc">Un drink a scelta più il piatto della casa</span>
+          </div>
+          <div class="leader"></div>
+          <span class="menu-item-price">6 €</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-col">
+            <span class="menu-item-name">Tagliere da dividere</span>
+            <span class="menu-item-desc">Salumi, formaggi e focaccia calda, per due</span>
+          </div>
+          <div class="leader"></div>
+          <span class="menu-item-price">14 €</span>
+        </div>
+      </div>
+      <div class="menu-cat caffe">
+        <h3>Serata</h3>
+        <span class="fascia">dalle 21:00</span>
+        <div class="menu-item">
+          <div class="menu-item-col">
+            <span class="menu-item-name">Cocktail classici</span>
+            <span class="menu-item-desc">Negroni, Americano, Moscow Mule</span>
+          </div>
+          <div class="leader"></div>
+          <span class="menu-item-price">8 €</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-col">
+            <span class="menu-item-name">Gin tonic</span>
+            <span class="menu-item-desc">Sei gin diversi dietro al banco</span>
+          </div>
+          <div class="leader"></div>
+          <span class="menu-item-price">9 €</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-col">
+            <span class="menu-item-name">Birra artigianale</span>
+            <span class="menu-item-desc">Spine a rotazione, sempre una bergamasca</span>
+          </div>
+          <div class="leader"></div>
+          <span class="menu-item-price">5 €</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-col"><span class="menu-item-name">Amaro o digestivo</span></div>
+          <div class="leader"></div>
+          <span class="menu-item-price">4 €</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-col"><span class="menu-item-name">Caffè corretto</span></div>
+          <div class="leader"></div>
+          <span class="menu-item-price">2 €</span>
+        </div>
+      </div>
+    </div>
+    <p class="menu-note">Il primo del giorno e i taglieri cambiano spesso — sul sito vero si aggiornano in un minuto dal telefono.</p>
+  </div>
+</section>
+
+<section class="section" id="storia">
+  <div class="wrap storia-grid">
+    <div class="foto-ph"><span>Foto del banco / del dehors</span></div>
+    <div class="storia">
+      <h3>Il bar <em>sotto casa</em>, dalla mattina alla notte</h3>
+      <p>La Movida è uno di quei bar dove alle sette non serve nemmeno ordinare: il caffè è già sul banco. A mezzogiorno entra chi ha mezz'ora di pausa, nel pomeriggio i ragazzi, e la sera chi si ferma per un aperitivo che diventa lungo.</p>
+      <p>Qui va la vera storia del bar — chi c'è dietro al banco e da quanti anni, com'è nato il nome, cosa lo rende il punto di ritrovo di questa parte di Albino. Poche righe scritte con calma valgono più di un elenco di consumazioni.</p>
+      <div class="firma">— Chi sta dietro al banco, tutti i giorni</div>
+    </div>
+  </div>
+</section>
+
+<section class="section recensioni">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow">Chi ci passa ogni giorno</div>
+      <h2 class="section-title">Parola di <em>cliente</em></h2>
+      <p class="section-sub">4,6 stelle su Google, su 83 recensioni lasciate da chi in questo bar ci entra davvero tutti i giorni.</p>
+    </div>
+    <div class="rec-grid">
+      <div class="rec-card">
+        <div class="rec-stars">★★★★★</div>
+        <p>"Il caffè della mattina è una certezza: entri e sanno già come lo prendi. Brioche sempre fresche e due parole con tutti."</p>
+        <div class="rec-nome">Marco B.</div>
+      </div>
+      <div class="rec-card">
+        <div class="rec-stars">★★★★★</div>
+        <p>"Ci fermiamo a pranzo quasi ogni giorno: piadine e insalatone fatte al momento, si mangia in mezz'ora e si torna al lavoro."</p>
+        <div class="rec-nome">Elisa R.</div>
+      </div>
+      <div class="rec-card">
+        <div class="rec-stars">★★★★☆</div>
+        <p>"Aperitivo con stuzzichini abbondanti e prezzi onesti. Il venerdì sera si fa tardi senza accorgersene."</p>
+        <div class="rec-nome">Davide C.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="galleria">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow">Un'occhiata</div>
+      <h2 class="section-title">Il bar visto <em>da dentro</em></h2>
+      <p class="section-sub">Qui vanno le foto vere del banco, dei tavolini e delle serate — bastano 8-10 scattate col telefono.</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="ph ph1"></div>
+      <div class="ph ph2"></div>
+      <div class="ph ph3"></div>
+      <div class="ph ph4"></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="info">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow">Dove e quando</div>
+      <h2 class="section-title">Ci trovi <em>qui</em></h2>
+      <p class="section-sub">Bar La Movida — Via Duca D'Aosta, 4, Albino (BG). Parcheggio davanti e tavolini fuori quando il tempo tiene.</p>
+    </div>
+    <div class="info-grid">
+      <div>
+        <div class="info-block">
+          <div class="info-label">Orari</div>
+          <div class="hours-row"><span>Lunedì</span><span>07:00–20:00</span></div>
+          <div class="hours-row"><span>Mar — Gio</span><span>07:00–23:00</span></div>
+          <div class="hours-row"><span>Ven — Sab</span><span>07:00–02:00</span></div>
+          <div class="hours-row"><span>Domenica</span><span>chiuso</span></div>
+        </div>
+        <div class="info-block">
+          <div class="info-label">Contatti</div>
+          <div class="hours-row"><span>Telefono</span><span>035 000 0000</span></div>
+          <div class="hours-row"><span>WhatsApp</span><span>035 000 0000</span></div>
+          <div class="hours-row" style="border-bottom:none;"><span>Indirizzo</span><span>Via Duca D'Aosta, 4 — Albino (BG)</span></div>
+        </div>
+      </div>
+      <div class="map-box">
+        <div class="pin"></div>
+        <span class="map-label">→ qui la mappa Google integrata</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap">
+    <h2>Questo è solo un <em>esempio</em>.</h2>
+    <p>Il tuo sito, con il tuo menu, le tue foto e le tue recensioni vere — online in due settimane.</p>
+    <div class="cta-actions">
+      <a href="mailto:lorenzo.zenucchi00@gmail.com" class="btn btn-primary">Parliamone insieme</a>
+      <a href="https://wa.me/393314660537" class="btn btn-ghost">💬 Scrivimi su WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Bozza dimostrativa creata da <strong>Lorenzo Zenucchi</strong> — Siti Web per attività locali · Val Seriana, BG</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L'Americano Bar — Demo</title>
+<meta name="description" content="L'Americano Bar, Clusone (BG): il bar del quartiere aperto sette giorni su sette, dalle 7:30 alle 23. Colazione, pranzo veloce e aperitivo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500;0,600;1,400&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bruno:#1c130c;
+    --bruno-2:#261a10;
+    --bruno-3:#301f13;
+    --ambra:#b8853f;
+    --ambra-chiara:#d9ad6e;
+    --terra:#7a4a2c;
+    --crema:#f3e9d8;
+    --crema-tenue:#b8a58c;
+    --filo:rgba(243,233,216,0.12);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bruno);
+    color:var(--crema);
+    font-family:'Manrope',sans-serif;
+    font-weight:400;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important;transition-duration:0.01ms !important;}
+  }
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px;}
+  ::selection{background:var(--ambra);color:var(--bruno);}
+
+  @keyframes fadeUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+  @keyframes bagliore{0%,100%{opacity:0.85;}50%{opacity:1;}}
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:22px 32px;
+    background:linear-gradient(to bottom, rgba(28,19,12,0.92) 45%, rgba(28,19,12,0));
+  }
+  .nav-sinistra{display:flex;align-items:center;gap:14px;}
+  .nav-nome{
+    font-family:'Bodoni Moda',serif;font-weight:500;font-size:0.95rem;
+    letter-spacing:0.04em;color:var(--crema);white-space:nowrap;
+  }
+  .nav-sep{width:1px;height:18px;background:rgba(243,233,216,0.2);}
+  .logo-cerchio{
+    width:42px;height:42px;border-radius:50%;border:1px solid var(--ambra);
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;
+    font-family:'Bodoni Moda',serif;font-style:italic;font-weight:500;
+    font-size:1rem;color:var(--ambra-chiara);
+  }
+  .nav-contatto{font-size:0.8rem;color:var(--crema-tenue);letter-spacing:0.02em;transition:color .3s;}
+  .nav-contatto:hover,.nav-contatto:focus-visible{color:var(--ambra-chiara);}
+  .nav-destra{display:flex;gap:12px;}
+  .btn-pillola{
+    border:1px solid rgba(243,233,216,0.32);color:var(--crema);background:transparent;
+    padding:10px 20px;border-radius:100px;font-size:0.78rem;font-weight:500;
+    letter-spacing:0.03em;transition:border-color .3s,color .3s;
+  }
+  .btn-pillola:hover,.btn-pillola:focus-visible{border-color:var(--ambra);color:var(--ambra-chiara);}
+  @media(max-width:640px){.nav-contatto,.nav-sep{display:none;} .nav-destra{gap:8px;} .btn-pillola{padding:9px 15px;font-size:0.72rem;} .nav-nome{font-size:0.86rem;}}
+  @media(max-width:480px){nav{padding:18px 20px;} .nav-nome{font-size:0.8rem;}}
+  @media(max-width:420px){.nav-destra a:last-child{display:none;}}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;min-height:100svh;display:flex;flex-direction:column;
+    justify-content:center;overflow:hidden;
+  }
+  .bagliori{
+    position:absolute;inset:0;pointer-events:none;
+    background:
+      radial-gradient(ellipse 620px 460px at 22% 28%, rgba(184,133,63,0.2), transparent 60%),
+      radial-gradient(ellipse 520px 420px at 82% 18%, rgba(217,173,110,0.16), transparent 62%),
+      radial-gradient(ellipse 700px 520px at 55% 88%, rgba(122,74,44,0.24), transparent 65%),
+      linear-gradient(180deg, #1c130c 0%, #271b11 55%, #1c130c 100%);
+    animation:bagliore 7s ease-in-out infinite;
+  }
+  .hero::after{
+    content:'';position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(ellipse 130% 90% at 50% 40%, transparent 40%, rgba(28,19,12,0.75) 100%);
+  }
+  .hero-contenuto{
+    position:relative;z-index:2;text-align:center;
+    padding:170px 28px 60px;
+  }
+  .hero-corsivo{
+    font-family:'Bodoni Moda',serif;font-style:italic;font-weight:400;
+    font-size:clamp(1rem,2vw,1.3rem);color:var(--crema-tenue);
+    letter-spacing:0.05em;margin-bottom:20px;
+    opacity:0;animation:fadeUp 1s ease forwards 0.1s;
+  }
+  .hero-titolo{
+    font-family:'Bodoni Moda',serif;font-weight:500;
+    font-size:clamp(2.2rem,9vw,5.6rem);line-height:1.04;letter-spacing:0.02em;
+    color:var(--ambra);text-shadow:0 0 50px rgba(184,133,63,0.35);
+    overflow-wrap:break-word;
+    opacity:0;animation:fadeUp 1.1s ease forwards 0.28s;
+  }
+  .hero-sotto{
+    max-width:480px;margin:26px auto 0;color:var(--crema-tenue);font-size:1rem;
+    opacity:0;animation:fadeUp 1.1s ease forwards 0.42s;
+  }
+  .hero-azioni{
+    display:flex;gap:16px;justify-content:center;margin-top:36px;flex-wrap:wrap;
+    opacity:0;animation:fadeUp 1.1s ease forwards 0.7s;
+  }
+  .btn{
+    padding:16px 32px;font-size:0.85rem;font-weight:600;letter-spacing:0.03em;
+    border-radius:100px;display:inline-block;transition:transform .3s,background .3s,color .3s,border-color .3s;
+  }
+  .btn-pieno{background:var(--ambra);color:#1c130c;}
+  .btn-pieno:hover{background:var(--ambra-chiara);transform:translateY(-2px);}
+  .btn-filo{border:1px solid rgba(243,233,216,0.4);color:var(--crema);font-weight:500;}
+  .btn-filo:hover{border-color:var(--ambra);color:var(--ambra-chiara);transform:translateY(-2px);}
+
+  .orari-riga{
+    position:relative;z-index:2;display:flex;justify-content:center;flex-wrap:wrap;
+    padding:38px 20px 56px;margin-top:auto;
+    opacity:0;animation:fadeUp 1.2s ease forwards 0.9s;
+  }
+  .giorno{padding:0 24px;text-align:center;border-left:1px solid rgba(243,233,216,0.14);}
+  .giorno:first-child{border-left:none;}
+  .g-nome{
+    display:block;font-family:'Bodoni Moda',serif;font-style:italic;font-weight:500;
+    font-size:0.85rem;letter-spacing:0.04em;color:var(--ambra-chiara);margin-bottom:6px;
+  }
+  .g-stato{display:block;font-size:0.76rem;color:var(--crema-tenue);white-space:nowrap;}
+  @media(max-width:700px){
+    .orari-riga{padding:30px 12px 46px;}
+    .giorno{width:33.333%;border-left:none;border-top:1px solid rgba(243,233,216,0.14);padding:14px 8px;}
+  }
+  @media(max-width:420px){.giorno{width:50%;}}
+
+  /* ---------- SEZIONI GENERICHE ---------- */
+  section{padding:120px 0;}
+  .sez-intro{text-align:center;max-width:620px;margin:0 auto 64px;}
+  .sez-super{font-size:0.74rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--ambra-chiara);margin-bottom:18px;font-weight:600;}
+  .sez-titolo{
+    font-family:'Bodoni Moda',serif;font-weight:500;
+    font-size:clamp(2.1rem,5vw,3.3rem);line-height:1.12;color:var(--crema);
+  }
+  .sez-titolo em{font-style:italic;color:var(--ambra);}
+  .sez-testo{color:var(--crema-tenue);margin-top:18px;font-size:0.98rem;}
+
+  /* ---------- MENU ---------- */
+  .menu-signature{background:var(--bruno-2);border-top:1px solid var(--filo);border-bottom:1px solid var(--filo);}
+  .split-menu{display:grid;grid-template-columns:1.05fr 0.95fr;gap:74px;align-items:center;}
+  @media(max-width:840px){.split-menu{grid-template-columns:1fr;gap:52px;}}
+  .menu-testo{max-width:480px;}
+  .menu-testo .sez-super{margin-bottom:16px;}
+  .menu-testo p{color:var(--crema-tenue);margin-top:20px;font-size:0.98rem;}
+  .menu-elenco{margin-top:30px;display:flex;flex-direction:column;gap:26px;}
+  .menu-cat h3{
+    font-family:'Bodoni Moda',serif;font-style:italic;font-weight:500;
+    font-size:1.05rem;color:var(--ambra-chiara);margin-bottom:14px;
+    padding-bottom:8px;border-bottom:1px solid var(--filo);
+  }
+  .menu-voce{display:flex;align-items:baseline;gap:8px;margin-bottom:11px;}
+  .menu-voce:last-child{margin-bottom:0;}
+  .mv-nome{font-size:0.93rem;color:var(--crema);}
+  .mv-leader{flex:1;border-bottom:1px dotted rgba(243,233,216,0.28);transform:translateY(-4px);min-width:16px;}
+  .mv-prezzo{font-family:'Bodoni Moda',serif;font-size:0.93rem;color:var(--ambra-chiara);white-space:nowrap;}
+  .menu-azioni{display:flex;gap:14px;flex-wrap:wrap;margin-top:32px;align-items:center;}
+  .menu-nota{font-size:0.82rem;color:var(--crema-tenue);font-style:italic;margin-top:16px;}
+
+  .menu-cerchio{display:flex;justify-content:center;}
+  .cerchio-piatto{
+    position:relative;width:min(380px,80vw);aspect-ratio:1;border-radius:50%;
+    border:1px solid var(--ambra);
+    background:
+      radial-gradient(circle at 32% 28%, rgba(217,173,110,0.28), transparent 55%),
+      radial-gradient(circle at 68% 74%, rgba(122,74,44,0.4), transparent 60%),
+      linear-gradient(160deg,#2c1c0f,#160e08);
+    display:flex;align-items:center;justify-content:center;text-align:center;padding:36px;
+  }
+  .cerchio-piatto::before{
+    content:'';position:absolute;inset:-20px;border:1px solid rgba(184,133,63,0.22);border-radius:50%;
+  }
+  .cerchio-piatto span{font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(243,233,216,0.55);}
+
+  /* ---------- GALLERIA ---------- */
+  .gallery-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;grid-template-rows:230px 230px;gap:14px;}
+  .gallery-grid > div:nth-child(1){grid-row:span 2;}
+  @media(max-width:800px){
+    .gallery-grid{grid-template-columns:1fr 1fr;grid-template-rows:160px 160px 160px;}
+    .gallery-grid > div:nth-child(1){grid-row:span 1;}
+  }
+  .ph{
+    border-radius:4px;position:relative;overflow:hidden;
+    display:flex;align-items:flex-end;padding:18px;
+    font-size:0.72rem;color:rgba(243,233,216,0.55);letter-spacing:0.04em;text-transform:uppercase;
+  }
+  .ph1{background:radial-gradient(ellipse at 30% 20%, rgba(184,133,63,0.28), transparent 55%), linear-gradient(155deg,#2e1e10,#170f08);}
+  .ph2{background:radial-gradient(ellipse at 70% 30%, rgba(122,74,44,0.3), transparent 55%), linear-gradient(155deg,#23160c,#100a07);}
+  .ph3{background:radial-gradient(ellipse at 50% 60%, rgba(217,173,110,0.2), transparent 55%), linear-gradient(155deg,#28190d,#130c07);}
+  .ph4{background:radial-gradient(ellipse at 25% 70%, rgba(122,74,44,0.26), transparent 55%), linear-gradient(155deg,#1e140c,#110b07);}
+  .ph5{background:radial-gradient(ellipse at 60% 25%, rgba(184,133,63,0.24), transparent 55%), linear-gradient(155deg,#261809,#120c07);}
+
+  /* ---------- INFO ---------- */
+  .info{background:var(--bruno-2);}
+  .info-griglia{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;max-width:900px;margin:0 auto;}
+  @media(max-width:760px){.info-griglia{grid-template-columns:1fr;gap:44px;}}
+  .info-testo{display:flex;flex-direction:column;gap:34px;text-align:left;}
+  .info-blocco h5{
+    font-size:0.72rem;letter-spacing:0.3em;text-transform:uppercase;
+    color:var(--ambra-chiara);font-weight:600;margin-bottom:18px;
+  }
+  .info-blocco p{font-size:0.95rem;color:var(--crema-tenue);line-height:2;}
+  .info-blocco a{border-bottom:1px solid var(--ambra);color:var(--crema);transition:color .3s;}
+  .info-blocco a:hover{color:var(--ambra-chiara);}
+  .map-box{
+    min-height:280px;border-radius:4px;border:1px solid var(--filo);
+    background:
+      radial-gradient(circle at 50% 50%, rgba(184,133,63,0.14), transparent 60%),
+      repeating-linear-gradient(0deg, rgba(243,233,216,0.03) 0 1px, transparent 1px 40px),
+      repeating-linear-gradient(90deg, rgba(243,233,216,0.03) 0 1px, transparent 1px 40px),
+      var(--bruno-3);
+    display:flex;align-items:center;justify-content:center;position:relative;
+  }
+  .pin{width:14px;height:14px;border-radius:50% 50% 50% 0;background:var(--terra);transform:rotate(-45deg);box-shadow:0 0 0 6px rgba(122,74,44,0.22);}
+  .map-label{position:absolute;bottom:18px;left:18px;font-size:0.72rem;color:var(--crema-tenue);letter-spacing:0.04em;}
+
+  /* ---------- RECENSIONI ---------- */
+  .rec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  @media(max-width:860px){.rec-grid{grid-template-columns:1fr;}}
+  .rec-card{background:var(--bruno-3);border:1px solid var(--filo);border-radius:6px;padding:30px 26px;}
+  .stelle{color:var(--ambra);font-size:1rem;letter-spacing:2px;margin-bottom:14px;}
+  .rec-testo{font-size:0.97rem;color:var(--crema);font-style:italic;line-height:1.6;}
+  .rec-autore{margin-top:18px;font-size:0.8rem;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;color:var(--crema-tenue);}
+  .rec-fonte{font-size:0.72rem;color:rgba(184,165,140,0.75);margin-top:2px;}
+
+  /* ---------- CTA TAVOLO (cliente finale) ---------- */
+  .prenota{
+    padding:130px 28px;text-align:center;
+    background:radial-gradient(ellipse 700px 340px at 50% 0%, rgba(184,133,63,0.16), transparent 70%), var(--bruno);
+    border-top:1px solid var(--filo);
+  }
+  .prenota h2{
+    font-family:'Bodoni Moda',serif;font-weight:500;
+    font-size:clamp(2.2rem,5vw,3.6rem);line-height:1.12;max-width:660px;margin:0 auto;color:var(--crema);
+  }
+  .prenota h2 em{font-style:italic;color:var(--ambra);}
+  .prenota .indirizzo-tel{margin:26px auto 0;max-width:460px;color:var(--crema-tenue);font-size:1rem;}
+  .prenota .indirizzo-tel a{color:var(--ambra-chiara);border-bottom:1px solid rgba(217,173,110,0.4);}
+  .prenota .btn-pieno{margin-top:38px;}
+  .prenota .nota-tavolo{margin-top:20px;font-size:0.85rem;color:var(--crema-tenue);}
+
+  /* ---------- CTA META (proprietario del locale) ---------- */
+  .cta-meta{
+    padding:96px 28px;text-align:center;
+    background:var(--bruno-2);border-top:1px solid var(--filo);
+  }
+  .cta-meta h2{
+    font-family:'Bodoni Moda',serif;font-weight:500;
+    font-size:clamp(1.9rem,4.2vw,2.9rem);line-height:1.15;color:var(--crema);max-width:620px;margin:0 auto;
+  }
+  .cta-meta h2 em{font-style:italic;color:var(--ambra);}
+  .cta-meta p{margin:20px auto 0;max-width:520px;color:var(--crema-tenue);font-size:0.98rem;}
+  .cta-meta-azioni{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:34px;}
+
+  footer{
+    padding:42px 28px;text-align:center;border-top:1px solid var(--filo);
+    font-size:0.74rem;letter-spacing:0.06em;color:var(--crema-tenue);
+  }
+  footer b{color:var(--ambra-chiara);font-weight:600;}
+
+  a:focus-visible,button:focus-visible{outline:2px solid var(--ambra);outline-offset:3px;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-sinistra">
+    <div class="logo-cerchio">LA</div>
+    <span class="nav-nome">L'Americano Bar</span>
+    <span class="nav-sep" aria-hidden="true"></span>
+    <a href="tel:+390350000000" class="nav-contatto">035 000 0000</a>
+  </div>
+  <div class="nav-destra">
+    <a href="#menu" class="btn-pillola">Il bar</a>
+    <a href="#prenota" class="btn-pillola">Tavolo</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="bagliori" aria-hidden="true"></div>
+  <div class="hero-contenuto">
+    <p class="hero-corsivo">Aperto tutti i giorni, dalle 7:30 alle 23</p>
+    <h1 class="hero-titolo">L'Americano Bar</h1>
+    <p class="hero-sotto">Il punto fermo del quartiere: caffè al mattino, un piatto veloce a pranzo, l'aperitivo la sera. Aperto sette giorni su sette, senza mai chiudere troppo presto.</p>
+    <div class="hero-azioni">
+      <a href="#prenota" class="btn btn-pieno">Prenota un tavolo</a>
+      <a href="#menu" class="btn btn-filo">Guarda il bar</a>
+    </div>
+  </div>
+  <div class="orari-riga wrap">
+    <div class="giorno"><span class="g-nome">Lun</span><span class="g-stato">07:30–23:00</span></div>
+    <div class="giorno"><span class="g-nome">Mar</span><span class="g-stato">07:30–23:00</span></div>
+    <div class="giorno"><span class="g-nome">Mer</span><span class="g-stato">07:30–23:00</span></div>
+    <div class="giorno"><span class="g-nome">Gio</span><span class="g-stato">07:30–23:00</span></div>
+    <div class="giorno"><span class="g-nome">Ven</span><span class="g-stato">07:30–23:00</span></div>
+    <div class="giorno"><span class="g-nome">Sab</span><span class="g-stato">07:30–23:00</span></div>
+    <div class="giorno"><span class="g-nome">Dom</span><span class="g-stato">07:30–23:00</span></div>
+  </div>
+</header>
+
+<section class="menu-signature" id="menu">
+  <div class="wrap split-menu">
+    <div class="menu-testo">
+      <div class="sez-super">Il bar</div>
+      <h2 class="sez-titolo">Caffè, pranzo e <em>aperitivo</em></h2>
+      <p>Un bar di quartiere che segue la giornata: colazione al banco, un piatto veloce a mezzogiorno, aperitivo e stuzzichini la sera.</p>
+      <div class="menu-elenco">
+        <div class="menu-cat">
+          <h3>Colazione</h3>
+          <div class="menu-voce"><span class="mv-nome">Caffè</span><span class="mv-leader"></span><span class="mv-prezzo">1,20€</span></div>
+          <div class="menu-voce"><span class="mv-nome">Cappuccino</span><span class="mv-leader"></span><span class="mv-prezzo">1,60€</span></div>
+          <div class="menu-voce"><span class="mv-nome">Brioche</span><span class="mv-leader"></span><span class="mv-prezzo">1,30€</span></div>
+        </div>
+        <div class="menu-cat">
+          <h3>Pranzo veloce</h3>
+          <div class="menu-voce"><span class="mv-nome">Toast prosciutto e formaggio</span><span class="mv-leader"></span><span class="mv-prezzo">3,50€</span></div>
+          <div class="menu-voce"><span class="mv-nome">Panino nostrano</span><span class="mv-leader"></span><span class="mv-prezzo">6€</span></div>
+          <div class="menu-voce"><span class="mv-nome">Insalatona di stagione</span><span class="mv-leader"></span><span class="mv-prezzo">9€</span></div>
+        </div>
+        <div class="menu-cat">
+          <h3>Aperitivo</h3>
+          <div class="menu-voce"><span class="mv-nome">Spritz Aperol o Campari</span><span class="mv-leader"></span><span class="mv-prezzo">5,50€</span></div>
+          <div class="menu-voce"><span class="mv-nome">Americano</span><span class="mv-leader"></span><span class="mv-prezzo">5€</span></div>
+          <div class="menu-voce"><span class="mv-nome">Calice di vino</span><span class="mv-leader"></span><span class="mv-prezzo">4,50€</span></div>
+        </div>
+        <div class="menu-cat">
+          <h3>Stuzzichini &amp; taglieri</h3>
+          <div class="menu-voce"><span class="mv-nome">Tagliere misto per due</span><span class="mv-leader"></span><span class="mv-prezzo">15€</span></div>
+          <div class="menu-voce"><span class="mv-nome">Patatine e olive</span><span class="mv-leader"></span><span class="mv-prezzo">5€</span></div>
+          <div class="menu-voce"><span class="mv-nome">Nachos con cheddar</span><span class="mv-leader"></span><span class="mv-prezzo">8€</span></div>
+        </div>
+      </div>
+      <div class="menu-azioni">
+        <a href="#" class="btn-pillola">Vedi il menu completo</a>
+        <a href="#prenota" class="btn btn-pieno">Prenota un tavolo</a>
+      </div>
+      <div class="menu-nota">Il menu è d'esempio: qui andranno le proposte vere del bar.</div>
+    </div>
+    <div class="menu-cerchio">
+      <div class="cerchio-piatto"><span>Foto del bancone o di un aperitivo</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="galleria">
+  <div class="wrap">
+    <div class="sez-intro">
+      <div class="sez-super">Galleria</div>
+      <h2 class="sez-titolo">Uno sguardo <em>dentro il bar</em></h2>
+      <p class="sez-testo">Qui vanno le foto vere del bar — banco, tavoli, clienti abituali: anche solo scattate col telefono, il resto lo sistemiamo noi.</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="ph ph1">Foto del bancone al mattino</div>
+      <div class="ph ph2">Foto di un aperitivo in compagnia</div>
+      <div class="ph ph3">Foto dei tavoli all'aperto</div>
+      <div class="ph ph4">Foto dell'insegna del bar</div>
+      <div class="ph ph5">Foto della sala interna</div>
+    </div>
+  </div>
+</section>
+
+<section class="info" id="info">
+  <div class="wrap">
+    <div class="sez-intro">
+      <div class="sez-super">Informazioni</div>
+      <h2 class="sez-titolo">Vi <em>aspettiamo</em></h2>
+    </div>
+    <div class="info-griglia">
+      <div class="info-testo">
+        <div class="info-blocco">
+          <h5>Orari</h5>
+          <p>Tutti i giorni<br>07:30 — 23:00<br>Nessun giorno di chiusura</p>
+        </div>
+        <div class="info-blocco">
+          <h5>Dove</h5>
+          <p>Via Collina Verde, 2<br>Clusone — Bergamo</p>
+        </div>
+        <div class="info-blocco">
+          <h5>Tavoli e gruppi</h5>
+          <p><a href="tel:+390350000000">035 000 0000</a><br><a href="https://wa.me/390000000000">WhatsApp diretto</a><br>Per tavolate e occasioni speciali</p>
+        </div>
+      </div>
+      <div class="map-box">
+        <div class="pin"></div>
+        <span class="map-label">→ qui la mappa Google integrata</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="recensioni">
+  <div class="wrap">
+    <div class="sez-intro">
+      <div class="sez-super">Recensioni</div>
+      <h2 class="sez-titolo">Dicono <em>di noi</em></h2>
+      <p class="sez-testo">Un assaggio di come racconteremmo la vostra clientela abituale — le recensioni vere arriveranno con la scheda Google del locale.</p>
+    </div>
+    <div class="rec-grid">
+      <div class="rec-card">
+        <div class="stelle">★★★★★</div>
+        <p class="rec-testo">"Ci fermiamo ogni mattina per il caffè, aperto anche quando altri sono ancora chiusi. Personale che ti riconosce al volo."</p>
+        <div class="rec-autore">Anna R.</div>
+        <div class="rec-fonte">Cliente abituale</div>
+      </div>
+      <div class="rec-card">
+        <div class="stelle">★★★★★</div>
+        <p class="rec-testo">"Il mio bar per l'aperitivo del venerdì con gli amici: tavoli comodi e stuzzichini sempre freschi."</p>
+        <div class="rec-autore">Luca F.</div>
+        <div class="rec-fonte">Cliente abituale</div>
+      </div>
+      <div class="rec-card">
+        <div class="stelle">★★★★☆</div>
+        <p class="rec-testo">"Comodissimo, aperto tutti i giorni fino a tardi. Ideale anche per un pranzo veloce durante la settimana."</p>
+        <div class="rec-autore">Paola G.</div>
+        <div class="rec-fonte">Cliente abituale</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="prenota" id="prenota">
+  <div class="sez-super">Tavolo al bar</div>
+  <h2>Passa quando <em>vuoi</em>.</h2>
+  <div class="indirizzo-tel">Via Collina Verde, 2 — Clusone (BG)<br><a href="tel:+390350000000">035 000 0000</a></div>
+  <a href="https://wa.me/390000000000" class="btn btn-pieno">Scrivici su WhatsApp</a>
+  <p class="nota-tavolo">Per un tavolo dell'aperitivo o per una tavolata, un messaggio basta.</p>
+</section>
+
+<section class="cta-meta">
+  <h2>Questo è solo un <em>esempio</em>.</h2>
+  <p>È una bozza costruita su misura per L'Americano Bar: con le vostre foto, il vostro menu e le recensioni vere può essere online in poco tempo. Se vi piace, ne parliamo.</p>
+  <div class="cta-meta-azioni">
+    <a href="https://wa.me/393314660537" class="btn btn-pieno">Scrivimi su WhatsApp</a>
+    <a href="mailto:lorenzo.zenucchi00@gmail.com" class="btn btn-filo">Mandami una email</a>
+  </div>
+</section>
+
+<footer>
+  Bozza dimostrativa creata da <b>Lorenzo Zenucchi</b> — Siti Web per attività locali · Val Seriana, BG
+</footer>
+
+</body>
+</html>
