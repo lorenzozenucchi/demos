@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Parrucchiere Action Hair – Colore, Balayage e Trattamenti Luxury ad Albino (BG)</title>
+<meta name="description" content="Parrucchiere Action Hair ad Albino (BG): specialisti in colore, balayage e biondi su misura, con la linea di trattamenti professionali Innovatis Luxury Care. Viale Aldo Moro, 2/p.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HairSalon",
+  "name": "Parrucchiere Action Hair",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Viale Aldo Moro, 2/p",
+    "addressLocality": "Albino",
+    "addressRegion": "BG",
+    "postalCode": "24021",
+    "addressCountry": "IT"
+  },
+  "telephone": "+39035754102",
+  "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.2", "reviewCount": "17" }
+}
+</script>
+
+<style>
+/* Hallmark · pre-emit critique: P4 H4 E4 S5 R4 V4 — audit passato il
+   18/09/2026, correzioni applicate: nav ricondotta da N1a (wordmark+link
+   inline+hamburger, identico a diamoci-un-taglio/ilaria-hairstyle) a N9
+   edge-aligned minimal (wordmark sinistra, un solo CTA destra, nessuna
+   riga di link); hero da "tutto centrato" a lockup nome+h1 centrato con
+   lede/CTA che rompono l'asse a sinistra; sezione prodotti da griglia di
+   card (eco di specializzazioni) a foto+didascalia senza bordo. Struttura
+   custom dedotta dal brief, non dal catalogo dei 20 temi Hallmark: qui la
+   skill lavora solo su disciplina strutturale/esecutiva, mai su identità
+   visiva. */
+/* ========================================================================
+   TOKEN — identità visiva dal brief. Non toccare senza motivo nel brief.
+   Palette dedotta SOLO dai lavori di colore e dalle foto prodotto (nessuna
+   foto d'ambiente): vedi clienti/parrucchiere-action-hair/brief.md §2.
+   ======================================================================== */
+:root{
+  --bianco-perla:#F0EEEA;
+  --nero-espresso:#1E1512;
+  --rame-acceso:#A8502E;
+  --oro-metallizzato:#C6A238;
+  --miele-dorato:#DBA860;
+  --grigio-tortora:#948C82;
+  --superficie-carta:#FFFFFF;
+
+  /* stessi colori come triplette RGB: solo per comporre alpha
+     (rgba(var(--x-rgb),N)) senza mai scrivere un colore a mano fuori da
+     questo blocco — disciplina "locked tokens" */
+  --bianco-perla-rgb:240,238,234;
+  --nero-espresso-rgb:30,21,18;
+  --rame-acceso-rgb:168,80,46;
+  --oro-metallizzato-rgb:198,162,56;
+  --miele-dorato-rgb:219,168,96;
+  --grigio-tortora-rgb:148,140,130;
+
+  --font-titoli:'Playfair Display', serif;
+  --font-testo:'Figtree', sans-serif;
+
+  /* motion — personalità Premium/Luxury (motion-design): fashion editoriale,
+     "Innovatis Luxury Care". Duration/easing dalla tabella Premium, che qui
+     vince su MOTION-SPEC.md dove i due divergono. */
+  --ease:cubic-bezier(.4,0,.2,1);
+  --t-rapida:180ms;
+  --t-standard:500ms;
+  --t-lenta:800ms;
+
+  --raggio:14px;
+  --raggio-piccolo:8px;
+  --ombra: 0 14px 34px rgba(var(--nero-espresso-rgb),.16);
+}
+
+/* NOTA CONTRASTO (verificato con formula WCAG prima della consegna):
+   rame-acceso su bianco-perla = 4.70:1 (passa AA testo normale, ok da 15px
+   in su) ma su nero-espresso scende a 3.29:1 — lì solo testo grande/bordi.
+   oro-metallizzato e miele-dorato falliscono AA su bianco-perla (2.10:1 e
+   1.85:1): restano decorativi su fondo chiaro (bordi, badge con testo
+   scuro), ma su nero-espresso salgono a 7.37:1 e 8.35:1 — lì reggono bene
+   titoli ed etichette. grigio-tortora è decorativo/bordo su chiaro
+   (2.86:1), testo secondario ammesso su scuro (5.41:1). Bottone primario:
+   nero-espresso/bianco-perla (15.47:1), il più sicuro in ogni contesto. */
+
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;overflow-x:clip;}
+@media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} }
+
+body{
+  font-family:var(--font-testo);
+  color:var(--nero-espresso);
+  background:var(--bianco-perla);
+  line-height:1.6;
+  font-size:16px;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:clip;
+}
+
+img{max-width:100%;height:auto;display:block;}
+a{color:inherit;text-decoration:none;}
+h1,h2,h3{font-family:var(--font-titoli);font-weight:700;font-style:normal;line-height:1.12;color:var(--nero-espresso);overflow-wrap:anywhere;min-width:0;}
+p{max-width:62ch;}
+ul{list-style:none;}
+button{font-family:inherit;}
+
+.container{width:100%;max-width:1180px;margin:0 auto;padding:0 20px;}
+/* padding variato di proposito tra sezioni, non tutte uguali */
+section{padding:76px 0;}
+#lavori{padding:88px 0 80px;}
+#stile{padding:64px 0;}
+#prodotti{padding:92px 0;}
+.sezione-titolo{font-size:clamp(1.7rem, 1.2rem + 1.8vw, 2.6rem);margin-bottom:14px;}
+.sezione-intro{color:rgba(var(--nero-espresso-rgb),.72);max-width:58ch;margin-bottom:44px;font-size:1.05rem;}
+
+.eyebrow{
+  display:inline-block;font-family:var(--font-testo);font-weight:700;
+  font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--rame-acceso);margin-bottom:12px;
+}
+
+.skip-link{
+  position:absolute;left:-9999px;top:0;background:var(--nero-espresso);color:var(--bianco-perla);
+  padding:10px 18px;border-radius:0 0 8px 0;z-index:200;font-weight:600;
+}
+.skip-link:focus{left:0;}
+:focus-visible{outline:3px solid var(--nero-espresso);outline-offset:3px;}
+
+/* ---- bottoni --------------------------------------------------------- */
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--font-testo);font-weight:700;font-size:.96rem;
+  padding:14px 26px;border-radius:999px;border:2px solid transparent;
+  cursor:pointer;white-space:nowrap;
+  transition:transform var(--t-rapida) var(--ease),
+             box-shadow var(--t-rapida) var(--ease),
+             background-color var(--t-rapida) var(--ease),
+             color var(--t-rapida) var(--ease),
+             border-color var(--t-rapida) var(--ease);
+  -webkit-tap-highlight-color:transparent;
+}
+.btn-primary{background:var(--nero-espresso);color:var(--bianco-perla);}
+.btn-primary:hover{background:var(--rame-acceso);box-shadow:var(--ombra);}
+.btn-primary:focus-visible{outline:3px solid var(--nero-espresso);outline-offset:3px;}
+.btn-primary:active{transform:scale(.97);}
+
+.btn-secondary{background:transparent;border-color:var(--rame-acceso);color:var(--rame-acceso);}
+.btn-secondary:hover{background:var(--nero-espresso);border-color:var(--nero-espresso);color:var(--bianco-perla);}
+.btn-secondary:focus-visible{outline:3px solid var(--nero-espresso);outline-offset:3px;}
+.btn-secondary:active{transform:scale(.97);}
+
+.btn-su-chiaro{background:var(--bianco-perla);color:var(--nero-espresso);}
+.btn-su-chiaro:hover{background:var(--oro-metallizzato);}
+.btn-su-chiaro:focus-visible{outline:3px solid var(--bianco-perla);outline-offset:3px;}
+.btn-su-chiaro:active{transform:scale(.97);}
+
+.link-testo{
+  display:inline-flex;align-items:center;gap:6px;font-weight:700;color:var(--rame-acceso);
+  border-bottom:2px solid var(--oro-metallizzato);padding-bottom:2px;
+  transition:color var(--t-rapida) var(--ease), border-color var(--t-rapida) var(--ease);
+}
+.link-testo:hover{color:var(--nero-espresso);border-color:var(--rame-acceso);}
+.link-testo:focus-visible{outline:3px solid var(--nero-espresso);outline-offset:4px;}
+.link-testo:active{opacity:.75;}
+a:visited{color:inherit;}
+
+/* ========================================================================
+   NOME DELL'ATTIVITÀ — lockup a due righe (nome + qualifica/luogo).
+   Scelto per via dell'omonimia con un altro "Action Hair" a Nembro (brief
+   §Identità): il nome da solo non basta, la qualifica lo accompagna
+   sempre nella stessa unità visiva, sia in barra sia in hero.
+   ======================================================================== */
+.wordmark-nome{font-family:var(--font-titoli);font-weight:700;white-space:nowrap;}
+.wordmark-qualifica{
+  display:block;font-family:var(--font-testo);font-weight:600;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--rame-acceso);
+  white-space:nowrap;
+}
+
+/* ========================================================================
+   HEADER — edge-aligned minimale: wordmark a sinistra, un solo CTA a
+   destra, spazio vuoto in mezzo, nessuna riga di link. Scelto apposta per
+   non ripetere l'archetipo wordmark+link-inline+hamburger già usato per
+   diamoci-un-taglio e ilaria-hairstyle: qui l'assenza è la scelta,
+   coerente col tono editoriale-luxury del brief. Si naviga scorrendo,
+   con l'unico rimando esplicito nel CTA secondario dell'hero.
+   ======================================================================== */
+.site-header{
+  position:sticky;top:0;z-index:100;
+  background:rgba(var(--bianco-perla-rgb),.92);backdrop-filter:blur(6px);
+  /* grigio-tortora: unico uso del neutro freddo di contrasto del brief, qui
+     come filo di separazione della barra */
+  border-bottom:1px solid rgba(var(--grigio-tortora-rgb),.4);
+}
+.header-inner{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:16px 0;
+}
+.wordmark{display:flex;flex-direction:column;color:var(--nero-espresso);min-width:0;}
+.wordmark .wordmark-nome{font-size:1.32rem;}
+.wordmark .wordmark-qualifica{font-size:.6rem;margin-top:2px;}
+
+.header-call{
+  display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:.88rem;color:var(--nero-espresso);
+  padding:10px 18px;border-radius:999px;background:rgba(var(--oro-metallizzato-rgb),.18);
+  transition:background var(--t-rapida) var(--ease), transform var(--t-rapida) var(--ease);
+}
+.header-call:hover{background:rgba(var(--oro-metallizzato-rgb),.32);}
+.header-call:focus-visible{outline:3px solid var(--nero-espresso);outline-offset:3px;}
+.header-call:active{transform:scale(.96);}
+/* sotto i 400px la pillola col numero completo comprime troppo il
+   wordmark: scende a sola icona, il numero resta nell'aria-label */
+@media (max-width:399px){
+  .header-call{padding:10px;gap:0;}
+  .header-call-testo{display:none;}
+}
+
+/* ========================================================================
+   HERO — niente foto d'ambiente/team: il nome è tipografico, il portfolio
+   arriva subito sotto come filmstrip a scorrimento (non una griglia fissa,
+   per restare leggibile anche a 320px senza rimpicciolire troppo le foto).
+   ======================================================================== */
+.hero{padding:60px 0 0;}
+.hero-testo{max-width:720px;margin:0 auto;text-align:center;}
+.hero-sopratitolo{margin-bottom:22px;}
+.hero-sopratitolo .wordmark-nome{font-size:clamp(2.2rem, 1.5rem + 3.2vw, 4rem);line-height:1.05;color:var(--nero-espresso);}
+.hero-sopratitolo .wordmark-qualifica{font-size:clamp(.72rem,.65rem + .3vw,.85rem);margin-top:10px;}
+
+.hero h1{
+  font-size:clamp(1.5rem, 1.15rem + 1.6vw, 2.35rem);
+  margin:0 auto 28px;max-width:20ch;
+}
+/* il sopratitolo+h1 restano centrati come un unico "poster lockup"; lede e
+   CTA rompono l'asse (allineati a sinistra del blocco): un hero tutto
+   centrato su ogni riga è l'anti-pattern "centred-everything" */
+.hero-sub{
+  font-size:1.1rem;color:rgba(var(--nero-espresso-rgb),.75);
+  text-align:left;margin:0 0 32px;max-width:46ch;
+}
+.hero-cta{display:flex;flex-wrap:wrap;justify-content:flex-start;gap:16px;margin-bottom:52px;}
+
+.hero-filmstrip-wrap{position:relative;}
+.hero-filmstrip{
+  display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;
+  padding:4px 20px 26px;margin:0 -20px;scrollbar-width:thin;
+}
+.hero-filmstrip figure{
+  flex:0 0 auto;width:clamp(150px, 34vw, 230px);scroll-snap-align:start;
+  border-radius:var(--raggio);overflow:hidden;border:2px solid var(--oro-metallizzato);
+  aspect-ratio:4/5;box-shadow:var(--ombra);
+}
+.hero-filmstrip img{width:100%;height:100%;object-fit:cover;}
+
+/* ========================================================================
+   LAVORI — galleria portfolio (nessuna foto d'ambiente da mostrare)
+   ======================================================================== */
+.galleria-grid{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;
+}
+@media (min-width:640px){ .galleria-grid{grid-template-columns:repeat(3,minmax(0,1fr));} }
+@media (min-width:1040px){ .galleria-grid{grid-template-columns:repeat(4,minmax(0,1fr));} }
+
+.galleria-grid figure{display:flex;flex-direction:column;gap:10px;}
+.galleria-foto{border-radius:var(--raggio);overflow:hidden;aspect-ratio:4/5;background:rgba(var(--grigio-tortora-rgb),.14);}
+.galleria-foto img{width:100%;height:100%;object-fit:cover;}
+.galleria-grid figcaption{font-size:.85rem;font-weight:600;color:rgba(var(--nero-espresso-rgb),.72);}
+
+/* ========================================================================
+   STILE — manifesto testuale (nessuna foto: solo tipografia, come da brief)
+   ======================================================================== */
+.stile-blocco{max-width:66ch;margin:0 auto;text-align:center;position:relative;padding-top:16px;}
+.stile-blocco::before{
+  content:"";display:block;width:56px;height:3px;background:var(--oro-metallizzato);
+  margin:0 auto 28px;border-radius:2px;
+}
+.stile-blocco h2{font-size:clamp(1.6rem, 1.2rem + 1.4vw, 2.3rem);margin-bottom:20px;}
+.stile-blocco p{margin:0 auto 16px;font-size:1.08rem;color:rgba(var(--nero-espresso-rgb),.82);}
+.stile-blocco p:last-child{margin-bottom:0;}
+
+/* ========================================================================
+   SPECIALIZZAZIONI
+   ======================================================================== */
+.specializzazioni-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:26px;}
+@media (min-width:720px){ .specializzazioni-grid{grid-template-columns:repeat(3,minmax(0,1fr));} }
+
+.spec-card{
+  background:var(--superficie-carta);border-top:3px solid var(--oro-metallizzato);border-radius:var(--raggio);overflow:hidden;
+  box-shadow:0 2px 12px rgba(var(--nero-espresso-rgb),.07);
+  display:flex;flex-direction:column;
+}
+.spec-foto{aspect-ratio:4/5;overflow:hidden;}
+.spec-foto img{width:100%;height:100%;object-fit:cover;}
+.spec-corpo{padding:24px;display:flex;flex-direction:column;gap:8px;flex:1;}
+.spec-card h3{font-size:1.2rem;}
+.spec-card p{font-size:.95rem;color:rgba(var(--nero-espresso-rgb),.75);}
+
+/* ========================================================================
+   PRODOTTI — sezione scura, l'unica pausa cromatica della pagina: coerente
+   col posizionamento "luxury" della linea Innovatis (brief §5.2)
+   ======================================================================== */
+.prodotti-scuro{background:var(--nero-espresso);color:var(--bianco-perla);}
+.prodotti-scuro h2{color:var(--bianco-perla);}
+.prodotti-scuro .sezione-intro{color:rgba(var(--bianco-perla-rgb),.75);}
+
+/* Volutamente NON una seconda griglia di card come specializzazioni: qui è
+   foto + didascalia senza bordo/sfondo, più vicina a un look-book — la
+   specializzazioni-grid resta l'unica griglia di card "cliccabili" della
+   pagina, questa è presentazione, non un'azione da scegliere. */
+.prodotti-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:32px;}
+@media (min-width:720px){ .prodotti-grid{grid-template-columns:repeat(3,minmax(0,1fr));} }
+
+.prodotto-foto{aspect-ratio:4/5;overflow:hidden;border-radius:var(--raggio);}
+.prodotto-foto img{width:100%;height:100%;object-fit:cover;}
+.prodotto-corpo{padding-top:16px;border-top:1px solid rgba(var(--oro-metallizzato-rgb),.35);}
+.prodotto-corpo p{font-size:.92rem;color:rgba(var(--bianco-perla-rgb),.82);}
+
+/* ========================================================================
+   DOVE SIAMO + RECENSIONI — sezione unica (niente orari certi da mostrare
+   a parte: brief §7, li confermiamo solo per telefono)
+   ======================================================================== */
+.dove-grid{display:grid;gap:28px;grid-template-columns:1fr;}
+@media (min-width:820px){ .dove-grid{grid-template-columns:1fr 1fr;} }
+
+.dove-card{
+  background:var(--superficie-carta);border-radius:var(--raggio);padding:28px;
+  box-shadow:0 2px 12px rgba(var(--nero-espresso-rgb),.07);
+}
+.dove-card h3{font-size:1.1rem;margin-bottom:18px;}
+.dove-riga{display:flex;gap:14px;align-items:flex-start;margin-bottom:18px;}
+.dove-riga:last-child{margin-bottom:0;}
+.dove-icona{
+  flex:0 0 auto;width:38px;height:38px;border-radius:50%;background:rgba(var(--oro-metallizzato-rgb),.18);
+  display:flex;align-items:center;justify-content:center;font-size:1.05rem;
+}
+.dove-testo strong{display:block;font-family:var(--font-titoli);font-size:1.02rem;margin-bottom:2px;}
+.dove-testo a{font-weight:700;color:var(--rame-acceso);}
+.dove-testo a:hover{color:var(--nero-espresso);}
+.dove-testo a:focus-visible{outline:3px solid var(--nero-espresso);outline-offset:3px;}
+.dove-testo p{font-size:.92rem;color:rgba(var(--nero-espresso-rgb),.7);}
+
+.rating-riga{display:flex;align-items:baseline;gap:10px;margin-bottom:10px;flex-wrap:wrap;}
+.rating-numero{font-family:var(--font-titoli);font-weight:700;font-size:2rem;color:var(--nero-espresso);}
+.rating-scala{font-size:.95rem;color:rgba(var(--nero-espresso-rgb),.65);}
+.barra-valutazione{
+  height:6px;border-radius:999px;background:rgba(var(--nero-espresso-rgb),.1);
+  overflow:hidden;margin-bottom:14px;
+}
+/* miele-dorato: unico uso della tonalità di balayage più ricorrente del
+   brief, qui come riempimento della barra di valutazione (decorativo,
+   non testo — non soggetto a soglie di contrasto AA) */
+.barra-riempimento{height:100%;background:var(--miele-dorato);border-radius:999px;}
+.rating-nota{font-size:.88rem;color:rgba(var(--nero-espresso-rgb),.6);margin-bottom:20px;}
+
+/* ========================================================================
+   CTA FINALE — verso Lorenzo (deroga prospect avanzato)
+   ======================================================================== */
+.cta-finale{background:var(--rame-acceso);}
+.cta-finale :focus-visible{outline-color:var(--nero-espresso);}
+.cta-finale-card{
+  max-width:640px;margin:0 auto;background:var(--bianco-perla);color:var(--nero-espresso);
+  border-radius:var(--raggio);box-shadow:var(--ombra);padding:clamp(28px,5vw,48px);text-align:center;
+}
+.cta-finale-card .sezione-titolo{max-width:26ch;margin-left:auto;margin-right:auto;}
+.cta-finale-card p{margin:0 auto 28px;font-size:1.06rem;max-width:52ch;}
+.cta-finale-firma{margin-top:20px;font-size:.9rem;color:rgba(var(--nero-espresso-rgb),.7);font-weight:600;}
+
+/* ========================================================================
+   FOOTER
+   ======================================================================== */
+.site-footer{background:var(--nero-espresso);color:rgba(var(--bianco-perla-rgb),.82);padding:44px 0 30px;}
+.site-footer :focus-visible{outline-color:var(--bianco-perla);}
+.footer-wordmark{font-family:var(--font-titoli);font-weight:700;color:var(--bianco-perla);font-size:1.1rem;margin-bottom:8px;}
+.footer-grid p{color:rgba(var(--bianco-perla-rgb),.68);font-size:.92rem;max-width:52ch;margin-bottom:26px;}
+.footer-credito{
+  border-top:1px solid rgba(var(--bianco-perla-rgb),.15);padding-top:20px;
+  display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:.85rem;
+}
+.footer-credito a{font-weight:700;color:var(--bianco-perla);}
+.footer-credito a:hover{color:var(--oro-metallizzato);}
+.footer-credito a:focus-visible{outline:3px solid var(--bianco-perla);outline-offset:3px;}
+
+/* ========================================================================
+   RICETTE motion-locali — timing/easing dalla personalità Premium
+   (motion-design), sovraordinati a MOTION-SPEC.md dove divergono
+   ======================================================================== */
+
+/* kinetic-headline — SOLO sull'h1 hero, preset "fade": pura opacità, senza
+   traiettoria, coerente con la firma Premium ("minimal properties").
+   Consuma il budget dell'unico effetto vistoso della pagina: nessun altro
+   (shine-border/glare-hover/spotlight-card) è usato altrove. */
+[data-kinetic]{display:inline-block;}
+[data-kinetic] .k-unit{
+  display:inline-block;opacity:0;
+  transition:opacity var(--t-lenta) var(--ease);
+  transition-delay:var(--k-delay,0ms);
+  will-change:opacity;
+}
+[data-kinetic].is-in .k-unit{opacity:1;}
+[data-kinetic] .k-space{display:inline-block;width:.28em;}
+
+/* fade-in-up — sopratitolo, h1(kinetic), sottotitolo, cta, filmstrip */
+[data-fade]{
+  opacity:0;transform:translateY(20px);
+  transition:opacity var(--t-standard) var(--ease),
+             transform var(--t-standard) var(--ease);
+  transition-delay:var(--fade-delay,0ms);
+  will-change:opacity,transform;
+}
+[data-fade].is-in{opacity:1;transform:none;}
+
+/* scroll-reveal — sezioni/card sotto la piega */
+[data-reveal]{
+  opacity:0;transform:translateY(24px);
+  transition:opacity var(--t-standard) var(--ease),
+             transform var(--t-standard) var(--ease);
+  transition-delay:var(--reveal-delay,0ms);
+  will-change:opacity,transform;
+}
+[data-reveal].is-in{opacity:1;transform:none;}
+
+/* card-lift-hover — card specializzazioni/prodotti (griglie da 3, non dense) */
+.lift-card{
+  transition:transform var(--t-rapida) var(--ease), box-shadow var(--t-rapida) var(--ease);
+  will-change:transform;
+}
+.lift-card:hover{transform:translateY(-6px);box-shadow:0 16px 32px rgba(var(--nero-espresso-rgb),.2);}
+.lift-card:active{transform:translateY(-2px);}
+
+/* magnetic — solo sui 2 CTA primari (chiama salone / whatsapp Lorenzo) */
+.magnetic{transition:transform var(--t-rapida) var(--ease);}
+
+/* ripple-press — feedback al tap sui bottoni */
+.ripple{position:relative;overflow:hidden;-webkit-tap-highlight-color:transparent;}
+.ripple > .ripple-wave{
+  position:absolute;border-radius:50%;transform:scale(0);opacity:.35;
+  background:currentColor;pointer-events:none;
+  animation:ripple-bloom 600ms ease-out forwards;
+}
+@keyframes ripple-bloom{to{transform:scale(1);opacity:0;}}
+
+/* gradual-blur — adattata in orizzontale (bordo destro, non inferiore) per
+   segnalare che il filmstrip dell'hero scorre lateralmente */
+.grad-blur-dx{position:relative;}
+.grad-blur-dx::after{
+  content:"";position:absolute;top:0;right:0;bottom:26px;width:64px;pointer-events:none;
+  backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);
+  -webkit-mask:linear-gradient(to left, #000 25%, transparent);
+  mask:linear-gradient(to left, #000 25%, transparent);
+}
+
+/* ---- UNICO blocco prefers-reduced-motion, unifica tutte le ricette ---- */
+@media (prefers-reduced-motion: reduce){
+  [data-kinetic] .k-unit,[data-fade],[data-reveal]{
+    opacity:1 !important;transform:none !important;transition:none !important;
+  }
+  .lift-card,.lift-card:hover,.lift-card:active{transform:none;transition:box-shadow 120ms ease;}
+  .magnetic{transition:none;}
+  .ripple > .ripple-wave{display:none;}
+}
+
+/* margine di sicurezza sui bottoni nelle card più strette (dove-card,
+   cta-finale-card): a 320-375px il testo più lungo rischierebbe di non
+   stare su una riga sola con il padding standard */
+@media (max-width:380px){
+  .btn{font-size:.88rem;padding:12px 20px;}
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Vai al contenuto principale</a>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="#top" id="top" class="wordmark">
+      <span class="wordmark-nome">Action Hair</span>
+      <span class="wordmark-qualifica">Parrucchiere · Albino</span>
+    </a>
+    <a class="header-call ripple" href="tel:+39035754102" aria-label="Chiama il salone, 035 754102">
+      <span aria-hidden="true">☎</span><span class="header-call-testo">035 754102</span>
+    </a>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============================== HERO ============================== -->
+  <section class="hero" id="hero">
+    <div class="container hero-testo">
+      <p class="hero-sopratitolo" data-fade data-fade-delay="0">
+        <span class="wordmark-nome">Action Hair</span>
+        <span class="wordmark-qualifica">Parrucchiere · Albino</span>
+      </p>
+
+      <h1 data-kinetic data-kinetic-anim="fade">Ogni colore racconta una trasformazione.</h1>
+
+      <p class="hero-sub" data-fade data-fade-delay="150">
+        Balayage, biondi e ramati su misura: il portfolio di Action Hair, specializzato in colore e nei trattamenti professionali Innovatis Luxury Care, ad Albino.
+      </p>
+
+      <div class="hero-cta" data-fade data-fade-delay="300">
+        <a class="btn btn-primary magnetic ripple" data-magnet-strength="0.2" href="tel:+39035754102">Chiama il salone <span aria-hidden="true">→</span></a>
+        <a class="btn btn-secondary ripple" href="#lavori">Guarda i lavori</a>
+      </div>
+    </div>
+
+    <div class="container hero-filmstrip-wrap" data-fade data-fade-delay="420">
+      <div class="hero-filmstrip grad-blur-dx" aria-label="Un assaggio del portfolio di colore">
+        <figure><img src="foto/lavoro-rame-mosso-web.jpg" width="873" height="1083" alt="Colore ramato acceso e mosso, lavoro di Action Hair" loading="eager"></figure>
+        <figure><img src="foto/lavoro-beach-waves-web.jpg" width="870" height="1093" alt="Balayage miele con onde morbide da spiaggia, lavoro di Action Hair" loading="eager"></figure>
+        <figure><img src="foto/lavoro-biondo-freddo-salone-web.jpg" width="857" height="1059" alt="Biondo con radice scura, lavoro di Action Hair" loading="lazy"></figure>
+        <figure><img src="foto/ritratto-castano-scuro-web.jpg" width="855" height="1068" alt="Castano scurissimo con luce naturale, lavoro di Action Hair" loading="lazy"></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== LAVORI ============================== -->
+  <section id="lavori">
+    <div class="container">
+      <p class="eyebrow" data-reveal>Portfolio</p>
+      <h2 class="sezione-titolo" data-reveal>Trasformazioni di colore</h2>
+      <p class="sezione-intro" data-reveal>Niente foto del salone: qui il protagonista è il lavoro sui capelli, dal castano più profondo al biondo più chiaro.</p>
+
+      <div class="galleria-grid">
+        <figure data-reveal data-reveal-delay="0">
+          <div class="galleria-foto"><img src="foto/lavoro-rame-mosso-web.jpg" width="873" height="1083" alt="Colore ramato acceso e mosso" loading="lazy"></div>
+          <figcaption>Ramato acceso, mosso</figcaption>
+        </figure>
+        <figure data-reveal data-reveal-delay="60">
+          <div class="galleria-foto"><img src="foto/lavoro-beach-waves-web.jpg" width="870" height="1093" alt="Balayage miele con onde morbide da spiaggia" loading="lazy"></div>
+          <figcaption>Balayage miele, onde da spiaggia</figcaption>
+        </figure>
+        <figure data-reveal data-reveal-delay="120">
+          <div class="galleria-foto"><img src="foto/lavoro-biondo-freddo-salone-web.jpg" width="857" height="1059" alt="Biondo con radice scura" loading="lazy"></div>
+          <figcaption>Biondo con radice scura</figcaption>
+        </figure>
+        <figure data-reveal data-reveal-delay="0">
+          <div class="galleria-foto"><img src="foto/lavoro-biondo-liscio-profilo-web.jpg" width="868" height="1095" alt="Balayage liscio ripreso di profilo" loading="lazy"></div>
+          <figcaption>Balayage liscio, di profilo</figcaption>
+        </figure>
+        <figure data-reveal data-reveal-delay="60">
+          <div class="galleria-foto"><img src="foto/lavoro-balayage-pettine-web.jpg" width="864" height="1094" alt="Balayage rifinito a pettine durante la lavorazione" loading="lazy"></div>
+          <figcaption>Balayage rifinito a pettine</figcaption>
+        </figure>
+        <figure data-reveal data-reveal-delay="120">
+          <div class="galleria-foto"><img src="foto/lavoro-castano-liscio-web.jpg" width="881" height="1091" alt="Castano liscio a specchio" loading="lazy"></div>
+          <figcaption>Castano liscio a specchio</figcaption>
+        </figure>
+        <figure data-reveal data-reveal-delay="0">
+          <div class="galleria-foto"><img src="foto/ritratto-castano-scuro-web.jpg" width="855" height="1068" alt="Castano scurissimo con luce naturale" loading="lazy"></div>
+          <figcaption>Castano scurissimo, luce naturale</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== STILE (manifesto) ============================== -->
+  <section id="stile">
+    <div class="container">
+      <div class="stile-blocco" data-reveal>
+        <h2>Il colore, prima di tutto.</h2>
+        <p>Action Hair lavora soprattutto su un terreno: il colore. Balayage, ombré, tecniche a pettine, biondi freddi e caldi, ramati — ogni intervento parte da una valutazione del capello, non da una tinta standard.</p>
+        <p>A questo si affianca una linea di trattamenti professionali pensata per mantenere il risultato nel tempo, non solo per il giorno dell'appuntamento.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== SPECIALIZZAZIONI ============================== -->
+  <section id="specializzazioni">
+    <div class="container">
+      <h2 class="sezione-titolo" data-reveal>Le nostre specializzazioni</h2>
+      <p class="sezione-intro" data-reveal>Non un listino: le aree in cui lavoriamo davvero, come si vede nel portfolio qui sopra.</p>
+
+      <div class="specializzazioni-grid">
+        <article class="spec-card lift-card" data-reveal data-reveal-delay="0">
+          <div class="spec-foto"><img src="foto/lavoro-balayage-pettine-web.jpg" width="864" height="1094" alt="Balayage rifinito a pettine" loading="lazy"></div>
+          <div class="spec-corpo">
+            <h3>Colore &amp; Balayage</h3>
+            <p>Balayage, ombré e colore su misura: biondi caldi e freddi, ramati, sfumature pensate sulla base naturale del capello.</p>
+            <!-- prezzo: da definire in salone -->
+          </div>
+        </article>
+
+        <article class="spec-card lift-card" data-reveal data-reveal-delay="90">
+          <div class="spec-foto"><img src="foto/lavoro-castano-liscio-web.jpg" width="881" height="1091" alt="Piega liscia a specchio" loading="lazy"></div>
+          <div class="spec-corpo">
+            <h3>Piega &amp; Liscio a Specchio</h3>
+            <p>Piega e lisciatura per un risultato lucido e ordinato, che tiene nel tempo.</p>
+            <!-- prezzo: da definire in salone -->
+          </div>
+        </article>
+
+        <article class="spec-card lift-card" data-reveal data-reveal-delay="180">
+          <div class="spec-foto"><img src="foto/prodotto-caviar-gold-web.jpg" width="869" height="1073" alt="Fiala Luxury Caviar Gold" loading="lazy"></div>
+          <div class="spec-corpo">
+            <h3>Trattamenti Professionali</h3>
+            <p>Prodotti Innovatis Luxury Care e fiala Luxury Caviar Gold, per mantenere colore e fibra del capello dopo il salone.</p>
+            <!-- prezzo: da definire in salone -->
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== PRODOTTI (sezione scura) ============================== -->
+  <section class="prodotti-scuro" id="prodotti">
+    <div class="container">
+      <h2 class="sezione-titolo" data-reveal>Prodotti professionali</h2>
+      <p class="sezione-intro" data-reveal>La linea che usiamo in salone, posizionata come cura di fascia alta: non solo il servizio, anche i prodotti che restano a casa tua.</p>
+
+      <div class="prodotti-grid">
+        <figure data-reveal data-reveal-delay="0">
+          <div class="prodotto-foto"><img src="foto/prodotti-innovatis-uva-web.jpg" width="882" height="1087" alt="Linea Innovatis Luxury Care, Smoother SPA shampoo, conditioner e trattamento" loading="lazy"></div>
+          <figcaption class="prodotto-corpo"><p>Innovatis Luxury Care · Smoother SPA, anche in versione certificata vegana.</p></figcaption>
+        </figure>
+        <figure data-reveal data-reveal-delay="90">
+          <div class="prodotto-foto"><img src="foto/prodotti-innovatis-mare-web.jpg" width="866" height="1093" alt="Flaconi Innovatis Luxury Care, linea Smoother SPA" loading="lazy"></div>
+          <figcaption class="prodotto-corpo"><p>Innovatis Luxury Care · linea shampoo e conditioner Smoother SPA.</p></figcaption>
+        </figure>
+        <figure data-reveal data-reveal-delay="180">
+          <div class="prodotto-foto"><img src="foto/prodotto-caviar-gold-web.jpg" width="869" height="1073" alt="Fiala Luxury Caviar Gold da 20cc" loading="lazy"></div>
+          <figcaption class="prodotto-corpo"><p>Luxury Caviar Gold · fiala da 20cc.</p></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== DOVE SIAMO + RECENSIONI ============================== -->
+  <section id="contatti">
+    <div class="container">
+      <h2 class="sezione-titolo" data-reveal>Dove siamo e cosa dicono di noi</h2>
+
+      <div class="dove-grid">
+        <div class="dove-card" data-reveal data-reveal-delay="0">
+          <h3>Contatti</h3>
+          <div class="dove-riga">
+            <span class="dove-icona" aria-hidden="true">📍</span>
+            <div class="dove-testo">
+              <strong>Dove siamo</strong>
+              Viale Aldo Moro, 2/p — 24021 Albino (BG)<br>
+              <a class="link-testo" href="https://maps.google.com/?cid=11532242495236591719" target="_blank" rel="noopener">Apri in Google Maps →</a>
+            </div>
+          </div>
+          <div class="dove-riga">
+            <span class="dove-icona" aria-hidden="true">☎</span>
+            <div class="dove-testo">
+              <strong>Telefono</strong>
+              <a href="tel:+39035754102">035 754102</a>
+            </div>
+          </div>
+          <div class="dove-riga">
+            <span class="dove-icona" aria-hidden="true">🕒</span>
+            <div class="dove-testo">
+              <strong>Orari</strong>
+              <p>Variano nel corso della settimana: te li confermiamo al telefono prima di venire.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="dove-card" data-reveal data-reveal-delay="90">
+          <h3>Recensioni Google</h3>
+          <div class="rating-riga">
+            <span class="rating-numero">4,2</span>
+            <span class="rating-scala">su 5 · 17 recensioni</span>
+          </div>
+          <div class="barra-valutazione"><div class="barra-riempimento" style="width:84%"></div></div>
+          <p class="rating-nota">Il punteggio reale della nostra scheda Google, senza sconti: leggi le recensioni per intero prima di scegliere.</p>
+          <a class="btn btn-secondary ripple" href="https://maps.google.com/?cid=11532242495236591719" target="_blank" rel="noopener">Leggi su Google →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== CTA FINALE — verso Lorenzo (deroga) ============================== -->
+  <section class="cta-finale" id="cta-lorenzo">
+    <div class="container">
+      <div class="cta-finale-card" data-reveal>
+        <h2 class="sezione-titolo">Action Hair, il tuo sito è pronto.</h2>
+        <p>L'ho costruito guardando il tuo portfolio vero — i colori, i balayage, i prodotti Innovatis che usi davvero — non un modello preso a caso. Se vuoi vederlo meglio o parlarne, scrivimi.</p>
+        <a class="btn btn-primary magnetic ripple" data-magnet-strength="0.2" href="https://wa.me/393314660537" target="_blank" rel="noopener">Scrivimi su WhatsApp</a>
+        <p class="cta-finale-firma">Lorenzo Zenucchi — siti web per attività della Val Seriana</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <p class="footer-wordmark">Parrucchiere Action Hair</p>
+      <p>Parrucchiere Action Hair — Viale Aldo Moro, 2/p, 24021 Albino (BG) — Tel. 035 754102</p>
+    </div>
+    <div class="footer-credito">
+      <span>© 2026 Parrucchiere Action Hair</span>
+      <a href="https://wa.me/393314660537" target="_blank" rel="noopener">Sito realizzato da Lorenzo Zenucchi</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+
+  function reduced(){
+    return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  }
+
+  /* ---- kinetic-headline (preset "fade": pura opacità, solo h1 hero) ---- */
+  (function(){
+    var els = document.querySelectorAll('[data-kinetic]');
+    if (!els.length) return;
+    els.forEach(function(el){
+      el.classList.add('k-anim-' + (el.getAttribute('data-kinetic-anim') || 'rise'));
+      var mode = el.getAttribute('data-kinetic') || 'words';
+      var text = el.textContent;
+      el.textContent = '';
+      var step = (mode === 'letters') ? 40 : 70;
+      var units = (mode === 'letters') ? text.split('') : text.split(/(\s+)/);
+      var i = 0;
+      units.forEach(function(u){
+        if (u === '') return;
+        if (/^\s+$/.test(u)) {
+          var sp = document.createElement('span');
+          sp.className = 'k-space';
+          el.appendChild(sp);
+          return;
+        }
+        var s = document.createElement('span');
+        s.className = 'k-unit';
+        s.textContent = u;
+        s.style.setProperty('--k-delay', (i * step) + 'ms');
+        i++;
+        el.appendChild(s);
+      });
+    });
+    if (reduced()) { els.forEach(function(el){ el.classList.add('is-in'); }); return; }
+    requestAnimationFrame(function(){ requestAnimationFrame(function(){
+      els.forEach(function(el){ el.classList.add('is-in'); });
+    }); });
+  })();
+
+  /* ---- fade-in-up (hero: sopratitolo, sottotitolo, cta, filmstrip) ---- */
+  (function(){
+    var els = document.querySelectorAll('[data-fade]');
+    if (!els.length) return;
+    if (reduced()) { els.forEach(function(el){ el.classList.add('is-in'); }); return; }
+    els.forEach(function(el){
+      var d = el.getAttribute('data-fade-delay');
+      if (d != null) el.style.setProperty('--fade-delay', parseInt(d,10) + 'ms');
+    });
+    requestAnimationFrame(function(){ requestAnimationFrame(function(){
+      els.forEach(function(el){ el.classList.add('is-in'); });
+    }); });
+  })();
+
+  /* ---- scroll-reveal (sezioni sotto la piega) ---- */
+  (function(){
+    var els = document.querySelectorAll('[data-reveal]');
+    if (!els.length) return;
+    function revealAll(){ els.forEach(function(el){ el.classList.add('is-in'); }); }
+    if (reduced() || !('IntersectionObserver' in window)) { revealAll(); return; }
+    els.forEach(function(el){
+      var d = el.getAttribute('data-reveal-delay');
+      if (d) el.style.setProperty('--reveal-delay', parseInt(d,10) + 'ms');
+    });
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting) { entry.target.classList.add('is-in'); io.unobserve(entry.target); }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -10% 0px' });
+    els.forEach(function(el){ io.observe(el); });
+  })();
+
+  /* ---- magnetic-button (solo 2 CTA primari, disabilitato su touch) ---- */
+  (function(){
+    function isTouch(){ return window.matchMedia && window.matchMedia('(hover: none)').matches; }
+    if (reduced() || isTouch()) return;
+    document.querySelectorAll('.magnetic').forEach(function(btn){
+      var strength = parseFloat(btn.getAttribute('data-magnet-strength')) || 0.3;
+      btn.addEventListener('pointermove', function(e){
+        var r = btn.getBoundingClientRect();
+        var dx = e.clientX - (r.left + r.width/2);
+        var dy = e.clientY - (r.top + r.height/2);
+        btn.style.transform = 'translate(' + dx*strength + 'px,' + dy*strength + 'px)';
+      });
+      btn.addEventListener('pointerleave', function(){ btn.style.transform = ''; });
+    });
+  })();
+
+  /* ---- ripple-press (feedback al tap sui bottoni) ---- */
+  (function(){
+    function spawn(el, e){
+      var r = el.getBoundingClientRect();
+      var size = Math.max(r.width, r.height) * 2;
+      var x = (e.clientX != null ? e.clientX : r.left + r.width/2) - r.left;
+      var y = (e.clientY != null ? e.clientY : r.top + r.height/2) - r.top;
+      var wave = document.createElement('span');
+      wave.className = 'ripple-wave';
+      wave.style.width = wave.style.height = size + 'px';
+      wave.style.left = (x - size/2) + 'px';
+      wave.style.top = (y - size/2) + 'px';
+      el.appendChild(wave);
+      wave.addEventListener('animationend', function(){ wave.remove(); });
+    }
+    document.querySelectorAll('.ripple').forEach(function(el){
+      el.addEventListener('pointerdown', function(e){ if (!reduced()) spawn(el, e); });
+    });
+  })();
+
+})();
+</script>
+</body>
+</html>
