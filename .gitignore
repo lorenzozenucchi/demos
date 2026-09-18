@@ -11,5 +11,6 @@ demos/diamoci-un-taglio/foto/
 # clienti stanno solo sul disco e su Netlify, mai nel repo pubblico.
 # Un solo pattern per tutti i siti presenti e futuri, invece di una riga a mano
 # per ogni cliente. Gli index.html restano versionati: sono solo le foto a
-# dover restare fuori.
-demos/*-sito/foto/
+# dover restare fuori. Copre anche i suffissi di versione (-sito-v1,
+# -sito-v2, ...) e non solo "-sito" secco.
+demos/*-sito*/foto/

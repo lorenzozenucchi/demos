@@ -1,149 +1,230 @@
-CONTESTO
-Progetto target: demo-factory (~/locali/demo-factory). I comandi si lanciano
-da qui, tranne quelli del passo 6 (console-operativa).
+# CROC — Jolie: pubblicare il sito aggiornato come versione 1 su demo.lorenzoweb.it
 
-Il sito VERO di Ilaria Hairstyle (Gazzaniga) è già stato costruito e approvato
-in un ALTRO progetto: ~/produzione/clienti/ilaria-hairstyle/index.html (circa
-48 KB, ultima revisione del 12/09/2026, già rivista e approvata da Lorenzo).
-Non è una demo da template: è un sito reale costruito sotto la deroga
-"prospect in fase avanzata" di produzione, con le foto vere del salone e il
-CTA finale di vendita verso Lorenzo. Va messo online oggi.
+## CONTESTO
 
-Fatti verificati che servono al task:
-- Quel file NON è autonomo, a differenza del sito de La Spessa pubblicato in
-  un task precedente: le immagini sono referenziate con percorsi relativi
-  `foto/<nome>.jpg`. Nella cartella sorella
-  ~/produzione/clienti/ilaria-hairstyle/foto/ ci sono 13 JPG (in tutto ~1,8 MB,
-  ognuno sotto i 400 KB) e sono tutti referenziati dall'HTML, una volta sola
-  ciascuno. **La cartella foto/ va copiata insieme all'index.html**: senza di
-  lei il sito online resta senza immagini.
-- In questo progetto esiste già demos/ilaria-hairstyle-v2/: è la DEMO vecchia
-  di vendita, un file diverso e più povero, ed è l'indirizzo che il CRM ha
-  oggi come link_demo. Resta dov'è, serve come termine di paragone.
-- La convenzione di nomenclatura già usata per gli altri quattro siti veri
-  pubblicati da qui è `demos/<slug>-sito/`: quindi
-  demos/ilaria-hairstyle-sito/.
-- Netlify: sito stalwart-sopapillas-b54243, id
-  ee1cac7a-4542-49ef-a3a6-f84c9cbc018c, dominio custom demo.lorenzoweb.it.
-  Un deploy pubblica l'INTERA cartella demos/ in un colpo solo, leggendo dal
-  disco — indipendentemente da cosa è committato su git.
-- Stato git di questo repo, già noto e ATTESO (non è una sorpresa da
-  segnalare): risultano non committati il .gitignore, una modifica a
-  demos/diamoci-un-taglio/index.html e le quattro cartelle
-  braceria-pizzeria-la-spessa-sito, centro-estetico-jolie-sito,
-  centro-estetico-yab-sito, vistro-wine-bistro-sito — tutte già online da
-  task precedenti.
-- Il repository è PUBBLICO. Le foto reali dei clienti non ci vanno mai: stanno
-  solo sul disco e su Netlify. Oggi il .gitignore lo garantisce con una riga
-  scritta a mano per ogni cliente (diamoci-un-taglio, centro-estetico-jolie-sito,
-  vistro-wine-bistro-sito), e le foto di Ilaria sarebbero il quarto caso.
-- Il CRM console-operativa (~/locali/console-operativa) ha per il prospect
-  nome "Ilaria Hairstyle - Parrucchiere & Estetista", comune "Gazzaniga" il
-  campo link_demo valorizzato a
-  https://stalwart-sopapillas-b54243.netlify.app/ilaria-hairstyle-v2/
-- Questo NON è un cliente firmato: la procedura di ~/produzione/guida-pubblicazione.md
-  (dominio su Cloudflare + GitHub Pages) non si applica. Si usa il canale
-  Netlify già in piedi, come per gli altri quattro prospect.
+Progetto target: ~/locali/demo-factory. Repository GitHub **pubblico**
+`lorenzozenucchi/demos`, branch `main`. Albero di lavoro pulito all'ultima
+verifica.
 
-RUOLO
-Sei l'esecutore, il task è già deciso, non rimetterlo in discussione.
-NON sei demo-builder e NON sei template-builder: qui non si genera nessuna
-demo da template e non si personalizza nulla. Si pubblica un sito già finito,
-si mette in sicurezza il .gitignore e si allinea un campo del CRM.
+Cosa serve sapere per questo task:
 
-OBIETTIVO
+**Il sito da pubblicare.** Centro Estetico Jolie (Gazzaniga) e' il primo
+cliente firmato di Lorenzo, firmato il 17/09/2026. Il suo sito vive in
+~/produzione/clienti/centro-estetico-jolie/index.html — un unico file HTML
+autonomo, CSS e JS inline, 657 righe. Oggi 18/09/2026 e' stato aggiornato:
+la titolare ha chiesto di togliere il viola e usare il colore reale del
+locale, un nocciola #AC8673. La palette e' ora avorio / rosa cipria /
+beige nude / nocciola (con due gradini piu' scuri #7A5744 e #5C3F2F per
+testo e stati hover) / bruno. Nel file non esiste piu' nessuna occorrenza
+di viola: verificato, `grep -icE '6c4f96|54397a|--viola'` restituisce 0.
 
-1. Creare demos/ilaria-hairstyle-sito/ e copiarci dentro, INVARIATI:
-   - ~/produzione/clienti/ilaria-hairstyle/index.html
-   - l'intera cartella ~/produzione/clienti/ilaria-hairstyle/foto/ (13 JPG)
-   Nessuna riscrittura, nessuna ottimizzazione, nessun rinominamento.
-   Controlla dopo la copia che ogni `foto/...jpg` citato nell'HTML esista
-   davvero nella cartella copiata: zero riferimenti rotti.
+**Piano concordato con la titolare:** tre versioni del sito, lei ne sceglie
+una. Questa e' la **versione 1**. Le versioni 2 e 3 non esistono ancora e
+NON vanno create in questo task — ma il naming scelto oggi deve gia'
+lasciarle entrare senza altre rinomine.
 
-2. Mettere in sicurezza il .gitignore PRIMA del deploy, e unificando invece di
-   aggiungere il quarto caso a mano. Oggi ci sono tre righe individuali per le
-   cartelle foto dei siti; sostituisci quelle che riguardano i siti veri con un
-   unico pattern che copra `demos/<qualsiasi>-sito/foto/`, tenendo in piedi la
-   riga di diamoci-un-taglio (che non ha il suffisso `-sito` e quindi non
-   rientra nel pattern). Il commento sopra spiega perché esiste, come già ora.
-   Fatto quando: `git check-ignore -v` conferma che le foto di Ilaria sono
-   ignorate; `git status --short --untracked-files=all` (la forma che elenca i
-   file dentro le cartelle non tracciate, non solo la cartella) non mostra
-   nessun file dentro una cartella foto/ di nessun cliente, e mostra ancora gli
-   index.html dei siti come non committati — quelli nel repo pubblico ci vanno.
+**Come vengono pubblicati i siti qui.** demo-factory ospita, oltre alle
+demo di vendita, i siti veri dei clienti firmati, copiati da ~/produzione in
+`demos/<slug>-sito/`. Il pattern esiste gia' per cinque clienti:
+braceria-pizzeria-la-spessa-sito, centro-estetico-yab-sito,
+ilaria-hairstyle-sito, parrucchiere-action-hair-sito, vistro-wine-bistro-sito.
+Tutta la cartella `demos/` viene pubblicata su Netlify in un colpo solo,
+sito `stalwart-sopapillas-b54243` (id
+`ee1cac7a-4542-49ef-a3a6-f84c9cbc018c`), dominio custom
+`demo.lorenzoweb.it`. Ogni sottocartella diventa un URL.
+`netlify-cli` 27.8.0 e' gia' installato e il sito e' gia' collegato.
 
-3. Prima del deploy, eseguire `git status` ed elencare a Lorenzo cosa risulta
-   non committato dentro demos/. Se l'elenco contiene solo le cose dichiarate
-   nel CONTESTO più la cartella creata al passo 1, procedere. Se compare una
-   demo di un prospect che non è in quell'elenco, FERMARSI e chiedere: il
-   deploy pubblica tutta la cartella.
+**Lo stato attuale di Jolie, che e' il punto di partenza reale.** La
+cartella `demos/centro-estetico-jolie-sito/` **esiste gia'** dal 12/09/2026
+ed e' gia' online su `demo.lorenzoweb.it/centro-estetico-jolie-sito/`.
+Contiene la versione VECCHIA del sito, quella col viola, piu' 7 foto .jpg.
+Confronto fatto tra quella copia e il sito aggiornato in produzione,
+normalizzando gli hex e i nomi dei token: **l'unica differenza e' il
+colore**. Nessun adattamento locale da preservare, e' una sostituzione
+pulita dell'index.html.
 
-4. Deploy:
-   npx netlify deploy --prod --dir=demos --site=ee1cac7a-4542-49ef-a3a6-f84c9cbc018c
+Le 7 foto gia' presenti in `demos/centro-estetico-jolie-sito/foto/` sono
+esattamente le 7 che il sito aggiornato referenzia — verificato nome per
+nome: cabina-trattamento-corpo.jpg, logo.jpg, macchinario-skinetic.jpg,
+prodotti-bbshield.jpg, prodotti-rhea.jpg, reception.jpg,
+trattamento-viso.jpg. **Non serve ricopiare o riconvertire nessuna
+immagine**: il sito in produzione referenzia .jpg, e i .jpg sono gia' li'.
 
-5. Verificare il risultato online senza browser, con richieste HTTP:
-   - https://stalwart-sopapillas-b54243.netlify.app/ilaria-hairstyle-sito/
-     deve rispondere 200 e servire il SITO NUOVO, non la demo. Il discriminante
-     oggettivo: la risposta contiene la stringa `sala-principale-arco` (una
-     foto che solo il sito vero referenzia) e pesa nell'ordine dei 48 KB.
-   - almeno due delle foto devono rispondere 200 e con il content-type di
-     un'immagine: prova `foto/sala-principale-arco.jpg` e `foto/team.jpg`
-     sotto quello stesso percorso. Un 404 qui significa che il sito è online
-     ma muto: è un fallimento, non un dettaglio.
-   - https://demo.lorenzoweb.it/ilaria-hairstyle-sito/ deve rispondere 200
-     (è lo stesso file dal dominio custom: è l'indirizzo più presentabile da
-     mandare alla titolare).
-   - https://stalwart-sopapillas-b54243.netlify.app/ilaria-hairstyle-v2/
-     (la demo vecchia) deve continuare a rispondere 200 come prima.
+**Decisione presa da Lorenzo oggi sul naming**, da applicare: tre URL
+simmetrici, uno per versione.
 
-6. Allineare il CRM: nel progetto ~/locali/console-operativa, scrivere un
-   nuovo script one-off in scripts/ che porti link_demo del prospect
-   "Ilaria Hairstyle - Parrucchiere & Estetista" / "Gazzaniga" da
-   https://stalwart-sopapillas-b54243.netlify.app/ilaria-hairstyle-v2/ a
-   https://stalwart-sopapillas-b54243.netlify.app/ilaria-hairstyle-sito/
-   (sottodominio grezzo, non il dominio custom: è il formato dei link già
-   scritti nel CRM).
-   Modello da seguire fedelmente: scripts/aggiorna-link-demo-yab.mjs, che fa
-   già esattamente questo per un altro prospect. Da rispettare:
-   - dry-run come comportamento predefinito, scrittura solo con --scrivi;
-   - la riga si cerca sulla chiave esatta (nome, comune), MAI una SELECT *
-     sulla tabella prospect, mai scaricare l'elenco dei prospect in locale;
-   - si tocca solo la colonna link_demo di quella singola riga: non
-     `prossima_azione`, non `stato_pipeline`, non le date — quelli li aggiorna
-     Lorenzo dal CRM dopo aver parlato con la titolare;
-   - se link_demo contiene un valore diverso da quello atteso qui sopra, non
-     scrivere: segnalarlo e fermarsi.
-   Lanciare prima il dry-run, mostrare a Lorenzo cosa cambierebbe, poi
-   eseguire con --scrivi e rileggere la riga come controprova.
+    demo.lorenzoweb.it/centro-estetico-jolie-sito-v1/   <- questo task
+    demo.lorenzoweb.it/centro-estetico-jolie-sito-v2/   <- piu' avanti
+    demo.lorenzoweb.it/centro-estetico-jolie-sito-v3/   <- piu' avanti
 
-7. Riportare a Lorenzo, in fondo: l'URL definitivo da mandare alla titolare,
-   il peso effettivo servito online, l'esito di tutte le verifiche del passo 5
-   e la controprova del CRM.
+Quindi la cartella attuale `-sito` va rinominata in `-sito-v1`. Conseguenza
+accettata da Lorenzo: il vecchio URL `/centro-estetico-jolie-sito/`
+smettera' di funzionare (404) dopo il deploy, perche' il deploy pubblica
+l'intera cartella `demos/` e quella sottocartella non esistera' piu'.
 
-Criterio di fatto/non fatto: l'URL nuovo risponde 200 col sito vero, le foto
-provate rispondono 200, la demo vecchia risponde ancora, le foto di Ilaria
-risultano ignorate da git, e la rilettura del CRM mostra il nuovo link sulla
-riga giusta. Se anche uno solo di questi non torna, il task NON è fatto.
+**IL PROBLEMA DA INTERCETTARE PRIMA DI TUTTO IL RESTO.** Il `.gitignore` di
+demo-factory protegge le foto reali dei clienti dal repo pubblico con questo
+pattern, alla riga 15:
 
-VINCOLI
-- Non modificare in nessun modo l'index.html del sito, nemmeno per correzioni
-  che sembrano ovvie o migliorie di un minuto: quel file è già stato approvato
-  da Lorenzo dopo un giro di revisione.
-- Non ricomprimere, ritagliare o rinominare le foto: si copiano identiche.
-- Non toccare, spostare o rigenerare demos/ilaria-hairstyle-v2/ (la demo
-  vecchia): serve ancora come termine di paragone e come link storico.
-- Non toccare niente dentro ~/produzione: è sola lettura per questo task.
-- In console-operativa non toccare nessun altro file oltre al nuovo script:
-  niente modifiche a CLAUDE.md, ai resoconti o allo schema.
-- Nessun git commit e nessun git push in nessuno dei due progetti: il commit
-  resta compito di Lorenzo (salva-sessione). L'unica modifica di file git in
-  questo task è il .gitignore del passo 2, che va fatta prima del deploy
-  proprio perché il commit arriverà dopo, per mano di Lorenzo.
-- Non creare nuovi siti Netlify, non cambiare configurazione di dominio, non
-  registrare domini, non attivare GitHub Pages: si usa il sito Netlify
-  esistente indicato nel CONTESTO.
-- Non inventare né trascrivere a mano numeri o conteggi presi dal CRM in
-  nessun file: se un numero serve, si legge dalla fonte al momento.
-- Se un passo fallisce (deploy respinto, credenziali Netlify mancanti o
-  scadute, URL che non risponde), fermarsi e riportare l'errore esatto a
-  Lorenzo invece di tentare una via alternativa.
+    demos/*-sito/foto/
+
+Quel pattern **non copre il nome nuovo**. Verificato con
+`git check-ignore -v`:
+- `demos/centro-estetico-jolie-sito/foto/logo.jpg` -> ignorato (riga 15)
+- `demos/centro-estetico-jolie-sito-v1/foto/logo.jpg` -> **NON ignorato**
+
+Il glob `*-sito` richiede che il nome della cartella finisca per `-sito`;
+`-sito-v1` non finisce cosi'. Quindi, appena la cartella viene rinominata,
+le 7 foto reali della titolare diventano committabili e al primo
+`git add` finirebbero nel repository **pubblico**. Stessa cosa accadrebbe
+poi per -v2 e -v3. Va corretto prima di toccare qualunque altra cosa.
+
+## RUOLO
+
+Sei l'esecutore del progetto: il task e' gia' deciso, non rimetterlo in
+discussione.
+
+Non sei demo-builder ne' template-builder e non vanno invocati: qui non si
+genera nessuna demo da template e non si crea nessun template. Questo e' un
+task di spostamento file, protezione del repo e pubblicazione.
+
+## OBIETTIVO
+
+**1. Allargare il pattern del .gitignore — prima di ogni altra cosa.**
+Sostituisci alla riga 15 il pattern `demos/*-sito/foto/` con un pattern che
+copra anche le cartelle versionate, `demos/*-sito*/foto/`. Aggiorna il
+commento sopra di conseguenza, spiegando che copre anche i suffissi di
+versione (-sito-v1, -sito-v2, ...) e non solo `-sito` secco. Il resto del
+file .gitignore resta identico: non rimuovere ne' modificare le righe su
+`riferimenti/`, `riferimenti-template/`, `handoff.txt` e
+`demos/diamoci-un-taglio/foto/`.
+
+Verifica subito che abbia funzionato, prima di procedere:
+
+    git check-ignore -v demos/centro-estetico-jolie-sito-v1/foto/logo.jpg
+
+deve stampare una riga di match. Se non la stampa, fermati: non rinominare
+niente e riporta il problema a Lorenzo.
+
+**2. Rinominare la cartella.** `demos/centro-estetico-jolie-sito/` diventa
+`demos/centro-estetico-jolie-sito-v1/`, con tutto il contenuto. Usa un `mv`
+normale: git riconosce il rename da solo quando Lorenzo fara' l'add, non
+serve `git mv`.
+
+**3. Sostituire l'index.html** con quello aggiornato, copiandolo da
+~/produzione/clienti/centro-estetico-jolie/index.html dentro
+`demos/centro-estetico-jolie-sito-v1/index.html`. Solo l'index.html: la
+cartella `foto/` resta esattamente com'e'.
+
+**4. Verificare la coerenza della cartella prima di pubblicare.** Tre
+controlli, tutti da riga di comando, con l'esito nel resoconto:
+   - nel nuovo index.html, `grep -icE '6c4f96|54397a|--viola'` deve dare 0,
+     e i tre token `--nocciola`, `--nocciola-scuro`, `--nocciola-profondo`
+     devono essere presenti nel blocco `:root`
+   - ogni path immagine referenziato nell'index.html (estraili con grep, non
+     fidarti dell'elenco che ti ho dato nel Contesto: verificalo) esiste
+     davvero dentro `demos/centro-estetico-jolie-sito-v1/foto/`
+   - nessun file rimasto nella vecchia cartella `demos/centro-estetico-jolie-sito/`,
+     che dopo il `mv` non deve piu' esistere
+
+**5. Controllo di sicurezza sul repo pubblico, obbligatorio.** Esegui
+`git status --short` e `git add --dry-run -A` e verifica che **nessuna**
+delle seguenti cose compaia tra i file che verrebbero inviati:
+   - qualsiasi path sotto `riferimenti/`
+   - qualsiasi path sotto `riferimenti-template/`
+   - qualsiasi file immagine sotto un `demos/*-sito*/foto/`, per QUALSIASI
+     cliente, non solo Jolie
+Riporta l'elenco completo dei file che verrebbero committati. Se compare
+anche una sola immagine di un cliente, fermati e segnalalo: significa che
+il pattern del punto 1 non copre tutti i casi.
+
+**6. Preparare a Lorenzo i comandi da lanciare, senza lanciarli tu.** Per
+convenzione di questo progetto (CLAUDE.md di demo-factory, punto 4 di "Come
+si lavora qui") git commit e push li fa Lorenzo a mano; e la pubblicazione
+online e' un'azione verso l'esterno, non tua. Chiudi quindi il lavoro
+lasciandogli un blocco di comandi copia-incolla, in ordine, gia' compilato
+con i valori reali — non con dei segnaposto — che comprenda:
+   - `git add -A` e il commit con un messaggio che descriva il lavoro vero
+     (sito Jolie aggiornato al colore reale della titolare, rinominato a
+     -sito-v1 per fare posto alle tre versioni, pattern .gitignore allargato)
+   - il push su `main`
+   - il deploy Netlify, che e' esattamente questo e **con il `--dir=demos`
+     non negoziabile** (vedi Vincoli):
+
+     npx netlify deploy --prod --dir=demos --site=ee1cac7a-4542-49ef-a3a6-f84c9cbc018c
+
+   - subito dopo, i comandi di verifica dell'online descritti al punto 7
+
+**7. Scrivere le verifiche post-deploy, che sono richieste vere e non
+impostazioni lette.** Nel blocco di comandi del punto 6 includi dei `curl`
+che dimostrino, sull'URL pubblico reale:
+   - `https://demo.lorenzoweb.it/centro-estetico-jolie-sito-v1/` risponde
+     200 **e il corpo contiene `#AC8673` e non contiene `#6C4F96`**: il
+     codice di stato da solo non prova che sia stata pubblicata la versione
+     giusta, e questo e' il caso esatto in cui una pagina vecchia in cache
+     risponderebbe comunque 200
+   - **almeno una delle 7 foto risponde 200**, per esempio
+     `.../centro-estetico-jolie-sito-v1/foto/reception.jpg`. Questa verifica
+     non e' un di piu': le foto dei clienti stanno solo sul disco e su
+     Netlify, mai nel repo, quindi sono l'unica parte del sito che il push
+     su GitHub non dimostra in nessun modo
+   - il vecchio `https://demo.lorenzoweb.it/centro-estetico-jolie-sito/`
+     risponde 404, conferma che la rinomina e' andata a buon fine
+
+**8. Segnalare il link da aggiornare nel CRM.** Nel CRM console-operativa
+esiste un campo `link_demo` che per i prospect usa il formato
+`https://stalwart-sopapillas-b54243.netlify.app/<slug>/`. Se per Jolie era
+stato salvato un link, dopo questa rinomina punta a un 404. **Non
+accedere al CRM e non toccare quel progetto**: limitati a scrivere nel
+resoconto che il campo va ricontrollato a mano e qual e' l'URL nuovo.
+
+**Criterio di fatto / non fatto:**
+- `git check-ignore` conferma che le foto di `-sito-v1` sono ignorate
+- la cartella `demos/centro-estetico-jolie-sito-v1/` contiene l'index.html
+  aggiornato (zero viola, tre token nocciola) e le 7 foto
+- `demos/centro-estetico-jolie-sito/` non esiste piu'
+- l'elenco dei file da committare non contiene nessuna immagine di cliente
+  ne' nulla sotto riferimenti/ o riferimenti-template/
+- Lorenzo ha in mano un blocco di comandi completo, in ordine, che va da
+  `git add` fino alle tre verifiche curl
+
+## VINCOLI
+
+- **`--dir=demos` nel comando di deploy non e' opzionale ed e' la cosa piu'
+  delicata di tutto il task.** Il file `.netlify/netlify.toml` di questa
+  cartella contiene `publish = "/home/lorenzo/locali/demo-factory"`, cioe' la
+  cartella intera. Un `netlify deploy --prod` lanciato senza `--dir=demos`
+  pubblicherebbe online tutto demo-factory, compresa `riferimenti/` (foto e
+  dati di attivita' che non sono clienti: un problema di privacy) e
+  `riferimenti-template/` (screenshot di siti di terzi: un problema di
+  copyright). Il `.gitignore` non c'entra e non protegge: quello vale per
+  Git, non per Netlify. Non proporre mai a Lorenzo una variante del comando
+  senza `--dir=demos`, e non modificare netlify.toml per "sistemare" la cosa
+  — non e' questo il task.
+- **Non toccare `demos/centro-estetico-jolie/`.** E' una cartella DIVERSA
+  da quella di questo task: e' la vecchia demo di vendita di agosto,
+  generata da template quando Jolie era solo un prospect. Resta dov'e', con
+  il suo nome e il suo URL. Non rinominarla, non aggiornarla, non
+  cancellarla.
+- **Non creare le versioni 2 e 3** e non predisporre cartelle vuote per
+  loro. Non esistono ancora.
+- **Non toccare ~/produzione**, in nessun modo. Da li' si legge l'index.html
+  e basta: il sito del cliente resta la copia di riferimento, quella in
+  demos/ ne e' una copia pubblicata.
+- **Non toccare `templates/`, `templates-candidati/`, `riferimenti/`,
+  `riferimenti-template/`** e nessuna delle altre demo in `demos/`.
+- **Non eseguire tu git commit, git push ne' il deploy Netlify** (vedi
+  Obiettivo punto 6). Prepari e verifichi; lancia Lorenzo.
+- **Non modificare l'index.html mentre lo copi**: nessun ritocco ai colori,
+  ai testi, ai contatti, ai link. E' una copia byte per byte. In particolare
+  il link WhatsApp nel CTA finale e nel footer e' quello di Lorenzo
+  (393314660537) e resta cosi': e' il sito di un cliente firmato ma il CTA
+  attuale e' ancora rivolto alla titolare, e cambiarlo non fa parte di
+  questo task.
+- Il deploy ripubblica per forza l'intera cartella `demos/` con tutte le
+  demo degli altri prospect: e' il funzionamento normale e previsto qui, non
+  un effetto collaterale da evitare.
+- **Se in dubbio bloccante, fermati e chiedi a Lorenzo.** In particolare: se
+  il controllo del punto 5 mostra file che non ti aspettavi tra quelli da
+  committare, non risolvere aggiungendo righe al .gitignore a tua
+  discrezione — riporta cosa hai trovato.

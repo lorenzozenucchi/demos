@@ -14,8 +14,9 @@
   --avorio:#F8F4EF;
   --rosa-cipria:#C2A79D;
   --beige-nude:#E0B78F;
-  --viola:#6C4F96;
-  --viola-scuro:#54397A;
+  --nocciola:#AC8673;
+  --nocciola-scuro:#7A5744;
+  --nocciola-profondo:#5C3F2F;
   --bruno:#3B322C;
   --bruno-tenue:rgba(59,50,44,.74);
   --bordo-tenue:rgba(59,50,44,.14);
@@ -49,12 +50,12 @@ h1,h2,h3{font-family:var(--font-titoli);font-weight:400;font-style:normal;line-h
 .contenitore{width:min(1120px, 90%);margin:0 auto;}
 .skip-link{
   position:absolute;left:-999px;top:auto;
-  background:var(--viola);color:var(--avorio);
+  background:var(--nocciola-scuro);color:var(--avorio);
   padding:12px 20px;border-radius:0 0 8px 0;font-weight:600;z-index:200;
   text-decoration:none;
 }
 .skip-link:focus{left:0;top:0;}
-:focus-visible{outline:2px solid var(--viola);outline-offset:3px;}
+:focus-visible{outline:2px solid var(--nocciola-scuro);outline-offset:3px;}
 .cta-lorenzo :focus-visible{outline-color:var(--avorio);}
 
 .eyebrow{
@@ -73,19 +74,19 @@ h1,h2,h3{font-family:var(--font-titoli);font-weight:400;font-style:normal;line-h
   text-decoration:none;white-space:nowrap;cursor:pointer;
   transition:transform var(--dur-fast) var(--ease-premium), background var(--dur-fast) var(--ease-premium), color var(--dur-fast) var(--ease-premium), border-color var(--dur-fast) var(--ease-premium), box-shadow var(--dur-fast) var(--ease-premium);
 }
-.btn-primario{background:var(--viola);color:var(--avorio);border:1.5px solid var(--viola);}
-.btn-primario:hover{background:var(--viola-scuro);border-color:var(--viola-scuro);}
+.btn-primario{background:var(--nocciola-scuro);color:var(--avorio);border:1.5px solid var(--nocciola-scuro);}
+.btn-primario:hover{background:var(--nocciola-profondo);border-color:var(--nocciola-profondo);}
 .btn-primario:active{transform:scale(.97);}
 .btn-contorno{background:transparent;color:var(--bruno);border:1.5px solid var(--bruno);}
 .btn-contorno:hover{background:var(--bruno);color:var(--avorio);}
 .btn-contorno:active{transform:scale(.97);}
-.btn-avorio{background:var(--avorio);color:var(--viola);border:1.5px solid var(--avorio);}
+.btn-avorio{background:var(--avorio);color:var(--nocciola-scuro);border:1.5px solid var(--avorio);}
 .btn-avorio:hover{background:transparent;color:var(--avorio);border-color:var(--avorio);}
 .btn-avorio:active{transform:scale(.97);}
 .btn.magnetic{will-change:transform;}
-.link-testuale{color:var(--viola);text-decoration:underline;text-underline-offset:3px;font-weight:600;transition:color var(--dur-fast) var(--ease-premium);}
-.link-testuale:hover{color:var(--viola-scuro);}
-.link-testuale:active{color:var(--viola-scuro);}
+.link-testuale{color:var(--nocciola-scuro);text-decoration:underline;text-underline-offset:3px;font-weight:600;transition:color var(--dur-fast) var(--ease-premium);}
+.link-testuale:hover{color:var(--nocciola-profondo);}
+.link-testuale:active{color:var(--nocciola-profondo);}
 .testo-breve{display:none;}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
 
@@ -112,8 +113,8 @@ header.header{
 .wordmark-sub{font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--bruno-tenue);margin-top:2px;font-weight:600;}
 .nav-links{display:none;list-style:none;gap:var(--space-lg);align-items:center;}
 .nav-links a{font-size:.92rem;font-weight:600;text-decoration:none;color:var(--bruno);transition:color var(--dur-fast) var(--ease-premium);}
-.nav-links a:hover{color:var(--viola);}
-.nav-links a:active{color:var(--viola-scuro);}
+.nav-links a:hover{color:var(--nocciola-scuro);}
+.nav-links a:active{color:var(--nocciola-profondo);}
 .header-azioni{display:flex;align-items:center;gap:var(--space-lg);}
 
 /* HERO */
@@ -138,12 +139,12 @@ header.header{
   background:var(--avorio);margin-bottom:var(--space-lg);max-width:100%;
 }
 .badge-rating .numero{font-family:var(--font-titoli);font-size:clamp(1.6rem,5vw,2.1rem);color:var(--bruno);line-height:1;white-space:nowrap;}
-.badge-rating .stelle{color:var(--viola);letter-spacing:2px;font-size:1rem;}
+.badge-rating .stelle{color:var(--nocciola);letter-spacing:2px;font-size:1rem;}
 .badge-rating .dettaglio{display:flex;flex-direction:column;gap:2px;min-width:0;}
 .badge-rating .dettaglio strong{font-size:.85rem;font-weight:700;white-space:nowrap;}
 .badge-rating .dettaglio a{font-size:.82rem;text-decoration:underline;text-underline-offset:3px;color:var(--bruno-tenue);transition:color var(--dur-fast) var(--ease-premium);white-space:nowrap;}
-.badge-rating .dettaglio a:hover{color:var(--viola);}
-.badge-rating .dettaglio a:active{color:var(--viola-scuro);}
+.badge-rating .dettaglio a:hover{color:var(--nocciola-scuro);}
+.badge-rating .dettaglio a:active{color:var(--nocciola-profondo);}
 .hero-cta{display:flex;flex-wrap:wrap;gap:var(--space-md);align-items:center;}
 .hero-immagine{border-radius:22px;overflow:hidden;box-shadow:0 30px 60px var(--ombra-morbida);}
 .hero-immagine img{width:100%;display:block;}
@@ -165,14 +166,14 @@ header.header{
   display:flex;flex-direction:column;gap:6px;
 }
 .servizi-lista .trattamento-riga:first-child{padding-top:0;}
-.trattamento-titolo{font-family:var(--font-titoli);font-size:1.35rem;color:var(--viola);}
+.trattamento-titolo{font-family:var(--font-titoli);font-size:1.35rem;color:var(--nocciola-scuro);}
 .trattamento-desc{font-size:.98rem;color:var(--bruno);line-height:1.65;max-width:52ch;}
 .servizi-visivi{display:flex;flex-direction:column;gap:var(--space-md);}
 .foto-tech{border-radius:16px;overflow:hidden;box-shadow:0 18px 38px var(--ombra-morbida);background:var(--rosa-cipria);}
 .foto-tech img{width:100%;display:block;}
 .foto-tech figcaption{
   padding:10px 14px;font-family:var(--font-titoli);font-size:.82rem;
-  letter-spacing:.04em;color:var(--avorio);background:var(--viola);text-align:center;
+  letter-spacing:.04em;color:var(--avorio);background:var(--nocciola-scuro);text-align:center;
 }
 .coppia-prodotti{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--space-md);}
 
@@ -191,7 +192,7 @@ header.header{
 .recensioni{background:var(--avorio);padding:var(--space-2xl) 0;text-align:center;}
 .recensioni-inner{max-width:600px;margin:0 auto;}
 .recensioni-numero{font-family:var(--font-titoli);font-size:clamp(4rem,10vw,6.5rem);line-height:1;}
-.recensioni-stelle{color:var(--viola);font-size:1.5rem;letter-spacing:5px;margin:6px 0 6px;}
+.recensioni-stelle{color:var(--nocciola);font-size:1.5rem;letter-spacing:5px;margin:6px 0 6px;}
 .recensioni-sub{font-weight:700;font-size:1.05rem;margin-bottom:var(--space-md);}
 .recensioni-nota{color:var(--bruno-tenue);max-width:50ch;margin:0 auto var(--space-lg);}
 
@@ -215,8 +216,8 @@ header.header{
   font-size:1.1rem;font-weight:600;text-decoration:none;color:var(--bruno);
   transition:color var(--dur-fast) var(--ease-premium);
 }
-.lista-contatti a:hover{color:var(--viola);text-decoration:underline;}
-.lista-contatti a:active{color:var(--viola-scuro);}
+.lista-contatti a:hover{color:var(--nocciola-scuro);text-decoration:underline;}
+.lista-contatti a:active{color:var(--nocciola-profondo);}
 .nota-stazione{margin-top:var(--space-md);font-size:.95rem;color:var(--bruno);max-width:44ch;}
 table.orari{width:100%;border-collapse:collapse;}
 table.orari th,table.orari td{
@@ -228,7 +229,7 @@ table.orari th{font-weight:600;width:50%;}
 table.orari tr:first-child th, table.orari tr:first-child td{padding-top:0;}
 
 /* CTA LORENZO */
-.cta-lorenzo{background:var(--viola);color:var(--avorio);padding:var(--space-2xl) 0;text-align:center;}
+.cta-lorenzo{background:var(--nocciola-scuro);color:var(--avorio);padding:var(--space-2xl) 0;text-align:center;}
 .cta-inner{max-width:620px;margin:0 auto;}
 .cta-lorenzo h2{color:var(--avorio);margin-bottom:var(--space-md);}
 .cta-lorenzo p{color:var(--avorio-velato);margin-bottom:var(--space-lg);}
@@ -240,9 +241,9 @@ footer{
   text-align:center;
 }
 footer p{font-size:.85rem;color:var(--bruno-tenue);}
-footer a{color:var(--viola);text-decoration:none;font-weight:600;}
+footer a{color:var(--nocciola-scuro);text-decoration:none;font-weight:600;}
 footer a:hover{text-decoration:underline;}
-footer a:active{color:var(--viola-scuro);}
+footer a:active{color:var(--nocciola-profondo);}
 
 @media (min-width:860px){
   .header-inner{padding:20px 0;}
