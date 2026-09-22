@@ -9,13 +9,16 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Italiana&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
 <style>
-/* Hallmark · versione 2 — stessa identità di clienti/centro-estetico-jolie/brief.md (palette/font invariati).
-   Direzione: editoriale tipografica. L'apertura è il titolo, non una fotografia: Italiana a corpo grande
-   su fondo avorio, le foto entrano dopo, in colonne. Chiaro-dominante senza eccezioni: nessun testo sopra
-   fotografia, nessun overlay, nessuna hero a tutto schermo.
-   Movimento: motion-design → personalità Premium (stessa curva della v1, coreografia diversa) →
-   motion-locali (fade-in-up sull'apertura, scroll-reveal sotto la piega, glare-hover come UNICO effetto
-   vistoso sulle fotografie, magnetic-button + ripple-press sui CTA) → Hallmark verifica. */
+/* Hallmark · versione 3 — stessa identità di clienti/centro-estetico-jolie/brief.md (palette/font invariati).
+   Direzione: classica-centrata, da sito istituzionale di categoria. Striscia informativa + barra di
+   navigazione a piena larghezza su fondo nocciola-scuro + blocco di apertura a piena altezza, fondo
+   nocciola-scuro pieno (mai una fotografia velata). Sotto l'apertura il sito torna chiaro-dominante,
+   a blocchi orizzontali impilati, simmetrici, con lato della fotografia alternato. Pulsanti rettangolari,
+   spigoli vivi, testo maiuscolo spaziato — diversi dai pulsanti a pillola di v1/v2.
+   Movimento: motion-design → personalità Premium (stessa curva --ease-premium della famiglia, coreografia
+   centrata e sincronizzata, non a cascata di parole) → motion-locali (fade-in-up sull'apertura, scroll-reveal
+   sui blocchi sotto la piega, shine-border come UNICO effetto vistoso sul riquadro del 4,8/76, magnetic-button
+   + ripple-press sul solo CTA primario di ogni blocco) → Hallmark verifica. */
 :root{
   --avorio:#F8F4EF;
   --rosa-cipria:#C2A79D;
@@ -41,7 +44,7 @@
   --space-2xl:96px;
 }
 *{box-sizing:border-box;margin:0;padding:0;}
-html{overflow-x:clip;scroll-behavior:smooth;scroll-padding-top:88px;}
+html{overflow-x:clip;scroll-behavior:smooth;scroll-padding-top:76px;}
 body{
   overflow-x:clip;
   font-family:var(--font-testo);
@@ -52,7 +55,7 @@ body{
 }
 img{display:block;max-width:100%;height:auto;}
 a{color:inherit;}
-h1,h2,h3{font-family:var(--font-titoli);font-weight:400;font-style:normal;line-height:1.12;color:var(--bruno);overflow-wrap:anywhere;min-width:0;}
+h1,h2,h3{font-family:var(--font-titoli);font-weight:400;font-style:normal;line-height:1.14;color:var(--bruno);overflow-wrap:anywhere;min-width:0;}
 .contenitore{width:min(1120px, 90%);margin:0 auto;}
 .skip-link{
   position:absolute;left:-999px;top:auto;
@@ -62,7 +65,8 @@ h1,h2,h3{font-family:var(--font-titoli);font-weight:400;font-style:normal;line-h
 }
 .skip-link:focus{left:0;top:0;}
 :focus-visible{outline:2px solid var(--nocciola-scuro);outline-offset:3px;}
-.cta-lorenzo :focus-visible{outline-color:var(--avorio);}
+.navbar :focus-visible, .hero :focus-visible, .cta-lorenzo :focus-visible{outline-color:var(--avorio);}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
 
 .eyebrow{
   font-family:var(--font-testo);
@@ -72,198 +76,187 @@ h1,h2,h3{font-family:var(--font-titoli);font-weight:400;font-style:normal;line-h
   text-transform:uppercase;
   color:var(--bruno-tenue);
 }
-.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+.eyebrow--chiara{color:var(--avorio-velato);}
 
+/* PULSANTI — rettangolari, spigoli vivi, maiuscolo spaziato (diversi dalla pillola di v1/v2) */
 .btn{
-  display:inline-flex;align-items:center;gap:8px;
-  padding:15px 30px;border-radius:999px;
-  font-family:var(--font-testo);font-weight:600;font-size:.95rem;
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:16px 26px;border-radius:0;max-width:100%;
+  font-family:var(--font-testo);font-weight:700;font-size:.76rem;
+  letter-spacing:.08em;text-transform:uppercase;text-align:center;
   text-decoration:none;white-space:nowrap;cursor:pointer;
-  transition:transform var(--dur-fast) var(--ease-premium), background var(--dur-fast) var(--ease-premium), color var(--dur-fast) var(--ease-premium), border-color var(--dur-fast) var(--ease-premium), box-shadow var(--dur-fast) var(--ease-premium);
+  transition:transform var(--dur-fast) var(--ease-premium), background var(--dur-fast) var(--ease-premium), color var(--dur-fast) var(--ease-premium), border-color var(--dur-fast) var(--ease-premium);
 }
-.btn-primario{background:var(--nocciola-scuro);color:var(--avorio);border:1.5px solid var(--nocciola-scuro);}
-.btn-primario:hover{background:var(--nocciola-profondo);border-color:var(--nocciola-profondo);}
-.btn-primario:active{transform:scale(.97);}
-.btn-contorno{background:transparent;color:var(--bruno);border:1.5px solid var(--bruno);}
-.btn-contorno:hover{background:var(--bruno);color:var(--avorio);}
-.btn-contorno:active{transform:scale(.97);}
-.btn-avorio{background:var(--avorio);color:var(--nocciola-scuro);border:1.5px solid var(--avorio);}
-.btn-avorio:hover{background:transparent;color:var(--avorio);border-color:var(--avorio);}
-.btn-avorio:active{transform:scale(.97);}
+.btn-chiaro{background:var(--avorio);color:var(--nocciola-scuro);border:2px solid var(--avorio);}
+.btn-chiaro:hover{background:transparent;color:var(--avorio);}
+.btn-chiaro:active{transform:scale(.97);}
+.btn-contorno-chiaro{background:transparent;color:var(--avorio);border:2px solid var(--avorio);}
+.btn-contorno-chiaro:hover{background:var(--avorio);color:var(--nocciola-scuro);}
+.btn-contorno-chiaro:active{transform:scale(.97);}
+.btn-scuro{background:var(--nocciola-scuro);color:var(--avorio);border:2px solid var(--nocciola-scuro);}
+.btn-scuro:hover{background:var(--nocciola-profondo);border-color:var(--nocciola-profondo);}
+.btn-scuro:active{transform:scale(.97);}
 .btn.magnetic{will-change:transform;}
 .link-testuale{color:var(--nocciola-scuro);text-decoration:underline;text-underline-offset:3px;font-weight:600;transition:color var(--dur-fast) var(--ease-premium);}
 .link-testuale:hover{color:var(--nocciola-profondo);}
 .link-testuale:active{color:var(--nocciola-profondo);}
-.testo-breve{display:none;}
 
-@media (max-width:480px){
-  .testo-lungo{display:none;}
-  .testo-breve{display:inline;}
+/* STRISCIA INFORMATIVA — sottile, fondo chiaro, corpo piccolo, centrata */
+.topbar{background:var(--avorio);border-bottom:1px solid var(--bordo-tenue);}
+.topbar-inner{
+  display:flex;flex-wrap:wrap;justify-content:center;align-items:center;
+  gap:6px var(--space-lg);padding:9px 0;
 }
+.topbar-item{
+  display:inline-flex;align-items:center;gap:7px;
+  font-size:.74rem;font-weight:600;color:var(--bruno-tenue);
+  text-decoration:none;transition:color var(--dur-fast) var(--ease-premium);
+}
+.topbar-item svg{width:14px;height:14px;flex-shrink:0;}
+.topbar-item:hover{color:var(--nocciola-scuro);}
+.topbar-item:active{color:var(--nocciola-profondo);}
 
-/* HEADER — sticky solido, identico nel comportamento alla v1 (qui non serve l'overlay su foto: l'hero non ha immagini) */
-header.header{
-  position:sticky;top:0;z-index:50;
-  background:var(--avorio-velato);
-  backdrop-filter:blur(6px);
-  border-bottom:1px solid var(--bordo-tenue);
-}
-.header-inner{
+/* BARRA DI NAVIGAZIONE — piena larghezza, fondo nocciola-scuro pieno (unica superficie scura insieme all'apertura) */
+.navbar{position:sticky;top:0;z-index:50;background:var(--nocciola-scuro);}
+.navbar-inner{
   display:flex;align-items:center;justify-content:space-between;gap:var(--space-md);
   padding:16px 0;
 }
-.wordmark{
-  display:flex;flex-direction:column;text-decoration:none;color:var(--bruno);
-}
-.wordmark-nome{font-family:var(--font-titoli);font-size:1.6rem;letter-spacing:.02em;}
-.wordmark-sub{font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--bruno-tenue);margin-top:2px;font-weight:600;}
+.marchio{display:flex;flex-direction:column;flex-shrink:0;text-decoration:none;color:var(--avorio);}
+.marchio-nome{font-family:var(--font-titoli);font-size:2rem;line-height:1;letter-spacing:.02em;}
+.marchio-sub{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--avorio-velato);margin-top:3px;font-weight:600;}
 .nav-links{display:none;list-style:none;gap:var(--space-lg);align-items:center;}
-.nav-links a{font-size:.92rem;font-weight:600;text-decoration:none;color:var(--bruno);transition:color var(--dur-fast) var(--ease-premium);}
-.nav-links a:hover{color:var(--nocciola-scuro);}
-.nav-links a:active{color:var(--nocciola-profondo);}
-.header-azioni{display:flex;align-items:center;gap:var(--space-sm);}
-.header-instagram{
+.nav-links a{
+  font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  text-decoration:none;color:var(--avorio-velato);
+  transition:color var(--dur-fast) var(--ease-premium);
+}
+.nav-links a:hover{color:var(--avorio);}
+.nav-links a:active{color:var(--avorio);}
+.navbar-instagram{
   display:inline-flex;align-items:center;justify-content:center;
-  width:40px;height:40px;flex-shrink:0;
-  border-radius:50%;
-  background:transparent;
-  border:1.5px solid var(--bruno);
-  color:var(--bruno);
+  width:38px;height:38px;flex-shrink:0;border-radius:50%;
+  background:transparent;border:1.5px solid var(--avorio);color:var(--avorio);
   transition:background var(--dur-fast) var(--ease-premium), color var(--dur-fast) var(--ease-premium), transform var(--dur-fast) var(--ease-premium);
 }
-.header-instagram svg{display:block;width:18px;height:18px;}
-.header-instagram:hover{background:var(--bruno);color:var(--avorio);}
-.header-instagram:active{transform:scale(.97);}
-@media (max-width:859px){
-  .header-inner{gap:var(--space-xs);}
-  .header-azioni{gap:var(--space-xs);}
-  .header-azioni .btn-primario{padding:10px 15px;}
-}
-@media (max-width:480px){
-  .header-instagram{width:36px;height:36px;}
-  .header-instagram svg{width:16px;height:16px;}
-}
+.navbar-instagram svg{display:block;width:17px;height:17px;}
+.navbar-instagram:hover{background:var(--avorio);color:var(--nocciola-scuro);}
+.navbar-instagram:active{transform:scale(.94);}
 @media (min-width:860px){
-  .header-inner{padding:20px 0;}
   .nav-links{display:flex;}
 }
 
-/* HERO — editoriale, senza fotografia: apertura è il titolo. Fondo avorio, aria, nessun overlay */
-.hero{background:var(--avorio);padding:clamp(56px,11vw,132px) 0 clamp(48px,7vw,88px);}
-.hero-testo{max-width:760px;}
+/* APERTURA — a piena altezza, fondo nocciola-scuro pieno, tutto centrato. Nessuna fotografia, nessun velo. */
+.hero{
+  background:var(--nocciola-scuro);color:var(--avorio);
+  min-height:min(86vh, 720px);
+  display:flex;align-items:center;justify-content:center;
+  padding:clamp(56px,10vw,96px) 0;text-align:center;
+}
+.hero-inner{max-width:720px;margin:0 auto;display:flex;flex-direction:column;align-items:center;}
+.hero-eyebrow{margin-bottom:var(--space-sm);}
 .hero h1{
-  font-size:clamp(2.8rem, 5vw + 1.4rem, 5.2rem);
-  margin:var(--space-md) 0 var(--space-lg);
-  overflow-wrap:anywhere;
-  min-width:0;
+  color:var(--avorio);
+  font-size:clamp(2.1rem, 3.6vw + 1.1rem, 3.4rem);
+  margin-bottom:var(--space-md);
+  max-width:16ch;
+  overflow-wrap:anywhere;min-width:0;
 }
 .hero-sub{
-  font-size:1.14rem;
-  color:var(--bruno-tenue);
-  max-width:56ch;
-  margin-bottom:var(--space-lg);
+  font-size:1.05rem;color:var(--avorio-velato);
+  max-width:48ch;margin-bottom:var(--space-lg);
 }
 .hero-rating{
-  display:flex;align-items:center;gap:10px;flex-wrap:wrap;
-  font-size:.98rem;font-weight:600;
-  border-top:1px solid var(--bordo-tenue);
-  padding-top:var(--space-md);margin-bottom:var(--space-xl);
-  max-width:56ch;
+  display:inline-flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px 12px;
+  padding:14px 22px;border-radius:16px;
+  background:var(--nocciola-profondo);color:var(--avorio);
+  text-decoration:none;margin-bottom:var(--space-xl);
+  font-size:.92rem;font-weight:600;max-width:100%;
 }
-.hero-rating .stelle{color:var(--nocciola);letter-spacing:2px;font-size:.95rem;}
-.hero-cta{display:flex;flex-wrap:wrap;gap:var(--space-md);align-items:center;}
+.hero-rating .stelle{color:var(--beige-nude);letter-spacing:2px;font-size:.92rem;flex-shrink:0;}
+.hero-rating strong{font-family:var(--font-titoli);font-weight:400;font-size:1.15rem;}
+.hero-cta{display:flex;flex-wrap:wrap;justify-content:center;gap:var(--space-md);}
 
-/* FASCIA FOTO — subito sotto l'hero: qui il sito mostra il centro, non in cima. Colonne strette, non un mosaico */
-.fascia-foto{background:var(--avorio);padding:0 0 var(--space-2xl);}
-.fascia-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-sm);}
-.fascia-item{aspect-ratio:4/5;background:var(--rosa-cipria);box-shadow:0 14px 30px var(--ombra-morbida);}
-.fascia-item img{width:100%;height:100%;object-fit:cover;object-position:center;}
-@media (min-width:640px){
-  .fascia-grid{gap:var(--space-md);}
+/* FASCIA FOTO PIENA LARGHEZZA — subito dopo l'apertura, pulita, senza testo sopra */
+.fascia-piena{background:var(--avorio);padding:0;}
+.fascia-piena figure{margin:0;}
+.fascia-piena img{
+  width:100%;aspect-ratio:16/9;object-fit:cover;object-position:center 38%;
+  display:block;
+}
+.fascia-piena figcaption{
+  text-align:center;padding:14px 0;background:var(--avorio);
+  font-family:var(--font-titoli);font-size:.92rem;letter-spacing:.03em;color:var(--nocciola-scuro);
+}
+@media (max-width:640px){
+  .fascia-piena img{aspect-ratio:4/3;}
 }
 
-/* IL CENTRO — immagine (reception, l'unico ambiente reale) + testo, fondo avorio */
-.chi-siamo{background:var(--avorio);padding:var(--space-2xl) 0;}
-.chi-siamo-grid{display:grid;grid-template-columns:1fr;gap:var(--space-xl);align-items:center;}
-.chi-siamo-figura{max-width:340px;margin:0 auto;box-shadow:0 20px 44px var(--ombra-morbida);}
-.chi-siamo-figura img{width:100%;display:block;}
-.chi-siamo-testo{max-width:640px;}
-.chi-siamo-testo h2{margin-bottom:var(--space-md);}
-.chi-siamo-testo p{font-size:1.05rem;margin-bottom:var(--space-md);}
-.chi-siamo-testo p:last-child{margin-bottom:0;}
+/* BLOCCHI A DUE COLONNE — Il centro, Trattamenti, Galleria: impianto simmetrico, lato alternato via order */
+.riga-2col{
+  display:grid;grid-template-columns:1fr;gap:var(--space-lg);align-items:center;
+}
+.riga-testo h2{margin-bottom:var(--space-md);text-align:center;}
+.riga-testo p{font-size:1.03rem;margin-bottom:var(--space-md);}
+.riga-testo p:last-of-type{margin-bottom:var(--space-md);}
+.riga-testo .evidenza{color:var(--bruno);font-weight:700;}
+.riga-foto{border:1px solid var(--bordo-tenue);background:var(--avorio);}
+.riga-foto img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center;}
+.riga-foto.contieni{display:flex;align-items:center;justify-content:center;padding:clamp(18px,4vw,32px);}
+.riga-foto.contieni img{aspect-ratio:auto;width:auto;height:auto;max-width:100%;max-height:340px;object-fit:contain;}
 @media (min-width:860px){
-  .chi-siamo-grid{grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);}
-  .chi-siamo-figura{max-width:100%;}
+  .riga-2col{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--space-xl);}
+  .riga-testo h2{text-align:left;}
+  .riga-2col.foto-sx .riga-foto{order:-1;}
 }
 
-/* TRATTAMENTI — lista editoriale ordinata, non una griglia di riquadri. Fondo rosa cipria */
-.trattamenti{background:var(--rosa-cipria);color:var(--bruno);padding:var(--space-xl) 0 var(--space-2xl);}
-.trattamenti h2{margin-bottom:var(--space-sm);}
-.trattamenti-intro{max-width:56ch;color:var(--bruno);margin-bottom:var(--space-xl);}
-.tratt-lista{list-style:none;}
-.tratt-riga{
-  display:grid;grid-template-columns:1fr;gap:10px;
-  padding:28px 0;border-bottom:1px solid var(--bordo-tenue);
-}
-.tratt-lista .tratt-riga:first-child{padding-top:0;}
-.tratt-lista .tratt-riga:last-child{border-bottom:none;}
-.tratt-testata{display:flex;align-items:baseline;gap:14px;}
-.tratt-indice{font-family:var(--font-titoli);font-size:.85rem;letter-spacing:.18em;color:var(--nocciola-scuro);}
-.tratt-titolo{font-weight:400;font-size:1.5rem;}
-.tratt-desc{font-size:1rem;color:var(--bruno);max-width:58ch;}
-@media (min-width:720px){
-  .tratt-riga{grid-template-columns:minmax(180px,260px) 1fr;align-items:start;gap:var(--space-xl);}
-}
+/* IL CENTRO */
+.chi-siamo{background:var(--rosa-cipria);padding:var(--space-2xl) 0;}
 
-/* GALLERIA — "Uno sguardo dentro", stavolta su strumenti e prodotti: spread editoriale a colonna, alternato.
-   Né il mosaico della v1 né un carosello a scorrimento orizzontale. */
-.galleria{background:var(--avorio);padding:var(--space-2xl) 0;}
-.galleria h2{margin-bottom:var(--space-xl);}
-.spread{display:flex;flex-direction:column;gap:var(--space-2xl);}
-.spread-item{display:grid;grid-template-columns:1fr;gap:var(--space-md);align-items:center;}
-.spread-media{background:var(--rosa-cipria);box-shadow:0 18px 40px var(--ombra-morbida);}
-.spread-media img{width:100%;display:block;aspect-ratio:3/4;object-fit:cover;object-position:center;}
-.spread-media.contieni{background:var(--avorio);border:1px solid var(--bordo-tenue);display:flex;align-items:center;justify-content:center;padding:clamp(20px,5vw,44px);}
-.spread-media.contieni img{width:auto;height:auto;max-height:380px;aspect-ratio:734/945;object-fit:contain;}
-.spread-caption{font-family:var(--font-titoli);font-size:1.1rem;letter-spacing:.03em;color:var(--nocciola-scuro);}
-@media (min-width:860px){
-  .spread-item{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--space-xl);}
-  .spread-item:nth-child(even) .spread-media{order:2;}
-}
+/* TRATTAMENTI */
+.trattamenti{background:var(--avorio);padding:var(--space-2xl) 0;}
+.trattamenti-intro-wrap{text-align:center;max-width:60ch;margin:0 auto var(--space-xl);}
+.trattamenti-intro-wrap h2{margin-bottom:var(--space-sm);}
+.trattamenti-intro-wrap p{color:var(--bruno-tenue);font-size:1.02rem;}
+.tratt-blocchi{display:flex;flex-direction:column;gap:var(--space-2xl);}
+.riga-testo h3{font-size:1.4rem;margin-bottom:8px;}
+.tratt-solo{text-align:center;max-width:56ch;margin:0 auto;padding:var(--space-lg) 0;border-top:1px solid var(--bordo-tenue);border-bottom:1px solid var(--bordo-tenue);}
+.tratt-solo h3{font-size:1.4rem;margin-bottom:8px;}
+.tratt-solo p{color:var(--bruno);}
 
-/* RECENSIONI — forma tipografica (pull-quote), non il numero gigante della v1. Fondo beige nude */
-.recensioni{background:var(--beige-nude);color:var(--bruno);padding:var(--space-xl) 0;}
-.recensioni-inner{max-width:680px;}
-.pull-recensioni{
-  border-top:1px solid var(--bordo-tenue);
-  padding-top:var(--space-md);
-  margin:var(--space-md) 0 var(--space-lg);
-}
-.pull-recensioni p{font-size:clamp(1.5rem,2.4vw + 1rem,2.3rem);line-height:1.3;color:var(--bruno);}
-.pull-numero{font-family:var(--font-titoli);color:var(--nocciola-scuro);}
-.pull-stelle{font-family:var(--font-testo);font-size:1rem;letter-spacing:2px;color:var(--nocciola-scuro);vertical-align:middle;}
-.recensioni-nota{font-size:.98rem;max-width:56ch;margin-bottom:var(--space-md);}
+/* GALLERIA */
+.galleria{background:var(--rosa-cipria);padding:var(--space-2xl) 0;}
+.galleria-intro{text-align:center;max-width:56ch;margin:0 auto var(--space-xl);}
+.galleria .riga-foto{background:var(--rosa-cipria);}
+.galleria .riga-foto.contieni{background:var(--avorio);}
 
-/* CONTATTI — stessi contenuti della v1, fondo avorio */
-.contatti{background:var(--avorio);color:var(--bruno);padding:var(--space-2xl) 0;}
-.contatti h2{margin-bottom:var(--space-lg);}
+/* RECENSIONI — compatta, non il numero gigante centrato di v1 né il pull-quote di v2 */
+.recensioni{background:var(--beige-nude);padding:var(--space-xl) 0;text-align:center;}
+.recensioni-inner{max-width:560px;margin:0 auto;}
+.recensioni-riga{
+  display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;
+  font-family:var(--font-titoli);font-size:1.5rem;color:var(--bruno);
+  margin:var(--space-sm) 0 var(--space-md);
+}
+.recensioni-riga .stelle{color:var(--nocciola-profondo);font-family:var(--font-testo);letter-spacing:2px;font-size:1rem;}
+.recensioni .eyebrow{color:var(--bruno);}
+.recensioni-nota{color:var(--bruno);font-size:.98rem;max-width:52ch;margin:0 auto var(--space-md);}
+.recensioni .link-testuale{color:var(--nocciola-profondo);}
+.recensioni .link-testuale:hover, .recensioni .link-testuale:active{color:var(--bruno);}
+
+/* CONTATTI */
+.contatti{background:var(--avorio);padding:var(--space-2xl) 0;}
+.contatti h2{margin-bottom:var(--space-lg);text-align:center;}
 .orari-titolo{font-family:var(--font-titoli);font-weight:400;font-size:1.3rem;margin-bottom:var(--space-md);}
 .contatti-grid{display:grid;grid-template-columns:1fr;gap:var(--space-xl);}
 .lista-contatti{list-style:none;}
 .lista-contatti li{
   display:flex;flex-direction:column;gap:2px;
-  padding:var(--space-md) 0;
-  border-bottom:1px solid var(--bordo-tenue);
+  padding:var(--space-md) 0;border-bottom:1px solid var(--bordo-tenue);
 }
 .lista-contatti li:first-child{padding-top:0;}
-.lista-contatti span{
-  font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;
-  color:var(--bruno);
-}
-.lista-contatti a{
-  font-size:1.1rem;font-weight:600;text-decoration:none;color:var(--bruno);
-  transition:color var(--dur-fast) var(--ease-premium);
-}
+.lista-contatti span{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--bruno);}
+.lista-contatti a{font-size:1.1rem;font-weight:600;text-decoration:none;color:var(--bruno);transition:color var(--dur-fast) var(--ease-premium);}
 .lista-contatti a:hover{color:var(--nocciola-scuro);text-decoration:underline;}
 .lista-contatti a:active{color:var(--nocciola-profondo);}
 .lista-contatti li:last-child{border-bottom:none;}
@@ -277,27 +270,22 @@ table.orari th{font-weight:600;width:50%;}
 table.orari tr:first-child th, table.orari tr:first-child td{padding-top:0;}
 table.orari tr:last-child th, table.orari tr:last-child td{border-bottom:none;}
 @media (min-width:860px){
-  .contatti-grid{grid-template-columns:1fr 1fr;}
+  .contatti-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr);}
 }
 
-/* CTA LORENZO — identica alla v1 */
-.cta-lorenzo{background:var(--nocciola-scuro);color:var(--avorio);padding:var(--space-2xl) 0;text-align:center;}
-.cta-inner{max-width:620px;margin:0 auto;}
-.cta-lorenzo h2{color:var(--avorio);margin-bottom:var(--space-md);}
-.cta-lorenzo p{color:var(--avorio-velato);margin-bottom:var(--space-lg);}
+/* CTA LORENZO — fondo chiaro (rosa-cipria): non è una terza superficie scura */
+.cta-lorenzo{background:var(--rosa-cipria);padding:var(--space-2xl) 0;text-align:center;}
+.cta-inner{max-width:560px;margin:0 auto;}
+.cta-lorenzo h2{margin-bottom:var(--space-md);}
+.cta-lorenzo p{color:var(--bruno);margin-bottom:var(--space-lg);}
 
-footer{
-  background:var(--avorio);
-  border-top:1px solid var(--bordo-tenue);
-  padding:var(--space-lg) 0;
-  text-align:center;
-}
+footer{background:var(--avorio);border-top:1px solid var(--bordo-tenue);padding:var(--space-lg) 0;text-align:center;}
 footer p{font-size:.85rem;color:var(--bruno-tenue);}
 footer a{color:var(--nocciola-scuro);text-decoration:none;font-weight:600;}
 footer a:hover{text-decoration:underline;}
 footer a:active{color:var(--nocciola-profondo);}
 
-/* ── motion-locali: fade-in-up (apertura hero — eyebrow, h1, sottotitolo, riga recensioni, CTA) ── */
+/* ── motion-locali: fade-in-up (apertura) ── */
 [data-fade]{
   opacity:0;transform:translateY(16px);
   transition:opacity 520ms var(--ease-premium), transform 520ms var(--ease-premium);
@@ -306,7 +294,7 @@ footer a:active{color:var(--nocciola-profondo);}
 }
 [data-fade].is-in{opacity:1;transform:none;}
 
-/* ── motion-locali: scroll-reveal (tutte le sezioni sotto la piega, stessa direzione dell'apertura) ── */
+/* ── motion-locali: scroll-reveal (blocchi sotto la piega, stessa direzione dell'apertura) ── */
 [data-reveal]{
   opacity:0;transform:translateY(18px);
   transition:opacity 520ms var(--ease-premium), transform 520ms var(--ease-premium);
@@ -315,14 +303,22 @@ footer a:active{color:var(--nocciola-profondo);}
 }
 [data-reveal].is-in{opacity:1;transform:none;}
 
-/* ── motion-locali: glare-hover (UNICO effetto vistoso di pagina — sulle fotografie) ── */
-.glare{--gx:50%;--gy:50%;position:relative;overflow:hidden;border-radius:16px;isolation:isolate;}
-.glare::after{
-  content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity 220ms ease-out;
-  background:radial-gradient(240px circle at var(--gx) var(--gy), rgba(255,255,255,.22), transparent 55%);
+/* ── motion-locali: shine-border (UNICO effetto vistoso di pagina — riquadro 4,8/76 in hero) ── */
+@property --shine-angle{syntax:"<angle>";initial-value:0deg;inherits:false;}
+.hero-rating.shine{
+  --shine-angle:0deg;--shine-width:1.5px;--shine-color:var(--beige-nude);
+  position:relative;isolation:isolate;
 }
-.glare:hover::after{opacity:1;}
-@media (hover:none){.glare::after{display:none;}}
+.hero-rating.shine::before{
+  content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;padding:var(--shine-width);
+  background:conic-gradient(from var(--shine-angle), transparent 0%, var(--shine-color) 12%, transparent 28%, transparent 100%);
+  -webkit-mask:linear-gradient(var(--bruno) 0 0) content-box, linear-gradient(var(--bruno) 0 0);
+  -webkit-mask-composite:xor;
+  mask:linear-gradient(var(--bruno) 0 0) content-box, linear-gradient(var(--bruno) 0 0);
+  mask-composite:exclude;
+  animation:shine-spin 5s linear infinite;
+}
+@keyframes shine-spin{to{--shine-angle:360deg;}}
 
 /* ── motion-locali: ripple-press ── */
 .ripple{position:relative;overflow:hidden;-webkit-tap-highlight-color:transparent;}
@@ -338,7 +334,7 @@ footer a:active{color:var(--nocciola-profondo);}
   html{scroll-behavior:auto;}
   [data-fade]{opacity:1;transform:none;transition:none;}
   [data-reveal]{opacity:1;transform:none;transition:none;}
-  .glare::after{display:none;}
+  .hero-rating.shine::before{animation:none;background:none;border:var(--shine-width) solid var(--beige-nude);}
   .btn.magnetic{transition:none;}
   .ripple > .ripple-wave{display:none;}
 }
@@ -347,136 +343,144 @@ footer a:active{color:var(--nocciola-profondo);}
 <body>
 <a class="skip-link" href="#contenuto">Vai al contenuto</a>
 
-<header class="header">
-  <div class="contenitore header-inner">
-    <a href="#top" class="wordmark" id="top">
-      <span class="wordmark-nome">Jolie</span>
-      <span class="wordmark-sub">Estetica &amp; Benessere</span>
-    </a>
-    <ul class="nav-links">
-      <li><a href="#trattamenti">Trattamenti</a></li>
-      <li><a href="#galleria">Galleria</a></li>
-      <li><a href="#contatti">Contatti</a></li>
-    </ul>
-    <div class="header-azioni">
-      <a class="header-instagram" href="https://www.instagram.com/jolie.centroestetico" target="_blank" rel="noopener" aria-label="Instagram di Centro Estetico Jolie">
-        <svg aria-hidden="true" focusable="false" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<header>
+  <div class="topbar">
+    <div class="contenitore topbar-inner">
+      <a class="topbar-item" href="tel:+39035738178">
+        <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+        <span>035 738178</span>
+      </a>
+      <a class="topbar-item" href="https://maps.google.com/?cid=7846464158577254483" target="_blank" rel="noopener">
+        <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+        <span>Piazzale Stazione, 9 — Gazzaniga (BG)</span>
+      </a>
+    </div>
+  </div>
+  <nav class="navbar" aria-label="Navigazione principale">
+    <div class="contenitore navbar-inner">
+      <a href="#top" class="marchio" id="top">
+        <span class="marchio-nome">Jolie</span>
+        <span class="marchio-sub">Estetica &amp; Benessere</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#trattamenti">Trattamenti</a></li>
+        <li><a href="#galleria">Galleria</a></li>
+        <li><a href="#contatti">Contatti</a></li>
+      </ul>
+      <a class="navbar-instagram" href="https://www.instagram.com/jolie.centroestetico" target="_blank" rel="noopener" aria-label="Instagram di Centro Estetico Jolie">
+        <svg aria-hidden="true" focusable="false" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
           <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
           <line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line>
         </svg>
       </a>
-      <a class="btn btn-primario ripple" href="tel:+39035738178">
-        <span class="testo-lungo">Prenota — 035 738178</span>
-        <span class="testo-breve">Prenota</span>
-      </a>
     </div>
-  </div>
+  </nav>
 </header>
 
 <main id="contenuto">
   <section class="hero">
-    <div class="contenitore hero-testo">
-      <p class="eyebrow" data-fade>Jolie · Gazzaniga, Piazzale Stazione</p>
-      <h1 data-fade data-fade-delay="90">Cura della pelle, con metodo e misura.</h1>
-      <p class="hero-sub" data-fade data-fade-delay="180">Trattamenti viso e corpo, un percorso di skin-analysis con tecnologia RHEA e una linea di dermocosmesi professionale — a due passi dalla stazione di Gazzaniga.</p>
-      <p class="hero-rating" data-fade data-fade-delay="260">
+    <div class="contenitore hero-inner">
+      <p class="eyebrow eyebrow--chiara hero-eyebrow" data-fade>Jolie · Estetica &amp; Benessere</p>
+      <h1 data-fade data-fade-delay="80">Cura della pelle, con metodo e misura.</h1>
+      <p class="hero-sub" data-fade data-fade-delay="160">Trattamenti viso e corpo, un percorso di skin-analysis con tecnologia RHEA e una linea di dermocosmesi professionale — a due passi dalla stazione di Gazzaniga.</p>
+      <a class="hero-rating shine" href="https://maps.google.com/?cid=7846464158577254483" target="_blank" rel="noopener" data-fade data-fade-delay="240">
         <span class="stelle" aria-hidden="true">★★★★★</span>
-        <span>4,8 su 5 —</span>
-        <a class="link-testuale" href="https://maps.google.com/?cid=7846464158577254483" target="_blank" rel="noopener">76 recensioni Google →</a>
-      </p>
-      <div class="hero-cta" data-fade data-fade-delay="340">
-        <a class="btn btn-primario magnetic ripple" href="tel:+39035738178" data-magnet-strength="0.25">Prenota un trattamento</a>
-        <a class="btn btn-contorno" href="https://wa.me/39035738178" target="_blank" rel="noopener">Scrivici su WhatsApp</a>
+        <span><strong>4,8</strong> su 76 recensioni Google</span>
+      </a>
+      <div class="hero-cta" data-fade data-fade-delay="320">
+        <a class="btn btn-chiaro magnetic ripple" href="tel:+39035738178" data-magnet-strength="0.25">Prenota</a>
+        <a class="btn btn-contorno-chiaro" href="https://wa.me/39035738178" target="_blank" rel="noopener">Scrivici su WhatsApp</a>
       </div>
     </div>
   </section>
 
-  <section class="fascia-foto" aria-label="Immagini del centro">
-    <div class="contenitore fascia-grid">
-      <figure class="fascia-item glare" data-reveal>
-        <img src="foto/logo.jpg" alt="Jolie, Estetica &amp; Benessere — logo del centro" width="792" height="919" loading="eager" decoding="async" fetchpriority="high">
-      </figure>
-      <figure class="fascia-item glare" data-reveal data-reveal-delay="90">
-        <img src="foto/cabina-trattamento-corpo.jpg" alt="Trattamento corpo in cabina, con luce viola" width="737" height="983" loading="lazy" decoding="async">
-      </figure>
-      <figure class="fascia-item glare" data-reveal data-reveal-delay="180">
-        <img src="foto/trattamento-viso.jpg" alt="Trattamento viso manuale con strumento dedicato" width="841" height="968" loading="lazy" decoding="async">
-      </figure>
-    </div>
+  <section class="fascia-piena" aria-label="Tecnologia RHEA my SKINETIC">
+    <figure>
+      <img src="foto/macchinario-skinetic.jpg" alt="Macchinario RHEA my SKINETIC per skin-analysis" width="731" height="969" loading="lazy" decoding="async">
+      <figcaption>my SKINETIC — skin-analysis RHEA</figcaption>
+    </figure>
   </section>
 
   <section class="chi-siamo" id="chi-siamo">
-    <div class="contenitore chi-siamo-grid">
-      <figure class="chi-siamo-figura glare" data-reveal>
+    <div class="contenitore riga-2col foto-dx">
+      <div class="riga-testo" data-reveal>
+        <h2>Il centro</h2>
+        <p>Bancone bianco laccato, pareti rosa cipria, prodotti in vista sulle mensole di vetro: è quello che si vede entrando in <span class="evidenza">Jolie</span>, in Piazzale Stazione a Gazzaniga.</p>
+        <p>Il lavoro unisce trattamenti manuali, viso e corpo, e un percorso diagnostico con la tecnologia RHEA my SKINETIC — la stessa cura, con strumenti diversi. Il resto lo dice chi c'è già stato: <span class="evidenza">4,8 su 76 recensioni Google</span>.</p>
+        <a class="btn btn-scuro" href="#trattamenti">Scopri i trattamenti</a>
+      </div>
+      <figure class="riga-foto" data-reveal data-reveal-delay="100">
         <img src="foto/reception.jpg" alt="Reception di Jolie, con bancone bianco laccato e pareti rosa cipria" width="765" height="1020" loading="lazy" decoding="async">
       </figure>
-      <div class="chi-siamo-testo" data-reveal data-reveal-delay="100">
-        <h2>Il centro</h2>
-        <p>Bancone bianco laccato, pareti rosa cipria, prodotti in vista sulle mensole di vetro: è quello che si vede entrando in Jolie, in Piazzale Stazione a Gazzaniga.</p>
-        <p>Il lavoro unisce trattamenti manuali, viso e corpo, e un percorso diagnostico con la tecnologia RHEA my SKINETIC — la stessa cura, con strumenti diversi. Il resto lo dice chi c'è già stato: 4,8 su 76 recensioni Google.</p>
-      </div>
     </div>
   </section>
 
   <section class="trattamenti" id="trattamenti">
     <div class="contenitore">
-      <h2 data-reveal>Trattamenti e tecnologia</h2>
-      <p class="trattamenti-intro" data-reveal data-reveal-delay="80">Quattro modi di prendersi cura della pelle, tra lavoro manuale e strumenti dedicati.</p>
-      <ol class="tratt-lista">
-        <li class="tratt-riga" data-reveal>
-          <div class="tratt-testata">
-            <span class="tratt-indice">01</span>
-            <h3 class="tratt-titolo">Corpo</h3>
+      <div class="trattamenti-intro-wrap">
+        <h2 data-reveal>Trattamenti e tecnologia</h2>
+        <p data-reveal data-reveal-delay="80">Quattro modi di prendersi cura della pelle, tra lavoro manuale e strumenti dedicati.</p>
+      </div>
+      <div class="tratt-blocchi">
+        <div class="riga-2col foto-sx" data-reveal>
+          <div class="riga-testo">
+            <h3>Corpo</h3>
+            <p>Trattamenti corpo eseguiti in cabina, con applicazione manuale di prodotto mirato.</p>
           </div>
-          <p class="tratt-desc">Trattamenti corpo eseguiti in cabina, con applicazione manuale di prodotto mirato.</p>
-        </li>
-        <li class="tratt-riga" data-reveal data-reveal-delay="70">
-          <div class="tratt-testata">
-            <span class="tratt-indice">02</span>
-            <h3 class="tratt-titolo">Viso</h3>
+          <figure class="riga-foto">
+            <img src="foto/cabina-trattamento-corpo.jpg" alt="Trattamento corpo in cabina, con luce viola" width="737" height="983" loading="lazy" decoding="async">
+          </figure>
+        </div>
+        <div class="riga-2col foto-dx" data-reveal>
+          <div class="riga-testo">
+            <h3>Viso</h3>
+            <p>Trattamenti viso manuali, con strumenti dedicati per la pulizia e la cura della pelle.</p>
           </div>
-          <p class="tratt-desc">Trattamenti viso manuali, con strumenti dedicati per la pulizia e la cura della pelle.</p>
-        </li>
-        <li class="tratt-riga" data-reveal data-reveal-delay="140">
-          <div class="tratt-testata">
-            <span class="tratt-indice">03</span>
-            <h3 class="tratt-titolo">Skin-analysis</h3>
+          <figure class="riga-foto">
+            <img src="foto/trattamento-viso.jpg" alt="Trattamento viso manuale con strumento dedicato" width="841" height="968" loading="lazy" decoding="async">
+          </figure>
+        </div>
+        <div class="tratt-solo" data-reveal>
+          <h3>Skin-analysis</h3>
+          <p>Percorso di skin-analysis e trattamento apparecchiativo con la tecnologia RHEA my SKINETIC.</p>
+        </div>
+        <div class="riga-2col foto-sx" data-reveal>
+          <div class="riga-testo">
+            <h3>Dermocosmesi</h3>
+            <p>Linea di dermocosmesi professionale RHEA, in vendita in centro — inclusa la protezione solare BBSHIELD SPF 50 e SPF 15.</p>
           </div>
-          <p class="tratt-desc">Percorso di skin-analysis e trattamento apparecchiativo con la tecnologia RHEA my SKINETIC.</p>
-        </li>
-        <li class="tratt-riga" data-reveal data-reveal-delay="210">
-          <div class="tratt-testata">
-            <span class="tratt-indice">04</span>
-            <h3 class="tratt-titolo">Dermocosmesi</h3>
-          </div>
-          <p class="tratt-desc">Linea di dermocosmesi professionale RHEA, in vendita in centro — inclusa la protezione solare BBSHIELD SPF 50 e SPF 15.</p>
-        </li>
-      </ol>
+          <figure class="riga-foto">
+            <img src="foto/prodotti-rhea.jpg" alt="Linea di prodotti bifasici RHEA" width="770" height="972" loading="lazy" decoding="async">
+          </figure>
+        </div>
+      </div>
     </div>
   </section>
 
   <section class="galleria" id="galleria">
     <div class="contenitore">
-      <h2 data-reveal>Uno sguardo dentro</h2>
-      <div class="spread">
-        <div class="spread-item" data-reveal>
-          <figure class="spread-media glare">
-            <img src="foto/macchinario-skinetic.jpg" alt="Macchinario RHEA my SKINETIC per skin-analysis" width="731" height="969" loading="lazy" decoding="async">
+      <div class="galleria-intro">
+        <h2 data-reveal>Uno sguardo dentro</h2>
+      </div>
+      <div class="tratt-blocchi">
+        <div class="riga-2col foto-dx" data-reveal>
+          <div class="riga-testo">
+            <h3>Il marchio Jolie</h3>
+            <p>Il lettering che dà il nome al centro — la stessa identità che si ritrova entrando in Piazzale Stazione.</p>
+          </div>
+          <figure class="riga-foto">
+            <img src="foto/logo.jpg" alt="Jolie, Estetica &amp; Benessere — logo del centro" width="792" height="919" loading="lazy" decoding="async">
           </figure>
-          <figcaption class="spread-caption">my SKINETIC — skin-analysis RHEA</figcaption>
         </div>
-        <div class="spread-item" data-reveal data-reveal-delay="90">
-          <figure class="spread-media glare">
-            <img src="foto/prodotti-rhea.jpg" alt="Linea di prodotti bifasici RHEA" width="770" height="972" loading="lazy" decoding="async">
-          </figure>
-          <figcaption class="spread-caption">Linea RHEA</figcaption>
-        </div>
-        <div class="spread-item" data-reveal data-reveal-delay="180">
-          <figure class="spread-media contieni glare">
+        <div class="riga-2col foto-sx" data-reveal>
+          <div class="riga-testo">
+            <h3>BBSHIELD SPF</h3>
+            <p>La linea di protezione solare RHEA, SPF 50 e SPF 15, tra i prodotti di dermocosmesi in vendita al centro.</p>
+          </div>
+          <figure class="riga-foto contieni">
             <img src="foto/prodotti-bbshield.jpg" alt="Protezione solare RHEA BBSHIELD SPF 50 e SPF 15" width="734" height="945" loading="lazy" decoding="async">
           </figure>
-          <figcaption class="spread-caption">BBSHIELD SPF</figcaption>
         </div>
       </div>
     </div>
@@ -485,51 +489,54 @@ footer a:active{color:var(--nocciola-profondo);}
   <section class="recensioni" id="recensioni">
     <div class="contenitore recensioni-inner">
       <p class="eyebrow" data-reveal>Il giudizio di chi è già stato</p>
-      <blockquote class="pull-recensioni" data-reveal data-reveal-delay="80">
-        <p><span class="pull-numero">4,8</span> <span class="pull-stelle" aria-hidden="true">★★★★★</span> su 76 recensioni Google.</p>
-      </blockquote>
-      <p class="recensioni-nota" data-reveal data-reveal-delay="160">Nessuna recensione scelta da noi: il punteggio arriva dal profilo Google del centro, dove si possono leggere tutte.</p>
-      <a class="link-testuale" href="https://maps.google.com/?cid=7846464158577254483" target="_blank" rel="noopener" data-reveal data-reveal-delay="220">Leggi le recensioni su Google →</a>
+      <p class="recensioni-riga" data-reveal data-reveal-delay="80">
+        <span class="stelle" aria-hidden="true">★★★★★</span>
+        <span>4,8 su 76 recensioni Google</span>
+      </p>
+      <p class="recensioni-nota" data-reveal data-reveal-delay="140">Nessuna recensione scelta da noi: il punteggio arriva dal profilo Google del centro, dove si possono leggere tutte.</p>
+      <a class="link-testuale" href="https://maps.google.com/?cid=7846464158577254483" target="_blank" rel="noopener" data-reveal data-reveal-delay="200">Leggi le recensioni su Google →</a>
     </div>
   </section>
 
   <section class="contatti" id="contatti">
-    <div class="contenitore contatti-grid">
-      <div data-reveal>
-        <h2>Dove siamo e quando</h2>
-        <ul class="lista-contatti">
-          <li>
-            <span>Indirizzo</span>
-            <a href="https://maps.google.com/?cid=7846464158577254483" target="_blank" rel="noopener">Piazzale Stazione, 9 — Gazzaniga (BG)</a>
-          </li>
-          <li>
-            <span>Telefono</span>
-            <a href="tel:+39035738178">035 738178</a>
-          </li>
-          <li>
-            <span>WhatsApp</span>
-            <a href="https://wa.me/39035738178" target="_blank" rel="noopener">035 738178</a>
-          </li>
-          <li>
-            <span>Instagram</span>
-            <a href="https://www.instagram.com/jolie.centroestetico" target="_blank" rel="noopener">@jolie.centroestetico</a>
-          </li>
-        </ul>
-      </div>
-      <div data-reveal data-reveal-delay="120">
-        <h3 class="orari-titolo">Orari</h3>
-        <table class="orari">
-          <caption class="sr-only">Orari di apertura Centro Estetico Jolie</caption>
-          <tbody>
-          <tr><th scope="row">Lunedì</th><td>07:00–17:00</td></tr>
-          <tr><th scope="row">Martedì</th><td>09:00–20:00</td></tr>
-          <tr><th scope="row">Mercoledì</th><td>09:00–22:00</td></tr>
-          <tr><th scope="row">Giovedì</th><td>14:00–22:00</td></tr>
-          <tr><th scope="row">Venerdì</th><td>09:00–20:00</td></tr>
-          <tr><th scope="row">Sabato</th><td>08:00–16:00</td></tr>
-          <tr><th scope="row">Domenica</th><td>Chiuso</td></tr>
-          </tbody>
-        </table>
+    <div class="contenitore">
+      <h2 data-reveal>Dove siamo e quando</h2>
+      <div class="contatti-grid">
+        <div data-reveal data-reveal-delay="60">
+          <ul class="lista-contatti">
+            <li>
+              <span>Indirizzo</span>
+              <a href="https://maps.google.com/?cid=7846464158577254483" target="_blank" rel="noopener">Piazzale Stazione, 9 — Gazzaniga (BG)</a>
+            </li>
+            <li>
+              <span>Telefono</span>
+              <a href="tel:+39035738178">035 738178</a>
+            </li>
+            <li>
+              <span>WhatsApp</span>
+              <a href="https://wa.me/39035738178" target="_blank" rel="noopener">035 738178</a>
+            </li>
+            <li>
+              <span>Instagram</span>
+              <a href="https://www.instagram.com/jolie.centroestetico" target="_blank" rel="noopener">@jolie.centroestetico</a>
+            </li>
+          </ul>
+        </div>
+        <div data-reveal data-reveal-delay="120">
+          <h3 class="orari-titolo">Orari</h3>
+          <table class="orari">
+            <caption class="sr-only">Orari di apertura Centro Estetico Jolie</caption>
+            <tbody>
+            <tr><th scope="row">Lunedì</th><td>07:00–17:00</td></tr>
+            <tr><th scope="row">Martedì</th><td>09:00–20:00</td></tr>
+            <tr><th scope="row">Mercoledì</th><td>09:00–22:00</td></tr>
+            <tr><th scope="row">Giovedì</th><td>14:00–22:00</td></tr>
+            <tr><th scope="row">Venerdì</th><td>09:00–20:00</td></tr>
+            <tr><th scope="row">Sabato</th><td>08:00–16:00</td></tr>
+            <tr><th scope="row">Domenica</th><td>Chiuso</td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </section>
@@ -539,12 +546,12 @@ footer a:active{color:var(--nocciola-profondo);}
   <div class="contenitore cta-inner" data-reveal>
     <h2>Il sito è pronto</h2>
     <p>Manca solo il vostro listino e la conferma degli orari per andare online. Scrivimi e sistemiamo tutto insieme.</p>
-    <a class="btn btn-avorio magnetic ripple" href="https://wa.me/393314660537" target="_blank" rel="noopener" data-magnet-strength="0.25">Scrivimi su WhatsApp</a>
+    <a class="btn btn-scuro magnetic ripple" href="https://wa.me/393314660537" target="_blank" rel="noopener" data-magnet-strength="0.25">Scrivimi su WhatsApp</a>
   </div>
 </section>
 
 <footer>
-  <div class="contenitore footer-inner">
+  <div class="contenitore">
     <p>Sito realizzato da <a href="https://wa.me/393314660537" target="_blank" rel="noopener">Lorenzo Zenucchi</a></p>
   </div>
 </footer>
@@ -611,16 +618,6 @@ footer a:active{color:var(--nocciola-profondo);}
   if (document.readyState !== 'loading') init();
   else document.addEventListener('DOMContentLoaded', init);
 })();
-
-/* motion-locali: glare-hover */
-(function (g) {
-  'use strict';
-  function off(){ return g.matchMedia && (g.matchMedia('(prefers-reduced-motion: reduce)').matches || g.matchMedia('(hover: none)').matches); }
-  function attach(el){ if(el.__glare) return; el.__glare=1; el.addEventListener('pointermove', function(e){ var r=el.getBoundingClientRect(); el.style.setProperty('--gx',(e.clientX-r.left)+'px'); el.style.setProperty('--gy',(e.clientY-r.top)+'px'); }); }
-  function init(){ if(off()) return; var els=document.querySelectorAll('.glare'); for(var i=0;i<els.length;i++) attach(els[i]); }
-  if (document.readyState !== 'loading') init();
-  else document.addEventListener('DOMContentLoaded', init);
-})(window);
 
 /* motion-locali: magnetic-button */
 (function (global) {

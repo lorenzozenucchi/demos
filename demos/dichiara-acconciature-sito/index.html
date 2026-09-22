@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>diCHIARA Acconciature — Parrucchiere a Gazzaniga (BG)</title>
+<meta name="description" content="diCHIARA Acconciature, Gazzaniga (BG): salone di parrucchieri per taglio, colore, balayage e acconciature da cerimonia. Prenota al 035 038 5931.">
+<link rel="icon" href="foto/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Hallmark · struttura custom dal brief cliente (non dal catalogo temi) · tono: contemporaneo, botanico, quietamente elegante · identità: colori/font vincolati da clienti/dichiara-acconciature/brief.md · pre-emit critique: P5 H4 E5 S5 R5 V4 · contrast: pass (40-41, verificato manualmente su ogni coppia testo/sfondo) */
+/* ============================== TOKEN — identità dal brief ============================== */
+:root{
+  --verde-oliva:#747450;
+  --verde-oliva-scuro:#5D5D40;
+  --salvia:#8D8D78;
+  --terracotta:#C18A5E;
+  --legno-miele:#A97C4E;
+  --avorio:#E9E1D0;
+  --antracite:#221F1B;
+  --bianco:#FFFFFF;
+
+  --font-display:'Epilogue', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-testo:'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --raggio:16px;
+  --raggio-piccolo:9px;
+  --ombra:0 18px 40px rgba(34,31,27,.20);
+  --ombra-soft:0 10px 24px rgba(34,31,27,.13);
+
+  --container:1180px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;overflow-x:clip;}
+body{
+  font-family:var(--font-testo);
+  color:var(--antracite);
+  background:var(--avorio);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:clip;
+}
+img{display:block;max-width:100%;height:auto;}
+a{color:inherit;text-decoration:none;}
+ul{list-style:none;}
+h1,h2,h3{font-family:var(--font-display);font-weight:600;line-height:1.15;font-style:normal;overflow-wrap:anywhere;min-width:0;}
+.container{width:100%;max-width:var(--container);margin:0 auto;padding:0 6%;}
+
+.salta-link{
+  position:absolute;left:-999px;top:auto;
+  background:var(--antracite);color:var(--bianco);
+  padding:12px 20px;border-radius:var(--raggio-piccolo);z-index:100;
+}
+.salta-link:focus{left:16px;top:16px;}
+
+a:focus-visible,
+button:focus-visible{outline:3px solid var(--antracite);outline-offset:3px;}
+.lavori a:focus-visible,.lavori button:focus-visible,
+.cta-finale a:focus-visible,.cta-finale button:focus-visible{outline-color:var(--bianco);}
+
+.eyebrow{
+  font-family:var(--font-testo);
+  font-weight:700;
+  font-size:.76rem;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+}
+.sezione-titolo{
+  font-size:clamp(1.6rem,3.8vw,2.4rem);
+  letter-spacing:.01em;
+  margin-bottom:16px;
+}
+.sezione-intro{max-width:580px;font-size:1.02rem;}
+.sezione-head{margin-bottom:40px;}
+
+section{padding:84px 0;}
+@media (max-width:640px){ section{padding:60px 0;} }
+
+/* ── bottoni ─────────────────────────────────────────────────────────── */
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--font-testo);font-weight:700;font-size:.92rem;
+  letter-spacing:.02em;white-space:nowrap;
+  padding:15px 26px;border-radius:100px;border:1px solid transparent;
+  cursor:pointer;-webkit-tap-highlight-color:transparent;
+  transition:background 160ms ease-out,color 160ms ease-out,border-color 160ms ease-out;
+}
+.btn--primario{background:var(--verde-oliva);color:var(--bianco);}
+.btn--primario:hover{background:var(--verde-oliva-scuro);}
+.btn--su-scuro{background:var(--bianco);color:var(--verde-oliva-scuro);}
+.btn--su-scuro:hover{background:var(--avorio);}
+.btn--fantasma{background:transparent;border-color:currentColor;color:inherit;}
+.btn--fantasma:hover{background:rgba(0,0,0,.06);}
+.cta-finale .btn--fantasma:hover,
+.lavori .btn--fantasma:hover{background:rgba(255,255,255,.1);}
+.btn:active{transform:scale(.98);}
+
+/* ============================== HEADER ============================== */
+.intestazione{
+  position:sticky;top:0;z-index:50;
+  background:var(--avorio);
+  box-shadow:0 1px 0 rgba(34,31,27,.1);
+}
+.barra-nav{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:12px 6%;}
+.marchio{display:flex;flex-direction:column;line-height:1.1;min-width:0;}
+.marchio-nome{
+  font-family:var(--font-display);font-weight:700;
+  font-size:clamp(1.25rem,6vw,1.6rem);
+  color:var(--antracite);letter-spacing:-.01em;
+}
+.marchio-sub{
+  font-size:.6rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--verde-oliva-scuro);margin-top:2px;
+}
+.nav-desktop{display:none;}
+.nav-desktop ul{display:flex;align-items:center;gap:22px;}
+.nav-desktop a{
+  font-size:.82rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;
+  color:var(--antracite);padding:6px 0;border-bottom:1px solid transparent;
+  white-space:nowrap;
+  transition:border-color 160ms ease-out,color 160ms ease-out;
+}
+.nav-desktop a:hover{color:var(--verde-oliva-scuro);border-color:var(--verde-oliva-scuro);}
+.nav-desktop a:active{opacity:.75;}
+.nav-azioni{display:flex;align-items:center;gap:12px;}
+.link-ig{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:38px;height:38px;border-radius:50%;border:1px solid var(--antracite);
+  color:var(--antracite);transition:background 160ms ease-out,color 160ms ease-out;
+}
+.link-ig:hover{background:var(--antracite);color:var(--avorio);}
+.link-ig:active{transform:scale(.94);}
+.tel-header{display:none;}
+.nav-toggle{
+  display:flex;flex-direction:column;justify-content:center;gap:4px;
+  width:40px;height:40px;background:none;border:1px solid var(--antracite);border-radius:var(--raggio-piccolo);
+  flex-shrink:0;
+}
+.nav-toggle span{display:block;width:18px;height:2px;background:var(--antracite);margin:0 auto;transition:transform 200ms ease-out,opacity 200ms ease-out;}
+.nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0;}
+.nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+.nav-mobile{
+  display:none;flex-direction:column;
+  background:var(--avorio);border-top:1px solid rgba(34,31,27,.12);
+  padding:8px 6% 22px;
+}
+.nav-mobile.is-open{display:flex;}
+.nav-mobile a{
+  padding:12px 0;font-size:1rem;font-weight:600;
+  border-bottom:1px solid rgba(34,31,27,.1);
+}
+.nav-mobile .btn{margin-top:14px;justify-content:center;}
+
+@media (min-width:1060px){
+  .nav-desktop{display:block;}
+  .nav-toggle{display:none;}
+  .nav-mobile{display:none !important;}
+  .tel-header{display:inline-flex;}
+}
+
+/* ============================== HERO ============================== */
+.hero{
+  background:
+    radial-gradient(ellipse at 85% 10%, rgba(233,225,208,.16), transparent 55%),
+    var(--verde-oliva);
+  color:var(--bianco);
+  padding:64px 0 88px;
+}
+.hero .container{display:grid;gap:44px;align-items:center;}
+.hero-marchio{display:flex;align-items:center;gap:14px;margin-bottom:18px;}
+.hero-badge{width:52px;height:52px;border-radius:12px;box-shadow:var(--ombra-soft);flex-shrink:0;}
+.hero-testo h1{
+  font-size:clamp(2.2rem,5.6vw,3.4rem);
+  margin:8px 0 22px;
+  color:var(--bianco);
+}
+.hero-testo p{font-size:1.06rem;max-width:46ch;margin-bottom:30px;}
+.hero-cta{display:flex;flex-wrap:wrap;align-items:center;gap:16px;}
+.hero-cta .btn--fantasma{border-color:var(--bianco);}
+.hero-img{
+  width:100%;max-width:340px;margin:0 auto;
+  border-radius:var(--raggio);overflow:hidden;box-shadow:var(--ombra);
+}
+
+@media (min-width:900px){
+  .hero{padding:0;min-height:82vh;display:flex;align-items:center;}
+  .hero .container{grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:60px;}
+  .hero-img{max-width:100%;}
+}
+
+/* ============================== CHI SIAMO ============================== */
+.chi-siamo{background:var(--avorio);}
+.chi-siamo .container{display:grid;gap:40px;align-items:center;}
+.chi-siamo .eyebrow{color:var(--verde-oliva-scuro);}
+.chi-siamo h2{color:var(--antracite);}
+.chi-siamo p{margin-top:18px;font-size:1.03rem;max-width:56ch;}
+.chi-siamo-img{border-radius:var(--raggio);overflow:hidden;box-shadow:var(--ombra-soft);max-width:420px;margin:0 auto;}
+
+@media (min-width:900px){
+  .chi-siamo .container{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);}
+  .chi-siamo-img{max-width:100%;order:1;}
+  .chi-siamo-testo{order:2;}
+}
+
+/* ============================== SERVIZI (tre tessere numerate) ============================== */
+.servizi{background:var(--salvia);color:var(--antracite);}
+.servizi .eyebrow{color:var(--antracite);}
+.servizi h2{color:var(--antracite);}
+.servizi .sezione-intro{color:var(--antracite);}
+.griglia-servizi{display:grid;gap:24px;align-items:start;}
+.tessera-servizio{
+  background:rgba(233,225,208,.55);
+  border:1px solid rgba(34,31,27,.12);
+  border-radius:var(--raggio);
+  padding:28px 24px;
+}
+.tessera-servizio img{border-radius:var(--raggio-piccolo);margin-bottom:18px;aspect-ratio:4/5;object-fit:cover;width:100%;}
+.tessera-servizio .num{font-family:var(--font-display);color:var(--antracite);font-size:1.5rem;display:block;margin-bottom:8px;font-weight:700;}
+.tessera-servizio h3{font-size:1.18rem;color:var(--antracite);margin-bottom:10px;}
+.tessera-servizio p{font-size:.96rem;opacity:.92;}
+
+@media (min-width:760px){ .griglia-servizi{grid-template-columns:repeat(3,minmax(0,1fr));} }
+
+/* ============================== LISTINO ============================== */
+.listino{background:var(--avorio);}
+.listino .eyebrow{color:var(--verde-oliva-scuro);}
+.listino h2{color:var(--antracite);}
+.griglia-listino{display:grid;gap:22px;margin-top:8px;}
+.gruppo-listino{
+  background:var(--bianco);border-radius:var(--raggio);
+  padding:28px 26px;box-shadow:var(--ombra-soft);
+}
+.gruppo-listino h3{
+  font-family:var(--font-display);font-weight:600;font-size:1.02rem;
+  text-transform:uppercase;letter-spacing:.07em;
+  color:var(--verde-oliva-scuro);margin-bottom:14px;
+}
+.riga-listino{
+  display:flex;align-items:baseline;justify-content:space-between;gap:14px;
+  padding:10px 0;border-bottom:1px solid rgba(34,31,27,.1);font-size:.97rem;
+}
+.riga-listino:last-child{border-bottom:none;}
+.riga-listino .voce{flex:1;min-width:0;}
+.riga-listino .prezzo{font-weight:700;color:var(--antracite);white-space:nowrap;}
+
+@media (min-width:820px){ .griglia-listino{grid-template-columns:repeat(3,minmax(0,1fr));} }
+
+/* ============================== I NOSTRI LAVORI (cuore del sito) ============================== */
+.lavori{background:var(--antracite);color:var(--bianco);}
+.lavori .eyebrow{color:var(--terracotta);}
+.lavori h2{color:var(--bianco);}
+.lavori .sezione-intro{color:var(--bianco);opacity:.82;}
+.griglia-lavori{display:grid;gap:16px;grid-template-columns:repeat(2,minmax(0,1fr));}
+.tessera-lavoro{border-radius:var(--raggio);overflow:hidden;background:rgba(233,225,208,.05);border:1px solid rgba(233,225,208,.14);}
+.tessera-lavoro img{aspect-ratio:3/4;object-fit:cover;width:100%;}
+.tessera-lavoro figcaption{padding:14px 16px 18px;}
+.lavoro-titolo{display:block;font-family:var(--font-display);font-weight:600;font-size:1rem;color:var(--bianco);}
+.lavoro-dettaglio{display:block;font-size:.84rem;opacity:.78;margin-top:4px;}
+
+@media (min-width:640px){ .griglia-lavori{grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;} }
+
+/* ============================== PRODOTTI ============================== */
+.prodotti{background:var(--avorio);}
+.prodotti .container{display:grid;gap:40px;align-items:center;}
+.prodotti .eyebrow{color:var(--verde-oliva-scuro);}
+.prodotti h2{color:var(--antracite);}
+.prodotti p{margin-top:18px;font-size:1.03rem;max-width:54ch;}
+.prodotti-img{border-radius:var(--raggio);overflow:hidden;box-shadow:var(--ombra-soft);max-width:380px;margin:0 auto;}
+
+@media (min-width:900px){
+  .prodotti .container{grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);}
+  .prodotti-img{order:2;max-width:100%;}
+  .prodotti-testo{order:1;}
+}
+
+/* ============================== IL SALONE (galleria ambiente) ============================== */
+.salone{background:var(--salvia);color:var(--antracite);}
+.salone .eyebrow{color:var(--antracite);}
+.salone h2{color:var(--antracite);}
+.griglia-ambiente{display:grid;gap:14px;grid-template-columns:repeat(2,minmax(0,1fr));}
+.griglia-ambiente img{aspect-ratio:3/4;object-fit:cover;width:100%;border-radius:var(--raggio-piccolo);}
+
+@media (min-width:640px){ .griglia-ambiente{grid-template-columns:repeat(3,minmax(0,1fr));} }
+
+/* ============================== RECENSIONI ============================== */
+.recensioni{background:var(--verde-oliva);color:var(--bianco);}
+.recensioni .container{text-align:center;}
+.recensioni-box{max-width:520px;margin:0 auto;}
+.recensioni .eyebrow{color:var(--bianco);}
+.stelle{color:var(--bianco);font-size:1.5rem;letter-spacing:.1em;margin:14px 0;}
+.recensioni-dato{font-family:var(--font-display);font-size:2.1rem;font-weight:700;display:block;margin-bottom:6px;}
+.recensioni p{margin-bottom:22px;}
+.recensioni .btn--fantasma{border-color:var(--bianco);}
+
+/* ============================== ORARI E CONTATTI ============================== */
+.contatti{background:var(--avorio);}
+.contatti .eyebrow{color:var(--verde-oliva-scuro);}
+.griglia-contatti{display:grid;gap:24px;margin-top:20px;}
+.blocco-contatto{
+  background:var(--bianco);border-radius:var(--raggio);padding:28px 26px;box-shadow:var(--ombra-soft);
+}
+.blocco-contatto h3{font-size:1.02rem;text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px;color:var(--verde-oliva-scuro);font-family:var(--font-display);}
+.tabella-orari{width:100%;font-size:.96rem;}
+.tabella-orari tr{border-bottom:1px solid rgba(34,31,27,.08);}
+.tabella-orari tr:last-child{border-bottom:none;}
+.tabella-orari td{padding:9px 0;}
+.tabella-orari td:first-child{font-weight:700;}
+.tabella-orari td:last-child{text-align:right;opacity:.85;}
+.riga-contatto{display:flex;align-items:center;gap:10px;padding:9px 0;font-size:.97rem;}
+.riga-contatto:not(:last-child){border-bottom:1px solid rgba(34,31,27,.08);}
+.blocco-mappa{display:flex;flex-direction:column;justify-content:space-between;}
+.mappa-cta{margin-top:20px;width:fit-content;pointer-events:none;}
+
+@media (min-width:820px){ .griglia-contatti{grid-template-columns:1fr 1fr;} }
+
+/* ============================== CTA FINALE — verso Lorenzo (deroga prospect) ============================== */
+.cta-finale{background:var(--antracite);color:var(--bianco);}
+.cta-finale-card{max-width:640px;}
+.cta-finale .eyebrow{color:var(--terracotta);}
+.cta-finale h2{color:var(--bianco);margin:14px 0 18px;letter-spacing:.01em;}
+.cta-finale p{font-size:1.04rem;opacity:.92;margin-bottom:28px;max-width:56ch;}
+.cta-finale-firma{margin-top:18px;font-size:.85rem;opacity:.65;max-width:none;}
+
+/* ============================== FOOTER ============================== */
+footer{background:var(--verde-oliva);color:var(--bianco);padding:48px 0 26px;}
+.footer-grid{display:grid;gap:28px;padding-bottom:26px;border-bottom:1px solid rgba(255,255,255,.18);}
+.footer-marchio{display:flex;align-items:center;gap:14px;margin-bottom:12px;}
+.footer-badge{width:44px;height:44px;border-radius:10px;flex-shrink:0;}
+.footer-wordmark{font-family:var(--font-display);font-size:1.2rem;font-weight:700;}
+footer p{font-size:.88rem;line-height:1.7;}
+footer a{text-decoration:underline;text-underline-offset:3px;}
+.footer-nav{display:flex;flex-wrap:wrap;gap:10px 22px;}
+.footer-nav a{font-size:.86rem;text-decoration:none;}
+.footer-nav a:hover{text-decoration:underline;}
+.footer-nav a:active{opacity:.75;}
+.footer-credito{
+  padding-top:20px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
+  font-size:.8rem;
+}
+
+@media (min-width:760px){ .footer-grid{grid-template-columns:1.2fr .8fr;} }
+
+/* ============================== motion-locali — ricette (COME si muove) ============================== */
+
+/* kinetic-headline — categoria text-kinetic — UNICO effetto vistoso della pagina */
+[data-kinetic]{display:inline-block;}
+[data-kinetic] .k-unit{
+  display:inline-block;opacity:0;
+  transition:opacity 540ms cubic-bezier(0.16,1,0.3,1),
+             transform 540ms cubic-bezier(0.16,1,0.3,1),
+             filter 540ms ease-out;
+  transition-delay:var(--k-delay,0ms);
+  will-change:opacity,transform,filter;
+}
+[data-kinetic].is-in .k-unit{opacity:1;transform:none;filter:none;}
+[data-kinetic] .k-space{display:inline-block;width:.28em;}
+.k-anim-rise .k-unit{transform:translateY(.5em);}
+
+/* fade-in-up — categoria entrance */
+[data-fade]{
+  opacity:0;transform:translateY(26px);
+  transition:opacity 600ms cubic-bezier(0.16,1,0.3,1),
+             transform 600ms cubic-bezier(0.16,1,0.3,1);
+  transition-delay:var(--fade-delay,0ms);
+  will-change:opacity,transform;
+}
+[data-fade].is-in{opacity:1;transform:none;}
+
+/* scroll-reveal — categoria scroll-reveal */
+[data-reveal]{
+  opacity:0;transform:translateY(30px);
+  transition:opacity 660ms cubic-bezier(0.16,1,0.3,1),
+             transform 660ms cubic-bezier(0.16,1,0.3,1);
+  transition-delay:var(--reveal-delay,0ms);
+  will-change:opacity,transform;
+}
+[data-reveal].is-in{opacity:1;transform:none;}
+
+/* card-lift-hover — categoria hover-press — solo su card cliccabili */
+.lift-card{
+  transition:transform 200ms cubic-bezier(0.4,0,0.2,1),box-shadow 200ms cubic-bezier(0.4,0,0.2,1);
+  will-change:transform;
+}
+.lift-card:hover{transform:translateY(-6px);box-shadow:0 16px 32px rgba(34,31,27,.18);}
+.lift-card:active{transform:translateY(-2px);}
+
+/* magnetic-button — categoria hover-press — max 2 bottoni/pagina */
+.magnetic{transition:transform 180ms cubic-bezier(0.4,0,0.2,1);will-change:transform;}
+.magnetic:active{transform:scale(.97);}
+
+/* ripple-press — categoria feedback-delight */
+.ripple{position:relative;overflow:hidden;-webkit-tap-highlight-color:transparent;}
+.ripple > .ripple-wave{
+  position:absolute;border-radius:50%;transform:scale(0);opacity:.28;
+  background:currentColor;pointer-events:none;
+  animation:ripple-bloom 600ms ease-out forwards;
+}
+@keyframes ripple-bloom{ to{transform:scale(1);opacity:0;} }
+
+/* count-up — categoria emphasis — solo su "38 recensioni", numero reale dal brief */
+[data-count]{font-variant-numeric:tabular-nums;font-feature-settings:"tnum";}
+
+/* ============================== accessibilità — motion ridotto (blocco unico) ============================== */
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto;}
+  [data-kinetic] .k-unit{opacity:1 !important;transform:none !important;filter:none !important;transition:none;animation:none !important;}
+  [data-fade]{opacity:1;transform:none;transition:none;}
+  [data-reveal]{opacity:1;transform:none;transition:none;}
+  .lift-card,.lift-card:hover,.lift-card:active{transform:none;transition:box-shadow 120ms ease;}
+  .magnetic{transition:none;}
+  .ripple > .ripple-wave{display:none;}
+  .nav-toggle span{transition:none;}
+}
+</style>
+</head>
+<body>
+
+<a class="salta-link" href="#top">Vai al contenuto</a>
+
+<header class="intestazione">
+  <div class="barra-nav">
+    <a class="marchio" href="#top" aria-label="diCHIARA Acconciature — torna in cima">
+      <span class="marchio-nome">diCHIARA</span>
+      <span class="marchio-sub">Acconciature</span>
+    </a>
+
+    <nav class="nav-desktop" aria-label="Principale">
+      <ul>
+        <li><a href="#chi-siamo">Chi siamo</a></li>
+        <li><a href="#servizi">Servizi</a></li>
+        <li><a href="#listino">Listino</a></li>
+        <li><a href="#lavori">Lavori</a></li>
+        <li><a href="#prodotti">Prodotti</a></li>
+        <li><a href="#salone">Il salone</a></li>
+        <li><a href="#contatti">Contatti</a></li>
+      </ul>
+    </nav>
+
+    <div class="nav-azioni">
+      <a class="link-ig" href="https://instagram.com/dichiaraacconciature" target="_blank" rel="noopener" aria-label="diCHIARA Acconciature su Instagram">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.4" cy="6.6" r="1"/></svg>
+      </a>
+      <a class="btn btn--primario tel-header ripple" href="tel:+390350385931">035 038 5931</a>
+      <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-mobile" aria-label="Apri il menu">
+        <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+      </button>
+    </div>
+  </div>
+
+  <nav class="nav-mobile" id="nav-mobile" aria-label="Menu mobile">
+    <a href="#chi-siamo">Chi siamo</a>
+    <a href="#servizi">Servizi</a>
+    <a href="#listino">Listino</a>
+    <a href="#lavori">Lavori</a>
+    <a href="#prodotti">Prodotti</a>
+    <a href="#salone">Il salone</a>
+    <a href="#contatti">Contatti</a>
+    <a href="https://instagram.com/dichiaraacconciature" target="_blank" rel="noopener">Instagram — @dichiaraacconciature</a>
+    <a class="btn btn--primario ripple" href="tel:+390350385931">Chiama — 035 038 5931</a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- ============================== HERO ============================== -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-testo">
+        <div class="hero-marchio" data-fade>
+          <img class="hero-badge" src="foto/logo.png" width="1080" height="1080" alt="" loading="eager">
+          <p class="eyebrow">Gazzaniga (BG) · Parrucchiere</p>
+        </div>
+        <h1 data-kinetic data-kinetic-anim="rise">diCHIARA Acconciature</h1>
+        <p data-fade data-fade-delay="90">Un salone raccolto tra edera vera, verde oliva e terracotta, nel centro di Gazzaniga. Taglio, colore e acconciature curate un cliente alla volta.</p>
+        <div class="hero-cta" data-fade data-fade-delay="170">
+          <a class="btn btn--su-scuro magnetic ripple" data-magnet-strength="0.18" href="tel:+390350385931">Chiama — 035 038 5931</a>
+          <a class="btn btn--fantasma ripple" href="https://instagram.com/dichiaraacconciature" target="_blank" rel="noopener">Seguici su Instagram</a>
+        </div>
+      </div>
+      <figure class="hero-img" data-fade data-fade-delay="260">
+        <img src="foto/colonna-logo-edera.jpg" width="401" height="556" alt="Colonna verde oliva con il logo del salone inciso, avvolta di edera, accanto a poltroncine beige" loading="eager" fetchpriority="high">
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============================== CHI SIAMO ============================== -->
+  <section class="chi-siamo" id="chi-siamo">
+    <div class="container">
+      <figure class="chi-siamo-img" data-reveal>
+        <img src="foto/vetrina-logo.jpg" width="1360" height="765" alt="Vetrina del salone diCHIARA Acconciature, vetro satinato con il logo inciso e colonne in pietra" loading="lazy">
+      </figure>
+      <div class="chi-siamo-testo" data-reveal data-reveal-delay="120">
+        <p class="eyebrow">Chi siamo</p>
+        <h2 class="sezione-titolo">Un salone che si riconosce dalla vetrina</h2>
+        <p>Dalla strada si vede già il carattere del salone: il vetro satinato con il logo inciso, le colonne in pietra, e dentro l'edera che scende dal soffitto fino alla colonna verde oliva alle spalle della reception.</p>
+        <p>Lavoriamo taglio, colore e acconciature con la stessa cura che mettiamo nell'ambiente: pavimento in terracotta, pareti a doghe di legno, poltrone comode per chi aspetta il proprio turno.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== SERVIZI ============================== -->
+  <section class="servizi" id="servizi">
+    <div class="container">
+      <div class="sezione-head" data-reveal>
+        <p class="eyebrow">Cosa facciamo</p>
+        <h2 class="sezione-titolo">I nostri servizi</h2>
+        <p class="sezione-intro">Dal taglio quotidiano alle schiariture più elaborate, fino alle acconciature per le occasioni speciali.</p>
+      </div>
+      <div class="griglia-servizi">
+        <div class="tessera-servizio" data-reveal data-reveal-delay="0">
+          <span class="num">01</span>
+          <img src="foto/sala-postazioni-fiori.jpg" width="572" height="1020" alt="Postazioni con specchi, poltrone scure e fiori gialli nel salone" loading="lazy">
+          <h3>Taglio e piega</h3>
+          <p>Tagli anche corti, come il caschetto e il lob, e pieghe con onde morbide o più definite.</p>
+        </div>
+        <div class="tessera-servizio" data-reveal data-reveal-delay="90">
+          <span class="num">02</span>
+          <h3>Colore, schiariture e balayage</h3>
+          <p>Dalla radice scura alle lunghezze più chiare, con più tecniche di balayage e schiaritura.</p>
+        </div>
+        <div class="tessera-servizio" data-reveal data-reveal-delay="180">
+          <span class="num">03</span>
+          <h3>Acconciature per cerimonia</h3>
+          <p>Raccolti, trecce e onde morbide per invitate e spose, da costruire insieme prima dell'evento.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== LISTINO ============================== -->
+  <section class="listino" id="listino">
+    <div class="container">
+      <div class="sezione-head" data-reveal>
+        <p class="eyebrow">Prezzi</p>
+        <h2 class="sezione-titolo">Listino</h2>
+        <p class="sezione-intro">Le voci principali del salone, per taglio, colore, piega e trattamenti.</p>
+      </div>
+      <div class="griglia-listino">
+        <!-- LISTINO — prezzi da confermare con la titolare -->
+        <div class="gruppo-listino" data-reveal data-reveal-delay="0">
+          <h3>Taglio</h3>
+          <div class="riga-listino"><span class="voce">Taglio donna + phon</span><span class="prezzo">38 €</span></div>
+          <div class="riga-listino"><span class="voce">Taglio bimbo</span><span class="prezzo">15 €</span></div>
+          <div class="riga-listino"><span class="voce">Spuntatine</span><span class="prezzo">12 €</span></div>
+        </div>
+        <div class="gruppo-listino" data-reveal data-reveal-delay="90">
+          <h3>Colore</h3>
+          <div class="riga-listino"><span class="voce">Colore monocromatico</span><span class="prezzo">55 €</span></div>
+          <div class="riga-listino"><span class="voce">Ritocco radice</span><span class="prezzo">45 €</span></div>
+          <div class="riga-listino"><span class="voce">Colpi di sole</span><span class="prezzo">70 €</span></div>
+          <div class="riga-listino"><span class="voce">Balayage / shatush</span><span class="prezzo">da 85 €</span></div>
+          <div class="riga-listino"><span class="voce">Decolorazione totale</span><span class="prezzo">da 95 €</span></div>
+        </div>
+        <div class="gruppo-listino" data-reveal data-reveal-delay="180">
+          <h3>Piega e trattamenti</h3>
+          <div class="riga-listino"><span class="voce">Piega classica</span><span class="prezzo">22 €</span></div>
+          <div class="riga-listino"><span class="voce">Piega con ferro</span><span class="prezzo">28 €</span></div>
+          <div class="riga-listino"><span class="voce">Raccolto per eventi</span><span class="prezzo">40 €</span></div>
+          <div class="riga-listino"><span class="voce">Cheratina ristrutturante</span><span class="prezzo">65 €</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== I NOSTRI LAVORI (cuore del sito) ============================== -->
+  <section class="lavori" id="lavori">
+    <div class="container">
+      <div class="sezione-head" data-reveal>
+        <p class="eyebrow">Il nostro lavoro</p>
+        <h2 class="sezione-titolo">Sei lavori, sei modi di portare i capelli</h2>
+        <p class="sezione-intro">Una selezione di acconciature realizzate in salone, dal taglio al colore fino ai raccolti per le occasioni speciali.</p>
+      </div>
+      <div class="griglia-lavori">
+        <figure class="tessera-lavoro lift-card" data-reveal data-reveal-delay="0">
+          <img src="foto/lavoro-raccolto-onde.jpg" width="765" height="1020" alt="Raccolto da cerimonia con treccia laterale e onde morbide" loading="lazy">
+          <figcaption>
+            <span class="lavoro-titolo">Raccolto da cerimonia</span>
+            <span class="lavoro-dettaglio">Treccia laterale e onde morbide sulle lunghezze</span>
+          </figcaption>
+        </figure>
+        <figure class="tessera-lavoro lift-card" data-reveal data-reveal-delay="60">
+          <img src="foto/lavoro-lob-biondo-mosso.jpg" width="531" height="657" alt="Caschetto lungo biondo mosso con schiariture su base scura" loading="lazy">
+          <figcaption>
+            <span class="lavoro-titolo">Caschetto lungo mosso</span>
+            <span class="lavoro-dettaglio">Schiariture su base scura</span>
+          </figcaption>
+        </figure>
+        <figure class="tessera-lavoro lift-card" data-reveal data-reveal-delay="120">
+          <img src="foto/lavoro-lunghi-ramati.jpg" width="528" height="778" alt="Capelli lunghi ondulati, biondo ramato caldo su radice castana" loading="lazy">
+          <figcaption>
+            <span class="lavoro-titolo">Lunghezze ramate</span>
+            <span class="lavoro-dettaglio">Biondo ramato caldo su radice castana</span>
+          </figcaption>
+        </figure>
+        <figure class="tessera-lavoro lift-card" data-reveal data-reveal-delay="180">
+          <img src="foto/lavoro-balayage-biondo-lungo.jpg" width="524" height="813" alt="Capelli molto lunghi con balayage biondo su radice scura" loading="lazy">
+          <figcaption>
+            <span class="lavoro-titolo">Balayage biondo</span>
+            <span class="lavoro-dettaglio">Su lunghezze molto lunghe, radice scura</span>
+          </figcaption>
+        </figure>
+        <figure class="tessera-lavoro lift-card" data-reveal data-reveal-delay="240">
+          <img src="foto/lavoro-castano-balayage-ramato.jpg" width="529" height="779" alt="Capelli castani di media lunghezza con balayage ramato sulle punte" loading="lazy">
+          <figcaption>
+            <span class="lavoro-titolo">Balayage ramato</span>
+            <span class="lavoro-dettaglio">Punte ramate su base castana</span>
+          </figcaption>
+        </figure>
+        <figure class="tessera-lavoro lift-card" data-reveal data-reveal-delay="300">
+          <img src="foto/lavoro-biondo-caldo-onde.jpg" width="530" height="774" alt="Capelli lunghi biondo caldo con onde morbide" loading="lazy">
+          <figcaption>
+            <span class="lavoro-titolo">Onde bionde</span>
+            <span class="lavoro-dettaglio">Biondo caldo con onde morbide su tutta la lunghezza</span>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== PRODOTTI ============================== -->
+  <section class="prodotti" id="prodotti">
+    <div class="container">
+      <div class="prodotti-testo" data-reveal>
+        <p class="eyebrow">In salone</p>
+        <h2 class="sezione-titolo">Prodotti professionali La Biosthetique</h2>
+        <p>Sulle mensole del salone trovi la linea solare, la protezione colore, la glam color e la linea SPA de La Biosthetique: le usiamo nei trattamenti e le trovi anche in vendita, per continuare la cura a casa.</p>
+      </div>
+      <figure class="prodotti-img" data-reveal data-reveal-delay="120">
+        <img src="foto/prodotti-mensole.jpg" width="765" height="1020" alt="Tre mensole con prodotti professionali La Biosthetique nel salone" loading="lazy">
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============================== IL SALONE (galleria ambiente) ============================== -->
+  <section class="salone" id="salone">
+    <div class="container">
+      <div class="sezione-head" data-reveal>
+        <p class="eyebrow">L'ambiente</p>
+        <h2 class="sezione-titolo">Dentro il salone</h2>
+      </div>
+      <div class="griglia-ambiente" data-reveal>
+        <img src="foto/sala-edera-prodotti.jpg" width="765" height="1020" alt="Edera che scende dal soffitto sopra un tavolo rotondo con prodotti e pavimento in terracotta" loading="lazy">
+        <img src="foto/reception-parete-doghe.jpg" width="573" height="1020" alt="Bancone della reception con parete a doghe di legno, mensole e lampadario a petali" loading="lazy">
+        <img src="foto/vetrina-attesa.jpg" width="400" height="537" alt="Zona d'attesa vista dalla vetrina, poltroncine beige e tavolino in marmo" loading="lazy">
+        <img src="foto/sala-postazioni-fiori.jpg" width="572" height="1020" alt="Postazioni con specchi e poltrone scure tra doghe di legno e fiori gialli" loading="lazy">
+        <img src="foto/colonna-logo-edera.jpg" width="401" height="556" alt="Colonna verde oliva con il logo del salone inciso, avvolta di edera" loading="lazy">
+        <img src="foto/vetrina-logo.jpg" width="1360" height="765" alt="Vetrina esterna del salone con il logo inciso sul vetro satinato" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== RECENSIONI ============================== -->
+  <section class="recensioni" id="recensioni">
+    <div class="container">
+      <div class="recensioni-box" data-reveal>
+        <p class="eyebrow">Recensioni</p>
+        <span class="recensioni-dato">4,7 / 5</span>
+        <div class="stelle" aria-hidden="true">★★★★★</div>
+        <p>La media di <span data-count="38" data-count-duration="800">0</span> recensioni su Google.</p>
+        <a class="btn btn--fantasma ripple" href="https://maps.google.com/?cid=8225066287546145148" target="_blank" rel="noopener">Leggi le recensioni su Google →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== ORARI E CONTATTI ============================== -->
+  <section class="contatti" id="contatti">
+    <div class="container">
+      <div class="sezione-head" data-reveal>
+        <p class="eyebrow">Orari e contatti</p>
+        <h2 class="sezione-titolo">Dove e quando trovarci</h2>
+      </div>
+      <div class="griglia-contatti">
+        <div class="blocco-contatto" data-reveal>
+          <h3>Orari</h3>
+          <table class="tabella-orari">
+            <tr><td>Lunedì</td><td>Chiuso</td></tr>
+            <tr><td>Martedì</td><td>09:00–18:00</td></tr>
+            <tr><td>Mercoledì</td><td>13:00–22:00</td></tr>
+            <tr><td>Giovedì</td><td>09:00–18:00</td></tr>
+            <tr><td>Venerdì</td><td>09:00–18:00</td></tr>
+            <tr><td>Sabato</td><td>08:00–18:00</td></tr>
+            <tr><td>Domenica</td><td>Chiuso</td></tr>
+          </table>
+        </div>
+        <a class="blocco-contatto blocco-mappa lift-card" data-reveal data-reveal-delay="100" href="https://maps.google.com/?cid=8225066287546145148" target="_blank" rel="noopener">
+          <div>
+            <h3>Dove siamo</h3>
+            <div class="riga-contatto">Via Dante Alighieri, 45a — 24025 Gazzaniga (BG)</div>
+            <div class="riga-contatto">Prenota al 035 038 5931</div>
+            <div class="riga-contatto">@dichiaraacconciature su Instagram</div>
+          </div>
+          <span class="btn btn--primario mappa-cta">Apri la mappa →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== CTA FINALE — verso Lorenzo (deroga prospect) ============================== -->
+  <section class="cta-finale" id="cta-lorenzo">
+    <div class="container">
+      <div class="cta-finale-card" data-reveal>
+        <p class="eyebrow">Per chi gestisce il salone</p>
+        <h2>Il sito di diCHIARA è pronto.</h2>
+        <p>L'ho costruito dalle foto vere del salone — la colonna con il logo inciso, l'edera, i lavori in vetrina — non da un modello preso a caso. Se vuoi vederlo insieme, cambiare qualcosa o hai domande, scrivimi pure.</p>
+        <a class="btn btn--su-scuro magnetic ripple" data-magnet-strength="0.18" href="https://wa.me/393314660537" target="_blank" rel="noopener">Scrivimi su WhatsApp →</a>
+        <p class="cta-finale-firma">Lorenzo Zenucchi — siti web per attività della Val Seriana</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-marchio">
+          <img class="footer-badge" src="foto/logo.png" width="1080" height="1080" alt="">
+          <p class="footer-wordmark">diCHIARA Acconciature</p>
+        </div>
+        <p>Via Dante Alighieri, 45a — 24025 Gazzaniga (BG) — Tel. 035 038 5931<br>Parrucchiere a Gazzaniga: taglio, colore e acconciature per cerimonia.</p>
+      </div>
+      <nav class="footer-nav" aria-label="Footer">
+        <a href="#chi-siamo">Chi siamo</a>
+        <a href="#servizi">Servizi</a>
+        <a href="#listino">Listino</a>
+        <a href="#lavori">Lavori</a>
+        <a href="#prodotti">Prodotti</a>
+        <a href="#salone">Il salone</a>
+        <a href="#contatti">Contatti</a>
+        <a href="https://instagram.com/dichiaraacconciature" target="_blank" rel="noopener">Instagram</a>
+      </nav>
+    </div>
+    <div class="footer-credito">
+      <span>© 2026 diCHIARA Acconciature</span>
+      <a href="https://wa.me/393314660537" target="_blank" rel="noopener">Sito realizzato da Lorenzo Zenucchi</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ============================== nav mobile (funzionale, non decorativo) ============================== */
+(function(){
+  'use strict';
+  var toggle = document.getElementById('nav-toggle');
+  var menu = document.getElementById('nav-mobile');
+  if (!toggle || !menu) return;
+  function close(){ toggle.setAttribute('aria-expanded','false'); menu.classList.remove('is-open'); }
+  function open(){ toggle.setAttribute('aria-expanded','true'); menu.classList.add('is-open'); }
+  toggle.addEventListener('click', function(){
+    var isOpen = toggle.getAttribute('aria-expanded') === 'true';
+    isOpen ? close() : open();
+  });
+  menu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', close); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') close(); });
+})();
+
+/* ============================== motion-locali: kinetic-headline ============================== */
+(function () {
+  'use strict';
+  function split(el) {
+    var mode = el.getAttribute('data-kinetic') || 'words';
+    var text = el.textContent;
+    el.textContent = '';
+    var step = (mode === 'letters') ? 40 : 70;
+    var units = (mode === 'letters') ? text.split('') : text.split(/(\s+)/);
+    var i = 0;
+    units.forEach(function (u) {
+      if (u === '') return;
+      if (/^\s+$/.test(u)) {
+        var sp = document.createElement('span');
+        sp.className = 'k-space';
+        el.appendChild(sp);
+        return;
+      }
+      var s = document.createElement('span');
+      s.className = 'k-unit';
+      s.textContent = u;
+      s.style.setProperty('--k-delay', (i * step) + 'ms');
+      i++;
+      el.appendChild(s);
+    });
+  }
+  function init() {
+    var els = document.querySelectorAll('[data-kinetic]');
+    if (!els.length) return;
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    els.forEach(function (el) {
+      el.classList.add('k-anim-' + (el.getAttribute('data-kinetic-anim') || 'rise'));
+      split(el);
+    });
+    if (reduce) { els.forEach(function (el) { el.classList.add('is-in'); }); return; }
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () { els.forEach(function (el) { el.classList.add('is-in'); }); });
+    });
+  }
+  if (document.readyState !== 'loading') init();
+  else document.addEventListener('DOMContentLoaded', init);
+})();
+
+/* ============================== motion-locali: fade-in-up ============================== */
+(function () {
+  'use strict';
+  function init() {
+    var els = document.querySelectorAll('[data-fade]');
+    if (!els.length) return;
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) { els.forEach(function (el) { el.classList.add('is-in'); }); return; }
+    els.forEach(function (el, i) {
+      var d = el.getAttribute('data-fade-delay');
+      el.style.setProperty('--fade-delay', (d != null ? parseInt(d, 10) : i * 70) + 'ms');
+    });
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () { els.forEach(function (el) { el.classList.add('is-in'); }); });
+    });
+  }
+  if (document.readyState !== 'loading') init();
+  else document.addEventListener('DOMContentLoaded', init);
+})();
+
+/* ============================== motion-locali: scroll-reveal ============================== */
+(function () {
+  'use strict';
+  function revealAll() { document.querySelectorAll('[data-reveal]').forEach(function (el) { el.classList.add('is-in'); }); }
+  function init() {
+    var els = document.querySelectorAll('[data-reveal]');
+    if (!els.length) return;
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce || !('IntersectionObserver' in window)) { revealAll(); return; }
+    els.forEach(function (el) {
+      var d = el.getAttribute('data-reveal-delay');
+      if (d) el.style.setProperty('--reveal-delay', parseInt(d, 10) + 'ms');
+    });
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) { entry.target.classList.add('is-in'); io.unobserve(entry.target); }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -10% 0px' });
+    els.forEach(function (el) { io.observe(el); });
+  }
+  if (document.readyState !== 'loading') init();
+  else document.addEventListener('DOMContentLoaded', init);
+})();
+
+/* ============================== motion-locali: magnetic-button ============================== */
+(function (global) {
+  'use strict';
+  function reduced() { return global.matchMedia && global.matchMedia('(prefers-reduced-motion: reduce)').matches; }
+  function isTouch() { return global.matchMedia && global.matchMedia('(hover: none)').matches; }
+  function attach(btn) {
+    if (btn.__magnetBound) return;
+    btn.__magnetBound = true;
+    var strength = parseFloat(btn.getAttribute('data-magnet-strength')) || 0.3;
+    btn.addEventListener('pointermove', function (e) {
+      var r = btn.getBoundingClientRect();
+      var dx = e.clientX - (r.left + r.width / 2);
+      var dy = e.clientY - (r.top + r.height / 2);
+      btn.style.transform = 'translate(' + dx * strength + 'px,' + dy * strength + 'px)';
+    });
+    btn.addEventListener('pointerleave', function () { btn.style.transform = ''; });
+  }
+  function init() {
+    if (reduced() || isTouch()) return;
+    var els = document.querySelectorAll('.magnetic');
+    for (var i = 0; i < els.length; i++) attach(els[i]);
+  }
+  global.attachMagnetic = attach;
+  if (document.readyState !== 'loading') init();
+  else document.addEventListener('DOMContentLoaded', init);
+})(window);
+
+/* ============================== motion-locali: ripple-press ============================== */
+(function (global) {
+  'use strict';
+  function reduced() { return global.matchMedia && global.matchMedia('(prefers-reduced-motion: reduce)').matches; }
+  function spawn(el, e) {
+    var r = el.getBoundingClientRect();
+    var size = Math.max(r.width, r.height) * 2;
+    var x = (e.clientX != null ? e.clientX : r.left + r.width / 2) - r.left;
+    var y = (e.clientY != null ? e.clientY : r.top + r.height / 2) - r.top;
+    var wave = document.createElement('span');
+    wave.className = 'ripple-wave';
+    wave.style.width = wave.style.height = size + 'px';
+    wave.style.left = (x - size / 2) + 'px';
+    wave.style.top = (y - size / 2) + 'px';
+    el.appendChild(wave);
+    wave.addEventListener('animationend', function () { wave.remove(); });
+  }
+  function attach(el) {
+    if (el.__rippleBound) return;
+    el.__rippleBound = true;
+    el.addEventListener('pointerdown', function (e) { if (!reduced()) spawn(el, e); });
+  }
+  function init() {
+    var els = document.querySelectorAll('.ripple');
+    for (var i = 0; i < els.length; i++) attach(els[i]);
+  }
+  global.attachRipple = attach;
+  if (document.readyState !== 'loading') init();
+  else document.addEventListener('DOMContentLoaded', init);
+})(window);
+
+/* ============================== motion-locali: count-up (numero reale — 38 recensioni) ============================== */
+(function () {
+  'use strict';
+  function format(n, prefix, suffix) { return (prefix || '') + Math.round(n).toLocaleString('it-IT') + (suffix || ''); }
+  function run(el) {
+    var target = parseFloat(el.getAttribute('data-count')) || 0;
+    var prefix = el.getAttribute('data-count-prefix') || '';
+    var suffix = el.getAttribute('data-count-suffix') || '';
+    var dur = parseInt(el.getAttribute('data-count-duration'), 10) || 900;
+    var start = null;
+    function step(ts) {
+      if (start === null) start = ts;
+      var p = Math.min((ts - start) / dur, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = format(target * eased, prefix, suffix);
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  function init() {
+    var els = document.querySelectorAll('[data-count]');
+    if (!els.length) return;
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce || !('IntersectionObserver' in window)) {
+      els.forEach(function (el) { el.textContent = format(parseFloat(el.getAttribute('data-count')) || 0, el.getAttribute('data-count-prefix') || '', el.getAttribute('data-count-suffix') || ''); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) { if (entry.isIntersecting) { run(entry.target); io.unobserve(entry.target); } });
+    }, { threshold: 0.5 });
+    els.forEach(function (el) { io.observe(el); });
+  }
+  if (document.readyState !== 'loading') init();
+  else document.addEventListener('DOMContentLoaded', init);
+})();
+</script>
+</body>
+</html>

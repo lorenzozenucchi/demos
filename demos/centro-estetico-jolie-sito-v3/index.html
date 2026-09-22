@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Centro Estetico Jolie — Estetica &amp; Benessere a Gazzaniga (BG)</title>
+<meta name="description" content="Centro Estetico Jolie a Gazzaniga (BG), davanti alla stazione. Trattamenti viso e corpo, skin-analysis con tecnologia RHEA my SKINETIC, dermocosmesi professionale. 4,8 su 76 recensioni Google.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Italiana&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+/* Hallmark · pre-emit critique: P5 H5 E5 S5 R5 V5
+   struttura costruita da zero dal brief cliente (non dal catalogo temi) · tono: caldo, luminoso,
+   editoriale-contemporaneo · identità: colori/font vincolati da clienti/centro-estetico-jolie/brief.md
+   Direzione (v3, terza alternativa a v1/v2): lastra fotografica fissa (position:sticky) a sinistra,
+   capitoli numerati I–VI a destra — due metà divise da un filetto verticale, non fasce orizzontali
+   impilate come in v1 e v2. Marchio tipografico, nessuna immagine di logo. Nessun testo sopra le
+   fotografie, nessun overlay/gradiente scuro.
+   Movimento: motion-design → personalità Premium (curva --ease-premium, entrata rise-from-basso
+   coerente su tutta la pagina) → motion-locali (fade-in-up su intestazione/apertura, scroll-reveal
+   sui capitoli, spotlight-card UNICO effetto vistoso sulle quattro voci-trattamento, magnetic-button
+   + ripple-press sui CTA; la dissolvenza della lastra è il meccanismo dell'impianto, non l'effetto
+   vistoso) → Hallmark verifica. */
+:root{
+  --avorio:#F8F4EF;
+  --rosa-cipria:#C2A79D;
+  --beige-nude:#E0B78F;
+  --nocciola:#AC8673;
+  --nocciola-scuro:#7A5744;
+  --nocciola-profondo:#5C3F2F;
+  --bruno:#3B322C;
+  --bruno-tenue:rgba(59,50,44,.74);
+  --bordo-tenue:rgba(59,50,44,.14);
+  --avorio-velato:rgba(248,244,239,.92);
+  --ombra-morbida:rgba(59,50,44,.18);
+  --font-titoli:'Italiana', serif;
+  --font-testo:'Manrope', sans-serif;
+  --dur-fast:180ms;
+  --dur-base:280ms;
+  --ease-premium:cubic-bezier(0.4,0,0.2,1);
+  --space-xs:8px;
+  --space-sm:16px;
+  --space-md:24px;
+  --space-lg:40px;
+  --space-xl:64px;
+  --space-2xl:96px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{overflow-x:clip;scroll-behavior:smooth;}
+body{
+  overflow-x:clip;
+  font-family:var(--font-testo);
+  background:var(--avorio);
+  color:var(--bruno);
+  line-height:1.7;
+  font-weight:400;
+}
+img{display:block;max-width:100%;height:auto;}
+a{color:inherit;}
+h1,h2,h3{font-family:var(--font-titoli);font-weight:400;font-style:normal;line-height:1.14;color:var(--bruno);overflow-wrap:anywhere;min-width:0;}
+.contenitore{width:min(1120px, 90%);margin:0 auto;}
+.skip-link{
+  position:absolute;left:-999px;top:auto;
+  background:var(--nocciola-scuro);color:var(--avorio);
+  padding:12px 20px;border-radius:0 0 8px 0;font-weight:600;z-index:200;
+  text-decoration:none;
+}
+.skip-link:focus{left:0;top:0;}
+:focus-visible{outline:2px solid var(--nocciola-scuro);outline-offset:3px;}
+.cta-lorenzo :focus-visible{outline-color:var(--avorio);}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+
+.eyebrow{
+  font-family:var(--font-testo);
+  font-size:.78rem;
+  font-weight:600;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--bruno-tenue);
+}
+
+/* PULSANTI — rettangolo smussato (radius 8px): diverso dalla pillola di v1 e dallo spigolo vivo di v2 */
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:15px 28px;border-radius:8px;max-width:100%;
+  font-family:var(--font-testo);font-weight:600;font-size:.95rem;
+  text-decoration:none;white-space:nowrap;cursor:pointer;
+  transition:transform var(--dur-fast) var(--ease-premium), background var(--dur-fast) var(--ease-premium), color var(--dur-fast) var(--ease-premium), border-color var(--dur-fast) var(--ease-premium);
+}
+.btn-primario{background:var(--nocciola-scuro);color:var(--avorio);border:1.5px solid var(--nocciola-scuro);}
+.btn-primario:hover{background:var(--nocciola-profondo);border-color:var(--nocciola-profondo);}
+.btn-primario:active{transform:scale(.97);}
+.btn-contorno{background:transparent;color:var(--bruno);border:1.5px solid var(--bruno);}
+.btn-contorno:hover{background:var(--bruno);color:var(--avorio);}
+.btn-contorno:active{transform:scale(.97);}
+.btn-avorio{background:var(--avorio);color:var(--nocciola-scuro);border:1.5px solid var(--avorio);}
+.btn-avorio:hover{background:transparent;color:var(--avorio);border-color:var(--avorio);}
+.btn-avorio:active{transform:scale(.97);}
+.btn.magnetic{will-change:transform;}
+.link-testuale{color:var(--nocciola-scuro);text-decoration:underline;text-underline-offset:3px;font-weight:600;transition:color var(--dur-fast) var(--ease-premium);}
+.link-testuale:hover{color:var(--nocciola-profondo);}
+.link-testuale:active{color:var(--nocciola-profondo);}
+
+/* ============ LA SEQUENZA: lastra sticky (sinistra) + capitoli (destra) ============
+   Mobile-first: un'unica colonna, ogni figura di lastra (f1..f6) è un'area propria
+   (img1..img6) subito sopra il suo capitolo. Da 900px: due colonne, tutte le figure
+   condividono la stessa area "lastra" (si sovrappongono, sticky, opacità commutata). */
+.sequenza{
+  display:grid;
+  grid-template-columns:1fr;
+  grid-template-areas:
+    "intestazione"
+    "apertura"
+    "img1" "cap1"
+    "img2" "cap2"
+    "img3" "cap3"
+    "img4" "cap4"
+    "img5" "cap5"
+    "img6" "cap6";
+}
+.intestazione{grid-area:intestazione;}
+.apertura{grid-area:apertura;}
+.capitolo[data-capitolo="1"]{grid-area:cap1;}
+.capitolo[data-capitolo="2"]{grid-area:cap2;}
+.capitolo[data-capitolo="3"]{grid-area:cap3;}
+.capitolo[data-capitolo="4"]{grid-area:cap4;}
+.capitolo[data-capitolo="5"]{grid-area:cap5;}
+.capitolo[data-capitolo="6"]{grid-area:cap6;}
+.f1{grid-area:img1;}
+.f2{grid-area:img2;}
+.f3{grid-area:img3;}
+.f4{grid-area:img4;}
+.f5{grid-area:img5;}
+.f6{grid-area:img6;}
+
+/* LASTRA — figure, mobile: riquadro 4:5 sopra il testo, mai a tutta altezza schermo */
+.lastra-frame{display:flex;flex-direction:column;pointer-events:none;}
+.lastra-frame img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;}
+.lastra-didascalia{
+  margin:0;flex:0 0 auto;
+  background:var(--nocciola-scuro);color:var(--avorio);
+  font-family:var(--font-titoli);font-size:.82rem;letter-spacing:.03em;
+  padding:9px 16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+
+/* INTESTAZIONE — marchio tipografico + sommario dei capitoli, in cima alla colonna destra */
+.intestazione{
+  padding:clamp(28px,6vw,48px) clamp(20px,6vw,48px) var(--space-lg);
+  display:flex;flex-direction:column;gap:var(--space-md);
+}
+.marchio{display:flex;flex-direction:column;text-decoration:none;color:var(--bruno);width:fit-content;}
+.marchio-nome{font-family:var(--font-titoli);font-weight:400;font-size:clamp(2.1rem,4vw + 1rem,2.7rem);line-height:1;letter-spacing:.02em;white-space:nowrap;}
+.marchio-sub{font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:var(--bruno-tenue);margin-top:4px;font-weight:600;}
+.intestazione-riga{display:flex;align-items:center;justify-content:space-between;gap:var(--space-md);flex-wrap:wrap;}
+.mappa-capitoli{display:flex;flex-wrap:wrap;gap:10px var(--space-lg);}
+.mappa-capitoli a{font-size:.82rem;font-weight:600;text-decoration:none;color:var(--bruno);transition:color var(--dur-fast) var(--ease-premium);}
+.mappa-capitoli a:hover{color:var(--nocciola-scuro);}
+.mappa-capitoli a:active{color:var(--nocciola-profondo);}
+.intestazione-instagram{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:38px;height:38px;flex-shrink:0;border-radius:50%;
+  border:1.5px solid var(--bruno);color:var(--bruno);background:transparent;
+  transition:background var(--dur-fast) var(--ease-premium), color var(--dur-fast) var(--ease-premium), transform var(--dur-fast) var(--ease-premium);
+}
+.intestazione-instagram svg{display:block;width:17px;height:17px;}
+.intestazione-instagram:hover{background:var(--bruno);color:var(--avorio);}
+.intestazione-instagram:active{transform:scale(.94);}
+
+/* APERTURA — il vero "hero": occhiello, h1, sottotitolo, CTA. Nessun badge del 4,8: quello è il capitolo VI */
+.apertura{padding:0 clamp(20px,6vw,48px) var(--space-xl);max-width:640px;}
+.apertura h1{
+  font-size:clamp(1.9rem, 3.4vw + 1rem, 2.5rem);
+  margin:var(--space-sm) 0 var(--space-md);
+  overflow-wrap:anywhere;min-width:0;
+}
+.apertura-sub{font-size:1.05rem;color:var(--bruno-tenue);max-width:52ch;margin-bottom:var(--space-lg);}
+.apertura-cta{display:flex;flex-wrap:wrap;gap:var(--space-md);align-items:center;}
+
+/* CAPITOLI — numero romano in Italiana nel margine + corpo testuale, filetto sottile a separarli */
+.capitolo{
+  display:grid;grid-template-columns:auto 1fr;column-gap:var(--space-md);
+  padding:var(--space-xl) clamp(20px,6vw,40px) var(--space-xl) clamp(20px,6vw,48px);
+  border-top:1px solid var(--bordo-tenue);
+}
+.capitolo-numero{
+  font-family:var(--font-titoli);font-size:clamp(2.1rem,5vw,3.2rem);line-height:1;
+  color:var(--nocciola);align-self:start;
+}
+.capitolo-corpo{max-width:58ch;min-width:0;}
+.capitolo-corpo h2{font-size:clamp(1.5rem, 2.6vw + 0.9rem, 1.9rem);margin-bottom:var(--space-sm);}
+.capitolo-corpo p{margin-bottom:var(--space-sm);font-size:1.02rem;}
+.capitolo-corpo p:last-child{margin-bottom:0;}
+@media (max-width:479px){
+  .capitolo{grid-template-columns:1fr;row-gap:6px;}
+  .capitolo-numero{font-size:1.8rem;}
+}
+
+/* Riquadro delle voci-trattamento — bersaglio dell'UNICO effetto vistoso (spotlight-card) */
+.trattamento-riquadro{
+  position:relative;isolation:isolate;overflow:hidden;
+  border:1px solid var(--bordo-tenue);border-radius:14px;
+  padding:var(--space-md) var(--space-lg);margin-top:var(--space-sm);
+  background:var(--avorio);
+  transition:border-color var(--dur-fast) var(--ease-premium);
+}
+.trattamento-riquadro p{margin:0;}
+.trattamento-riquadro.spotlight{--mx:50%;--my:50%;}
+.trattamento-riquadro.spotlight::before{
+  content:"";position:absolute;inset:0;z-index:-1;opacity:0;
+  transition:opacity var(--dur-fast) ease-out;
+  background:radial-gradient(260px circle at var(--mx) var(--my), color-mix(in srgb, var(--nocciola) 22%, transparent), transparent 60%);
+}
+.trattamento-riquadro.spotlight:hover{border-color:var(--nocciola);}
+.trattamento-riquadro.spotlight:hover::before{opacity:1;}
+@media (hover:none){
+  .trattamento-riquadro.spotlight::before{display:none;}
+}
+
+/* BBSHIELD — pack shot intero, mai ritagliato, in un riquadro proprio (fondo azzurro estraneo alla palette) */
+.riquadro-bbshield{
+  margin-top:var(--space-md);
+  display:inline-flex;flex-direction:column;align-items:center;gap:8px;
+  border:1px solid var(--bordo-tenue);border-radius:14px;
+  background:var(--avorio);padding:var(--space-md);max-width:220px;
+}
+.riquadro-bbshield img{width:100%;height:auto;max-width:170px;object-fit:contain;aspect-ratio:auto;}
+.riquadro-bbshield figcaption{
+  font-family:var(--font-titoli);font-size:.82rem;letter-spacing:.03em;color:var(--nocciola-scuro);text-align:center;
+}
+
+/* CAPITOLO VI — il 4,8/76 in forma tipografica dentro la colonna: né numero gigante centrato (v1) né riquadro bordato (v2) */
+.giudizio-riga{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px;margin:var(--space-sm) 0 var(--space-md) !important;}
+.giudizio-numero{font-family:var(--font-titoli);font-size:clamp(2rem,5vw,2.6rem);color:var(--nocciola-scuro);line-height:1;}
+.giudizio-stelle{color:var(--nocciola);letter-spacing:2px;font-size:1rem;}
+.giudizio-testo{font-weight:600;font-size:1.02rem;}
+
+/* DA 900px: due metà vere, lastra sticky, filetto verticale, sequenza a due colonne */
+@media (min-width:900px){
+  .sequenza{
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+    grid-template-areas:
+      "lastra intestazione"
+      "lastra apertura"
+      "lastra cap1"
+      "lastra cap2"
+      "lastra cap3"
+      "lastra cap4"
+      "lastra cap5"
+      "lastra cap6";
+  }
+  .f1,.f2,.f3,.f4,.f5,.f6{grid-area:lastra;}
+  .lastra-frame{
+    position:sticky;top:0;height:100vh;
+    border-right:1px solid var(--bordo-tenue);
+    opacity:0;will-change:opacity;
+    transition:opacity var(--dur-base) var(--ease-premium);
+  }
+  .lastra-frame.is-attiva{opacity:1;}
+  .lastra-frame img{flex:1 1 auto;min-height:0;aspect-ratio:auto;}
+}
+
+/* ============ Torna a piena larghezza: orari/contatti, CTA finale, footer ============ */
+.contatti{background:var(--rosa-cipria);color:var(--bruno);padding:var(--space-2xl) 0;}
+.contatti h2{margin-bottom:var(--space-lg);}
+.orari-titolo{font-family:var(--font-titoli);font-weight:400;font-size:1.3rem;margin-bottom:var(--space-md);}
+.contatti-grid{display:grid;grid-template-columns:1fr;gap:var(--space-xl);}
+.lista-contatti{list-style:none;}
+.lista-contatti li{display:flex;flex-direction:column;gap:2px;padding:var(--space-md) 0;border-bottom:1px solid var(--bordo-tenue);}
+.lista-contatti li:first-child{padding-top:0;}
+.lista-contatti span{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--bruno);}
+.lista-contatti a{font-size:1.1rem;font-weight:600;text-decoration:none;color:var(--bruno);transition:color var(--dur-fast) var(--ease-premium);}
+.lista-contatti a:hover{color:var(--nocciola-scuro);text-decoration:underline;}
+.lista-contatti a:active{color:var(--nocciola-profondo);}
+.lista-contatti li:last-child{border-bottom:none;}
+table.orari{width:100%;border-collapse:collapse;}
+table.orari th,table.orari td{text-align:left;font-weight:400;font-size:.98rem;padding:11px 0;border-bottom:1px solid var(--bordo-tenue);font-variant-numeric:tabular-nums;}
+table.orari th{font-weight:600;width:50%;}
+table.orari tr:first-child th, table.orari tr:first-child td{padding-top:0;}
+table.orari tr:last-child th, table.orari tr:last-child td{border-bottom:none;}
+@media (min-width:860px){
+  .contatti-grid{grid-template-columns:1fr 1fr;}
+}
+
+.cta-lorenzo{background:var(--nocciola-scuro);color:var(--avorio);padding:var(--space-2xl) 0;text-align:center;}
+.cta-inner{max-width:620px;margin:0 auto;}
+.cta-lorenzo h2{color:var(--avorio);margin-bottom:var(--space-md);}
+.cta-lorenzo p{color:var(--avorio-velato);margin-bottom:var(--space-lg);}
+
+footer{background:var(--avorio);border-top:1px solid var(--bordo-tenue);padding:var(--space-lg) 0;text-align:center;}
+footer p{font-size:.85rem;color:var(--bruno-tenue);}
+footer a{color:var(--nocciola-scuro);text-decoration:none;font-weight:600;}
+footer a:hover{text-decoration:underline;}
+footer a:active{color:var(--nocciola-profondo);}
+
+/* ── motion-locali: fade-in-up (intestazione + apertura, sopra la piega) ── */
+[data-fade]{
+  opacity:0;transform:translateY(16px);
+  transition:opacity 520ms var(--ease-premium), transform 520ms var(--ease-premium);
+  transition-delay:var(--fade-delay,0ms);
+  will-change:opacity, transform;
+}
+[data-fade].is-in{opacity:1;transform:none;}
+
+/* ── motion-locali: scroll-reveal (ogni capitolo, contatti, CTA — stessa direzione dell'apertura) ── */
+[data-reveal]{
+  opacity:0;transform:translateY(18px);
+  transition:opacity 520ms var(--ease-premium), transform 520ms var(--ease-premium);
+  transition-delay:var(--reveal-delay,0ms);
+  will-change:opacity, transform;
+}
+[data-reveal].is-in{opacity:1;transform:none;}
+
+/* ── motion-locali: magnetic-button ── */
+/* (stili applicati via JS, nessuna regola CSS aggiuntiva necessaria oltre a .magnetic{will-change} sopra) */
+
+/* ── motion-locali: ripple-press ── */
+.ripple{position:relative;overflow:hidden;-webkit-tap-highlight-color:transparent;}
+.ripple > .ripple-wave{
+  position:absolute;border-radius:50%;transform:scale(0);opacity:.3;
+  background:currentColor;pointer-events:none;
+  animation:ripple-bloom 600ms ease-out forwards;
+}
+@keyframes ripple-bloom{to{transform:scale(1);opacity:0;}}
+
+/* ── prefers-reduced-motion: blocco unico, tutte le ricette + la dissolvenza della lastra ── */
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto;}
+  [data-fade]{opacity:1;transform:none;transition:none;}
+  [data-reveal]{opacity:1;transform:none;transition:none;}
+  .lastra-frame{transition:none;}
+  .trattamento-riquadro.spotlight::before{display:none;}
+  .trattamento-riquadro{transition:none;}
+  .btn.magnetic{transition:none;}
+  .ripple > .ripple-wave{display:none;}
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#contenuto">Vai al contenuto</a>
+
+<main id="contenuto">
+  <section class="sequenza" id="sequenza" aria-label="Il centro, i trattamenti e il giudizio dei clienti, capitolo per capitolo">
+
+    <figure class="lastra-frame f1 is-attiva" data-frame="1">
+      <img src="foto/reception.jpg" alt="Reception di Jolie, con bancone bianco laccato e pareti rosa cipria" width="765" height="1020" fetchpriority="high">
+      <figcaption class="lastra-didascalia">La reception</figcaption>
+    </figure>
+    <figure class="lastra-frame f2" data-frame="2">
+      <img src="foto/cabina-trattamento-corpo.jpg" alt="Trattamento corpo in cabina, con luce viola" width="737" height="983" loading="lazy" decoding="async">
+      <figcaption class="lastra-didascalia">Cabina trattamenti corpo</figcaption>
+    </figure>
+    <figure class="lastra-frame f3" data-frame="3">
+      <img src="foto/trattamento-viso.jpg" alt="Trattamento viso manuale con strumento dedicato" width="841" height="968" loading="lazy" decoding="async">
+      <figcaption class="lastra-didascalia">Trattamento viso</figcaption>
+    </figure>
+    <figure class="lastra-frame f4" data-frame="4">
+      <img src="foto/macchinario-skinetic.jpg" alt="Macchinario RHEA my SKINETIC per skin-analysis" width="731" height="969" loading="lazy" decoding="async">
+      <figcaption class="lastra-didascalia">my SKINETIC — skin-analysis RHEA</figcaption>
+    </figure>
+    <figure class="lastra-frame f5" data-frame="5">
+      <img src="foto/prodotti-rhea.jpg" alt="Linea di prodotti bifasici RHEA" width="770" height="972" loading="lazy" decoding="async">
+      <figcaption class="lastra-didascalia">Linea RHEA</figcaption>
+    </figure>
+    <figure class="lastra-frame f6" data-frame="6">
+      <img src="foto/logo.jpg" alt="Jolie, Estetica &amp; Benessere — la fotografia di marca del centro" width="792" height="919" loading="lazy" decoding="async">
+      <figcaption class="lastra-didascalia">Jolie, Estetica &amp; Benessere</figcaption>
+    </figure>
+
+    <div class="intestazione" id="top" data-fade>
+      <a class="marchio" href="#top">
+        <span class="marchio-nome">Jolie</span>
+        <span class="marchio-sub">Estetica &amp; Benessere</span>
+      </a>
+      <div class="intestazione-riga">
+        <nav class="mappa-capitoli" aria-label="Sommario dei capitoli">
+          <a href="#capitolo-1">Il centro</a>
+          <a href="#capitolo-2">Trattamenti</a>
+          <a href="#sequenza">Galleria</a>
+          <a href="#contatti">Contatti</a>
+        </nav>
+        <a class="intestazione-instagram" href="https://www.instagram.com/jolie.centroestetico" target="_blank" rel="noopener" aria-label="Instagram di Centro Estetico Jolie">
+          <svg aria-hidden="true" focusable="false" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+            <line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="apertura">
+      <p class="eyebrow" data-fade data-fade-delay="60">Gazzaniga · Piazzale Stazione</p>
+      <h1 data-fade data-fade-delay="120">Cura della pelle, con metodo e misura.</h1>
+      <p class="apertura-sub" data-fade data-fade-delay="180">Trattamenti viso e corpo, un percorso di skin-analysis con tecnologia RHEA e una linea di dermocosmesi professionale — a due passi dalla stazione di Gazzaniga.</p>
+      <div class="apertura-cta" data-fade data-fade-delay="240">
+        <a class="btn btn-primario magnetic ripple" href="tel:+39035738178" data-magnet-strength="0.25">Prenota un trattamento</a>
+        <a class="btn btn-contorno" href="https://wa.me/39035738178" target="_blank" rel="noopener">Scrivici su WhatsApp</a>
+      </div>
+    </div>
+
+    <article class="capitolo" id="capitolo-1" data-capitolo="1">
+      <span class="capitolo-numero" aria-hidden="true">I</span>
+      <div class="capitolo-corpo" data-reveal>
+        <h2><span class="sr-only">Capitolo 1 — </span>Il centro</h2>
+        <p>Bancone bianco laccato, pareti rosa cipria, prodotti in vista sulle mensole di vetro: è quello che si vede entrando in Jolie, in Piazzale Stazione a Gazzaniga.</p>
+        <p>Il lavoro unisce trattamenti manuali, viso e corpo, e un percorso diagnostico con la tecnologia RHEA my SKINETIC — la stessa cura, con strumenti diversi.</p>
+      </div>
+    </article>
+
+    <article class="capitolo" id="capitolo-2" data-capitolo="2">
+      <span class="capitolo-numero" aria-hidden="true">II</span>
+      <div class="capitolo-corpo" data-reveal>
+        <h2><span class="sr-only">Capitolo 2 — </span>Trattamenti corpo</h2>
+        <div class="trattamento-riquadro spotlight">
+          <p>Trattamenti corpo eseguiti in cabina, con applicazione manuale di prodotto mirato.</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="capitolo" id="capitolo-3" data-capitolo="3">
+      <span class="capitolo-numero" aria-hidden="true">III</span>
+      <div class="capitolo-corpo" data-reveal>
+        <h2><span class="sr-only">Capitolo 3 — </span>Trattamenti viso</h2>
+        <div class="trattamento-riquadro spotlight">
+          <p>Trattamenti viso manuali, con strumenti dedicati per la pulizia e la cura della pelle.</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="capitolo" id="capitolo-4" data-capitolo="4">
+      <span class="capitolo-numero" aria-hidden="true">IV</span>
+      <div class="capitolo-corpo" data-reveal>
+        <h2><span class="sr-only">Capitolo 4 — </span>Skin-analysis RHEA</h2>
+        <div class="trattamento-riquadro spotlight">
+          <p>Percorso di skin-analysis e trattamento apparecchiativo con la tecnologia RHEA my SKINETIC.</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="capitolo" id="capitolo-5" data-capitolo="5">
+      <span class="capitolo-numero" aria-hidden="true">V</span>
+      <div class="capitolo-corpo" data-reveal>
+        <h2><span class="sr-only">Capitolo 5 — </span>Dermocosmesi</h2>
+        <div class="trattamento-riquadro spotlight">
+          <p>Linea di dermocosmesi professionale RHEA, in vendita in centro — inclusa la protezione solare BBSHIELD SPF 50 e SPF 15.</p>
+        </div>
+        <figure class="riquadro-bbshield">
+          <img src="foto/prodotti-bbshield.jpg" alt="Protezione solare RHEA BBSHIELD SPF 50 e SPF 15" width="734" height="945" loading="lazy" decoding="async">
+          <figcaption>BBSHIELD SPF</figcaption>
+        </figure>
+      </div>
+    </article>
+
+    <article class="capitolo" id="capitolo-6" data-capitolo="6">
+      <span class="capitolo-numero" aria-hidden="true">VI</span>
+      <div class="capitolo-corpo" data-reveal>
+        <h2><span class="sr-only">Capitolo 6 — </span>Il giudizio di chi c'è già stato</h2>
+        <p class="giudizio-riga">
+          <span class="giudizio-numero">4,8</span>
+          <span class="giudizio-stelle" aria-hidden="true">★★★★★</span>
+          <span class="giudizio-testo">su 76 recensioni Google</span>
+        </p>
+        <p>Nessuna recensione scelta da noi: il punteggio arriva dal profilo Google del centro, dove si possono leggere tutte.</p>
+        <a class="link-testuale" href="https://maps.google.com/?cid=7846464158577254483" target="_blank" rel="noopener">Leggi le recensioni su Google →</a>
+      </div>
+    </article>
+
+  </section>
+
+  <section class="contatti" id="contatti">
+    <div class="contenitore contatti-grid">
+      <div data-reveal>
+        <h2>Dove siamo e quando</h2>
+        <ul class="lista-contatti">
+          <li>
+            <span>Indirizzo</span>
+            <a href="https://maps.google.com/?cid=7846464158577254483" target="_blank" rel="noopener">Piazzale Stazione, 9 — Gazzaniga (BG)</a>
+          </li>
+          <li>
+            <span>Telefono</span>
+            <a href="tel:+39035738178">035 738178</a>
+          </li>
+          <li>
+            <span>WhatsApp</span>
+            <a href="https://wa.me/39035738178" target="_blank" rel="noopener">035 738178</a>
+          </li>
+          <li>
+            <span>Instagram</span>
+            <a href="https://www.instagram.com/jolie.centroestetico" target="_blank" rel="noopener">@jolie.centroestetico</a>
+          </li>
+        </ul>
+      </div>
+      <div data-reveal data-reveal-delay="120">
+        <h3 class="orari-titolo">Orari</h3>
+        <table class="orari">
+          <caption class="sr-only">Orari di apertura Centro Estetico Jolie</caption>
+          <tbody>
+          <tr><th scope="row">Lunedì</th><td>07:00–17:00</td></tr>
+          <tr><th scope="row">Martedì</th><td>09:00–20:00</td></tr>
+          <tr><th scope="row">Mercoledì</th><td>09:00–22:00</td></tr>
+          <tr><th scope="row">Giovedì</th><td>14:00–22:00</td></tr>
+          <tr><th scope="row">Venerdì</th><td>09:00–20:00</td></tr>
+          <tr><th scope="row">Sabato</th><td>08:00–16:00</td></tr>
+          <tr><th scope="row">Domenica</th><td>Chiuso</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</main>
+
+<section class="cta-lorenzo">
+  <div class="contenitore cta-inner" data-reveal>
+    <h2>Il sito è pronto</h2>
+    <p>Manca solo il vostro listino e la conferma degli orari per andare online. Scrivimi e sistemiamo tutto insieme.</p>
+    <a class="btn btn-avorio magnetic ripple" href="https://wa.me/393314660537" target="_blank" rel="noopener" data-magnet-strength="0.25">Scrivimi su WhatsApp</a>
+  </div>
+</section>
+
+<footer>
+  <div class="contenitore">
+    <p>Sito realizzato da <a href="https://wa.me/393314660537" target="_blank" rel="noopener">Lorenzo Zenucchi</a></p>
+  </div>
+</footer>
+
+<script>
+/* motion-locali: fade-in-up */
+(function () {
+  'use strict';
+  function init() {
+    var els = document.querySelectorAll('[data-fade]');
+    if (!els.length) return;
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) {
+      els.forEach(function (el) { el.classList.add('is-in'); });
+      return;
+    }
+    els.forEach(function (el, i) {
+      var d = el.getAttribute('data-fade-delay');
+      el.style.setProperty('--fade-delay', (d != null ? parseInt(d, 10) : i * 70) + 'ms');
+    });
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        els.forEach(function (el) { el.classList.add('is-in'); });
+      });
+    });
+  }
+  if (document.readyState !== 'loading') init();
+  else document.addEventListener('DOMContentLoaded', init);
+})();
+
+/* motion-locali: scroll-reveal */
+(function () {
+  'use strict';
+  function revealAll() {
+    document.querySelectorAll('[data-reveal]').forEach(function (el) {
+      el.classList.add('is-in');
+    });
+  }
+  function init() {
+    var els = document.querySelectorAll('[data-reveal]');
+    if (!els.length) return;
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce || !('IntersectionObserver' in window)) {
+      revealAll();
+      return;
+    }
+    els.forEach(function (el) {
+      var d = el.getAttribute('data-reveal-delay');
+      if (d) el.style.setProperty('--reveal-delay', parseInt(d, 10) + 'ms');
+    });
+    var io = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-in');
+            io.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15, rootMargin: '0px 0px -10% 0px' }
+    );
+    els.forEach(function (el) { io.observe(el); });
+  }
+  if (document.readyState !== 'loading') init();
+  else document.addEventListener('DOMContentLoaded', init);
+})();
+
+/* impianto v3: la lastra cambia immagine passando da un capitolo al successivo — un solo IntersectionObserver */
+(function () {
+  'use strict';
+  function init() {
+    var capitoli = document.querySelectorAll('.capitolo[data-capitolo]');
+    var frames = document.querySelectorAll('.lastra-frame[data-frame]');
+    if (!capitoli.length || !frames.length || !('IntersectionObserver' in window)) return;
+    function attiva(n) {
+      frames.forEach(function (f) {
+        f.classList.toggle('is-attiva', f.getAttribute('data-frame') === n);
+      });
+    }
+    var io = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            attiva(entry.target.getAttribute('data-capitolo'));
+          }
+        });
+      },
+      { threshold: 0, rootMargin: '-45% 0px -45% 0px' }
+    );
+    capitoli.forEach(function (c) { io.observe(c); });
+  }
+  if (document.readyState !== 'loading') init();
+  else document.addEventListener('DOMContentLoaded', init);
+})();
+
+/* motion-locali: magnetic-button */
+(function (global) {
+  'use strict';
+  function reduced() { return global.matchMedia && global.matchMedia('(prefers-reduced-motion: reduce)').matches; }
+  function isTouch() { return global.matchMedia && global.matchMedia('(hover: none)').matches; }
+  function attach(btn) {
+    if (btn.__magnetBound) return;
+    btn.__magnetBound = true;
+    var strength = parseFloat(btn.getAttribute('data-magnet-strength')) || 0.3;
+    btn.addEventListener('pointermove', function (e) {
+      var r = btn.getBoundingClientRect();
+      var dx = e.clientX - (r.left + r.width / 2);
+      var dy = e.clientY - (r.top + r.height / 2);
+      btn.style.transform = 'translate(' + dx * strength + 'px,' + dy * strength + 'px)';
+    });
+    btn.addEventListener('pointerleave', function () { btn.style.transform = ''; });
+  }
+  function init() {
+    if (reduced() || isTouch()) return;
+    var els = document.querySelectorAll('.magnetic');
+    for (var i = 0; i < els.length; i++) attach(els[i]);
+  }
+  if (document.readyState !== 'loading') init();
+  else document.addEventListener('DOMContentLoaded', init);
+})(window);
+
+/* motion-locali: ripple-press */
+(function (global) {
+  'use strict';
+  function reduced() { return global.matchMedia && global.matchMedia('(prefers-reduced-motion: reduce)').matches; }
+  function spawn(el, e) {
+    var r = el.getBoundingClientRect();
+    var size = Math.max(r.width, r.height) * 2;
+    var x = (e.clientX != null ? e.clientX : r.left + r.width / 2) - r.left;
+    var y = (e.clientY != null ? e.clientY : r.top + r.height / 2) - r.top;
+    var wave = document.createElement('span');
+    wave.className = 'ripple-wave';
+    wave.style.width = wave.style.height = size + 'px';
+    wave.style.left = (x - size / 2) + 'px';
+    wave.style.top = (y - size / 2) + 'px';
+    el.appendChild(wave);
+    wave.addEventListener('animationend', function () { wave.remove(); });
+  }
+  function attach(el) {
+    if (el.__rippleBound) return;
+    el.__rippleBound = true;
+    el.addEventListener('pointerdown', function (e) { if (!reduced()) spawn(el, e); });
+  }
+  function init() {
+    var els = document.querySelectorAll('.ripple');
+    for (var i = 0; i < els.length; i++) attach(els[i]);
+  }
+  if (document.readyState !== 'loading') init();
+  else document.addEventListener('DOMContentLoaded', init);
+})(window);
+
+/* motion-locali: spotlight-card (UNICO effetto vistoso di pagina — voci dei trattamenti) */
+(function (global) {
+  'use strict';
+  function reduced() { return global.matchMedia && global.matchMedia('(prefers-reduced-motion: reduce)').matches; }
+  function isTouch() { return global.matchMedia && global.matchMedia('(hover: none)').matches; }
+  function attach(card) {
+    if (card.__spotBound) return;
+    card.__spotBound = true;
+    card.addEventListener('pointermove', function (e) {
+      var r = card.getBoundingClientRect();
+      card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    });
+  }
+  function init() {
+    if (reduced() || isTouch()) return;
+    var els = document.querySelectorAll('.spotlight');
+    for (var i = 0; i < els.length; i++) attach(els[i]);
+  }
+  if (document.readyState !== 'loading') init();
+  else document.addEventListener('DOMContentLoaded', init);
+})(window);
+</script>
+</body>
+</html>
