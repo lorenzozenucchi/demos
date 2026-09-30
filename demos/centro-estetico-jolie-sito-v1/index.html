@@ -33,6 +33,10 @@
   --space-lg:40px;
   --space-xl:64px;
   --space-2xl:96px;
+  --t-titolo:clamp(1.5rem, 1.5vw + 1rem, 2.25rem);
+  --t-sottotitolo:clamp(1.15rem, 0.5vw + 1.05rem, 1.35rem);
+  --t-corpo:1.05rem;
+  --t-lista:.98rem;
 }
 *{box-sizing:border-box;margin:0;padding:0;}
 html{overflow-x:clip;scroll-behavior:smooth;}
@@ -47,6 +51,7 @@ body{
 img{display:block;max-width:100%;height:auto;}
 a{color:inherit;}
 h1,h2,h3{font-family:var(--font-titoli);font-weight:400;font-style:normal;line-height:1.12;color:var(--bruno);overflow-wrap:anywhere;min-width:0;}
+h2{font-size:var(--t-titolo);}
 .contenitore{width:min(1120px, 90%);margin:0 auto;}
 .skip-link{
   position:absolute;left:-999px;top:auto;
@@ -56,7 +61,7 @@ h1,h2,h3{font-family:var(--font-titoli);font-weight:400;font-style:normal;line-h
 }
 .skip-link:focus{left:0;top:0;}
 :focus-visible{outline:2px solid var(--nocciola-scuro);outline-offset:3px;}
-.cta-lorenzo :focus-visible{outline-color:var(--avorio);}
+.cta-finale :focus-visible{outline-color:var(--avorio);}
 
 .eyebrow{
   font-family:var(--font-testo);
@@ -107,14 +112,28 @@ header.header{
   padding:16px 0;
 }
 .wordmark{
-  display:flex;flex-direction:column;text-decoration:none;color:var(--bruno);
+  display:flex;flex-direction:column;text-decoration:none;color:var(--bruno);flex-shrink:0;
 }
-.wordmark-nome{font-family:var(--font-titoli);font-size:1.6rem;letter-spacing:.02em;}
+.wordmark svg{display:block;height:29px;width:auto;}
 .wordmark-sub{font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--bruno-tenue);margin-top:2px;font-weight:600;}
-.nav-links{display:none;list-style:none;gap:var(--space-lg);align-items:center;}
-.nav-links a{font-size:.92rem;font-weight:600;text-decoration:none;color:var(--bruno);transition:color var(--dur-fast) var(--ease-premium);}
-.nav-links a:hover{color:var(--nocciola-scuro);}
-.nav-links a:active{color:var(--nocciola-profondo);}
+.header-menu{
+  position:absolute;top:100%;left:0;right:0;
+  background:var(--avorio-velato);
+  backdrop-filter:blur(6px);
+  box-shadow:0 14px 30px var(--ombra-morbida);
+  animation:menu-apertura var(--dur-fast) var(--ease-premium) both;
+}
+.header-menu ul{list-style:none;padding:var(--space-xs) 0;}
+.header-menu ul li + li{border-top:1px solid var(--bordo-tenue);}
+.header-menu a{
+  display:block;padding:12px 0;
+  font-size:.95rem;font-weight:600;letter-spacing:.02em;
+  text-decoration:none;color:var(--bruno);
+  transition:color var(--dur-fast) var(--ease-premium);
+}
+.header-menu a:hover{color:var(--nocciola-scuro);}
+.header-menu a:active{color:var(--nocciola-profondo);}
+@keyframes menu-apertura{from{opacity:0;transform:translateY(-10px);}to{opacity:1;transform:none;}}
 .header-azioni{display:flex;align-items:center;gap:var(--space-sm);}
 .header-instagram{
   display:inline-flex;align-items:center;justify-content:center;
@@ -128,14 +147,27 @@ header.header{
 .header-instagram svg{display:block;width:18px;height:18px;}
 .header-instagram:hover{background:var(--bruno);color:var(--avorio);}
 .header-instagram:active{transform:scale(.97);}
+.header-menu-toggle{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:40px;height:40px;flex-shrink:0;
+  border-radius:50%;
+  background:transparent;
+  border:1.5px solid var(--bruno);
+  color:var(--bruno);
+  cursor:pointer;
+  transition:background var(--dur-fast) var(--ease-premium), color var(--dur-fast) var(--ease-premium), transform var(--dur-fast) var(--ease-premium);
+}
+.header-menu-toggle svg{display:block;width:18px;height:18px;}
+.header-menu-toggle:hover{background:var(--bruno);color:var(--avorio);}
+.header-menu-toggle:active{transform:scale(.97);}
 @media (max-width:859px){
   .header-inner{gap:var(--space-xs);}
   .header-azioni{gap:var(--space-xs);}
   .header-azioni .btn-primario{padding:10px 15px;}
 }
 @media (max-width:480px){
-  .header-instagram{width:36px;height:36px;}
-  .header-instagram svg{width:16px;height:16px;}
+  .header-instagram,.header-menu-toggle{width:36px;height:36px;}
+  .header-instagram svg,.header-menu-toggle svg{width:16px;height:16px;}
 }
 
 /* HERO */
@@ -143,13 +175,13 @@ header.header{
 .hero-grid{display:grid;grid-template-columns:1fr;gap:44px;align-items:center;}
 .hero-testo{max-width:640px;}
 .hero h1{
-  font-size:clamp(2.2rem, 4vw + 1.2rem, 3.6rem);
+  font-size:clamp(1.6rem, 4vw + 0.8rem, 3rem);
   margin:var(--space-sm) 0 var(--space-md);
   overflow-wrap:anywhere;
   min-width:0;
 }
 .hero-sub{
-  font-size:1.08rem;
+  font-size:var(--t-corpo);
   color:var(--bruno-tenue);
   max-width:52ch;
   margin-bottom:var(--space-md);
@@ -172,25 +204,28 @@ header.header{
 
 /* CHI SIAMO */
 .chi-siamo{background:var(--rosa-cipria);color:var(--bruno);padding:var(--space-2xl) 0;}
-.chi-siamo-inner{max-width:680px;}
+.chi-siamo-grid{display:grid;grid-template-columns:1fr;gap:var(--space-xl);}
+.chi-siamo-testo{max-width:680px;}
+.chi-siamo-foto{border-radius:16px;overflow:hidden;box-shadow:0 18px 38px var(--ombra-morbida);background:var(--rosa-cipria);}
+.chi-siamo-foto img{width:100%;display:block;}
 .chi-siamo h2{margin-bottom:var(--space-md);}
-.chi-siamo p{font-size:1.05rem;margin-bottom:var(--space-md);}
+.chi-siamo p{font-size:var(--t-corpo);margin-bottom:var(--space-md);}
 .chi-siamo p:last-child{margin-bottom:0;}
 
 /* SERVIZI */
 .servizi{background:var(--avorio);padding:var(--space-2xl) 0;}
 .servizi h2{margin-bottom:var(--space-sm);}
-.servizi-intro{max-width:56ch;color:var(--bruno-tenue);font-size:1.02rem;margin-bottom:var(--space-xl);}
+.servizi-intro{max-width:56ch;color:var(--bruno-tenue);font-size:var(--t-corpo);margin-bottom:var(--space-xl);}
 .servizi-grid{display:grid;grid-template-columns:1fr;gap:var(--space-xl);}
 .trattamento-riga{
   padding:22px 0;border-bottom:1px solid var(--bordo-tenue);
   display:flex;flex-direction:column;gap:6px;
 }
 .servizi-lista .trattamento-riga:first-child{padding-top:0;}
-.trattamento-titolo{font-family:var(--font-titoli);font-size:1.35rem;color:var(--nocciola-scuro);}
-.trattamento-desc{font-size:.98rem;color:var(--bruno);line-height:1.65;max-width:52ch;}
+.trattamento-titolo{font-family:var(--font-titoli);font-size:var(--t-sottotitolo);color:var(--nocciola-scuro);}
+.trattamento-desc{font-size:var(--t-lista);color:var(--bruno);line-height:1.65;max-width:52ch;}
 .servizi-visivi{display:flex;flex-direction:column;gap:var(--space-md);}
-.foto-tech{border-radius:16px;overflow:hidden;box-shadow:0 18px 38px var(--ombra-morbida);background:var(--rosa-cipria);}
+.foto-tech{border-radius:16px;overflow:hidden;box-shadow:0 18px 38px var(--ombra-morbida);background:var(--avorio);}
 .foto-tech img{width:100%;display:block;}
 .foto-tech figcaption{
   padding:10px 14px;font-family:var(--font-titoli);font-size:.82rem;
@@ -198,11 +233,93 @@ header.header{
 }
 .coppia-prodotti{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--space-md);}
 
+/* NAVIGAZIONE — nella fascia in cui il contenitore e' ancora stretto, gap e
+   padding della barra si stringono invece di mandare a capo il pulsante. */
+@media (min-width:860px) and (max-width:1023px){
+  .header-inner{gap:var(--space-sm);}
+  .header-azioni{gap:var(--space-xs);}
+  .header-azioni .btn-primario{padding:12px 20px;}
+}
+
+/* LISTINO */
+.listino{background:var(--avorio);padding:var(--space-2xl) 0;scroll-margin-top:90px;}
+.listino h2{margin:var(--space-xs) 0 var(--space-md);}
+.listino-intro{max-width:56ch;color:var(--bruno-tenue);font-size:var(--t-corpo);}
+.listino-intro p + p{margin-top:var(--space-sm);}
+.listino-nota{
+  border-left:2px solid var(--beige-nude);padding-left:14px;
+  font-size:.95rem;font-weight:600;color:var(--nocciola-scuro);
+}
+.listino-indice{display:flex;flex-wrap:wrap;gap:var(--space-xs);margin:var(--space-lg) 0 var(--space-xl);}
+.listino-indice a{
+  display:inline-block;padding:8px 16px;border-radius:999px;
+  border:1px solid var(--nocciola-scuro);background:transparent;color:var(--nocciola-scuro);
+  font-size:.82rem;font-weight:600;letter-spacing:.02em;text-decoration:none;
+  white-space:nowrap;
+  transition:background var(--dur-fast) var(--ease-premium), color var(--dur-fast) var(--ease-premium), border-color var(--dur-fast) var(--ease-premium);
+}
+.listino-indice a:hover{background:var(--nocciola-scuro);border-color:var(--nocciola-scuro);color:var(--avorio);}
+.listino-indice a:active{background:var(--nocciola-profondo);border-color:var(--nocciola-profondo);color:var(--avorio);}
+.categoria{border-top:1px solid var(--nocciola);scroll-margin-top:90px;}
+.categoria:last-child{border-bottom:1px solid var(--nocciola);}
+.categoria-testa{
+  display:flex;align-items:center;justify-content:space-between;gap:var(--space-md);
+  padding:18px 0;cursor:pointer;list-style:none;
+}
+.categoria-testa::-webkit-details-marker{display:none;}
+.categoria-nome{
+  font-family:var(--font-titoli);font-size:var(--t-sottotitolo);
+  color:var(--bruno);line-height:1.15;overflow-wrap:anywhere;min-width:0;
+  transition:color var(--dur-fast) var(--ease-premium);
+}
+.categoria-testa:hover .categoria-nome{color:var(--nocciola-scuro);}
+.categoria-testa:active .categoria-nome{color:var(--nocciola-profondo);}
+.categoria-segno{position:relative;width:15px;height:15px;flex-shrink:0;color:var(--nocciola-scuro);}
+.categoria-segno::before,.categoria-segno::after{content:'';position:absolute;left:50%;top:50%;background:currentColor;}
+.categoria-segno::before{width:15px;height:1.5px;transform:translate(-50%,-50%);}
+.categoria-segno::after{
+  width:1.5px;height:15px;transform:translate(-50%,-50%);
+  transition:transform var(--dur-fast) var(--ease-premium), opacity var(--dur-fast) var(--ease-premium);
+}
+.categoria[open] .categoria-segno::after{transform:translate(-50%,-50%) rotate(90deg);opacity:0;}
+.voci{list-style:none;padding-bottom:var(--space-lg);}
+.voce{
+  display:grid;grid-template-columns:minmax(0,1fr) var(--col-prezzo,12ch);
+  gap:var(--space-sm);align-items:baseline;
+  padding:11px 0;border-bottom:1px solid var(--bordo-tenue);
+  break-inside:avoid;
+}
+.voce-nome{font-size:var(--t-lista);color:var(--bruno);line-height:1.5;overflow-wrap:anywhere;min-width:0;}
+.voce-prezzo{
+  text-align:right;font-size:var(--t-lista);font-weight:700;color:var(--nocciola-scuro);
+  font-variant-numeric:tabular-nums;white-space:nowrap;
+}
+.p-mod,.p-sep,.p-eur{font-weight:400;color:var(--bruno-tenue);}
+.p-mod{font-size:.86em;}
+@media (min-width:860px){
+  .voci{columns:2;column-gap:var(--space-2xl);}
+}
+@media (max-width:420px){
+  :root{--t-lista:.92rem;}
+  .voci{--col-prezzo:11ch;}
+  .voce{gap:var(--space-xs);}
+}
+
+/* TEAM */
+.team{background:var(--rosa-cipria);color:var(--bruno);padding:var(--space-2xl) 0;}
+.team h2{margin-bottom:var(--space-md);}
+.team p{font-size:var(--t-corpo);margin-bottom:var(--space-md);}
+.team p:last-child{margin-bottom:0;}
+.team-grid{display:grid;grid-template-columns:1fr;gap:var(--space-xl);}
+.team-testo{max-width:680px;}
+.team-foto{border-radius:16px;overflow:hidden;box-shadow:0 18px 38px var(--ombra-morbida);background:var(--rosa-cipria);}
+.team-foto img{width:100%;display:block;}
+
 /* GALLERIA */
 .galleria{background:var(--rosa-cipria);color:var(--bruno);padding:var(--space-2xl) 0;}
 .galleria h2{margin-bottom:var(--space-xl);}
 .galleria-mosaico{display:grid;grid-template-columns:1fr;gap:var(--space-md);}
-.galleria-tile{border-radius:16px;overflow:hidden;box-shadow:0 16px 34px var(--ombra-morbida);background:var(--avorio);}
+.galleria-tile{border-radius:16px;overflow:hidden;box-shadow:0 16px 34px var(--ombra-morbida);background:var(--rosa-cipria);}
 .galleria-tile img{width:100%;display:block;aspect-ratio:3/4;object-fit:cover;}
 .galleria-tile figcaption{
   padding:12px 16px;font-family:var(--font-titoli);font-size:.88rem;
@@ -214,13 +331,13 @@ header.header{
 .recensioni-inner{max-width:600px;margin:0 auto;}
 .recensioni-numero{font-family:var(--font-titoli);font-size:clamp(4rem,10vw,6.5rem);line-height:1;}
 .recensioni-stelle{color:var(--nocciola);font-size:1.5rem;letter-spacing:5px;margin:6px 0 6px;}
-.recensioni-sub{font-weight:700;font-size:1.05rem;margin-bottom:var(--space-md);}
+.recensioni-sub{font-weight:700;font-size:var(--t-corpo);margin-bottom:var(--space-md);}
 .recensioni-nota{color:var(--bruno-tenue);max-width:50ch;margin:0 auto var(--space-lg);}
 
 /* CONTATTI */
 .contatti{background:var(--rosa-cipria);color:var(--bruno);padding:var(--space-2xl) 0;}
 .contatti h2{margin-bottom:var(--space-lg);}
-.orari-titolo{font-family:var(--font-titoli);font-weight:400;font-size:1.3rem;margin-bottom:var(--space-md);}
+.orari-titolo{font-family:var(--font-titoli);font-weight:400;font-size:var(--t-sottotitolo);margin-bottom:var(--space-md);}
 .contatti-grid{display:grid;grid-template-columns:1fr;gap:var(--space-xl);}
 .lista-contatti{list-style:none;}
 .lista-contatti li{
@@ -250,11 +367,10 @@ table.orari th{font-weight:600;width:50%;}
 table.orari tr:first-child th, table.orari tr:first-child td{padding-top:0;}
 table.orari tr:last-child th, table.orari tr:last-child td{border-bottom:none;}
 
-/* CTA LORENZO */
-.cta-lorenzo{background:var(--nocciola-scuro);color:var(--avorio);padding:var(--space-2xl) 0;text-align:center;}
+/* CTA FINALE */
+.cta-finale{background:var(--nocciola-scuro);color:var(--avorio);padding:var(--space-xl) 0;text-align:center;}
 .cta-inner{max-width:620px;margin:0 auto;}
-.cta-lorenzo h2{color:var(--avorio);margin-bottom:var(--space-md);}
-.cta-lorenzo p{color:var(--avorio-velato);margin-bottom:var(--space-lg);}
+.cta-finale h2{color:var(--avorio);margin-bottom:var(--space-md);}
 
 footer{
   background:var(--avorio);
@@ -269,9 +385,13 @@ footer a:active{color:var(--nocciola-profondo);}
 
 @media (min-width:860px){
   .header-inner{padding:20px 0;}
-  .nav-links{display:flex;}
   .hero-grid{grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:64px;}
+  .hero h1{font-size:clamp(1.7rem, 2.4vw + 0.5rem, 3rem);}
+  .chi-siamo-grid{grid-template-columns:minmax(0,1.35fr) minmax(0,.65fr);align-items:start;}
   .servizi-grid{grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);align-items:start;}
+  .team-grid{grid-template-columns:minmax(0,.65fr) minmax(0,1.35fr);align-items:start;}
+  .team-testo{order:2;}
+  .team-foto{order:1;}
   .contatti-grid{grid-template-columns:1fr 1fr;}
 }
 @media (min-width:720px){
@@ -326,7 +446,9 @@ footer a:active{color:var(--nocciola-profondo);}
   [data-fade]{opacity:1;transform:none;transition:none;}
   [data-reveal]{opacity:1;transform:none;transition:none;}
   .btn.magnetic{transition:none;}
+  .categoria-segno::after{transition:none;}
   .ripple > .ripple-wave{display:none;}
+  .header-menu{animation:none;}
 }
 </style>
 </head>
@@ -336,15 +458,19 @@ footer a:active{color:var(--nocciola-profondo);}
 <header class="header">
   <div class="contenitore header-inner">
     <a href="#top" class="wordmark" id="top">
-      <span class="wordmark-nome">Jolie</span>
+      <span class="sr-only">Jolie</span>
+      <svg viewBox="29.79 34.04 181.31 70.29" fill="currentColor" aria-hidden="true" focusable="false"><path d="M36.55 43.89L48.38 43.89L48.38 44.06C47.78 44.65 47.61 44.9 47.61 46.25L47.61 93.89C47.61 99.7 45.21 102.81 40.75 102.81C34.64 102.81 30.56 99.21 30.56 93.8L29.79 93.8C29.79 100.12 34.18 104.33 40.75 104.33C48.51 104.33 54.29 98.6 54.29 90.1L54.29 48.35C54.29 45.41 55.83 43.89 58.82 43.89L61.05 43.89L61.05 43.13L36.55 43.13ZM36.55 43.89"/><path d="M89.74 53.4C74.28 53.4 61.74 64.79 61.74 78.82C61.74 94.12 72.94 104.33 89.74 104.33C105.25 104.33 117.83 92.9 117.83 78.82C117.83 63.57 106.6 53.4 89.74 53.4M90 102.81C78.51 102.81 69.19 91.39 69.19 77.31C69.19 63.88 77.27 54.92 89.4 54.92C100.98 54.92 110.38 66.34 110.38 80.42C110.38 93.86 102.23 102.81 90 102.81"/><path d="M140.07 94.47C140.31 95.22 140.45 96.04 140.45 96.92C140.45 99.9 138.46 101.89 135.48 101.89C130.13 101.89 130.77 93.3 130.77 93.3L130.77 34.04L130.08 34.04L130.08 34.38C130.08 37.82 125.88 38.84 122.37 38.84L117.49 38.84L117.49 39.6L121.52 39.6C123.19 39.6 124.09 40.52 124.09 42.12L124.09 93.38C124.09 99.43 128.32 104.33 133.34 104.33C138.06 104.33 141.21 101.36 141.21 96.92C141.21 95.95 141.05 95.01 140.77 94.13ZM140.07 94.47"/><path d="M161.48 94.29C161.72 95.05 161.86 95.86 161.86 96.74C161.86 99.72 159.87 101.71 156.89 101.71C151.54 101.71 152.18 93.12 152.18 93.12L152.18 51.72L151.49 51.72L151.49 52.05C151.49 55.5 147.29 56.52 143.79 56.52L139.07 56.52L139.07 57.27L142.93 57.27C144.6 57.27 145.5 58.2 145.5 59.8L145.5 93.21C145.5 99.25 149.73 104.15 154.75 104.15C159.47 104.15 162.62 101.19 162.62 96.74C162.62 95.77 162.46 94.83 162.18 93.96ZM161.48 94.29"/><path d="M148.84 43.8C151.23 43.8 152.61 42.21 152.61 40.02C152.61 37.66 151.06 36.32 148.84 36.32C146.44 36.32 144.98 37.83 144.98 40.02C144.98 42.38 146.61 43.8 148.84 43.8"/><path d="M209.8 90.4C206.02 98.18 198.23 102.81 188.09 102.81C177.88 102.81 169.56 91.39 169.56 77.31C169.56 63.87 176.95 54.92 188 54.92C197.56 54.92 203.93 62.32 203.93 73.43C203.93 73.94 203.76 74.19 203.25 74.19L184.89 74.19L184.42 74.2C179.46 74.2 175.4 77.99 175.02 82.77L175.67 83.14L175.69 83.13C176.17 79.15 179.7 76.02 184.42 76.02C184.58 76.01 184.74 76 184.91 76L208.38 76.3C209.85 76.3 211.01 75.2 211.01 73.86L211.01 73.43C211.01 61.41 201.96 53.4 188.34 53.4C173.97 53.4 162.28 64.68 162.28 78.65C162.28 94.06 172.62 104.33 188.09 104.33C198.8 104.33 207.05 99.39 211.1 91.24ZM209.8 90.4"/></svg>
       <span class="wordmark-sub">Estetica &amp; Benessere</span>
     </a>
-    <ul class="nav-links">
-      <li><a href="#servizi">Trattamenti</a></li>
-      <li><a href="#galleria">Galleria</a></li>
-      <li><a href="#contatti">Contatti</a></li>
-    </ul>
     <div class="header-azioni">
+      <button class="header-menu-toggle" type="button" aria-expanded="false" aria-controls="menu-sezioni">
+        <span class="sr-only">Menu delle sezioni</span>
+        <svg aria-hidden="true" focusable="false" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="3" y1="7" x2="21" y2="7"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="17" x2="21" y2="17"></line>
+        </svg>
+      </button>
       <a class="header-instagram" href="https://www.instagram.com/jolie.centroestetico" target="_blank" rel="noopener" aria-label="Instagram di Centro Estetico Jolie">
         <svg aria-hidden="true" focusable="false" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
@@ -358,6 +484,16 @@ footer a:active{color:var(--nocciola-profondo);}
       </a>
     </div>
   </div>
+  <nav class="header-menu" id="menu-sezioni" aria-label="Sezioni del sito" hidden>
+    <ul class="contenitore">
+      <li><a href="#chi-siamo">Centro</a></li>
+      <li><a href="#servizi">Trattamenti</a></li>
+      <li><a href="#team">Team</a></li>
+      <li><a href="#listino">Listino</a></li>
+      <li><a href="#galleria">Galleria</a></li>
+      <li><a href="#contatti">Contatti</a></li>
+    </ul>
+  </nav>
 </header>
 
 <main id="contenuto">
@@ -365,8 +501,8 @@ footer a:active{color:var(--nocciola-profondo);}
     <div class="contenitore hero-grid">
       <div class="hero-testo">
         <p class="eyebrow" data-fade>Gazzaniga · Piazzale Stazione</p>
-        <h1 data-kinetic>Cura della pelle, con metodo e misura.</h1>
-        <p class="hero-sub" data-fade data-fade-delay="140">Trattamenti viso e corpo, un percorso di skin-analysis con tecnologia RHEA e una linea di dermocosmesi professionale — a due passi dalla stazione di Gazzaniga.</p>
+        <h1 data-kinetic>Istituto specializzato nella cura di viso e corpo.</h1>
+        <p class="hero-sub" data-fade data-fade-delay="140">Creiamo rituali su misura per rispondere alle esigenze di ogni singola persona.</p>
         <div class="badge-rating">
           <span class="numero" aria-hidden="true">4,8</span>
           <span class="dettaglio">
@@ -387,10 +523,15 @@ footer a:active{color:var(--nocciola-profondo);}
   </section>
 
   <section class="chi-siamo" id="chi-siamo">
-    <div class="contenitore chi-siamo-inner">
-      <h2 data-reveal>Il centro</h2>
-      <p data-reveal data-reveal-delay="80">Bancone bianco laccato, pareti rosa cipria, prodotti in vista sulle mensole di vetro: è quello che si vede entrando in Jolie, in Piazzale Stazione a Gazzaniga.</p>
-      <p data-reveal data-reveal-delay="160">Il lavoro unisce trattamenti manuali, viso e corpo, e un percorso diagnostico con la tecnologia RHEA my SKINETIC — la stessa cura, con strumenti diversi. Il resto lo dice chi c’è già stato: 4,8 su 76 recensioni Google.</p>
+    <div class="contenitore chi-siamo-grid">
+      <div class="chi-siamo-testo">
+        <h2 data-reveal>Il centro</h2>
+        <p data-reveal data-reveal-delay="80">Da Jolie Estetica e Benessere crediamo che la vera bellezza nasca da un momento di pura serenità e cura personale. Nel nostro centro troverai un ambiente intimo, profumato e accogliente, pensato come un piccolo rifugio dal caos quotidiano.</p>
+        <p data-reveal data-reveal-delay="160">Ci dedichiamo a te con ascolto e profonda attenzione a ogni singolo dettaglio: dalla scelta di prodotti preziosi e di alta qualità fino alla creazione di rituali di benessere ritagliati sulle tue esigenze. Ogni gesto, ogni dettaglio e ogni trattamento sono studiati per farti sentire coccolata, ascoltata e visibilmente rinnovata.</p>
+      </div>
+      <figure class="chi-siamo-foto" data-reveal data-reveal-delay="240">
+        <img src="foto/reception.jpg" alt="Reception di Jolie, con bancone bianco laccato e pareti rosa cipria" width="765" height="1020" loading="lazy" decoding="async">
+      </figure>
     </div>
   </section>
 
@@ -433,6 +574,169 @@ footer a:active{color:var(--nocciola-profondo);}
             </figure>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="team" id="team">
+    <div class="contenitore team-grid">
+      <div class="team-testo">
+        <h2 data-reveal>Il team</h2>
+        <p data-reveal data-reveal-delay="80">Siamo un team giovane, dinamico e in costante aggiornamento, unito dalla stessa missione: farti sentire speciale, ascoltata e valorizzata.</p>
+        <p data-reveal data-reveal-delay="160">A guidare il centro c’è Ilary, titolare di Jolie, che insieme a Gabriella, Giulia e Marika ti accoglierà nel nostro piccolo rifugio di benessere, mettendosi a tua completa disposizione con passione, competenza e un sorriso sincero.</p>
+      </div>
+      <figure class="team-foto" data-reveal data-reveal-delay="240">
+        <img src="foto/team.jpg" alt="Il team di Jolie: Ilary, Gabriella, Giulia e Marika" width="765" height="1033" loading="lazy" decoding="async">
+      </figure>
+    </div>
+  </section>
+
+  <section class="listino" id="listino">
+    <div class="contenitore">
+      <p class="eyebrow" data-reveal>Servizi e prezzi</p>
+      <h2 data-reveal data-reveal-delay="60">Il listino</h2>
+      <div class="listino-intro" data-reveal data-reveal-delay="120">
+        <p class="listino-nota">consulenze gratuite per i trattamenti viso, corpo e luce pulsata</p>
+        <p>Il listino &egrave; diviso per categoria, con il prezzo accanto a ogni voce.</p>
+      </div>
+      <nav class="listino-indice" aria-label="Categorie del listino" data-reveal data-reveal-delay="180">
+        <a href="#listino-corpo">Corpo</a>
+        <a href="#listino-viso">Viso</a>
+        <a href="#listino-tecnologie">Tecnologie viso e corpo</a>
+        <a href="#listino-estetica-di-base">Estetica di base</a>
+        <a href="#listino-depilazione-lei">Depilazione per lei</a>
+        <a href="#listino-depilazione-lui">Depilazione per lui</a>
+        <a href="#listino-luce-pulsata">Luce pulsata</a>
+      </nav>
+      <div class="listino-categorie">
+        <details class="categoria" id="listino-corpo" data-reveal>
+          <summary class="categoria-testa">
+            <span class="categoria-nome">Corpo</span>
+            <span class="categoria-segno" aria-hidden="true"></span>
+          </summary>
+          <ul class="voci">
+            <li class="voce"><span class="voce-nome">Massaggio Total body</span><span class="voce-prezzo">55 <span class="p-eur">&euro;</span></span></li>
+            <li class="voce"><span class="voce-nome">Massaggio Parziale</span><span class="voce-prezzo">35 <span class="p-eur">&euro;</span></span></li>
+            <li class="voce"><span class="voce-nome">Massaggio Infinity</span><span class="voce-prezzo">89 <span class="p-eur">&euro;</span></span></li>
+            <li class="voce"><span class="voce-nome">Bendaggio Jolie</span><span class="voce-prezzo">65 <span class="p-eur">&euro;</span></span></li>
+            <li class="voce"><span class="voce-nome">Peeling Corpo Salino con Massaggio Parziale</span><span class="voce-prezzo">65 <span class="p-eur">&euro;</span></span></li>
+            <li class="voce"><span class="voce-nome">Peeling Corpo Salino con Doccia</span><span class="voce-prezzo">45 <span class="p-eur">&euro;</span></span></li>
+            <li class="voce"><span class="voce-nome">Rituali Rhea</span><span class="voce-prezzo">85 <span class="p-eur">&euro;</span></span></li>
+            <li class="voce"><span class="voce-nome">Pulizia Schiena</span><span class="voce-prezzo">30 <span class="p-eur">&euro;</span></span></li>
+            <li class="voce"><span class="voce-nome">Cabina ad Infrarossi</span><span class="voce-prezzo">10 <span class="p-eur">&euro;</span></span></li>
+          </ul>
+        </details>
+        <details class="categoria" id="listino-viso" data-reveal data-reveal-delay="60">
+          <summary class="categoria-testa">
+            <span class="categoria-nome">Viso</span>
+            <span class="categoria-segno" aria-hidden="true"></span>
+          </summary>
+          <ul class="voci">
+            <li class="voce"><span class="voce-nome">Pulizia Viso 60 Min</span><span class="voce-prezzo">55 <span class="p-eur">&euro;</span></span></li>
+            <li class="voce"><span class="voce-nome">Rituali Rhea</span><span class="voce-prezzo"><span class="p-mod">da</span> 65 <span class="p-eur">&euro;</span></span></li>
+            <li class="voce"><span class="voce-nome">Massaggio Viso</span><span class="voce-prezzo">25 <span class="p-eur">&euro;</span></span></li>
+            <li class="voce"><span class="voce-nome">Trattamento Viso RESEARCH Manuale</span><span class="voce-prezzo">120 <span class="p-eur">&euro;</span></span></li>
+            <li class="voce"><span class="voce-nome">Trattamento Viso RESEARCH My Skinetic</span><span class="voce-prezzo">140 <span class="p-eur">&euro;</span></span></li>
+            <li class="voce"><span class="voce-nome">Laminazione Ciglia</span><span class="voce-prezzo">70 <span class="p-eur">&euro;</span></span></li>
+            <li class="voce"><span class="voce-nome">Extension Ciglia Impianto</span><span class="voce-prezzo">99 <span class="p-eur">&euro;</span></span></li>
+            <li class="voce"><span class="voce-nome">Extension Ciglia Ritocco</span><span class="voce-prezzo">35 <span class="p-sep">/</span> 50 <span class="p-sep">/</span> 65 <span class="p-eur">&euro;</span></span></li>
+            <li class="voce"><span class="voce-nome">Tintura e Depilazione Sopracciglia</span><span class="voce-prezzo">15 <span class="p-eur">&euro;</span></span></li>
+            <li class="voce"><span class="voce-nome">Trucco</span><span class="voce-prezzo">50 <span class="p-eur">&euro;</span></span></li>
+            <li class="voce"><span class="voce-nome">Trucco sposa</span><span class="voce-prezzo">150 <span class="p-eur">&euro;</span></span></li>
+          </ul>
+        </details>
+        <details class="categoria" id="listino-tecnologie" data-reveal data-reveal-delay="120">
+          <summary class="categoria-testa">
+            <span class="categoria-nome">Tecnologie viso e corpo</span>
+            <span class="categoria-segno" aria-hidden="true"></span>
+          </summary>
+          <ul class="voci">
+            <li class="voce"><span class="voce-nome">My Skinetic</span><span class="voce-prezzo">90 <span class="p-eur">&euro;</span></span></li>
+            <li class="voce"><span class="voce-nome">My Skinetic Plus</span><span class="voce-prezzo">120 <span class="p-eur">&euro;</span></span></li>
+            <li class="voce"><span class="voce-nome">My Bodynamic</span><span class="voce-prezzo"><span class="p-mod">da</span> 80 <span class="p-eur">&euro;</span></span></li>
+            <li class="voce"><span class="voce-nome">Endodermico</span><span class="voce-prezzo"><span class="p-mod">da</span> 70 <span class="p-eur">&euro;</span></span></li>
+            <li class="voce"><span class="voce-nome">Slimpress</span><span class="voce-prezzo">35 <span class="p-eur">&euro;</span></span></li>
+            <li class="voce"><span class="voce-nome">Slimpress + Bendaggio</span><span class="voce-prezzo">79 <span class="p-eur">&euro;</span></span></li>
+            <li class="voce"><span class="voce-nome">Slimpress + Rituale Corpo Rhea</span><span class="voce-prezzo">99 <span class="p-eur">&euro;</span></span></li>
+          </ul>
+        </details>
+        <details class="categoria" id="listino-estetica-di-base" data-reveal>
+          <summary class="categoria-testa">
+            <span class="categoria-nome">Estetica di base</span>
+            <span class="categoria-segno" aria-hidden="true"></span>
+          </summary>
+          <ul class="voci">
+            <li class="voce"><span class="voce-nome">Manicure per Lei</span><span class="voce-prezzo">20 <span class="p-eur">&euro;</span></span></li>
+            <li class="voce"><span class="voce-nome">Manicure per Lui</span><span class="voce-prezzo">15 <span class="p-eur">&euro;</span></span></li>
+            <li class="voce"><span class="voce-nome">Manicure con Semipermanente</span><span class="voce-prezzo">35 <span class="p-eur">&euro;</span></span></li>
+            <li class="voce"><span class="voce-nome">Manicure con Semipermanente Rinforzato</span><span class="voce-prezzo">40 <span class="p-eur">&euro;</span></span></li>
+            <li class="voce"><span class="voce-nome">Manicure con Ricostruzione unghie Acrigel</span><span class="voce-prezzo">65 <span class="p-eur">&euro;</span></span></li>
+            <li class="voce"><span class="voce-nome">Manicure con Refil Acrigel</span><span class="voce-prezzo">50 <span class="p-eur">&euro;</span></span></li>
+            <li class="voce"><span class="voce-nome">Decorazione</span><span class="voce-prezzo">5 <span class="p-eur">&euro;</span></span></li>
+            <li class="voce"><span class="voce-nome">Rimozione Semipermanente/Acrigel</span><span class="voce-prezzo">15 <span class="p-eur">&euro;</span></span></li>
+            <li class="voce"><span class="voce-nome">Pedicure Estetica per Lei</span><span class="voce-prezzo">28 <span class="p-eur">&euro;</span></span></li>
+            <li class="voce"><span class="voce-nome">Pedicure Estetica per Lui</span><span class="voce-prezzo">25 <span class="p-eur">&euro;</span></span></li>
+            <li class="voce"><span class="voce-nome">Pedicure Intensiva</span><span class="voce-prezzo"><span class="p-mod">da</span> 35 <span class="p-eur">&euro;</span></span></li>
+            <li class="voce"><span class="voce-nome">Pedicure con Semipermanente</span><span class="voce-prezzo">40 <span class="p-eur">&euro;</span></span></li>
+            <li class="voce"><span class="voce-nome">Pedicure con Trattamento Paraffina</span><span class="voce-prezzo">40 <span class="p-eur">&euro;</span></span></li>
+            <li class="voce"><span class="voce-nome">Taglio unghie e Smalto</span><span class="voce-prezzo">15 <span class="p-eur">&euro;</span></span></li>
+            <li class="voce"><span class="voce-nome">Callo</span><span class="voce-prezzo">15 <span class="p-eur">&euro;</span></span></li>
+            <li class="voce"><span class="voce-nome">Ricostruzione Unghia Alluce</span><span class="voce-prezzo">15 <span class="p-eur">&euro;</span></span></li>
+          </ul>
+        </details>
+        <details class="categoria" id="listino-depilazione-lei" data-reveal data-reveal-delay="60">
+          <summary class="categoria-testa">
+            <span class="categoria-nome">Depilazione per lei</span>
+            <span class="categoria-segno" aria-hidden="true"></span>
+          </summary>
+          <ul class="voci">
+            <li class="voce"><span class="voce-nome">Gamba intera e Inguine</span><span class="voce-prezzo">30 <span class="p-eur">&euro;</span></span></li>
+            <li class="voce"><span class="voce-nome">Gamba intera</span><span class="voce-prezzo">25 <span class="p-eur">&euro;</span></span></li>
+            <li class="voce"><span class="voce-nome">Mezza gamba</span><span class="voce-prezzo">15 <span class="p-eur">&euro;</span></span></li>
+            <li class="voce"><span class="voce-nome">Mezza gamba e Inguine</span><span class="voce-prezzo">23 <span class="p-eur">&euro;</span></span></li>
+            <li class="voce"><span class="voce-nome">Coscia</span><span class="voce-prezzo">20 <span class="p-eur">&euro;</span></span></li>
+            <li class="voce"><span class="voce-nome">Coscia e Inguine</span><span class="voce-prezzo">25 <span class="p-eur">&euro;</span></span></li>
+            <li class="voce"><span class="voce-nome">Inguine</span><span class="voce-prezzo">10 <span class="p-eur">&euro;</span></span></li>
+            <li class="voce"><span class="voce-nome">Intima</span><span class="voce-prezzo">15 <span class="p-eur">&euro;</span></span></li>
+            <li class="voce"><span class="voce-nome">Addome</span><span class="voce-prezzo">10 <span class="p-eur">&euro;</span></span></li>
+            <li class="voce"><span class="voce-nome">Glutei</span><span class="voce-prezzo">10 <span class="p-eur">&euro;</span></span></li>
+            <li class="voce"><span class="voce-nome">Braccia</span><span class="voce-prezzo">15 <span class="p-eur">&euro;</span></span></li>
+            <li class="voce"><span class="voce-nome">Ascelle</span><span class="voce-prezzo">6 <span class="p-eur">&euro;</span></span></li>
+            <li class="voce"><span class="voce-nome">Sopracciglia</span><span class="voce-prezzo">8 <span class="p-eur">&euro;</span></span></li>
+            <li class="voce"><span class="voce-nome">Labbro</span><span class="voce-prezzo">4 <span class="p-eur">&euro;</span></span></li>
+            <li class="voce"><span class="voce-nome">Viso Completo</span><span class="voce-prezzo">20 <span class="p-eur">&euro;</span></span></li>
+            <li class="voce"><span class="voce-nome">Corpo</span><span class="voce-prezzo">70 <span class="p-eur">&euro;</span></span></li>
+          </ul>
+        </details>
+        <details class="categoria" id="listino-depilazione-lui" data-reveal data-reveal-delay="120">
+          <summary class="categoria-testa">
+            <span class="categoria-nome">Depilazione per lui</span>
+            <span class="categoria-segno" aria-hidden="true"></span>
+          </summary>
+          <ul class="voci">
+            <li class="voce"><span class="voce-nome">Gamba intera e Inguine</span><span class="voce-prezzo">35 <span class="p-eur">&euro;</span></span></li>
+            <li class="voce"><span class="voce-nome">Schiena</span><span class="voce-prezzo"><span class="p-mod">da</span> 20 <span class="p-mod">a</span> 30 <span class="p-eur">&euro;</span></span></li>
+            <li class="voce"><span class="voce-nome">Torace</span><span class="voce-prezzo"><span class="p-mod">da</span> 20 <span class="p-mod">a</span> 30 <span class="p-eur">&euro;</span></span></li>
+            <li class="voce"><span class="voce-nome">Braccia</span><span class="voce-prezzo">20 <span class="p-eur">&euro;</span></span></li>
+            <li class="voce"><span class="voce-nome">Glutei</span><span class="voce-prezzo">15 <span class="p-eur">&euro;</span></span></li>
+            <li class="voce"><span class="voce-nome">Inguine</span><span class="voce-prezzo">15 <span class="p-eur">&euro;</span></span></li>
+            <li class="voce"><span class="voce-nome">Ascelle</span><span class="voce-prezzo">10 <span class="p-eur">&euro;</span></span></li>
+            <li class="voce"><span class="voce-nome">Sopracciglia</span><span class="voce-prezzo">10 <span class="p-eur">&euro;</span></span></li>
+          </ul>
+        </details>
+        <details class="categoria" id="listino-luce-pulsata" data-reveal>
+          <summary class="categoria-testa">
+            <span class="categoria-nome">Luce pulsata</span>
+            <span class="categoria-segno" aria-hidden="true"></span>
+          </summary>
+          <ul class="voci">
+            <li class="voce"><span class="voce-nome">Labbra - Mento</span><span class="voce-prezzo">20 <span class="p-eur">&euro;</span></span></li>
+            <li class="voce"><span class="voce-nome">Ascelle</span><span class="voce-prezzo">40 <span class="p-eur">&euro;</span></span></li>
+            <li class="voce"><span class="voce-nome">Inguine</span><span class="voce-prezzo">50 <span class="p-eur">&euro;</span></span></li>
+            <li class="voce"><span class="voce-nome">Mezza gamba</span><span class="voce-prezzo">100 <span class="p-eur">&euro;</span></span></li>
+            <li class="voce"><span class="voce-nome">Gamba intera</span><span class="voce-prezzo">150 <span class="p-eur">&euro;</span></span></li>
+          </ul>
+        </details>
       </div>
     </div>
   </section>
@@ -496,12 +800,12 @@ footer a:active{color:var(--nocciola-profondo);}
         <table class="orari">
           <caption class="sr-only">Orari di apertura Centro Estetico Jolie</caption>
           <tbody>
-          <tr><th scope="row">Lunedì</th><td>07:00–17:00</td></tr>
-          <tr><th scope="row">Martedì</th><td>09:00–20:00</td></tr>
-          <tr><th scope="row">Mercoledì</th><td>09:00–22:00</td></tr>
-          <tr><th scope="row">Giovedì</th><td>14:00–22:00</td></tr>
-          <tr><th scope="row">Venerdì</th><td>09:00–20:00</td></tr>
-          <tr><th scope="row">Sabato</th><td>08:00–16:00</td></tr>
+          <tr><th scope="row">Lunedì</th><td>06:00–16:00</td></tr>
+          <tr><th scope="row">Martedì</th><td>06:00–20:00</td></tr>
+          <tr><th scope="row">Mercoledì</th><td>07:00–22:00</td></tr>
+          <tr><th scope="row">Giovedì</th><td>10:00–22:00</td></tr>
+          <tr><th scope="row">Venerdì</th><td>07:00–20:00</td></tr>
+          <tr><th scope="row">Sabato</th><td>07:00–16:00</td></tr>
           <tr><th scope="row">Domenica</th><td>Chiuso</td></tr>
           </tbody>
         </table>
@@ -510,17 +814,16 @@ footer a:active{color:var(--nocciola-profondo);}
   </section>
 </main>
 
-<section class="cta-lorenzo">
+<section class="cta-finale">
   <div class="contenitore cta-inner" data-reveal>
-    <h2>Il sito è pronto</h2>
-    <p>Manca solo il vostro listino e la conferma degli orari per andare online. Scrivimi e sistemiamo tutto insieme.</p>
-    <a class="btn btn-avorio magnetic ripple" href="https://wa.me/393314660537" target="_blank" rel="noopener" data-magnet-strength="0.25">Scrivimi su WhatsApp</a>
+    <h2>Prenota la tua consulenza gratuita</h2>
+    <a class="btn btn-avorio magnetic ripple" href="https://wa.me/39035738178" target="_blank" rel="noopener" data-magnet-strength="0.25">Scrivici su WhatsApp</a>
   </div>
 </section>
 
 <footer>
   <div class="contenitore footer-inner">
-    <p>Sito realizzato da <a href="https://wa.me/393314660537" target="_blank" rel="noopener">Lorenzo Zenucchi</a></p>
+    <p>Sito realizzato da <a href="https://www.lorenzoweb.it/" target="_blank" rel="noopener">lorenzoweb.it</a></p>
   </div>
 </footer>
 
@@ -630,6 +933,63 @@ footer a:active{color:var(--nocciola-profondo);}
       { threshold: 0.15, rootMargin: '0px 0px -10% 0px' }
     );
     els.forEach(function (el) { io.observe(el); });
+  }
+  if (document.readyState !== 'loading') init();
+  else document.addEventListener('DOMContentLoaded', init);
+})();
+
+/* listino: l'ancora dell'indice apre la categoria chiusa prima di portarci */
+(function () {
+  'use strict';
+  function init() {
+    var indice = document.querySelector('.listino-indice');
+    if (!indice) return;
+    indice.addEventListener('click', function (e) {
+      var a = e.target.closest && e.target.closest('a[href^="#"]');
+      if (!a) return;
+      var target = document.getElementById(a.getAttribute('href').slice(1));
+      if (target && target.tagName === 'DETAILS' && !target.open) target.open = true;
+    });
+  }
+  if (document.readyState !== 'loading') init();
+  else document.addEventListener('DOMContentLoaded', init);
+})();
+
+/* menu delle sezioni: apre, chiude su voce / Esc / click fuori */
+(function () {
+  'use strict';
+  function init() {
+    var bottone = document.querySelector('.header-menu-toggle');
+    var pannello = document.getElementById('menu-sezioni');
+    if (!bottone || !pannello) return;
+    function apri() {
+      pannello.hidden = false;
+      bottone.setAttribute('aria-expanded', 'true');
+      var prima = pannello.querySelector('a');
+      if (prima) prima.focus();
+    }
+    function chiudi(tornaAlBottone) {
+      if (pannello.hidden) return;
+      pannello.hidden = true;
+      bottone.setAttribute('aria-expanded', 'false');
+      if (tornaAlBottone) bottone.focus();
+    }
+    bottone.addEventListener('click', function () {
+      if (pannello.hidden) apri();
+      else chiudi(false);
+    });
+    pannello.addEventListener('click', function (e) {
+      if (e.target.closest && e.target.closest('a[href^="#"]')) chiudi(false);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' || e.key === 'Esc') chiudi(true);
+    });
+    /* pointerdown e non click: su Safari iOS il click su un elemento non
+       interattivo non arriva sempre fino a document */
+    document.addEventListener('pointerdown', function (e) {
+      if (pannello.contains(e.target) || bottone.contains(e.target)) return;
+      chiudi(false);
+    });
   }
   if (document.readyState !== 'loading') init();
   else document.addEventListener('DOMContentLoaded', init);
