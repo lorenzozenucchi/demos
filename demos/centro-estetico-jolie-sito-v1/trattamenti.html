@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trattamenti viso e corpo &mdash; Centro Estetico Jolie, Gazzaniga (BG)</title>
+<meta name="description" content="I trattamenti viso e corpo del Centro Estetico Jolie a Gazzaniga (BG): rituali manuali su misura, tecnologie My Skinetic e My Bodynamic, luce pulsata, ciglia, manicure, trucco e servizio sposa.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Italiana&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="stile.css">
+<style>
+/* Hallmark · pre-emit critique: P5 H5 E5 S4 R5 V4
+ * Disciplina strutturale della griglia di schede (schede uniformi, un solo
+ * segnale di contenitore — il filo in alto —, nessuna campata irregolare).
+ * L'identita' visiva NON si sceglie qui: colori, font e token arrivano da
+ * stile.css, cioe' dal brief del cliente. In questo blocco sta solo il CSS
+ * che serve a questa pagina sola. */
+
+.trattamenti{background:var(--avorio);padding:var(--space-xl) 0 var(--space-2xl);}
+.trattamenti h1{font-size:clamp(1.7rem, 2.6vw + 0.9rem, 2.6rem);margin-bottom:var(--space-md);}
+.trattamenti-nota{
+  border-left:2px solid var(--beige-nude);padding-left:14px;
+  font-size:.95rem;font-weight:600;color:var(--nocciola-scuro);
+  margin-bottom:var(--space-xl);
+}
+.header-menu a[aria-current="page"]{color:var(--nocciola-scuro);}
+
+/* Griglia di schede: una colonna sul telefono, due da 860px. Le tracce usano
+   minmax(0,1fr) e non 1fr nudo perche' ospiteranno una foto, e una traccia
+   nuda spingerebbe la griglia oltre la larghezza dello schermo. */
+.schede{display:grid;grid-template-columns:minmax(0,1fr);}
+.scheda{
+  display:flex;flex-direction:column;gap:6px;
+  padding:22px 0;border-top:1px solid var(--bordo-tenue);
+  min-width:0;
+}
+.scheda-titolo{font-size:var(--t-sottotitolo);color:var(--nocciola-scuro);}
+.scheda-desc{font-size:var(--t-lista);color:var(--bruno);line-height:1.65;max-width:52ch;}
+
+/* Slot per la foto del trattamento: previsto adesso, riempito quando
+   arriveranno gli scatti. Rapporto fisso 4:5 verticale piu' object-fit:cover,
+   cosi' foto di formato diverso restano allineate fra schede vicine.
+   Convenzione del nome del file: foto/trattamento-<slug>.jpg, con la regola
+   slug di progetto (minuscolo, spazi e apostrofi -> trattino, senza accenti)
+   — "Laminazione ciglia" diventa foto/trattamento-laminazione-ciglia.jpg. Il
+   futuro <img> porta loading="lazy". Finche' la <figure> resta vuota non
+   occupa spazio (:empty): la scheda di solo testo e' voluta, non e' un buco
+   in attesa di riempimento. */
+.scheda-foto{aspect-ratio:4/5;overflow:hidden;background:var(--avorio);margin-bottom:var(--space-sm);}
+.scheda-foto:empty{display:none;}
+.scheda-foto img{width:100%;height:100%;object-fit:cover;}
+
+/* Chiusura: fondo avorio come la sezione sopra, quindi separata dal filo. */
+.chiusura{background:var(--avorio);border-top:1px solid var(--bordo-tenue);padding:var(--space-xl) 0;}
+.chiusura-azioni{display:flex;flex-wrap:wrap;gap:var(--space-md);align-items:center;}
+
+@media (min-width:860px){
+  .schede{grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:var(--space-2xl);}
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#contenuto">Vai al contenuto</a>
+
+<header class="header">
+  <div class="contenitore header-inner">
+    <a href="index.html" class="wordmark" id="top">
+      <span class="sr-only">Jolie</span>
+      <svg viewBox="29.79 34.04 181.31 70.29" fill="currentColor" aria-hidden="true" focusable="false"><path d="M36.55 43.89L48.38 43.89L48.38 44.06C47.78 44.65 47.61 44.9 47.61 46.25L47.61 93.89C47.61 99.7 45.21 102.81 40.75 102.81C34.64 102.81 30.56 99.21 30.56 93.8L29.79 93.8C29.79 100.12 34.18 104.33 40.75 104.33C48.51 104.33 54.29 98.6 54.29 90.1L54.29 48.35C54.29 45.41 55.83 43.89 58.82 43.89L61.05 43.89L61.05 43.13L36.55 43.13ZM36.55 43.89"/><path d="M89.74 53.4C74.28 53.4 61.74 64.79 61.74 78.82C61.74 94.12 72.94 104.33 89.74 104.33C105.25 104.33 117.83 92.9 117.83 78.82C117.83 63.57 106.6 53.4 89.74 53.4M90 102.81C78.51 102.81 69.19 91.39 69.19 77.31C69.19 63.88 77.27 54.92 89.4 54.92C100.98 54.92 110.38 66.34 110.38 80.42C110.38 93.86 102.23 102.81 90 102.81"/><path d="M140.07 94.47C140.31 95.22 140.45 96.04 140.45 96.92C140.45 99.9 138.46 101.89 135.48 101.89C130.13 101.89 130.77 93.3 130.77 93.3L130.77 34.04L130.08 34.04L130.08 34.38C130.08 37.82 125.88 38.84 122.37 38.84L117.49 38.84L117.49 39.6L121.52 39.6C123.19 39.6 124.09 40.52 124.09 42.12L124.09 93.38C124.09 99.43 128.32 104.33 133.34 104.33C138.06 104.33 141.21 101.36 141.21 96.92C141.21 95.95 141.05 95.01 140.77 94.13ZM140.07 94.47"/><path d="M161.48 94.29C161.72 95.05 161.86 95.86 161.86 96.74C161.86 99.72 159.87 101.71 156.89 101.71C151.54 101.71 152.18 93.12 152.18 93.12L152.18 51.72L151.49 51.72L151.49 52.05C151.49 55.5 147.29 56.52 143.79 56.52L139.07 56.52L139.07 57.27L142.93 57.27C144.6 57.27 145.5 58.2 145.5 59.8L145.5 93.21C145.5 99.25 149.73 104.15 154.75 104.15C159.47 104.15 162.62 101.19 162.62 96.74C162.62 95.77 162.46 94.83 162.18 93.96ZM161.48 94.29"/><path d="M148.84 43.8C151.23 43.8 152.61 42.21 152.61 40.02C152.61 37.66 151.06 36.32 148.84 36.32C146.44 36.32 144.98 37.83 144.98 40.02C144.98 42.38 146.61 43.8 148.84 43.8"/><path d="M209.8 90.4C206.02 98.18 198.23 102.81 188.09 102.81C177.88 102.81 169.56 91.39 169.56 77.31C169.56 63.87 176.95 54.92 188 54.92C197.56 54.92 203.93 62.32 203.93 73.43C203.93 73.94 203.76 74.19 203.25 74.19L184.89 74.19L184.42 74.2C179.46 74.2 175.4 77.99 175.02 82.77L175.67 83.14L175.69 83.13C176.17 79.15 179.7 76.02 184.42 76.02C184.58 76.01 184.74 76 184.91 76L208.38 76.3C209.85 76.3 211.01 75.2 211.01 73.86L211.01 73.43C211.01 61.41 201.96 53.4 188.34 53.4C173.97 53.4 162.28 64.68 162.28 78.65C162.28 94.06 172.62 104.33 188.09 104.33C198.8 104.33 207.05 99.39 211.1 91.24ZM209.8 90.4"/></svg>
+      <span class="wordmark-sub">Estetica &amp; Benessere</span>
+    </a>
+    <div class="header-azioni">
+      <button class="header-menu-toggle" type="button" aria-expanded="false" aria-controls="menu-sezioni">
+        <span class="sr-only">Menu delle sezioni</span>
+        <svg aria-hidden="true" focusable="false" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="3" y1="7" x2="21" y2="7"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="17" x2="21" y2="17"></line>
+        </svg>
+      </button>
+      <a class="header-instagram" href="https://www.instagram.com/jolie.centroestetico" target="_blank" rel="noopener" aria-label="Instagram di Centro Estetico Jolie">
+        <svg aria-hidden="true" focusable="false" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+          <line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line>
+        </svg>
+      </a>
+      <a class="btn btn-primario ripple" href="tel:+39035738178">
+        <span class="testo-lungo">Prenota — 035 738178</span>
+        <span class="testo-breve">Prenota</span>
+      </a>
+    </div>
+  </div>
+  <nav class="header-menu" id="menu-sezioni" aria-label="Sezioni del sito" hidden>
+    <ul class="contenitore">
+      <li><a href="index.html#chi-siamo">Centro</a></li>
+      <li><a href="trattamenti.html" aria-current="page">Trattamenti</a></li>
+      <li><a href="index.html#team">Team</a></li>
+      <li><a href="index.html#listino">Listino</a></li>
+      <li><a href="index.html#galleria">Galleria</a></li>
+      <li><a href="index.html#contatti">Contatti</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="contenuto">
+  <section class="trattamenti">
+    <div class="contenitore">
+      <h1 data-reveal>Trattamenti viso e corpo</h1>
+      <p class="trattamenti-nota" data-reveal data-reveal-delay="80">consulenze gratuite per i trattamenti viso, corpo e luce pulsata</p>
+      <div class="schede">
+        <article class="scheda" data-reveal>
+          <figure class="scheda-foto"></figure>
+          <h2 class="scheda-titolo">Rituali viso</h2>
+          <p class="scheda-desc">trattamenti manuali creati su misura per le tue esigenze.</p>
+        </article>
+        <article class="scheda" data-reveal data-reveal-delay="70">
+          <figure class="scheda-foto"></figure>
+          <h2 class="scheda-titolo">Tecnologia viso My Skinetic</h2>
+          <p class="scheda-desc">dona energia al viso, nutrendo ogni cellula dall’interno per aumentarne vitalità e forza.</p>
+        </article>
+        <article class="scheda" data-reveal>
+          <figure class="scheda-foto"></figure>
+          <h2 class="scheda-titolo">Rituale viso Research</h2>
+          <p class="scheda-desc">tutta l’efficacia del Micro-Needling, senza aghi, senza microlesioni e in totale sicurezza.</p>
+        </article>
+        <article class="scheda" data-reveal data-reveal-delay="70">
+          <figure class="scheda-foto"></figure>
+          <h2 class="scheda-titolo">Rituale corpo</h2>
+          <p class="scheda-desc">trattamenti manuali creati su misura per le tue esigenze.</p>
+        </article>
+        <article class="scheda" data-reveal>
+          <figure class="scheda-foto"></figure>
+          <h2 class="scheda-titolo">Massaggi</h2>
+          <p class="scheda-desc">manovre distensive e pressioni mirate, ideale per sciogliere le tensioni muscolari, riattivare la circolazione e regalare un profondo benessere fisico e mentale.</p>
+        </article>
+        <article class="scheda" data-reveal data-reveal-delay="70">
+          <figure class="scheda-foto"></figure>
+          <h2 class="scheda-titolo">Tecnologia corpo My Bodynamic</h2>
+          <p class="scheda-desc">lipocontouring su misura con protocolli personalizzati per drenare, snellire, rimodellare o rimpolpare.</p>
+        </article>
+        <article class="scheda" data-reveal>
+          <figure class="scheda-foto"></figure>
+          <h2 class="scheda-titolo">Tecnologia corpo endodermico</h2>
+          <p class="scheda-desc">modella le forme, riattiva il microcircolo e rigenera la pelle in profondità.</p>
+        </article>
+        <article class="scheda" data-reveal data-reveal-delay="70">
+          <figure class="scheda-foto"></figure>
+          <h2 class="scheda-titolo">Slimpress</h2>
+          <p class="scheda-desc">drena i liquidi in eccesso, elimina la pesantezza e regala una nuova leggerezza alle gambe.</p>
+        </article>
+        <article class="scheda" data-reveal>
+          <figure class="scheda-foto"></figure>
+          <h2 class="scheda-titolo">Cabina infrarossi</h2>
+          <p class="scheda-desc">abbinamento perfetto al massaggio total body o localizzato per donare sollievo a dolori muscolari e articolari.</p>
+        </article>
+        <article class="scheda" data-reveal data-reveal-delay="70">
+          <figure class="scheda-foto"></figure>
+          <h2 class="scheda-titolo">Laminazione ciglia</h2>
+          <p class="scheda-desc">incurva, nutre e definisce. Il trattamento ideale per valorizzare lo sguardo ogni mattina.</p>
+        </article>
+        <article class="scheda" data-reveal>
+          <figure class="scheda-foto"></figure>
+          <h2 class="scheda-titolo">Extension ciglia</h2>
+          <p class="scheda-desc">ciglia più lunghe e folte applicate singolarmente con precisione sartoriale per valorizzare lo sguardo.</p>
+        </article>
+        <article class="scheda" data-reveal data-reveal-delay="70">
+          <figure class="scheda-foto"></figure>
+          <h2 class="scheda-titolo">Luce pulsata</h2>
+          <p class="scheda-desc">la soluzione progressiva e definitiva per dire addio alla ricrescita dei peli indesiderati.</p>
+        </article>
+        <article class="scheda" data-reveal>
+          <figure class="scheda-foto"></figure>
+          <h2 class="scheda-titolo">Manicure e pedicure</h2>
+          <p class="scheda-desc">unghie perfette e pelle idratata, mani e piedi curati nei minimi dettagli.</p>
+        </article>
+        <article class="scheda" data-reveal data-reveal-delay="70">
+          <figure class="scheda-foto"></figure>
+          <h2 class="scheda-titolo">Epilazione per lei e per lui</h2>
+          <p class="scheda-desc">epilazione delicata e ad alta tollerabilità, adatta anche alle zone più sensibili del corpo.</p>
+        </article>
+        <article class="scheda" data-reveal>
+          <figure class="scheda-foto"></figure>
+          <h2 class="scheda-titolo">Trucco</h2>
+          <p class="scheda-desc">make-up professionale studiato su misura per valorizzare i tuoi tratti e garantire una tenuta impeccabile.</p>
+        </article>
+        <article class="scheda" data-reveal data-reveal-delay="70">
+          <figure class="scheda-foto"></figure>
+          <h2 class="scheda-titolo">Servizio sposa</h2>
+          <p class="scheda-desc">un percorso completo e personalizzato che ti accompagna verso il giorno del sì, coordinando trucco, rituali viso-corpo e dettagli.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="chiusura">
+    <div class="contenitore chiusura-azioni" data-reveal>
+      <a class="btn btn-primario ripple" href="tel:+39035738178">
+        <span class="testo-lungo">Prenota &mdash; 035 738178</span>
+        <span class="testo-breve">Prenota</span>
+      </a>
+      <a class="btn btn-contorno" href="index.html#listino">Vedi il listino</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="contenitore footer-inner">
+    <p>Sito realizzato da <a href="https://www.lorenzoweb.it/" target="_blank" rel="noopener">lorenzoweb.it</a></p>
+  </div>
+</footer>
+
+<script src="script.js" defer></script>
+</body>
+</html>
