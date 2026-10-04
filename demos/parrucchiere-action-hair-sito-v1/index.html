@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Parrucchiere Action Hair · Colore, taglio e cura del capello ad Albino (BG)</title>
+<meta name="description" content="Parrucchiere Action Hair ad Albino (BG): colore e balayage su misura, taglio e piega, trattamenti con la linea professionale Innovatis Luxury Care. Viale Aldo Moro, 2/p — 035 754102.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* Hallmark · macrostructure: custom "Specchio" (grande riquadro verticale + colonna di
+   testo asimmetrica) · tone: luxury sobrio, editoriale minimale · anchor
+   hue: cognac caldo · nav: wordmark + telefono testuale (non N9, già usata
+   nel sito completo esistente) · footer: riga unica · enrichment: nessuna,
+   riquadri immagine vuoti su richiesta di Lorenzo (bozza senza foto).
+   Hallmark · pre-emit critique: P4 H5 E4 S4 R5 V4
+   Palette: indicazione diretta del titolare via Lorenzo (04/10/2026) —
+   "colori simili a Centro Estetico Jolie, ma non uguali". Rispetto a Jolie
+   (avorio/rosa cipria/nocciola, monocromo rosato) qui il fondo è un lino
+   più grigio, il secondo neutro è sabbia-pietra senza rosa, e l'accento è
+   un cognac che tira al rame del brief (specializzazione colore), non il
+   nocciola taupe di Jolie. Testo: nero espresso del brief. Font dal brief
+   (Playfair Display + Figtree). */
+
+/* ======================================================================
+   TOKEN
+   ====================================================================== */
+:root{
+  --lino:#F2EDE6;            /* fondo dominante */
+  --sabbia:#E4DBD0;          /* riquadri immagine, fondo secondario */
+  --tortora:#948C82;         /* solo filetti, mai testo */
+  --cognac:#8A5638;          /* accento — testo ok su lino (5.2:1) */
+  --cognac-chiaro:#C9A184;   /* accento su fondo scuro */
+  --moka:#4A3A30;            /* testo secondario */
+  --nero-espresso:#1E1512;   /* testo principale, fondo scuro */
+  --espresso-chiaro:#30251F; /* riquadri immagine su fondo scuro */
+
+  --font-titoli:'Playfair Display', Georgia, serif;
+  --font-testo:'Figtree', system-ui, sans-serif;
+
+  --ease-out:cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out:cubic-bezier(0.65, 0, 0.35, 1);
+  --t-rapida:180ms;
+  --t-lenta:720ms;
+
+  --space-xs:8px;
+  --space-sm:16px;
+  --space-md:24px;
+  --space-lg:40px;
+  --space-xl:64px;
+  --space-2xl:112px;
+
+  --margine:clamp(16px, 5vw, 56px);
+  --larghezza:1240px;
+  --filetto:1px solid var(--tortora);
+}
+
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{overflow-x:clip;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--lino);
+  color:var(--nero-espresso);
+  font-family:var(--font-testo);
+  font-size:1.0625rem;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;}
+:focus-visible{outline:2px solid var(--cognac);outline-offset:3px;}
+
+.contenitore{
+  width:100%;
+  max-width:var(--larghezza);
+  margin:0 auto;
+  padding:0 var(--margine);
+}
+
+h1,h2,h3{font-family:var(--font-titoli);font-weight:400;font-style:normal;line-height:1.05;}
+
+/* ---------- Riquadro immagine (segnaposto) ---------- */
+.riquadro{
+  position:relative;
+  background:var(--sabbia);
+  display:flex;
+  align-items:flex-end;
+  justify-content:flex-start;
+  overflow:hidden;
+}
+.riquadro::after{
+  /* cornice interna sottile: suggerisce la foto senza disegnarla */
+  content:"";
+  position:absolute;
+  inset:10px;
+  border:1px solid rgba(255,255,255,.55);
+  border-radius:inherit;
+  pointer-events:none;
+}
+.riquadro span{
+  position:relative;
+  z-index:1;
+  margin:var(--space-md);
+  font-size:.72rem;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--moka);
+}
+
+/* ---------- Header ---------- */
+.testata{
+  padding:var(--space-md) 0;
+}
+.testata .contenitore{
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:var(--space-sm);
+}
+.marchio{
+  font-family:var(--font-titoli);
+  font-weight:500;
+  font-size:1.5rem;
+  letter-spacing:.01em;
+  text-decoration:none;
+  white-space:nowrap;
+}
+.testata-tel{
+  font-size:.9rem;
+  font-weight:500;
+  text-decoration:none;
+  white-space:nowrap;
+  padding-bottom:2px;
+  border-bottom:1px solid var(--cognac);
+  transition:color var(--t-rapida) var(--ease-out);
+}
+.testata-tel:hover{color:var(--cognac);}
+.testata-destra{display:flex;align-items:baseline;gap:var(--space-lg);}
+.testata-nav{display:none;}
+.testata-nav a{
+  font-size:.85rem;
+  text-decoration:none;
+  color:var(--moka);
+  white-space:nowrap;
+  transition:color var(--t-rapida) var(--ease-out);
+}
+.testata-nav a:hover{color:var(--cognac);}
+
+/* ---------- Hero ---------- */
+.hero{
+  padding:var(--space-lg) 0 var(--space-2xl);
+}
+.hero .contenitore{
+  display:grid;
+  grid-template-columns:minmax(0,1fr);
+  gap:var(--space-xl);
+}
+.hero-luogo{
+  font-size:.8rem;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--cognac);
+  margin-bottom:var(--space-md);
+}
+.hero h1{
+  font-size:clamp(3.6rem, 17vw, 10.5rem);
+  line-height:.92;
+  letter-spacing:-.015em;
+  min-width:0;
+}
+.hero h1 .riga{display:block;white-space:nowrap;}
+.hero h1 .riga + .riga{padding-left:.9em;}
+.hero-lede{
+  max-width:34ch;
+  margin-top:var(--space-lg);
+  color:var(--moka);
+  font-size:1.125rem;
+}
+.hero-azioni{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:var(--space-md);
+  margin-top:var(--space-lg);
+}
+.bottone{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:15px 28px;
+  background:var(--nero-espresso);
+  color:var(--lino);
+  border:1px solid var(--nero-espresso);
+  border-radius:999px;
+  font-size:.95rem;
+  font-weight:500;
+  letter-spacing:.02em;
+  text-decoration:none;
+  white-space:nowrap;
+  transition:background var(--t-rapida) var(--ease-out), color var(--t-rapida) var(--ease-out), transform var(--t-rapida) var(--ease-out);
+}
+.bottone:hover{background:var(--cognac);border-color:var(--cognac);}
+.bottone:active{transform:translateY(1px);}
+.link-sobrio{
+  font-size:.95rem;
+  font-weight:500;
+  text-decoration:none;
+  white-space:nowrap;
+  border-bottom:1px solid var(--tortora);
+  padding-bottom:2px;
+  transition:border-color var(--t-rapida) var(--ease-out), color var(--t-rapida) var(--ease-out);
+}
+.link-sobrio:hover{color:var(--cognac);border-color:var(--cognac);}
+.hero-voto{
+  display:inline-flex;
+  align-items:baseline;
+  gap:8px;
+  margin-top:var(--space-lg);
+  font-size:.88rem;
+  color:var(--moka);
+  text-decoration:none;
+  white-space:nowrap;
+  transition:color var(--t-rapida) var(--ease-out);
+}
+.hero-voto:hover{color:var(--cognac);}
+.hero-voto .stella{color:var(--cognac);}
+
+.hero-specchio{
+  margin:0;
+  justify-self:center;
+  width:min(100%, 440px);
+}
+.hero-specchio .riquadro{
+  aspect-ratio:3/4.1;
+  border-radius:4px;
+}
+.hero-specchio figcaption{
+  margin-top:var(--space-sm);
+  font-size:.82rem;
+  color:var(--moka);
+  display:flex;
+  justify-content:space-between;
+  gap:var(--space-sm);
+  border-top:var(--filetto);
+  padding-top:var(--space-xs);
+}
+
+/* ---------- Frase ---------- */
+.frase{
+  padding:var(--space-2xl) 0;
+  border-top:var(--filetto);
+}
+.frase p{
+  font-family:var(--font-titoli);
+  font-size:clamp(1.9rem, 4.6vw, 3.4rem);
+  line-height:1.2;
+  max-width:22ch;
+  margin:0 auto;
+  text-align:center;
+}
+.frase .accento{color:var(--cognac);}
+
+/* ---------- Il salone ---------- */
+.salone{padding:0 0 var(--space-2xl);}
+.salone .contenitore{
+  display:grid;
+  grid-template-columns:minmax(0,1fr);
+  gap:var(--space-xl);
+}
+.testo-sezione p{margin-top:var(--space-md);color:var(--moka);max-width:40ch;}
+.salone-foto{
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0,1fr));
+  gap:var(--space-sm);
+  align-items:start;
+}
+.salone-foto .riquadro{aspect-ratio:3/4.2;border-radius:4px;}
+.salone-foto .riquadro + .riquadro{aspect-ratio:3/4;margin-top:var(--space-xl);}
+
+/* ---------- Servizi ---------- */
+.servizi{
+  padding:var(--space-2xl) 0;
+  background:var(--sabbia);
+}
+.servizi .contenitore{
+  display:grid;
+  grid-template-columns:minmax(0,1fr);
+  gap:var(--space-xl);
+}
+.servizi h2,.lavori h2,.visita h2,.salone h2,.team h2,.listino h2,.prodotti h2{
+  font-size:clamp(2.4rem, 6vw, 4rem);
+  overflow-wrap:anywhere;
+  min-width:0;
+}
+.servizi-intro p{
+  margin-top:var(--space-md);
+  max-width:36ch;
+  color:var(--moka);
+}
+.servizi-foto{margin-top:var(--space-lg);aspect-ratio:4/3;border-radius:4px;background:var(--lino);}
+.servizi-lista{list-style:none;border-top:1px solid var(--nero-espresso);}
+.servizi-lista li{
+  display:grid;
+  grid-template-columns:minmax(0,1fr);
+  gap:var(--space-xs);
+  padding:var(--space-lg) 0;
+  border-bottom:var(--filetto);
+}
+.servizi-lista h3{
+  font-size:clamp(1.6rem, 3vw, 2.1rem);
+}
+.servizi-lista p{color:var(--moka);max-width:44ch;}
+
+/* ---------- Team ---------- */
+.team{padding:var(--space-2xl) 0;}
+.team-foto{aspect-ratio:3/2;border-radius:4px;}
+.team-testo{
+  display:grid;
+  grid-template-columns:minmax(0,1fr);
+  gap:var(--space-md);
+  margin-bottom:var(--space-xl);
+}
+.team-testo p{color:var(--moka);max-width:46ch;}
+.team-testo p + p{margin-top:var(--space-sm);}
+
+/* ---------- Listino ---------- */
+.listino{background:var(--sabbia);padding:var(--space-2xl) 0;}
+.listino-testa{margin-bottom:var(--space-xl);}
+.listino-testa p{margin-top:var(--space-md);color:var(--moka);max-width:40ch;}
+.listino-griglia{
+  display:grid;
+  grid-template-columns:minmax(0,1fr);
+  gap:var(--space-xl);
+}
+.listino-cat h3{
+  font-size:1.6rem;
+  padding-bottom:var(--space-sm);
+  border-bottom:1px solid var(--nero-espresso);
+}
+.listino-cat ul{list-style:none;}
+.listino-cat li{
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  gap:var(--space-sm);
+  padding:14px 0;
+  border-bottom:var(--filetto);
+}
+.listino-cat .prezzo{color:var(--moka);font-variant-numeric:tabular-nums;white-space:nowrap;}
+.listino-nota{margin-top:var(--space-lg);font-size:.9rem;color:var(--moka);}
+
+/* ---------- Prodotti ---------- */
+.prodotti{background:var(--nero-espresso);color:var(--lino);padding:var(--space-2xl) 0;}
+.prodotti-testa{margin-bottom:var(--space-xl);}
+.prodotti-testa p{margin-top:var(--space-md);color:var(--sabbia);max-width:44ch;}
+.prodotti-griglia{
+  display:grid;
+  grid-template-columns:minmax(0,1fr);
+  gap:var(--space-xl);
+}
+.prodotti .riquadro{
+  background:var(--espresso-chiaro);
+  aspect-ratio:4/5;
+  border-radius:4px;
+}
+.prodotti .riquadro::after{border-color:rgba(255,255,255,.1);}
+.prodotti .riquadro span{color:var(--sabbia);}
+@media (max-width:859px){.prodotti .riquadro span{display:none;}}
+.prodotto{
+  display:grid;
+  grid-template-columns:minmax(0,2fr) minmax(0,3fr);
+  column-gap:var(--space-md);
+  align-items:center;
+}
+.prodotto .riquadro{grid-row:1 / span 3;}
+.prodotto .marca{
+  margin-top:var(--space-md);
+  font-size:.75rem;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--cognac-chiaro);
+}
+.prodotto h3{font-size:1.6rem;margin-top:var(--space-xs);}
+.prodotto p{color:var(--sabbia);font-size:.95rem;margin-top:var(--space-xs);max-width:34ch;}
+
+/* ---------- Lavori ---------- */
+.lavori{padding:var(--space-2xl) 0;}
+.lavori-testa{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:var(--space-sm);
+  margin-bottom:var(--space-xl);
+}
+.lavori-testa p{color:var(--moka);max-width:34ch;}
+.lavori-griglia{
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0,1fr));
+  gap:var(--space-sm);
+}
+.lavori-griglia .riquadro{aspect-ratio:1/1;border-radius:4px;}
+.lavori-griglia .arco{
+  grid-column:1 / -1;
+  aspect-ratio:4/5;
+}
+.lavori-griglia .riquadro:last-child{grid-column:1 / -1;aspect-ratio:16/10;}
+
+/* ---------- Recensioni ---------- */
+.recensioni{background:var(--sabbia);padding:var(--space-2xl) 0;text-align:center;}
+.recensioni h2{font-size:clamp(1.6rem, 3.4vw, 2.2rem);}
+.recensioni-numero{
+  font-family:var(--font-titoli);
+  font-size:clamp(5.5rem, 16vw, 9.5rem);
+  line-height:1;
+  margin-top:var(--space-md);
+}
+.recensioni-sub{margin-top:var(--space-xs);font-weight:500;}
+.recensioni-sub .stella{color:var(--cognac);}
+.recensioni-nota{max-width:46ch;margin:var(--space-md) auto var(--space-lg);color:var(--moka);font-size:.95rem;}
+
+/* ---------- Visita ---------- */
+.visita{
+  padding:var(--space-2xl) 0;
+  border-top:var(--filetto);
+}
+.visita .contenitore{
+  display:grid;
+  grid-template-columns:minmax(0,1fr);
+  gap:var(--space-xl);
+}
+.visita-dati{
+  display:grid;
+  gap:var(--space-lg);
+}
+.visita-dati dt{
+  font-size:.78rem;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--cognac);
+  margin-bottom:var(--space-xs);
+}
+.visita-dati dd{
+  font-family:var(--font-titoli);
+  font-size:clamp(1.4rem, 2.6vw, 1.9rem);
+  line-height:1.3;
+}
+.visita-dati dd a{text-decoration:none;border-bottom:1px solid var(--tortora);transition:color var(--t-rapida) var(--ease-out), border-color var(--t-rapida) var(--ease-out);}
+.visita-dati dd a:hover{color:var(--cognac);border-color:var(--cognac);}
+.orari{
+  width:100%;
+  max-width:420px;
+  border-collapse:collapse;
+  font-family:var(--font-testo);
+  font-size:1rem;
+}
+.orari th,.orari td{padding:10px 0;border-bottom:var(--filetto);text-align:left;font-weight:400;}
+.orari td{text-align:right;color:var(--moka);}
+.orari caption{caption-side:bottom;text-align:left;padding-top:var(--space-xs);font-size:.95rem;color:var(--moka);}
+.visita-dati .nota{
+  display:block;
+  margin-top:var(--space-xs);
+  font-family:var(--font-testo);
+  font-size:.95rem;
+  color:var(--moka);
+}
+
+/* ---------- CTA verso Lorenzo ---------- */
+.proposta{
+  background:var(--nero-espresso);
+  color:var(--lino);
+  padding:var(--space-2xl) 0;
+}
+.proposta .contenitore{
+  display:grid;
+  grid-template-columns:minmax(0,1fr);
+  gap:var(--space-lg);
+  align-items:end;
+}
+.proposta h2{
+  font-size:clamp(2rem, 5vw, 3.4rem);
+  max-width:20ch;
+}
+.proposta h2 .accento{color:var(--cognac-chiaro);}
+.proposta p{color:var(--sabbia);max-width:42ch;margin-top:var(--space-md);}
+.proposta .bottone{background:var(--lino);color:var(--nero-espresso);border-color:var(--lino);}
+.proposta .bottone:hover{background:var(--cognac-chiaro);border-color:var(--cognac-chiaro);}
+
+/* ---------- Footer ---------- */
+.piede{
+  background:var(--nero-espresso);
+  color:var(--sabbia);
+  font-size:.85rem;
+  padding:var(--space-md) 0 var(--space-lg);
+}
+.piede .contenitore{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:space-between;
+  gap:var(--space-xs) var(--space-md);
+  border-top:1px solid var(--moka);
+  padding-top:var(--space-md);
+}
+.piede a{text-decoration:none;border-bottom:1px solid var(--moka);}
+.piede a:hover{color:var(--cognac-chiaro);border-color:var(--cognac-chiaro);}
+
+/* ======================================================================
+   Desktop
+   ====================================================================== */
+@media (min-width:860px){
+  .hero{padding-top:var(--space-xl);}
+  .hero .contenitore{
+    grid-template-columns:minmax(0,7fr) minmax(0,5fr);
+    align-items:end;
+    gap:var(--space-xl);
+  }
+  .hero h1{font-size:clamp(5rem, 11vw, 10.5rem);}
+  .hero-specchio{justify-self:end;}
+
+  .servizi .contenitore{grid-template-columns:minmax(0,5fr) minmax(0,7fr);}
+  .servizi-intro{position:sticky;top:var(--space-xl);align-self:start;}
+  .servizi-lista li{grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:var(--space-lg);align-items:baseline;}
+
+  .lavori-griglia{grid-template-columns:repeat(4, minmax(0,1fr));}
+  .lavori-griglia .riquadro,
+  .lavori-griglia .arco,
+  .lavori-griglia .riquadro:last-child{grid-column:auto;aspect-ratio:4/5;}
+
+  .visita .contenitore{grid-template-columns:minmax(0,5fr) minmax(0,7fr);}
+  .visita-dati{grid-template-columns:repeat(2, minmax(0,1fr));}
+
+
+  .salone .contenitore{grid-template-columns:minmax(0,5fr) minmax(0,7fr);align-items:center;}
+  .salone-foto{gap:var(--space-md);}
+
+  .team-foto{aspect-ratio:21/9;}
+  .team-testo{grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:var(--space-xl);}
+
+  .listino-griglia{grid-template-columns:repeat(3, minmax(0,1fr));}
+
+  .prodotti-griglia{grid-template-columns:repeat(3, minmax(0,1fr));gap:var(--space-lg);}
+  .prodotto{display:block;}
+  .prodotto:nth-child(2){margin-top:var(--space-xl);}
+
+  .visita-orari{grid-column:1 / -1;}
+
+  .proposta .contenitore{grid-template-columns:minmax(0,1fr) auto;}
+}
+
+/* ======================================================================
+   Movimento — personalità Premium (motion-design): poco, lento, sicuro.
+   Un solo effetto vistoso: il nome in hero (kinetic-headline, lettere).
+   Entrate discrete: fade-in-up (hero) e scroll-reveal (sezioni), sempre
+   dal basso. Ricette da .claude/skills/motion-locali.
+   ====================================================================== */
+/* kinetic-headline — variante a righe: ogni riga resta intera (nowrap) e
+   lo stagger prosegue da una riga all'altra */
+.k-unit{
+  display:inline-block;
+  opacity:0;
+  transform:translateY(.35em);
+  transition:opacity var(--t-lenta) var(--ease-out), transform var(--t-lenta) var(--ease-out);
+  transition-delay:var(--k-delay, 0ms);
+}
+.is-in .k-unit{opacity:1;transform:none;}
+
+/* fade-in-up */
+[data-fade]{
+  opacity:0;
+  transform:translateY(28px);
+  transition:opacity 620ms var(--ease-out), transform 620ms var(--ease-out);
+  transition-delay:var(--fade-delay, 0ms);
+}
+[data-fade].is-in{opacity:1;transform:none;}
+
+/* lo specchio entra con un respiro: scala appena percettibile + opacità */
+.hero-specchio .riquadro{
+  opacity:0;
+  transform:scale(1.03);
+  transition:opacity 900ms var(--ease-out), transform 1200ms var(--ease-out);
+  transition-delay:200ms;
+}
+.hero-specchio.is-in .riquadro{opacity:1;transform:none;}
+
+/* scroll-reveal */
+[data-reveal]{
+  opacity:0;
+  transform:translateY(32px);
+  transition:opacity 680ms var(--ease-out), transform 680ms var(--ease-out);
+  transition-delay:var(--reveal-delay, 0ms);
+}
+[data-reveal].is-in{opacity:1;transform:none;}
+
+@media (min-width:1000px){
+  .testata-nav{display:flex;gap:var(--space-md);}
+}
+
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto;}
+  .k-unit,[data-fade],[data-reveal],.hero-specchio .riquadro{
+    opacity:1 !important;transform:none !important;transition:none !important;
+  }
+  .bottone,.link-sobrio,.testata-tel,.testata-nav a,.hero-voto{transition:none;}
+}
+</style>
+</head>
+<body>
+
+<header class="testata">
+  <div class="contenitore">
+    <a class="marchio" href="#">Action Hair</a>
+    <div class="testata-destra">
+      <nav class="testata-nav" aria-label="Sezioni del sito">
+        <a href="#servizi">Servizi</a>
+        <a href="#listino">Listino</a>
+        <a href="#prodotti">Prodotti</a>
+        <a href="#lavori">Lavori</a>
+        <a href="#contatti">Contatti</a>
+      </nav>
+      <a class="testata-tel" href="tel:+39035754102">035 754102</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero" aria-label="Action Hair, parrucchiere ad Albino">
+    <div class="contenitore">
+      <div class="hero-testo">
+        <p class="hero-luogo" data-fade>Parrucchiere · Albino</p>
+        <h1 aria-label="Action Hair" data-kinetic-righe>
+          <span class="riga" aria-hidden="true">Action</span>
+          <span class="riga" aria-hidden="true">Hair</span>
+        </h1>
+        <p class="hero-lede" data-fade data-fade-delay="500">Colore su misura, taglio e piega, cura del capello. Un salone dove il risultato si vede da vicino.</p>
+        <div class="hero-azioni" data-fade data-fade-delay="620">
+          <a class="bottone" href="tel:+39035754102">Prenota con una chiamata</a>
+          <a class="link-sobrio" href="#servizi">Scopri i servizi</a>
+        </div>
+        <a class="hero-voto" href="#recensioni" data-fade data-fade-delay="740"><span class="stella" aria-hidden="true">★</span> 4,5 su Google · 19 recensioni</a>
+      </div>
+
+      <figure class="hero-specchio">
+        <div class="riquadro"><span>Foto · lavoro di colore</span></div>
+        <figcaption><span>Viale Aldo Moro, 2/p</span><span>Albino (BG)</span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="frase" aria-label="Il nostro modo di lavorare">
+    <div class="contenitore">
+      <p data-reveal>Un colore ben fatto non si nota da lontano. <span class="accento">Si riconosce da vicino.</span></p>
+    </div>
+  </section>
+
+  <section class="salone" id="salone">
+    <div class="contenitore">
+      <div class="testo-sezione" data-reveal>
+        <h2>Il salone</h2>
+        <p>Action Hair è un salone di acconciature ad Albino, in Viale Aldo Moro. Il nostro lavoro parte dal colore: biondi caldi e freddi, ramati, castani profondi, costruiti su misura con tecniche come il balayage.</p>
+        <p>Ci piace cominciare da una chiacchierata: guardiamo il tuo capello, ascoltiamo cosa desideri e scegliamo insieme la strada, senza fretta.</p>
+      </div>
+      <div class="salone-foto">
+        <div class="riquadro" data-reveal><span>Foto · il salone</span></div>
+        <div class="riquadro" data-reveal data-reveal-delay="120"><span>Foto · al lavoro</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="servizi" id="servizi">
+    <div class="contenitore">
+      <div class="servizi-intro" data-reveal>
+        <h2>Cosa facciamo</h2>
+        <p>Tre cose, fatte con calma. Il listino completo ti aspetta in salone: chiamaci e troviamo insieme il trattamento giusto per te.</p>
+        <div class="riquadro servizi-foto"><span>Foto · balayage in lavorazione</span></div>
+      </div>
+      <ul class="servizi-lista">
+        <li data-reveal>
+          <h3>Colore e balayage</h3>
+          <p>Biondi caldi e freddi, ramati, castani profondi. Sfumature costruite ciocca per ciocca, sul tuo viso e sulla tua luce.</p>
+        </li>
+        <li data-reveal data-reveal-delay="80">
+          <h3>Taglio e piega</h3>
+          <p>Dal liscio a specchio alle onde morbide: la forma che si tiene anche il giorno dopo.</p>
+        </li>
+        <li data-reveal data-reveal-delay="160">
+          <h3>Trattamenti</h3>
+          <p>Cura e ricostruzione con la linea professionale Innovatis Luxury Care e la fiala Luxury Caviar Gold.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="team" id="team">
+    <div class="contenitore">
+      <div class="team-testo">
+        <h2 data-reveal>Il team</h2>
+        <div data-reveal data-reveal-delay="80">
+          <p>Dietro ogni colore ci sono mani che ascoltano prima di lavorare. Ti consigliamo con sincerità, anche quando la scelta giusta è cambiare poco.</p>
+          <p>Ogni appuntamento è un lavoro a quattro mani: la tua idea, la nostra tecnica.</p>
+        </div>
+      </div>
+      <div class="riquadro team-foto" data-reveal><span>Foto · il team</span></div>
+    </div>
+  </section>
+
+  <section class="listino" id="listino">
+    <div class="contenitore">
+      <div class="listino-testa" data-reveal>
+        <h2>Listino</h2>
+        <p>Le voci principali del salone, divise per tipo di servizio.</p>
+      </div>
+      <div class="listino-griglia">
+        <div class="listino-cat" data-reveal>
+          <h3>Taglio e piega</h3>
+          <ul>
+            <li><span>Piega</span><span class="prezzo">€ —</span></li>
+            <li><span>Piega liscia a specchio</span><span class="prezzo">€ —</span></li>
+            <li><span>Piega mossa</span><span class="prezzo">€ —</span></li>
+            <li><span>Taglio e piega</span><span class="prezzo">€ —</span></li>
+          </ul>
+        </div>
+        <div class="listino-cat" data-reveal data-reveal-delay="80">
+          <h3>Colore</h3>
+          <ul>
+            <li><span>Colore</span><span class="prezzo">€ —</span></li>
+            <li><span>Balayage</span><span class="prezzo">€ —</span></li>
+            <li><span>Schiariture e biondi</span><span class="prezzo">€ —</span></li>
+            <li><span>Ramati</span><span class="prezzo">€ —</span></li>
+          </ul>
+        </div>
+        <div class="listino-cat" data-reveal data-reveal-delay="160">
+          <h3>Trattamenti</h3>
+          <ul>
+            <li><span>Innovatis Luxury Care</span><span class="prezzo">€ —</span></li>
+            <li><span>Smoother SPA</span><span class="prezzo">€ —</span></li>
+            <li><span>Fiala Luxury Caviar Gold</span><span class="prezzo">€ —</span></li>
+          </ul>
+        </div>
+      </div>
+      <p class="listino-nota">Voci e prezzi da completare con il salone.</p>
+    </div>
+  </section>
+
+  <section class="prodotti" id="prodotti">
+    <div class="contenitore">
+      <div class="prodotti-testa" data-reveal>
+        <h2>Prodotti</h2>
+        <p>In salone lavoriamo con la linea professionale Innovatis Luxury Care. Gli stessi prodotti li trovi in vendita, per continuare la cura anche a casa.</p>
+      </div>
+      <div class="prodotti-griglia">
+        <article class="prodotto" data-reveal>
+          <div class="riquadro"><span>Foto · shampoo e balsamo</span></div>
+          <p class="marca">Innovatis Luxury Care</p>
+          <h3>Shampoo e balsamo</h3>
+          <p>Detersione e condizionamento professionali, anche in versione certificata vegana.</p>
+        </article>
+        <article class="prodotto" data-reveal data-reveal-delay="80">
+          <div class="riquadro"><span>Foto · Smoother SPA</span></div>
+          <p class="marca">Innovatis Luxury Care</p>
+          <h3>Smoother SPA</h3>
+          <p>Il trattamento della linea per un capello disciplinato, morbido e luminoso.</p>
+        </article>
+        <article class="prodotto" data-reveal data-reveal-delay="160">
+          <div class="riquadro"><span>Foto · Luxury Caviar Gold</span></div>
+          <p class="marca">Innovatis</p>
+          <h3>Luxury Caviar Gold</h3>
+          <p>Fiala da 20 cc, trattamento intensivo da salone.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="lavori" id="lavori">
+    <div class="contenitore">
+      <div class="lavori-testa" data-reveal>
+        <h2>Lavori</h2>
+        <p>Alcuni colori usciti dal salone. Ognuno pensato per una persona sola.</p>
+      </div>
+      <div class="lavori-griglia">
+        <div class="riquadro arco" data-reveal><span>Balayage miele</span></div>
+        <div class="riquadro" data-reveal data-reveal-delay="80"><span>Ramato mosso</span></div>
+        <div class="riquadro alto" data-reveal data-reveal-delay="160"><span>Castano a specchio</span></div>
+        <div class="riquadro" data-reveal data-reveal-delay="240"><span>Biondo freddo</span></div>
+        <div class="riquadro alto" data-reveal><span>Onde morbide</span></div>
+        <div class="riquadro" data-reveal data-reveal-delay="80"><span>Balayage a pettine</span></div>
+        <div class="riquadro" data-reveal data-reveal-delay="160"><span>Biondo liscio</span></div>
+        <div class="riquadro alto" data-reveal data-reveal-delay="240"><span>Castano scuro mosso</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="recensioni" id="recensioni">
+    <div class="contenitore" data-reveal>
+      <h2>Cosa dicono di noi</h2>
+      <p class="recensioni-numero">4,5</p>
+      <p class="recensioni-sub"><span class="stella" aria-hidden="true">★</span> su 5 · 19 recensioni Google</p>
+      <p class="recensioni-nota">Nessuna recensione scelta da noi: il punteggio arriva dal profilo Google del salone, dove si possono leggere tutte.</p>
+      <a class="link-sobrio" href="https://maps.google.com/?cid=11532242495236591719" target="_blank" rel="noopener">Leggi le recensioni su Google</a>
+    </div>
+  </section>
+
+  <section class="visita" id="contatti">
+    <div class="contenitore">
+      <h2 data-reveal>Vieni a trovarci</h2>
+      <dl class="visita-dati" data-reveal>
+        <div>
+          <dt>Indirizzo</dt>
+          <dd><a href="https://maps.google.com/?cid=11532242495236591719" target="_blank" rel="noopener">Viale Aldo Moro, 2/p<br>24021 Albino (BG)</a></dd>
+        </div>
+        <div>
+          <dt>Telefono</dt>
+          <dd><a href="tel:+39035754102">035 754102</a>
+            <span class="nota">Chiama per prenotare il tuo appuntamento.</span></dd>
+        </div>
+        <div class="visita-orari">
+          <dt>Orari</dt>
+          <dd>
+            <table class="orari">
+              <caption>Orari da confermare con il salone.</caption>
+              <tbody>
+                <tr><th scope="row">Lunedì</th><td>—</td></tr>
+                <tr><th scope="row">Martedì</th><td>—</td></tr>
+                <tr><th scope="row">Mercoledì</th><td>—</td></tr>
+                <tr><th scope="row">Giovedì</th><td>—</td></tr>
+                <tr><th scope="row">Venerdì</th><td>—</td></tr>
+                <tr><th scope="row">Sabato</th><td>—</td></tr>
+                <tr><th scope="row">Domenica</th><td>—</td></tr>
+              </tbody>
+            </table>
+          </dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="proposta" aria-label="Il sito di Action Hair">
+    <div class="contenitore">
+      <div data-reveal>
+        <h2>Action Hair, questa è la prima di <span class="accento">tre direzioni</span> per il tuo sito.</h2>
+        <p>Al posto dei riquadri andranno le foto dei tuoi lavori. Dimmi quale direzione senti più tua e la costruiamo insieme.</p>
+      </div>
+      <a class="bottone" href="https://wa.me/393314660537" target="_blank" rel="noopener" data-reveal>Scrivimi su WhatsApp</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="piede">
+  <div class="contenitore">
+    <span>Parrucchiere Action Hair · Viale Aldo Moro, 2/p, Albino (BG)</span>
+    <a href="https://wa.me/393314660537" target="_blank" rel="noopener">Sito realizzato da Lorenzo Zenucchi</a>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* kinetic-headline (motion-locali), variante a righe: lettere in stagger
+     continuo fra le righe, ogni riga resta intera */
+  document.querySelectorAll('[data-kinetic-righe]').forEach(function(h){
+    var i = 0;
+    h.querySelectorAll('.riga').forEach(function(riga){
+      var testo = riga.textContent;
+      riga.textContent = '';
+      testo.split('').forEach(function(c){
+        var s = document.createElement('span');
+        s.className = 'k-unit';
+        s.textContent = c;
+        s.style.setProperty('--k-delay', (i * 45) + 'ms');
+        i++;
+        riga.appendChild(s);
+      });
+    });
+  });
+
+  /* fade-in-up (motion-locali) */
+  document.querySelectorAll('[data-fade]').forEach(function(el){
+    var d = el.getAttribute('data-fade-delay');
+    if (d) el.style.setProperty('--fade-delay', parseInt(d, 10) + 'ms');
+  });
+
+  function entraHero(){
+    document.querySelectorAll('[data-kinetic-righe], [data-fade], .hero-specchio').forEach(function(el){
+      el.classList.add('is-in');
+    });
+  }
+  if (reduce) entraHero();
+  else requestAnimationFrame(function(){ requestAnimationFrame(entraHero); });
+
+  /* scroll-reveal (motion-locali) */
+  var els = document.querySelectorAll('[data-reveal]');
+  if (reduce || !('IntersectionObserver' in window)) {
+    els.forEach(function(el){ el.classList.add('is-in'); });
+    return;
+  }
+  els.forEach(function(el){
+    var d = el.getAttribute('data-reveal-delay');
+    if (d) el.style.setProperty('--reveal-delay', parseInt(d, 10) + 'ms');
+  });
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -10% 0px' });
+  els.forEach(function(el){ io.observe(el); });
+})();
+</script>
+</body>
+</html>
